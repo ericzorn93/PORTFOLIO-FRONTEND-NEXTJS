@@ -1,10 +1,10 @@
-<input [(ngModel)]="name" (ngModelChange)="resetForm()" type="text" placeholder="Enter Message Here..." />
-<button (click)="handleSubmit()">Submit the form</button>
+<input type="text" [(ngModel)]="firstName" (ngModelChange)="removeError()" placeholder="Enter First Name..." />
+<input type="text" [(ngModel)]="lastName" (ngModelChange)="removeError()" placeholder="Enter Last Name..." />
+<input type="number" [(ngModel)]="age" (ngModelChange)="removeError()" placeholder="Enter Age...." />
+<button (click)="submitUser()">Submit User</button>
 
-<div *ngIf="socketErrorMessage">
-  <p [class.error]="socketErrorMessage">{{ socketErrorMessage }}</p>
-</div>
+<h4 *ngIf="errorMessage" class="error-message">{{errorMessage}}</h4>
 
 <!-- Passes the binding of the name variable to socket-card -->
-<app-socket-card [name]="name"></app-socket-card>
+<app-socket-card *ngFor="let user of users" [user]="user"></app-socket-card>
 <app-chat-footer></app-chat-footer>

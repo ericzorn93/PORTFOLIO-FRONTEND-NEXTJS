@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {MessageSocketService} from './services/message-socket.service';
+
+// import {MessageSocketService} from './services/message-socket.service';
 import {UserAgentService} from '../user-agent.service';
+import User from './User';
 
 @Component({
   selector: 'app-chat-form',
@@ -8,40 +10,38 @@ import {UserAgentService} from '../user-agent.service';
   styleUrls: ['./chat-form.component.scss']
 })
 export class ChatFormComponent implements OnInit {
-  public name: string;
-  public socketErrorMessage: string;
+  public firstName: string;
+  public lastName: string;
+  public age: number;
+  public users: User[] = [];
 
-  constructor(private messageSocketService: MessageSocketService, private userAgentService: UserAgentService) { }
+  public errorMessage: string;
 
-  ngOnInit() {  }
+  constructor(private userAgentService: UserAgentService) { }
 
-  /**
-   * @description
-   * Handles the form submission for the chat
-   */
-  handleSubmit(): void {
-    const { name } = this;
+  ngOnInit() {}
 
-    if(!name) {
+  submitUser(): void {
+    const{firstName, lastName, age} = this;
+
+    if (firstName && lastName && age > 0) {
+      const newUser: User = new User(firstName, lastName, age);
+      this.users.push(newUser);
+      this.clearInputs();
+
       return;
     }
 
-    const customMessage = `Hello ${name}`;
-    const messageSuccessful: boolean = this.messageSocketService.sendMessage(customMessage);
-    this.name = '';
-
-    console.log(messageSuccessful);
-
-    if(!messageSuccessful) {
-      this.socketErrorMessage = 'Could not send the message over the socket';
-    }
+    this.errorMessage = 'Could not add user.';
   }
 
-  /**
-   * @description
-   * Resets the form input whe filled out
-   */
-  resetForm(): void {
-    this.socketErrorMessage = '';
+  private clearInputs(): void {
+    this.firstName = '';
+    this.lastName = '';
+    this.age = null;
+  }
+
+  public removeError(): void {
+    this.errorMessage = '';
   }
 }
