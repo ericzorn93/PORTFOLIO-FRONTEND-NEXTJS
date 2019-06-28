@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MessageSocketService} from './services/message-socket.service';
+import {UserAgentService} from '../user-agent.service';
 
 @Component({
   selector: 'app-chat-form',
@@ -10,9 +11,9 @@ export class ChatFormComponent implements OnInit {
   public name: string;
   public socketErrorMessage: string;
 
-  constructor(private messageSocketService: MessageSocketService) { }
+  constructor(private messageSocketService: MessageSocketService, private userAgentService: UserAgentService) { }
 
-  ngOnInit() {}
+  ngOnInit() {  }
 
   /**
    * @description

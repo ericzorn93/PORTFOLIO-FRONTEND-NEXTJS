@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as socketIo from 'socket.io-client';
+import {UserAgentService} from '../../user-agent.service';
 
 enum SocketActions {
   Connect = 'connect',
@@ -15,7 +16,7 @@ export class MessageSocketService {
   private io: any;
   private readonly socketIoConnection: string;
 
-  constructor() {
+  constructor(private userAgentService: UserAgentService) {
     this.socketIoConnection = 'https://ez-auto.herokuapp.com/';
     this.io = socketIo(this.socketIoConnection);
   }
