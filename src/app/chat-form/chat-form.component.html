@@ -1,2 +1,10 @@
-<input type="text" placeholder="Enter Message Here..." [(ngModel)]="name" />
+<input [(ngModel)]="name" (ngModelChange)="resetForm()" type="text" placeholder="Enter Message Here..." />
 <button (click)="handleSubmit()">Submit the form</button>
+
+<div *ngIf="socketErrorMessage">
+  <p [class.error]="socketErrorMessage">{{ socketErrorMessage }}</p>
+</div>
+
+<!-- Passes the binding of the name variable to socket-card -->
+<app-socket-card [name]="name"></app-socket-card>
+<app-chat-footer></app-chat-footer>
