@@ -3,14 +3,14 @@ import { NgModule } from "@angular/core";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import {ChatFormModule} from './chat-form/chat-form.module';
-import {FormsModule} from '@angular/forms';
-import {UserAgentService} from './user-agent.service';
+import { FormsModule } from "@angular/forms";
+
+import { HeaderModule } from "./modules/header/header.module";
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, ChatFormModule, FormsModule],
-  providers: [UserAgentService],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HeaderModule],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

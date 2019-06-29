@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "socket-ng": {
+    "draft-ez": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/socket-ng",
+            "outputPath": "dist/draft-ez",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -62,18 +62,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "socket-ng:build"
+            "browserTarget": "draft-ez:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "socket-ng:build:production"
+              "browserTarget": "draft-ez:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "socket-ng:build"
+            "browserTarget": "draft-ez:build"
           }
         },
         "test": {
@@ -110,15 +110,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "socket-ng:serve"
+            "devServerTarget": "draft-ez:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "socket-ng:serve:production"
+              "devServerTarget": "draft-ez:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "socket-ng"
+  "defaultProject": "draft-ez"
 }
