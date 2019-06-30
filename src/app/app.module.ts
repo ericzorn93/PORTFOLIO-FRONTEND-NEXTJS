@@ -23,6 +23,7 @@ import { AboutModule } from "./modules/about/about.module";
     AboutModule
   ],
   providers: [SearchService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: []
 })
 export class AppModule {}

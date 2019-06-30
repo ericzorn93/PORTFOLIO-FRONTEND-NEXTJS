@@ -2,15 +2,13 @@
   <a
     class="router-link"
     routerLink="/"
-    routerLinkActive="active"
-    (click)="changeRoute('/')"
-    >All Players</a
+    [routerLinkActive]="['router-link__active']"
+    >Home</a
   >
   <a
     class="router-link"
     routerLink="/about"
-    routerLinkActive="active"
-    (click)="changeRoute('/about')"
+    [routerLinkActive]="['router-link__active']"
     >About</a
   >
 </nav>

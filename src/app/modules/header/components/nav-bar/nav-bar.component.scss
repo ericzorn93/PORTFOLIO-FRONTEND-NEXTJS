@@ -6,11 +6,11 @@
     margin-left: 10px;
 
     &:hover {
-      color: green;
+      color: red;
     }
+  }
 
-    &.router-link-active {
-      color: green;
-    }
+  .router-link__active {
+    color: green;
   }
 }
