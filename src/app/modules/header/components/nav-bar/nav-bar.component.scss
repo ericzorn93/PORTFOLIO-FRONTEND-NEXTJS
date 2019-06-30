@@ -1,0 +1,16 @@
+.navbar {
+  .router-link {
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 10px;
+
+    &:hover {
+      color: green;
+    }
+
+    &.router-link-active {
+      color: green;
+    }
+  }
+}
