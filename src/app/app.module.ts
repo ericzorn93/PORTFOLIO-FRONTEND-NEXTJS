@@ -1,6 +1,7 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 
+import { HttpClientModule } from "@angular/common/http";
 import { AppRoutingModule } from "./router/app-routing.module";
 import { AppComponent } from "./app.component";
 import { FormsModule } from "@angular/forms";
@@ -21,7 +22,8 @@ import { SocketService } from "./services/socket_service/socket.service";
     HeaderModule,
     FooterModule,
     AllPlayersModule,
-    AboutModule
+    AboutModule,
+    HttpClientModule
   ],
   providers: [SearchService, SocketService],
   bootstrap: [AppComponent],
