@@ -10,6 +10,7 @@ import { SearchService } from "./services/search_service/search.service";
 import { FooterModule } from "./modules/footer/footer.module";
 import { AllPlayersModule } from "./modules/all-players/all-players.module";
 import { AboutModule } from "./modules/about/about.module";
+import { SocketService } from "./services/socket.service";
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,7 +23,7 @@ import { AboutModule } from "./modules/about/about.module";
     AllPlayersModule,
     AboutModule
   ],
-  providers: [SearchService],
+  providers: [SearchService, SocketService],
   bootstrap: [AppComponent],
   exports: []
 })
