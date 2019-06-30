@@ -10,7 +10,7 @@ import { SearchService } from "./services/search_service/search.service";
 import { FooterModule } from "./modules/footer/footer.module";
 import { AllPlayersModule } from "./modules/all-players/all-players.module";
 import { AboutModule } from "./modules/about/about.module";
-import { SocketService } from "./services/socket.service";
+import { SocketService } from "./services/socket_service/socket.service";
 
 @NgModule({
   declarations: [AppComponent],
