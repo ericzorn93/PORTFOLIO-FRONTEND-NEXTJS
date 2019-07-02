@@ -2,9 +2,9 @@ import { Component, OnInit, OnDestroy } from "@angular/core";
 import { of } from "rxjs";
 import { catchError, map } from "rxjs/operators";
 
-import { AllPlayersService } from "./services/all-players.service";
+import { AllPlayersService } from "./services/all_players_service/all-players.service";
 import { SocketService } from "src/app/services/socket_service/socket.service";
-import { Post } from "./services/post.interface";
+import { Post } from "./services/all_players_service/post.interface";
 
 @Component({
   selector: "app-all-players",

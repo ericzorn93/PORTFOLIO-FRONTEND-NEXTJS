@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import {SearchService} from '../../../../services/search_service/search.service';
+import {SearchService} from '../../services/search_service/search.service';
 
 @Component({
   selector: 'app-search',
@@ -9,7 +9,6 @@ import {SearchService} from '../../../../services/search_service/search.service'
 })
 export class SearchComponent implements OnInit {
   searchTerm: string;
-
   searchPlaceholder = 'Search For Players Here...';
   searchButton = 'Search';
 
@@ -17,9 +16,10 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {}
 
-  makeSearch = async (): Promise<void> => {
-    const players: object[] = await this.searchService.searchAllPlayers(this.searchTerm);
-    console.log(players);
+  makeSearch = (): void => {
+    this.searchService.searchAllPlayers()
+      .then((searchData: any) => console.log(searchData))
+      .catch((error: Error) => console.error(error));
   }
 
 }
