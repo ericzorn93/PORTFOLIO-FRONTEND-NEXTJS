@@ -1,18 +1,17 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 
-import * as uuid from 'uuid';
+import * as uuid from "uuid";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class SearchService {
-
-  constructor() { }
+  constructor() {}
 
   async searchAllPlayers(searchTerm: string): Promise<object[]> {
     const allPlayers = [
-      { id: uuid.v4(), name: 'Eli Manning' },
-      { id: uuid.v4(), name: 'Lebron James' },
+      { id: uuid.v4(), name: "Eli Manning" },
+      { id: uuid.v4(), name: "Lebron James" }
     ];
 
     return allPlayers;
