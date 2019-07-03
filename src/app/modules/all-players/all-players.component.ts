@@ -23,8 +23,11 @@ export class AllPlayersComponent implements OnInit, OnDestroy {
   ngOnInit() {
     // Connect web socket to Socket IO
     this.socketService.connectSocket();
-    
     this.getPrimaryNflData();
+
+    // Temporary Connection
+    this.socketService.sendMessage("this is a test");
+    this.socketService.io.on("message", this.handleIncomingMessage);
   }
 
   ngOnDestroy() {
@@ -44,5 +47,9 @@ export class AllPlayersComponent implements OnInit, OnDestroy {
         this.nflData = nflData;
         this.loading = false;
       });
+  }
+
+  private handleIncomingMessage(message: string): void {
+    console.log(message);
   }
 }
