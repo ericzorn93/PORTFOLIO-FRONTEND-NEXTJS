@@ -12,7 +12,9 @@ export class SocketService {
   private socketIoUrl = "https://draft-ez-api.herokuapp.com";
   public io: any;
 
-  constructor() {}
+  constructor() {
+    this.io = socketIO(this.socketIoUrl);
+  }
 
   public connectSocket(): any {
     this.io = socketIO(this.socketIoUrl);

@@ -22,7 +22,6 @@ export class AllPlayersComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     // Connect web socket to Socket IO
-    this.socketService.connectSocket();
     this.getPrimaryNflData();
 
     // Temporary Connection
