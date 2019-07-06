@@ -5,10 +5,10 @@ interface Themes {
   darkMode: object;
 }
 
-export const loadThemesAction: Function = (themes: Themes) => {
-  return (dispatch: Function) => {
-    console.log(themes);
+export const loadThemesAction: any = (themes: Themes) => {
+  console.log(themes);
 
+  return (dispatch: any) => {
     dispatch({
       type: LOAD_THEMES,
       payload: {
