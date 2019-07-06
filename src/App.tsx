@@ -5,6 +5,8 @@ import { gql } from "apollo-boost";
 
 import "./App.css";
 import HomePage from "./pages/HomePage";
+import { loadThemesAction } from "./store/actions/theme.actions";
+import { connect } from "react-redux";
 
 // Theme Query
 const themeQuery = gql`
@@ -32,7 +34,13 @@ const themeQuery = gql`
   }
 `;
 
-const App: React.FC = () => {
+interface Props {
+  dispatchLoadThemes: Function;
+}
+
+const App: React.FC<Props> = props => {
+  const { dispatchLoadThemes } = props;
+
   return (
     <Fragment>
       <Query query={themeQuery}>
@@ -40,8 +48,9 @@ const App: React.FC = () => {
           if (response.loading) return <h1>Loading...</h1>;
           if (response.error) return <h1>Error</h1>;
 
-          if (response.data) {
-            console.log(response.data);
+          if (response.data && dispatchLoadThemes) {
+            const { getAllThemes } = response.data;
+            dispatchLoadThemes(getAllThemes);
           }
 
           return (
@@ -57,4 +66,14 @@ const App: React.FC = () => {
   );
 };
 
-export default App;
+// Redux Actions
+const mapStateToProps = (state: any) => ({});
+
+const mapDispatchToProps = (dispatch: Function) => ({
+  dispatchLoadThemes: (themes: any) => dispatch(() => loadThemesAction(themes))
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
