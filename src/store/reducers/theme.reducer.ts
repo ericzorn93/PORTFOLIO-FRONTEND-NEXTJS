@@ -13,7 +13,8 @@ const themeReducer = (state: object = initialThemeState, action: Action) => {
       return {
         ...state,
         darkMode: action.payload.darkMode,
-        lightMode: action.payload.lightMode
+        lightMode: action.payload.lightMode,
+        selectedTheme: action.payload.selectedTheme
       };
     default:
       return state;

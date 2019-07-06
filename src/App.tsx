@@ -5,8 +5,9 @@ import { gql } from "apollo-boost";
 
 import "./App.css";
 import HomePage from "./pages/HomePage";
-import { loadThemesAction } from "./store/actions/theme.actions";
 import { connect } from "react-redux";
+import { LOAD_THEMES } from "./store/types/theme.types";
+// import { loadThemesAction } from "./store/actions/theme.actions";
 
 // Theme Query
 const themeQuery = gql`
@@ -70,7 +71,15 @@ const App: React.FC<Props> = props => {
 const mapStateToProps = (state: any) => ({});
 
 const mapDispatchToProps = (dispatch: Function) => ({
-  dispatchLoadThemes: (themes: any) => dispatch(() => loadThemesAction(themes))
+  dispatchLoadThemes: (themes: any) =>
+    dispatch({
+      type: LOAD_THEMES,
+      payload: {
+        lightMode: themes.lightMode,
+        darkMode: themes.darkMode,
+        selectedTheme: "darkMode"
+      }
+    })
 });
 
 export default connect(
