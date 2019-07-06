@@ -40,7 +40,9 @@ const App: React.FC = () => {
           if (response.loading) return <h1>Loading...</h1>;
           if (response.error) return <h1>Error</h1>;
 
-          console.log(response.data);
+          if (response.data) {
+            console.log(response.data);
+          }
 
           return (
             <BrowserRouter>
