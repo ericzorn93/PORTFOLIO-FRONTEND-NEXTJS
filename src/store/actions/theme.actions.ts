@@ -13,7 +13,8 @@ export const loadThemesAction: any = (themes: Themes) => {
       type: LOAD_THEMES,
       payload: {
         lightMode: themes.lightMode,
-        darkMode: themes.darkMode
+        darkMode: themes.darkMode,
+        selectedTheme: "darkMode"
       }
     });
   };

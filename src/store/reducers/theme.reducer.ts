@@ -3,7 +3,8 @@ import Action from "../interfaces/action.interface";
 
 const initialThemeState = {
   lightMode: {},
-  darkMode: {}
+  darkMode: {},
+  selectedTheme: ""
 };
 
 const themeReducer = (state: object = initialThemeState, action: Action) => {
