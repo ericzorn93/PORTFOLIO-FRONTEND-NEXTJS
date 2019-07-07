@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { ApolloProvider } from "react-apollo";
+import { ApolloProvider as ApolloHooksProvider } from "react-apollo-hooks";
 import { Provider } from "react-redux";
 
 import apolloClient from "./apollo_setup";
@@ -12,9 +13,11 @@ import store from "./store";
 const LeadComponent: React.FC = () => {
   return (
     <ApolloProvider client={apolloClient}>
-      <Provider store={store}>
-        <App />
-      </Provider>
+      <ApolloHooksProvider client={apolloClient}>
+        <Provider store={store}>
+          <App />
+        </Provider>
+      </ApolloHooksProvider>
     </ApolloProvider>
   );
 };
