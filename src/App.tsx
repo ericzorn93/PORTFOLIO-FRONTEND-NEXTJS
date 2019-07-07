@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import { Query } from "react-apollo";
 import { gql } from "apollo-boost";
 import { connect } from "react-redux";
+import { ThemeProvider } from "emotion-theming";
 
 import "./App.css";
 import EZRouter from "./components/EZRouter";
@@ -36,24 +37,51 @@ const themeQuery = gql`
 
 interface Props {
   dispatchLoadThemes: Function;
+  lightModeTheme: object;
+  darkModeTheme: object;
+  selectedTheme: string;
 }
 
 const App: React.FC<Props> = props => {
-  const { dispatchLoadThemes } = props;
+  const {
+    dispatchLoadThemes,
+    lightModeTheme,
+    darkModeTheme,
+    selectedTheme
+  } = props;
+
+  // Event Listeners
+  const updateThemes = (themeData: any) => {
+    if (!themeData) {
+      return;
+    }
+    dispatchLoadThemes(themeData);
+  };
 
   return (
     <Fragment>
       <Query query={themeQuery}>
         {(response: any) => {
           if (response.loading) return <h1>Loading...</h1>;
-          if (response.error) return <h1>Error</h1>;
+          if (response.error || !lightModeTheme || !darkModeTheme) {
+            return <h1>Error</h1>;
+          }
 
           if (response.data && dispatchLoadThemes) {
             const { getAllThemes } = response.data;
-            dispatchLoadThemes(getAllThemes);
+            updateThemes(getAllThemes);
           }
 
-          return <EZRouter />;
+          if (lightModeTheme && darkModeTheme) {
+            const chosenTheme =
+              selectedTheme === "darkMode" ? darkModeTheme : lightModeTheme;
+
+            return (
+              <ThemeProvider theme={chosenTheme}>
+                <EZRouter />
+              </ThemeProvider>
+            );
+          }
         }}
       </Query>
     </Fragment>
@@ -61,7 +89,11 @@ const App: React.FC<Props> = props => {
 };
 
 // Redux Actions
-const mapStateToProps = (state: any) => ({});
+const mapStateToProps = (state: any) => ({
+  lightModeTheme: state.themes.lightMode,
+  darkModeTheme: state.themes.darkMode,
+  selectedTheme: state.themes.selectedTheme
+});
 
 const mapDispatchToProps = (dispatch: Function) => ({
   dispatchLoadThemes: (themes: any) =>
