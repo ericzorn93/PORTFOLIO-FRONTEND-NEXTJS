@@ -62,22 +62,34 @@ const App: React.FC<Props> = props => {
     <Fragment>
       <Query query={themeQuery}>
         {(response: any) => {
-          if (response.loading) return <h1>Loading...</h1>;
-          if (response.error || !lightModeTheme || !darkModeTheme) {
+          if (
+            response.loading &&
+            !Object.values(darkModeTheme).length &&
+            !Object.values(lightModeTheme).length
+          ) {
+            return <h1>Loading...</h1>;
+          }
+
+          if (response.error) {
             return <h1>Error</h1>;
           }
 
-          if (response.data && dispatchLoadThemes) {
+          if (
+            response.data &&
+            dispatchLoadThemes &&
+            !Object.values(darkModeTheme).length &&
+            !Object.values(lightModeTheme).length
+          ) {
             const { getAllThemes } = response.data;
             updateThemes(getAllThemes);
           }
 
           if (lightModeTheme && darkModeTheme) {
-            const chosenTheme =
+            const chosenTheme: object =
               selectedTheme === "darkMode" ? darkModeTheme : lightModeTheme;
 
             return (
-              <ThemeProvider theme={chosenTheme}>
+              <ThemeProvider theme={chosenTheme || {}}>
                 <EZRouter />
               </ThemeProvider>
             );

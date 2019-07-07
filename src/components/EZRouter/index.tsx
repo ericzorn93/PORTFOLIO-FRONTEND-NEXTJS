@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
-import HomePage from "../../pages/HomePage";
+import HomePage from "../../pages/Home";
 
 const EZRouter: React.FC = () => {
   return (

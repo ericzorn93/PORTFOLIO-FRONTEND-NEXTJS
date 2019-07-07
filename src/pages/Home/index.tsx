@@ -1,9 +1,11 @@
 import React from "react";
 
+import HomeText from "./components/HomeText";
+
 const HomePage: React.FC = () => {
   return (
     <div>
-      <h1>Hello World</h1>
+      <HomeText />
     </div>
   );
 };
