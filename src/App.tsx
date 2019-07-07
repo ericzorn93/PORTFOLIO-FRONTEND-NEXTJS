@@ -7,6 +7,7 @@ import "./App.css";
 import EZRouter from "./components/EZRouter";
 import { LOAD_THEMES } from "./store/types/theme.types";
 import { useQuery } from "react-apollo-hooks";
+import Loading from "./components/Loading";
 // import { loadThemesAction } from "./store/actions/theme.actions";
 
 // Theme Query
@@ -57,12 +58,12 @@ const App: React.FC<Props> = props => {
   } = useQuery(THEME_QUERY);
   /** End Apollo Queries & Mutations */
 
-  if (themeLoading) {
-    return <h1>Loading...</h1>;
-  }
-
   if (themeError) {
     return <h1>Error</h1>;
+  }
+
+  if (themeLoading) {
+    return <Loading />;
   }
 
   const { getAllThemes } = themeData;
