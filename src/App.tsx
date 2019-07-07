@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment } from "react";
 import { gql } from "apollo-boost";
 import { useSelector, useDispatch } from "react-redux";
 import { ThemeProvider } from "emotion-theming";
@@ -39,10 +39,10 @@ interface Props {}
 
 const App: React.FC<Props> = props => {
   /** Beginning State */
-  const [currentTheme, setCurrentTheme] = useState({});
+  const completeThemes = useSelector(
+    (state: any) => state.themes.completeThemes
+  );
   const selectedTheme = useSelector((state: any) => state.themes.selectedTheme);
-  const lightModeTheme = useSelector((state: any) => state.themes.lightMode);
-  const darkModeTheme = useSelector((state: any) => state.themes.darkMode);
   /** End State */
 
   /** Beginning Dispatchers */
@@ -56,16 +56,6 @@ const App: React.FC<Props> = props => {
     loading: themeLoading
   } = useQuery(THEME_QUERY);
   /** End Apollo Queries & Mutations */
-
-  /** Beginning Side Effect **/
-  useEffect(() => {
-    if (selectedTheme === "darkMode") {
-      setCurrentTheme(darkModeTheme);
-    } else {
-      setCurrentTheme(lightModeTheme);
-    }
-  }, [darkModeTheme, lightModeTheme, selectedTheme]);
-  /** End Side Effects **/
 
   if (themeLoading) {
     return <h1>Loading...</h1>;
@@ -82,13 +72,13 @@ const App: React.FC<Props> = props => {
       lightMode: getAllThemes.lightMode,
       darkMode: getAllThemes.darkMode,
       completeThemes: getAllThemes,
-      selectedTheme: "darkMode"
+      selectedTheme: selectedTheme || "darkMode"
     }
   });
 
   return (
     <Fragment>
-      <ThemeProvider theme={currentTheme || {}}>
+      <ThemeProvider theme={completeThemes[selectedTheme] || {}}>
         <EZRouter />
       </ThemeProvider>
     </Fragment>

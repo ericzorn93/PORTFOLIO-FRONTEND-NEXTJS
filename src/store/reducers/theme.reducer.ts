@@ -1,4 +1,4 @@
-import { LOAD_THEMES } from "./../types/theme.types";
+import { LOAD_THEMES, UPDATE_SELECTED_THEME } from "./../types/theme.types";
 import Action from "../interfaces/action.interface";
 
 const initialThemeState = {
@@ -17,6 +17,11 @@ const themeReducer = (state: object = initialThemeState, action: Action) => {
         lightMode: action.payload.lightMode,
         completeThemes: action.payload.completeThemes,
         selectedTheme: action.payload.selectedTheme
+      };
+    case UPDATE_SELECTED_THEME:
+      return {
+        ...state,
+        selectedTheme: action.payload
       };
     default:
       return state;
