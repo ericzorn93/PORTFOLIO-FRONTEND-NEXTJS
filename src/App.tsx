@@ -1,16 +1,16 @@
-import React, { Fragment } from "react";
-import { Query } from "react-apollo";
+import React, { Fragment, useEffect, useState } from "react";
 import { gql } from "apollo-boost";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { ThemeProvider } from "emotion-theming";
 
 import "./App.css";
 import EZRouter from "./components/EZRouter";
 import { LOAD_THEMES } from "./store/types/theme.types";
+import { useQuery } from "react-apollo-hooks";
 // import { loadThemesAction } from "./store/actions/theme.actions";
 
 // Theme Query
-const themeQuery = gql`
+const THEME_QUERY = gql`
   query getAllThemes {
     getAllThemes {
       darkMode {
@@ -35,91 +35,64 @@ const themeQuery = gql`
   }
 `;
 
-interface Props {
-  dispatchLoadThemes: Function;
-  lightModeTheme: object;
-  darkModeTheme: object;
-  selectedTheme: string;
-}
+interface Props {}
 
 const App: React.FC<Props> = props => {
-  const {
-    dispatchLoadThemes,
-    lightModeTheme,
-    darkModeTheme,
-    selectedTheme
-  } = props;
+  /** Beginning State */
+  const [currentTheme, setCurrentTheme] = useState({});
+  const selectedTheme = useSelector((state: any) => state.themes.selectedTheme);
+  const lightModeTheme = useSelector((state: any) => state.themes.lightMode);
+  const darkModeTheme = useSelector((state: any) => state.themes.darkMode);
+  /** End State */
 
-  // Event Listeners
-  const updateThemes = (themeData: any) => {
-    if (!themeData) {
-      return;
+  /** Beginning Dispatchers */
+  const dispatch = useDispatch();
+  /** End Dispatchers */
+
+  /** Beginning Apollo Queries &Mutations */
+  const {
+    data: themeData,
+    error: themeError,
+    loading: themeLoading
+  } = useQuery(THEME_QUERY);
+  /** End Apollo Queries & Mutations */
+
+  /** Beginning Side Effect **/
+  useEffect(() => {
+    if (selectedTheme === "darkMode") {
+      setCurrentTheme(darkModeTheme);
+    } else {
+      setCurrentTheme(lightModeTheme);
     }
-    dispatchLoadThemes(themeData);
-  };
+  }, [darkModeTheme, lightModeTheme, selectedTheme]);
+  /** End Side Effects **/
+
+  if (themeLoading) {
+    return <h1>Loading...</h1>;
+  }
+
+  if (themeError) {
+    return <h1>Error</h1>;
+  }
+
+  const { getAllThemes } = themeData;
+  dispatch({
+    type: LOAD_THEMES,
+    payload: {
+      lightMode: getAllThemes.lightMode,
+      darkMode: getAllThemes.darkMode,
+      completeThemes: getAllThemes,
+      selectedTheme: "darkMode"
+    }
+  });
 
   return (
     <Fragment>
-      <Query query={themeQuery}>
-        {(response: any) => {
-          if (
-            response.loading &&
-            !Object.values(darkModeTheme).length &&
-            !Object.values(lightModeTheme).length
-          ) {
-            return <h1>Loading...</h1>;
-          }
-
-          if (response.error) {
-            return <h1>Error</h1>;
-          }
-
-          if (
-            response.data &&
-            dispatchLoadThemes &&
-            !Object.values(darkModeTheme).length &&
-            !Object.values(lightModeTheme).length
-          ) {
-            const { getAllThemes } = response.data;
-            updateThemes(getAllThemes);
-          }
-
-          if (lightModeTheme && darkModeTheme) {
-            const chosenTheme: object =
-              selectedTheme === "darkMode" ? darkModeTheme : lightModeTheme;
-
-            return (
-              <ThemeProvider theme={chosenTheme || {}}>
-                <EZRouter />
-              </ThemeProvider>
-            );
-          }
-        }}
-      </Query>
+      <ThemeProvider theme={currentTheme || {}}>
+        <EZRouter />
+      </ThemeProvider>
     </Fragment>
   );
 };
 
-// Redux Actions
-const mapStateToProps = (state: any) => ({
-  lightModeTheme: state.themes.lightMode,
-  darkModeTheme: state.themes.darkMode,
-  selectedTheme: state.themes.selectedTheme
-});
-
-const mapDispatchToProps = (dispatch: Function) => ({
-  dispatchLoadThemes: (themes: any) =>
-    dispatch({
-      type: LOAD_THEMES,
-      payload: {
-        lightMode: themes.lightMode,
-        darkMode: themes.darkMode,
-        selectedTheme: "darkMode"
-      }
-    })
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App);
+export default App;
