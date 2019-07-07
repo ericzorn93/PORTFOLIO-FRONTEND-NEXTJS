@@ -1,11 +1,10 @@
 import React, { Fragment } from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { Query } from "react-apollo";
 import { gql } from "apollo-boost";
+import { connect } from "react-redux";
 
 import "./App.css";
-import HomePage from "./pages/HomePage";
-import { connect } from "react-redux";
+import EZRouter from "./components/EZRouter";
 import { LOAD_THEMES } from "./store/types/theme.types";
 // import { loadThemesAction } from "./store/actions/theme.actions";
 
@@ -54,13 +53,7 @@ const App: React.FC<Props> = props => {
             dispatchLoadThemes(getAllThemes);
           }
 
-          return (
-            <BrowserRouter>
-              <Switch>
-                <Route exact path="/" component={HomePage} />
-              </Switch>
-            </BrowserRouter>
-          );
+          return <EZRouter />;
         }}
       </Query>
     </Fragment>
