@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
@@ -12,13 +12,15 @@ import store from "./store";
 
 const LeadComponent: React.FC = () => {
   return (
-    <ApolloProvider client={apolloClient}>
-      <ApolloHooksProvider client={apolloClient}>
-        <Provider store={store}>
-          <App />
-        </Provider>
-      </ApolloHooksProvider>
-    </ApolloProvider>
+    <Suspense fallback={() => <h1>Loading...</h1>}>
+      <ApolloProvider client={apolloClient}>
+        <ApolloHooksProvider client={apolloClient}>
+          <Provider store={store}>
+            <App />
+          </Provider>
+        </ApolloHooksProvider>
+      </ApolloProvider>
+    </Suspense>
   );
 };
 
