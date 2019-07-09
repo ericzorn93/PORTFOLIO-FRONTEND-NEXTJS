@@ -7,14 +7,14 @@ import { ApolloProvider } from "react-apollo";
 import { ApolloProvider as ApolloHooksProvider } from "react-apollo-hooks";
 import { Provider } from "react-redux";
 
-import store from "./store";
+import reduxStore from "./store";
 import zornApolloClient from "./apollo_setup";
 
 const LeadComponent: React.FC = () => {
   return (
     <ApolloProvider client={zornApolloClient}>
       <ApolloHooksProvider client={zornApolloClient}>
-        <Provider store={store}>
+        <Provider store={reduxStore}>
           <App />
         </Provider>
       </ApolloHooksProvider>

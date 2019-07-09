@@ -15,5 +15,4 @@ if (process.env.NODE_ENV !== "production") {
   loadMiddleware = applyMiddleware(...middleware);
 }
 
-const store = createStore(rootReducer, loadMiddleware);
-export default store;
+export default createStore(rootReducer, {}, loadMiddleware);

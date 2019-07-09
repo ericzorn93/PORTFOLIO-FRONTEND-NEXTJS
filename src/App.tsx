@@ -6,10 +6,10 @@ import { useQuery } from "react-apollo-hooks";
 
 import "./App.css";
 import EZRouter from "./components/EZRouter";
-import { LOAD_THEMES } from "./store/types/theme.types";
 import Loading from "./components/Loading";
 
 // import { loadThemesAction } from "./store/actions/theme.actions";
+import { LOAD_THEMES } from "./store/types/theme.types";
 
 // Theme Query
 const THEME_QUERY = gql`
@@ -75,6 +75,8 @@ const App: React.FC = () => {
       selectedTheme: selectedTheme || "darkMode"
     }
   });
+
+  // dispatch(loadThemesAction(getAllThemes));
 
   return (
     <Fragment>
