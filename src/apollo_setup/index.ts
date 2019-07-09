@@ -1,13 +1,25 @@
 import ApolloClient from "apollo-boost";
 import { InMemoryCache } from "apollo-cache-inmemory";
-// import { HttpLink } from "apollo-link-http";
 
-const cache: InMemoryCache = new InMemoryCache();
+import isDevelopment from "../utils/is_development.util";
 
-const apolloClient = new ApolloClient({
-  // link: new HttpLink(),
-  uri: "http://localhost:4000/graphql",
-  cache
-});
+function generateZornApolloClient() {
+  let graphQLConnection: string;
+  const cache: InMemoryCache = new InMemoryCache();
 
-export default apolloClient;
+  if (isDevelopment) {
+    graphQLConnection = "http://localhost:4000/graphql";
+  } else {
+    graphQLConnection =
+      "https://ez-portfolio-backend-graphql.herokuapp.com/graphql";
+  }
+
+  const zornApolloClient = new ApolloClient({
+    uri: graphQLConnection,
+    cache
+  });
+
+  return zornApolloClient;
+}
+
+export default generateZornApolloClient();

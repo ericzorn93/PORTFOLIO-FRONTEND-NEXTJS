@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
@@ -7,20 +7,18 @@ import { ApolloProvider } from "react-apollo";
 import { ApolloProvider as ApolloHooksProvider } from "react-apollo-hooks";
 import { Provider } from "react-redux";
 
-import apolloClient from "./apollo_setup";
 import store from "./store";
+import zornApolloClient from "./apollo_setup";
 
 const LeadComponent: React.FC = () => {
   return (
-    <Suspense fallback={() => <h1>Loading...</h1>}>
-      <ApolloProvider client={apolloClient}>
-        <ApolloHooksProvider client={apolloClient}>
-          <Provider store={store}>
-            <App />
-          </Provider>
-        </ApolloHooksProvider>
-      </ApolloProvider>
-    </Suspense>
+    <ApolloProvider client={zornApolloClient}>
+      <ApolloHooksProvider client={zornApolloClient}>
+        <Provider store={store}>
+          <App />
+        </Provider>
+      </ApolloHooksProvider>
+    </ApolloProvider>
   );
 };
 

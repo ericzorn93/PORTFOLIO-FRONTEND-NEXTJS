@@ -2,12 +2,13 @@ import React, { Fragment } from "react";
 import { gql } from "apollo-boost";
 import { useSelector, useDispatch } from "react-redux";
 import { ThemeProvider } from "emotion-theming";
+import { useQuery } from "react-apollo-hooks";
 
 import "./App.css";
 import EZRouter from "./components/EZRouter";
 import { LOAD_THEMES } from "./store/types/theme.types";
-import { useQuery } from "react-apollo-hooks";
 import Loading from "./components/Loading";
+
 // import { loadThemesAction } from "./store/actions/theme.actions";
 
 // Theme Query
@@ -36,9 +37,7 @@ const THEME_QUERY = gql`
   }
 `;
 
-interface Props {}
-
-const App: React.FC<Props> = props => {
+const App: React.FC = () => {
   /** Beginning State */
   const completeThemes = useSelector(
     (state: any) => state.themes.completeThemes
