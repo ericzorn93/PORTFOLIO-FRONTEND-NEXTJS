@@ -17,7 +17,7 @@ const HomePage: React.FC = () => {
         width="100vw"
         height="100vh"
         params={HomeThemeService.updateParticles(activeTheme)}
-        style={{ backgroundColor: activeTheme.primary }}
+        style={{ backgroundColor: activeTheme.primary, zIndex: -1 }}
       />
       <HomeText />
     </div>
