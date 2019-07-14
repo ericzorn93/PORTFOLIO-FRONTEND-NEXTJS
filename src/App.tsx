@@ -10,6 +10,7 @@ import Loading from "./components/Loading";
 // import { loadThemesAction } from "./store/actions/theme.actions";
 import { LOAD_THEMES } from "./store/types/theme.types";
 import { THEME_QUERY } from "./apollo_setup/root_queries/theme.query";
+import Error from "./components/Error";
 
 const App: React.FC = () => {
   /** Beginning State */
@@ -32,7 +33,7 @@ const App: React.FC = () => {
   /** End Apollo Queries & Mutations */
 
   if (themeError) {
-    return <h1>Error</h1>;
+    return <Error />;
   }
 
   if (themeLoading) {
