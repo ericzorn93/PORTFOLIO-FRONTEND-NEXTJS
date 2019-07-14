@@ -5,7 +5,8 @@ const initialThemeState = {
   completeThemes: {},
   lightMode: {},
   darkMode: {},
-  selectedTheme: ""
+  selectedTheme: "",
+  activeTheme: {}
 };
 
 const themeReducer = (state: object = initialThemeState, action: Action) => {
@@ -16,7 +17,8 @@ const themeReducer = (state: object = initialThemeState, action: Action) => {
         darkMode: action.payload.darkMode,
         lightMode: action.payload.lightMode,
         completeThemes: action.payload.completeThemes,
-        selectedTheme: action.payload.selectedTheme
+        selectedTheme: action.payload.selectedTheme,
+        activeTheme: action.payload.completeThemes[action.payload.selectedTheme]
       };
     case UPDATE_SELECTED_THEME:
       return {

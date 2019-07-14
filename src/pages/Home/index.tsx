@@ -1,9 +1,16 @@
 import React from "react";
 import Particles from "react-particles-js";
+import { useSelector } from "react-redux";
 
 import HomeText from "./components/HomeText";
+import { ITheme } from "../../store/interfaces/theme.interface";
 
 const HomePage: React.FC = () => {
+  const activeTheme: ITheme = useSelector(
+    (state: any) => state.themes.activeTheme
+  );
+  console.log(activeTheme);
+
   return (
     <div style={{ height: "100vh" }}>
       <Particles
@@ -11,16 +18,19 @@ const HomePage: React.FC = () => {
         height="100%"
         params={{
           particles: {
+            color: {
+              value: "red"
+            },
             line_linked: {
               shadow: {
                 enable: true,
-                color: "#3CA9D1",
+                color: "red",
                 blur: 5
               }
             }
           }
         }}
-        style={{ zIndex: -1, height: "100vh" }}
+        style={{ backgroundColor: activeTheme.primary }}
       />
       <HomeText />
     </div>
