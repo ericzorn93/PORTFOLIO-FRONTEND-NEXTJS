@@ -9,7 +9,6 @@ const HomePage: React.FC = () => {
   const activeTheme: ITheme = useSelector(
     (state: any) => state.themes.activeTheme
   );
-  console.log(activeTheme);
 
   return (
     <div style={{ height: "100vh" }}>
@@ -26,7 +25,7 @@ const HomePage: React.FC = () => {
                 enable: true,
                 color: "red",
                 blur: 5
-              }
+              }s
             }
           }
         }}
