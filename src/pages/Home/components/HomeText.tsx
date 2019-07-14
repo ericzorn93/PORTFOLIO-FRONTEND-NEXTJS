@@ -5,7 +5,7 @@ import { jsx } from "@emotion/core";
 const HomeText: React.FC = () => {
   return (
     <div>
-      <h1 css={theme => ({ color: theme.primary })}>Hello Test</h1>
+      <h1 css={theme => ({ color: theme.secondary })}>Hello Test</h1>
     </div>
   );
 };
