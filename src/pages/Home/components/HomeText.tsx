@@ -1,12 +1,18 @@
-import React from "react";
+import React, { Fragment } from "react";
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 
 const HomeText: React.FC = () => {
   return (
-    <div>
-      <h1 css={theme => ({ color: theme.secondary })}>Hello Test</h1>
-    </div>
+    <Fragment>
+      <h1 css={theme => ({ color: theme.secondary })}>{"Hi, I'm Eric,"}</h1>
+      <h2 css={theme => ({ color: theme.secondary })}>
+        {"Full-Stack Software Engineer"}
+      </h2>
+      <h4 css={theme => ({ color: theme.secondary })}>
+        {"I Enjoy all things tech and hip"}
+      </h4>
+    </Fragment>
   );
 };
 

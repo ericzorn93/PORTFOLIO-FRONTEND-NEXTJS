@@ -17,6 +17,7 @@
     "emotion-theming": "^10.0.14",
     "graphql": "^14.4.2",
     "graphql-tag": "^2.10.1",
+    "moment": "^2.24.0",
     "react": "^16.8.6",
     "react-apollo": "^2.5.8",
     "react-apollo-hooks": "^0.4.5",
@@ -54,6 +55,7 @@
   "devDependencies": {
     "@types/axios": "^0.14.0",
     "@types/graphql": "^14.2.2",
+    "@types/moment": "^2.13.0",
     "@types/react-redux": "^7.1.1",
     "@types/react-router-dom": "^4.3.4",
     "@types/redux": "^3.6.0",
