@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 
 import HomeText from "./components/HomeText";
 import { ITheme } from "../../store/interfaces/theme.interface";
+import HomeThemeService from "./services/home.particle.service";
 
 const HomePage: React.FC = () => {
   const activeTheme: ITheme = useSelector(
@@ -13,22 +14,9 @@ const HomePage: React.FC = () => {
   return (
     <div style={{ height: "100vh" }}>
       <Particles
-        width="100%"
-        height="100%"
-        params={{
-          particles: {
-            color: {
-              value: "red"
-            },
-            line_linked: {
-              shadow: {
-                enable: true,
-                color: "red",
-                blur: 5
-              }s
-            }
-          }
-        }}
+        width="100vw"
+        height="100vh"
+        params={HomeThemeService.updateParticles(activeTheme)}
         style={{ backgroundColor: activeTheme.primary }}
       />
       <HomeText />

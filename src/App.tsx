@@ -1,5 +1,4 @@
 import React, { Fragment } from "react";
-import { gql } from "apollo-boost";
 import { useSelector, useDispatch } from "react-redux";
 import { ThemeProvider } from "emotion-theming";
 import { useQuery } from "react-apollo-hooks";
@@ -10,32 +9,7 @@ import Loading from "./components/Loading";
 
 // import { loadThemesAction } from "./store/actions/theme.actions";
 import { LOAD_THEMES } from "./store/types/theme.types";
-
-// Theme Query
-const THEME_QUERY = gql`
-  query getAllThemes {
-    getAllThemes {
-      darkMode {
-        primary
-        secondary
-        alternate
-        lightAlternate
-        light
-        black
-        white
-      }
-      lightMode {
-        primary
-        secondary
-        alternate
-        lightAlternate
-        light
-        black
-        white
-      }
-    }
-  }
-`;
+import { THEME_QUERY } from "./apollo_setup/root_queries/theme.query";
 
 const App: React.FC = () => {
   /** Beginning State */
