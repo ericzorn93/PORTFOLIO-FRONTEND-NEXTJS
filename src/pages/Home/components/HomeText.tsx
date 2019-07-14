@@ -10,7 +10,7 @@ const HomeText: React.FC = () => {
         {"Full-Stack Software Engineer"}
       </h2>
       <h4 css={theme => ({ color: theme.secondary })}>
-        {"I Enjoy all things tech and hip"}
+        {"I Enjoy all things tech and hip."}
       </h4>
     </Fragment>
   );

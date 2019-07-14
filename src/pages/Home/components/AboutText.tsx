@@ -15,7 +15,6 @@ const AboutText: React.FC = () => {
   return (
     <React.Fragment>
       <div
-        className="about-json"
         dangerouslySetInnerHTML={{
           __html: prettyHtml(HomeDefaultService.getAboutJson(formattedBirthday))
         }}
