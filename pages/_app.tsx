@@ -1,6 +1,7 @@
 import App, { Container } from "next/app";
 import React from "react";
 import { ApolloProvider } from "react-apollo";
+import { ApolloProvider as ApolloHooksProvider } from "react-apollo-hooks";
 import withRedux from "next-redux-wrapper";
 import { Provider } from "react-redux";
 
@@ -14,9 +15,11 @@ class MyApp extends App<any> {
     return (
       <Container>
         <ApolloProvider client={apolloClient}>
-          <Provider store={store}>
-            <Component {...pageProps} />
-          </Provider>
+          <ApolloHooksProvider client={apolloClient}>
+            <Provider store={store}>
+              <Component {...pageProps} />
+            </Provider>
+          </ApolloHooksProvider>
         </ApolloProvider>
       </Container>
     );
