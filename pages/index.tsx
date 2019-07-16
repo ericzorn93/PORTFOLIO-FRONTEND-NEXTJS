@@ -1,4 +1,4 @@
-import React from "react";
+import { Fragment } from "react";
 import Particles from "react-particles-js";
 import { useSelector } from "react-redux";
 
@@ -15,13 +15,12 @@ const HomePage: React.FC = () => {
   );
 
   return (
-    <React.Fragment>
+    <Fragment>
       <Header />
-
-      <div style={{ height: "100vh" }}>
+      <Fragment>
         <Particles
-          width="100vw"
-          height="100vh"
+          width="100%"
+          height="100%"
           params={HomeParticleService.updateParticles(activeTheme)}
           style={{ backgroundColor: activeTheme.primary, zIndex: -1 }}
         />
@@ -33,8 +32,8 @@ const HomePage: React.FC = () => {
             <AboutText />
           </div>
         </WelcomeTextWrapper>
-      </div>
-    </React.Fragment>
+      </Fragment>
+    </Fragment>
   );
 };
 

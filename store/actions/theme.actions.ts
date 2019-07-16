@@ -11,7 +11,6 @@ export const loadThemesAction = async (themes: Themes) => {
   }
 
   return (dispatch: Function) => {
-    console.log(themes);
     dispatch({
       type: LOAD_THEMES,
       payload: {

@@ -5,7 +5,7 @@ import HomeDefaultService from "../../../services/home_page_services/home.defaul
 const prettyHtml = require("json-pretty-html").default;
 
 const AboutText: React.FC = () => {
-  const myBirthday: string = `${new Date(1995, 7, 30, 16, 9)}`;
+  const myBirthday: string = new Date(1995, 7, 30, 16, 9).toISOString();
   const [formattedBirthday]: string[] = moment(myBirthday)
     .fromNow()
     .split(" ");

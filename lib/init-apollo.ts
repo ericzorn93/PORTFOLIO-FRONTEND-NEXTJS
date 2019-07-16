@@ -21,8 +21,8 @@ interface Options {
 
 function create(initialState: any, { getToken }: Options) {
   const httpLink = createHttpLink({
-    uri: "https://ez-portfolio-backend-graphql.herokuapp.com/graphql",
-    credentials: "include"
+    uri: "https://ez-portfolio-backend-graphql.herokuapp.com/graphql"
+    // credentials: "include"
   });
 
   const authLink = setContext((_, { headers }) => {
