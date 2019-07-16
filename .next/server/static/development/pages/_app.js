@@ -1568,9 +1568,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var next_app__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(next_app__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _lib_with_apollo_client__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../lib/with-apollo-client */ "./lib/with-apollo-client.tsx");
-/* harmony import */ var react_apollo__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-apollo */ "react-apollo");
-/* harmony import */ var react_apollo__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(react_apollo__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var react_apollo__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-apollo */ "react-apollo");
+/* harmony import */ var react_apollo__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react_apollo__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var next_redux_wrapper__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! next-redux-wrapper */ "next-redux-wrapper");
+/* harmony import */ var next_redux_wrapper__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(next_redux_wrapper__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-redux */ "react-redux");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var _lib_with_apollo_client__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../lib/with-apollo-client */ "./lib/with-apollo-client.tsx");
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../store */ "./store/index.ts");
 
 
 
@@ -1578,6 +1583,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var _jsxFileName = "/Users/ericzorn/Dropbox/Projects/UPDATED_PORTFOLIO/frontend/pages/_app.tsx";
+
+
+
 
 
 
@@ -1600,34 +1608,163 @@ function (_App) {
       var _this$props = this.props,
           Component = _this$props.Component,
           pageProps = _this$props.pageProps,
-          apolloClient = _this$props.apolloClient;
+          apolloClient = _this$props.apolloClient,
+          store = _this$props.store;
       return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(next_app__WEBPACK_IMPORTED_MODULE_6__["Container"], {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 10
+          lineNumber: 15
         },
         __self: this
-      }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(react_apollo__WEBPACK_IMPORTED_MODULE_9__["ApolloProvider"], {
+      }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(react_apollo__WEBPACK_IMPORTED_MODULE_8__["ApolloProvider"], {
         client: apolloClient,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 11
+          lineNumber: 16
+        },
+        __self: this
+      }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(react_redux__WEBPACK_IMPORTED_MODULE_10__["Provider"], {
+        store: store,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 17
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(Component, Object(_babel_runtime_corejs2_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, pageProps, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 12
+          lineNumber: 18
         },
         __self: this
-      }))));
+      })))));
     }
   }]);
 
   return MyApp;
 }(next_app__WEBPACK_IMPORTED_MODULE_6___default.a);
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(_lib_with_apollo_client__WEBPACK_IMPORTED_MODULE_8__["default"])(MyApp));
+/* harmony default export */ __webpack_exports__["default"] = (Object(_lib_with_apollo_client__WEBPACK_IMPORTED_MODULE_11__["default"])(next_redux_wrapper__WEBPACK_IMPORTED_MODULE_9___default()(_store__WEBPACK_IMPORTED_MODULE_12__["default"])(MyApp)));
+
+/***/ }),
+
+/***/ "./store/index.ts":
+/*!************************!*\
+  !*** ./store/index.ts ***!
+  \************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "redux");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(redux__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var redux_devtools_extension__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux-devtools-extension */ "redux-devtools-extension");
+/* harmony import */ var redux_devtools_extension__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(redux_devtools_extension__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var redux_thunk__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux-thunk */ "redux-thunk");
+/* harmony import */ var redux_thunk__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(redux_thunk__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _reducers__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./reducers */ "./store/reducers/index.ts");
+
+
+
+
+var middleware = [redux_thunk__WEBPACK_IMPORTED_MODULE_2___default.a];
+var composeEnhancers = Object(redux_devtools_extension__WEBPACK_IMPORTED_MODULE_1__["composeWithDevTools"])({}); // Determine if devtools need to be present, based on the node environment
+
+var loadMiddleware;
+
+if (true) {
+  loadMiddleware = composeEnhancers(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"].apply(void 0, middleware));
+} else {}
+
+/* harmony default export */ __webpack_exports__["default"] = (function () {
+  return Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers__WEBPACK_IMPORTED_MODULE_3__["default"], {}, loadMiddleware);
+});
+
+/***/ }),
+
+/***/ "./store/reducers/index.ts":
+/*!*********************************!*\
+  !*** ./store/reducers/index.ts ***!
+  \*********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "redux");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(redux__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _theme_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./theme.reducer */ "./store/reducers/theme.reducer.ts");
+
+
+var rootReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
+  themes: _theme_reducer__WEBPACK_IMPORTED_MODULE_1__["default"]
+});
+/* harmony default export */ __webpack_exports__["default"] = (rootReducer);
+
+/***/ }),
+
+/***/ "./store/reducers/theme.reducer.ts":
+/*!*****************************************!*\
+  !*** ./store/reducers/theme.reducer.ts ***!
+  \*****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/objectSpread */ "./node_modules/@babel/runtime-corejs2/helpers/esm/objectSpread.js");
+/* harmony import */ var _types_theme_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../types/theme.types */ "./store/types/theme.types.ts");
+
+
+var initialThemeState = {
+  completeThemes: {},
+  lightMode: {},
+  darkMode: {},
+  selectedTheme: "",
+  activeTheme: {}
+};
+
+var themeReducer = function themeReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialThemeState;
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case _types_theme_types__WEBPACK_IMPORTED_MODULE_1__["LOAD_THEMES"]:
+      return Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, state, {
+        darkMode: action.payload.darkMode,
+        lightMode: action.payload.lightMode,
+        completeThemes: action.payload.completeThemes,
+        selectedTheme: action.payload.selectedTheme,
+        activeTheme: action.payload.completeThemes[action.payload.selectedTheme]
+      });
+
+    case _types_theme_types__WEBPACK_IMPORTED_MODULE_1__["UPDATE_SELECTED_THEME"]:
+      return Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, state, {
+        selectedTheme: action.payload
+      });
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (themeReducer);
+
+/***/ }),
+
+/***/ "./store/types/theme.types.ts":
+/*!************************************!*\
+  !*** ./store/types/theme.types.ts ***!
+  \************************************/
+/*! exports provided: LOAD_THEMES, UPDATE_SELECTED_THEME */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOAD_THEMES", function() { return LOAD_THEMES; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPDATE_SELECTED_THEME", function() { return UPDATE_SELECTED_THEME; });
+var LOAD_THEMES = "LOAD_THEMES";
+var UPDATE_SELECTED_THEME = "UPDATE_SELECTED_THEME";
 
 /***/ }),
 
@@ -1830,6 +1967,17 @@ module.exports = require("isomorphic-unfetch");
 
 /***/ }),
 
+/***/ "next-redux-wrapper":
+/*!*************************************!*\
+  !*** external "next-redux-wrapper" ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("next-redux-wrapper");
+
+/***/ }),
+
 /***/ "next-server/dist/lib/request-context":
 /*!*******************************************************!*\
   !*** external "next-server/dist/lib/request-context" ***!
@@ -1915,6 +2063,50 @@ module.exports = require("react");
 /***/ (function(module, exports) {
 
 module.exports = require("react-apollo");
+
+/***/ }),
+
+/***/ "react-redux":
+/*!******************************!*\
+  !*** external "react-redux" ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("react-redux");
+
+/***/ }),
+
+/***/ "redux":
+/*!************************!*\
+  !*** external "redux" ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("redux");
+
+/***/ }),
+
+/***/ "redux-devtools-extension":
+/*!*******************************************!*\
+  !*** external "redux-devtools-extension" ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("redux-devtools-extension");
+
+/***/ }),
+
+/***/ "redux-thunk":
+/*!******************************!*\
+  !*** external "redux-thunk" ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("redux-thunk");
 
 /***/ }),
 
