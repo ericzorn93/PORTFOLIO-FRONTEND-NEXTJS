@@ -1,6 +1,6 @@
-import { ITheme } from "../../../store/interfaces/theme.interface";
+import { ITheme } from "../../store/interfaces/theme.interface";
 
-class HomeThemeService {
+class HomeParticleService {
   /**
    * @param activeTheme {ITheme} used to access properties on theme from the redux store
    * @returns object for react-particles-js
@@ -44,4 +44,4 @@ class HomeThemeService {
   }
 }
 
-export default HomeThemeService;
+export default HomeParticleService;

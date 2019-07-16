@@ -5,6 +5,7 @@ class HomeDefaultService {
       username: "@zornwebdev",
       description: "Full-Stack Software Engineer",
       homepage: "zornwebdev.com",
+      birthday,
       repository: {
         type: "Open-source",
         url: "github.com/ericzorn93"

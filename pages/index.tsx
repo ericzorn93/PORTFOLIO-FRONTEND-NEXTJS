@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import HomeText from "../components/page_components/home_page/HomeText";
 import AboutText from "../components/page_components/home_page/AboutText";
 import { ITheme } from "../store/interfaces/theme.interface";
-import HomeThemeService from "../services/home_page_services/home.particle.service";
+import HomeParticleService from "../services/home_page_services/home.particle.service";
 import { WelcomeTextWrapper } from "../styles/home_page_styles/styled_components/WelcomeText";
 import Header from "../components/Header";
 
@@ -22,7 +22,7 @@ const HomePage: React.FC = () => {
         <Particles
           width="100vw"
           height="100vh"
-          params={HomeThemeService.updateParticles(activeTheme)}
+          params={HomeParticleService.updateParticles(activeTheme)}
           style={{ backgroundColor: activeTheme.primary, zIndex: -1 }}
         />
         <WelcomeTextWrapper>

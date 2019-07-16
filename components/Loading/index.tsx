@@ -1,6 +1,4 @@
 import React from "react";
-/** @jsx jsx */
-import { jsx } from "@emotion/core";
 
 import LoadingErrorBG from "../../styles/global/styled_components/LoadingErrorBG";
 

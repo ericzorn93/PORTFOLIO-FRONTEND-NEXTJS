@@ -1,6 +1,4 @@
 import React from "react"; // tslint-disable-line
-/** @jsx jsx */
-import { jsx } from "@emotion/core";
 import moment from "moment";
 
 import HomeDefaultService from "../../../services/home_page_services/home.default.service";

@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -165,17 +165,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/slicedToArray */ "./node_modules/@babel/runtime-corejs2/helpers/esm/slicedToArray.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _emotion_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @emotion/core */ "@emotion/core");
-/* harmony import */ var _emotion_core__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_emotion_core__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! moment */ "moment");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _services_home_page_services_home_default_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../services/home_page_services/home.default.service */ "./services/home_page_services/home.default.service.ts");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ "moment");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _services_home_page_services_home_default_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../services/home_page_services/home.default.service */ "./services/home_page_services/home.default.service.ts");
 
 var _jsxFileName = "/Users/ericzorn/Dropbox/Projects/UPDATED_PORTFOLIO/frontend/components/page_components/home_page/AboutText.tsx";
  // tslint-disable-line
-
-/** @jsx jsx */
-
 
 
 
@@ -185,23 +180,23 @@ var prettyHtml = __webpack_require__(/*! json-pretty-html */ "json-pretty-html")
 var AboutText = function AboutText() {
   var myBirthday = "".concat(new Date(1995, 7, 30, 16, 9));
 
-  var _moment$fromNow$split = moment__WEBPACK_IMPORTED_MODULE_3___default()(myBirthday).fromNow().split(" "),
+  var _moment$fromNow$split = moment__WEBPACK_IMPORTED_MODULE_2___default()(myBirthday).fromNow().split(" "),
       _moment$fromNow$split2 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_moment$fromNow$split, 1),
       formattedBirthday = _moment$fromNow$split2[0];
 
-  return Object(_emotion_core__WEBPACK_IMPORTED_MODULE_2__["jsx"])(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, {
+  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 16
+      lineNumber: 14
     },
     __self: this
-  }, Object(_emotion_core__WEBPACK_IMPORTED_MODULE_2__["jsx"])("div", {
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     dangerouslySetInnerHTML: {
-      __html: prettyHtml(_services_home_page_services_home_default_service__WEBPACK_IMPORTED_MODULE_4__["default"].getAboutJson(formattedBirthday))
+      __html: prettyHtml(_services_home_page_services_home_default_service__WEBPACK_IMPORTED_MODULE_3__["default"].getAboutJson(formattedBirthday))
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 17
+      lineNumber: 15
     },
     __self: this
   }));
@@ -1639,6 +1634,7 @@ function () {
         username: "@zornwebdev",
         description: "Full-Stack Software Engineer",
         homepage: "zornwebdev.com",
+        birthday: birthday,
         repository: {
           type: "Open-source",
           url: "github.com/ericzorn93"
@@ -1684,14 +1680,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var HomeThemeService =
+var HomeParticleService =
 /*#__PURE__*/
 function () {
-  function HomeThemeService() {
-    Object(_babel_runtime_corejs2_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__["default"])(this, HomeThemeService);
+  function HomeParticleService() {
+    Object(_babel_runtime_corejs2_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__["default"])(this, HomeParticleService);
   }
 
-  Object(_babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__["default"])(HomeThemeService, null, [{
+  Object(_babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__["default"])(HomeParticleService, null, [{
     key: "updateParticles",
 
     /**
@@ -1737,10 +1733,10 @@ function () {
     }
   }]);
 
-  return HomeThemeService;
+  return HomeParticleService;
 }();
 
-/* harmony default export */ __webpack_exports__["default"] = (HomeThemeService);
+/* harmony default export */ __webpack_exports__["default"] = (HomeParticleService);
 
 /***/ }),
 
@@ -1782,7 +1778,7 @@ var WelcomeTextWrapper = _emotion_styled__WEBPACK_IMPORTED_MODULE_1___default.a.
 
 /***/ }),
 
-/***/ 4:
+/***/ 3:
 /*!*******************************!*\
   !*** multi ./pages/index.tsx ***!
   \*******************************/
