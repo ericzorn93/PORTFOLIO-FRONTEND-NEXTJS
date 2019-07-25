@@ -1,0 +1,1 @@
+{"ast":null,"code":"import React from \"react\";\nimport Header from \"../Header\";\n\nvar Layout = function Layout(_ref) {\n  var children = _ref.children;\n  return React.createElement(\"main\", null, React.createElement(Header, null), children);\n};\n\nexport default Layout;","map":null,"metadata":{},"sourceType":"module"}

@@ -18,12 +18,12 @@ const HomePage: React.FC = () => {
     <Fragment>
       <Header />
       <Fragment>
-        <Particles
+        {/* <Particles
           width="100%"
           height="100%"
           params={HomeParticleService.updateParticles(activeTheme)}
           style={{ backgroundColor: activeTheme.primary, zIndex: -1 }}
-        />
+        /> */}
         <WelcomeTextWrapper>
           <div className="welcome-text">
             <HomeText />
