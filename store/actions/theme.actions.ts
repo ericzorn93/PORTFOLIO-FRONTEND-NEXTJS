@@ -1,14 +1,8 @@
+import { IThemes } from "./../../utils/interfaces/theme.interface";
 import { LOAD_THEMES } from "./../types/theme.types";
 
-interface Themes {
-  lightMode: object;
-  darkMode: object;
-}
-
-export const loadThemesAction = async (themes: Themes) => {
-  if (!Object.keys(themes).length) {
-    return;
-  }
+export const loadThemesAction = (themes: IThemes, selectedTheme: string) => {
+  console.log("theme action called");
 
   return (dispatch: Function) => {
     dispatch({
@@ -16,7 +10,8 @@ export const loadThemesAction = async (themes: Themes) => {
       payload: {
         lightMode: themes.lightMode,
         darkMode: themes.darkMode,
-        selectedTheme: "darkMode"
+        selectedTheme: selectedTheme || "darkMode",
+        completeThemes: themes
       }
     });
   };
