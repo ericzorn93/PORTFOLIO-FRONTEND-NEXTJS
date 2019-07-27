@@ -174,43 +174,98 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var react_apollo_hooks__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-apollo-hooks */ "react-apollo-hooks");
-/* harmony import */ var react_apollo_hooks__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_apollo_hooks__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-redux */ "react-redux");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _apollo_setup_root_queries_theme_query__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../apollo_setup/root_queries/theme.query */ "./apollo_setup/root_queries/theme.query.ts");
-/* harmony import */ var _Loading__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../Loading */ "./components/Loading/index.tsx");
-/* harmony import */ var _Error__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../Error */ "./components/Error/index.tsx");
-/* harmony import */ var _store_types_theme_types__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../store/types/theme.types */ "./store/types/theme.types.ts");
 var _jsxFileName = "/Users/ericzorn/Dropbox/Projects/UPDATED_PORTFOLIO/frontend/components/Header/index.tsx";
 
 
 
 
-
-
-
-
-
-
 var Header = function Header() {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 6
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
+    href: "/",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 7
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 8
+    },
+    __self: this
+  }, "Home")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
+    href: "/about",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 10
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 11
+    },
+    __self: this
+  }, "About")));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(next_router__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(Header));
+
+/***/ }),
+
+/***/ "./components/Layout/index.tsx":
+/*!*************************************!*\
+  !*** ./components/Layout/index.tsx ***!
+  \*************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_apollo_hooks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-apollo-hooks */ "react-apollo-hooks");
+/* harmony import */ var react_apollo_hooks__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_apollo_hooks__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "react-redux");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _Header__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Header */ "./components/Header/index.tsx");
+/* harmony import */ var _apollo_setup_root_queries_theme_query__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../apollo_setup/root_queries/theme.query */ "./apollo_setup/root_queries/theme.query.ts");
+/* harmony import */ var _Loading__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Loading */ "./components/Loading/index.tsx");
+/* harmony import */ var _Error__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../Error */ "./components/Error/index.tsx");
+/* harmony import */ var _store_types_theme_types__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../store/types/theme.types */ "./store/types/theme.types.ts");
+var _jsxFileName = "/Users/ericzorn/Dropbox/Projects/UPDATED_PORTFOLIO/frontend/components/Layout/index.tsx";
+
+
+
+
+
+
+
+
+
+var Layout = function Layout(_ref) {
+  var children = _ref.children;
+
   /** Beginning State */
-  var completeThemes = Object(react_redux__WEBPACK_IMPORTED_MODULE_4__["useSelector"])(function (state) {
-    return state.themes.completeThemes;
-  });
-  var selectedTheme = Object(react_redux__WEBPACK_IMPORTED_MODULE_4__["useSelector"])(function (state) {
+  var selectedTheme = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["useSelector"])(function (state) {
     return state.themes.selectedTheme;
   });
   /** End State */
 
   /** Beginning Dispatchers */
 
-  var dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_4__["useDispatch"])();
+  var dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["useDispatch"])();
   /** End Dispatchers */
 
   /** Beginning Apollo Queries &Mutations */
 
-  var _useQuery = Object(react_apollo_hooks__WEBPACK_IMPORTED_MODULE_3__["useQuery"])(_apollo_setup_root_queries_theme_query__WEBPACK_IMPORTED_MODULE_5__["THEME_QUERY"]),
+  var _useQuery = Object(react_apollo_hooks__WEBPACK_IMPORTED_MODULE_1__["useQuery"])(_apollo_setup_root_queries_theme_query__WEBPACK_IMPORTED_MODULE_4__["THEME_QUERY"]),
       themeData = _useQuery.data,
       themeError = _useQuery.error,
       themeLoading = _useQuery.loading;
@@ -218,7 +273,7 @@ var Header = function Header() {
 
 
   if (themeError) {
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Error__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Error__WEBPACK_IMPORTED_MODULE_6__["default"], {
       message: "Could not upload themes",
       __source: {
         fileName: _jsxFileName,
@@ -229,7 +284,7 @@ var Header = function Header() {
   }
 
   if (themeLoading) {
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Loading__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Loading__WEBPACK_IMPORTED_MODULE_5__["default"], {
       __source: {
         fileName: _jsxFileName,
         lineNumber: 36
@@ -240,7 +295,7 @@ var Header = function Header() {
 
   var getAllThemes = themeData.getAllThemes;
   dispatch({
-    type: _store_types_theme_types__WEBPACK_IMPORTED_MODULE_8__["LOAD_THEMES"],
+    type: _store_types_theme_types__WEBPACK_IMPORTED_MODULE_7__["LOAD_THEMES"],
     payload: {
       lightMode: getAllThemes.lightMode,
       darkMode: getAllThemes.darkMode,
@@ -249,42 +304,22 @@ var Header = function Header() {
     }
   }); // dispatch(loadThemesAction(getAllThemes));
 
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("main", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 52
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Header__WEBPACK_IMPORTED_MODULE_3__["default"], {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 53
     },
     __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
-    href: "/",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 54
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 55
-    },
-    __self: this
-  }, "Home")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
-    href: "/about",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 57
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 58
-    },
-    __self: this
-  }, "About")));
+  }), children);
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(next_router__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(Header));
+/* harmony default export */ __webpack_exports__["default"] = (Layout);
 
 /***/ }),
 
@@ -1680,15 +1715,10 @@ module.exports = __webpack_require__(/*! ./dist/client/link */ "./node_modules/n
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_particles_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-particles-js */ "react-particles-js");
-/* harmony import */ var react_particles_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_particles_js__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "react-redux");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _components_page_components_home_page_HomeText__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/page_components/home_page/HomeText */ "./components/page_components/home_page/HomeText.tsx");
-/* harmony import */ var _components_page_components_home_page_AboutText__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/page_components/home_page/AboutText */ "./components/page_components/home_page/AboutText.tsx");
-/* harmony import */ var _services_home_page_services_home_particle_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../services/home_page_services/home.particle.service */ "./services/home_page_services/home.particle.service.ts");
-/* harmony import */ var _styles_home_page_styles_styled_components_WelcomeText__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../styles/home_page_styles/styled_components/WelcomeText */ "./styles/home_page_styles/styled_components/WelcomeText.ts");
-/* harmony import */ var _components_Header__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/Header */ "./components/Header/index.tsx");
+/* harmony import */ var _components_page_components_home_page_HomeText__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/page_components/home_page/HomeText */ "./components/page_components/home_page/HomeText.tsx");
+/* harmony import */ var _components_page_components_home_page_AboutText__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/page_components/home_page/AboutText */ "./components/page_components/home_page/AboutText.tsx");
+/* harmony import */ var _styles_home_page_styles_styled_components_WelcomeText__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../styles/home_page_styles/styled_components/WelcomeText */ "./styles/home_page_styles/styled_components/WelcomeText.ts");
+/* harmony import */ var _components_Layout___WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/Layout/ */ "./components/Layout/index.tsx");
 var _jsxFileName = "/Users/ericzorn/Dropbox/Projects/UPDATED_PORTFOLIO/frontend/pages/index.tsx";
 
 
@@ -1697,74 +1727,49 @@ var _jsxFileName = "/Users/ericzorn/Dropbox/Projects/UPDATED_PORTFOLIO/frontend/
 
 
 
-
-
-
 var HomePage = function HomePage() {
-  var activeTheme = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["useSelector"])(function (state) {
-    return state.themes.activeTheme;
-  });
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Layout___WEBPACK_IMPORTED_MODULE_4__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 18
+      lineNumber: 12
     },
     __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Header__WEBPACK_IMPORTED_MODULE_7__["default"], {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 19
+      lineNumber: 13
     },
     __self: this
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styles_home_page_styles_styled_components_WelcomeText__WEBPACK_IMPORTED_MODULE_3__["WelcomeTextWrapper"], {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 20
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_particles_js__WEBPACK_IMPORTED_MODULE_1___default.a, {
-    width: "100%",
-    height: "100%",
-    params: _services_home_page_services_home_particle_service__WEBPACK_IMPORTED_MODULE_5__["default"].updateParticles(activeTheme),
-    style: {
-      backgroundColor: activeTheme.primary,
-      zIndex: -1
-    },
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 21
-    },
-    __self: this
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styles_home_page_styles_styled_components_WelcomeText__WEBPACK_IMPORTED_MODULE_6__["WelcomeTextWrapper"], {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 27
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "welcome-text",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 28
+      lineNumber: 21
     },
     __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_page_components_home_page_HomeText__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_page_components_home_page_HomeText__WEBPACK_IMPORTED_MODULE_1__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 29
+      lineNumber: 22
     },
     __self: this
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "about-json",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 31
+      lineNumber: 24
     },
     __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_page_components_home_page_AboutText__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_page_components_home_page_AboutText__WEBPACK_IMPORTED_MODULE_2__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 32
+      lineNumber: 25
     },
     __self: this
   })))));
@@ -1832,80 +1837,6 @@ function () {
 }();
 
 /* harmony default export */ __webpack_exports__["default"] = (HomeDefaultService);
-
-/***/ }),
-
-/***/ "./services/home_page_services/home.particle.service.ts":
-/*!**************************************************************!*\
-  !*** ./services/home_page_services/home.particle.service.ts ***!
-  \**************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/classCallCheck */ "./node_modules/@babel/runtime-corejs2/helpers/esm/classCallCheck.js");
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/createClass */ "./node_modules/@babel/runtime-corejs2/helpers/esm/createClass.js");
-
-
-
-var HomeParticleService =
-/*#__PURE__*/
-function () {
-  function HomeParticleService() {
-    Object(_babel_runtime_corejs2_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__["default"])(this, HomeParticleService);
-  }
-
-  Object(_babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__["default"])(HomeParticleService, null, [{
-    key: "updateParticles",
-
-    /**
-     * @param activeTheme {ITheme} used to access properties on theme from the redux store
-     * @returns object for react-particles-js
-     */
-    value: function updateParticles(activeTheme) {
-      return {
-        particles: {
-          number: {
-            value: 100
-          },
-          shape: {
-            type: "star"
-          },
-          line_linked: {
-            shadow: {
-              enable: true,
-              color: activeTheme.secondary,
-              blur: 5
-            }
-          },
-          move: {
-            speed: 8
-          }
-        },
-        interactivity: {
-          detect_on: "canvas",
-          events: {
-            onhover: {
-              enable: true,
-              mode: "repulse"
-            },
-            onclick: {
-              enable: true,
-              mode: "push"
-            },
-            resize: true
-          }
-        },
-        retina_detect: true
-      };
-    }
-  }]);
-
-  return HomeParticleService;
-}();
-
-/* harmony default export */ __webpack_exports__["default"] = (HomeParticleService);
 
 /***/ }),
 
@@ -2325,17 +2256,6 @@ module.exports = require("react");
 /***/ (function(module, exports) {
 
 module.exports = require("react-apollo-hooks");
-
-/***/ }),
-
-/***/ "react-particles-js":
-/*!*************************************!*\
-  !*** external "react-particles-js" ***!
-  \*************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("react-particles-js");
 
 /***/ }),
 

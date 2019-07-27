@@ -1,22 +1,15 @@
 import { Fragment } from "react";
-import Particles from "react-particles-js";
-import { useSelector } from "react-redux";
 
 import HomeText from "../components/page_components/home_page/HomeText";
 import AboutText from "../components/page_components/home_page/AboutText";
 import { ITheme } from "../store/interfaces/theme.interface";
 import HomeParticleService from "../services/home_page_services/home.particle.service";
 import { WelcomeTextWrapper } from "../styles/home_page_styles/styled_components/WelcomeText";
-import Header from "../components/Header";
+import Layout from "../components/Layout/";
 
 const HomePage: React.FC = () => {
-  const activeTheme: ITheme = useSelector(
-    (state: any) => state.themes.activeTheme
-  );
-
   return (
-    <Fragment>
-      <Header />
+    <Layout>
       <Fragment>
         {/* <Particles
           width="100%"
@@ -33,7 +26,7 @@ const HomePage: React.FC = () => {
           </div>
         </WelcomeTextWrapper>
       </Fragment>
-    </Fragment>
+    </Layout>
   );
 };
 
