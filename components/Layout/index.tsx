@@ -2,12 +2,10 @@ import { useQuery } from "react-apollo-hooks";
 import { useSelector, useDispatch, connect } from "react-redux";
 
 import Header from "../Header";
-import { THEME_QUERY } from "../../apollo_setup/root_queries/theme.query";
+import { THEME_QUERY } from "../../graphql/theme/queries/theme.query";
 import Loading from "../Loading";
 import Error from "../Error";
 import { loadThemesAction } from "../../store/actions/theme.actions";
-import { IThemes } from "../../utils/interfaces/theme.interface";
-// import { LOAD_THEMES } from "../../store/types/theme.types";
 
 interface LayoutProps {
   children: any;
