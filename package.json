@@ -2,9 +2,10 @@
   "name": "with-apollo",
   "version": "3.0.0",
   "scripts": {
+    "start": "next start",
     "dev": "next",
     "build": "next build",
-    "start": "next start",
+    "build:export": "next build && next export",
     "generate-gql": "graphql-codegen --config codegen.yml"
   },
   "dependencies": {

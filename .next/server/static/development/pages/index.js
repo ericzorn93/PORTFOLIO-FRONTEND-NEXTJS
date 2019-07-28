@@ -93,36 +93,6 @@ module.exports =
 /************************************************************************/
 /******/ ({
 
-/***/ "./apollo_setup/root_queries/theme.query.ts":
-/*!**************************************************!*\
-  !*** ./apollo_setup/root_queries/theme.query.ts ***!
-  \**************************************************/
-/*! exports provided: THEME_QUERY */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "THEME_QUERY", function() { return THEME_QUERY; });
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/taggedTemplateLiteral */ "./node_modules/@babel/runtime-corejs2/helpers/esm/taggedTemplateLiteral.js");
-/* harmony import */ var apollo_boost__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! apollo-boost */ "apollo-boost");
-/* harmony import */ var apollo_boost__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(apollo_boost__WEBPACK_IMPORTED_MODULE_1__);
-
-
-function _templateObject() {
-  var data = Object(_babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  query getAllThemes {\n    getAllThemes {\n      darkMode {\n        primary\n        secondary\n        alternate\n        lightAlternate\n        light\n        black\n        white\n      }\n      lightMode {\n        primary\n        secondary\n        alternate\n        lightAlternate\n        light\n        black\n        white\n      }\n    }\n  }\n"]);
-
-  _templateObject = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
-
-
-var THEME_QUERY = Object(apollo_boost__WEBPACK_IMPORTED_MODULE_1__["gql"])(_templateObject());
-
-/***/ }),
-
 /***/ "./components/Error/index.tsx":
 /*!************************************!*\
   !*** ./components/Error/index.tsx ***!
@@ -235,7 +205,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "react-redux");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _Header__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Header */ "./components/Header/index.tsx");
-/* harmony import */ var _apollo_setup_root_queries_theme_query__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../apollo_setup/root_queries/theme.query */ "./apollo_setup/root_queries/theme.query.ts");
+/* harmony import */ var _graphql_theme_queries_theme_query__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../graphql/theme/queries/theme.query */ "./graphql/theme/queries/theme.query.ts");
 /* harmony import */ var _Loading__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Loading */ "./components/Loading/index.tsx");
 /* harmony import */ var _Error__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../Error */ "./components/Error/index.tsx");
 /* harmony import */ var _store_actions_theme_actions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../store/actions/theme.actions */ "./store/actions/theme.actions.ts");
@@ -265,7 +235,7 @@ var Layout = function Layout(_ref) {
 
   /** Beginning Apollo Queries &Mutations */
 
-  var _useQuery = Object(react_apollo_hooks__WEBPACK_IMPORTED_MODULE_1__["useQuery"])(_apollo_setup_root_queries_theme_query__WEBPACK_IMPORTED_MODULE_4__["THEME_QUERY"]),
+  var _useQuery = Object(react_apollo_hooks__WEBPACK_IMPORTED_MODULE_1__["useQuery"])(_graphql_theme_queries_theme_query__WEBPACK_IMPORTED_MODULE_4__["THEME_QUERY"]),
       themeData = _useQuery.data,
       themeError = _useQuery.error,
       themeLoading = _useQuery.loading;
@@ -277,7 +247,7 @@ var Layout = function Layout(_ref) {
       message: "Could not upload themes",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 34
+        lineNumber: 32
       },
       __self: this
     });
@@ -287,7 +257,7 @@ var Layout = function Layout(_ref) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Loading__WEBPACK_IMPORTED_MODULE_5__["default"], {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 38
+        lineNumber: 36
       },
       __self: this
     });
@@ -298,13 +268,13 @@ var Layout = function Layout(_ref) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("main", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 45
+      lineNumber: 43
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Header__WEBPACK_IMPORTED_MODULE_3__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 46
+      lineNumber: 44
     },
     __self: this
   }), children);
@@ -325,13 +295,13 @@ var Layout = function Layout(_ref) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _styles_global_styled_components_LoadingErrorBG__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../styles/global/styled_components/LoadingErrorBG */ "./styles/global/styled_components/LoadingErrorBG.tsx");
+/* harmony import */ var _global_styles_styled_components_LoadingErrorBG__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../global/styles/styled_components/LoadingErrorBG */ "./global/styles/styled_components/LoadingErrorBG.tsx");
 var _jsxFileName = "/Users/ericzorn/Dropbox/Projects/UPDATED_PORTFOLIO/frontend/components/Loading/index.tsx";
 
 
 
 var Loading = function Loading() {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styles_global_styled_components_LoadingErrorBG__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_global_styles_styled_components_LoadingErrorBG__WEBPACK_IMPORTED_MODULE_1__["default"], {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 7
@@ -467,6 +437,108 @@ var HomeText = function HomeText() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (HomeText);
+
+/***/ }),
+
+/***/ "./components/page_components/home_page/styles/styled_components/WelcomeText.ts":
+/*!**************************************************************************************!*\
+  !*** ./components/page_components/home_page/styles/styled_components/WelcomeText.ts ***!
+  \**************************************************************************************/
+/*! exports provided: WelcomeTextWrapper */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "WelcomeTextWrapper", function() { return WelcomeTextWrapper; });
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/taggedTemplateLiteral */ "./node_modules/@babel/runtime-corejs2/helpers/esm/taggedTemplateLiteral.js");
+/* harmony import */ var _emotion_styled__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @emotion/styled */ "@emotion/styled");
+/* harmony import */ var _emotion_styled__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_emotion_styled__WEBPACK_IMPORTED_MODULE_1__);
+
+
+function _templateObject() {
+  var data = Object(_babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  display: grid;\n  grid-template-columns: repeat(2, 1fr);\n  position: absolute;\n  top: 0px;\n  width: 100vw;\n  padding-left: 200px;\n  padding-right: 200px;\n\n  @media (max-width: 900px) {\n    grid-template-columns: repeat(1, 1fr);\n    padding-left: 0;\n    padding-right: 0;\n\n    &.welcome-text {\n      text-align: center;\n    }\n  }\n\n  span {\n    font-size: 12px;\n  }\n\n  .about-json {\n    .json-pretty {\n      padding-top: 2em;\n    }\n    .json-selected {\n      background-color: rgba(139, 191, 228, 0.19999999999999996);\n    }\n\n    .json-string {\n      font-weight: 500;\n      color: ", ";\n    }\n\n    .json-key {\n      font-weight: 800;\n      color: ", ";\n    }\n\n    .json-boolean {\n      font-weight: 500;\n      color: ", ";\n    }\n\n    .json-number {\n      font-weight: 500;\n      color: ", ";\n    }\n  }\n\n  &.welcome-text {\n    grid-column: 1;\n  }\n\n  &.about-json {\n    grid-column: 2;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n  }\n"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+
+var WelcomeTextWrapper = _emotion_styled__WEBPACK_IMPORTED_MODULE_1___default.a.div(_templateObject(), function (props) {
+  return props.theme.secondary;
+}, function (props) {
+  return props.theme.light;
+}, function (props) {
+  return props.theme.secondary;
+}, function (props) {
+  return props.theme.secondary;
+});
+
+/***/ }),
+
+/***/ "./global/styles/styled_components/LoadingErrorBG.tsx":
+/*!************************************************************!*\
+  !*** ./global/styles/styled_components/LoadingErrorBG.tsx ***!
+  \************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/taggedTemplateLiteral */ "./node_modules/@babel/runtime-corejs2/helpers/esm/taggedTemplateLiteral.js");
+/* harmony import */ var _emotion_styled__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @emotion/styled */ "@emotion/styled");
+/* harmony import */ var _emotion_styled__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_emotion_styled__WEBPACK_IMPORTED_MODULE_1__);
+
+
+function _templateObject() {
+  var data = Object(_babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  width: 100vw;\n  min-width: 100vw;\n  height: 100vh;\n  min-height: 100vh;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  background-color: ", ";\n  color: ", ";\n"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+
+var LoadingErrorBG = _emotion_styled__WEBPACK_IMPORTED_MODULE_1___default.a.div(_templateObject(), function (props) {
+  return props.theme.primary || "#05396B";
+}, function (props) {
+  return props.theme.white || "white";
+});
+/* harmony default export */ __webpack_exports__["default"] = (LoadingErrorBG);
+
+/***/ }),
+
+/***/ "./graphql/theme/queries/theme.query.ts":
+/*!**********************************************!*\
+  !*** ./graphql/theme/queries/theme.query.ts ***!
+  \**********************************************/
+/*! exports provided: THEME_QUERY */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "THEME_QUERY", function() { return THEME_QUERY; });
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/taggedTemplateLiteral */ "./node_modules/@babel/runtime-corejs2/helpers/esm/taggedTemplateLiteral.js");
+/* harmony import */ var apollo_boost__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! apollo-boost */ "apollo-boost");
+/* harmony import */ var apollo_boost__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(apollo_boost__WEBPACK_IMPORTED_MODULE_1__);
+
+
+function _templateObject() {
+  var data = Object(_babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  query getAllThemes {\n    getAllThemes {\n      darkMode {\n        primary\n        secondary\n        alternate\n        lightAlternate\n        light\n        black\n        white\n      }\n      lightMode {\n        primary\n        secondary\n        alternate\n        lightAlternate\n        light\n        black\n        white\n      }\n    }\n  }\n"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+
+var THEME_QUERY = Object(apollo_boost__WEBPACK_IMPORTED_MODULE_1__["gql"])(_templateObject());
 
 /***/ }),
 
@@ -1713,7 +1785,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_page_components_home_page_HomeText__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/page_components/home_page/HomeText */ "./components/page_components/home_page/HomeText.tsx");
 /* harmony import */ var _components_page_components_home_page_AboutText__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/page_components/home_page/AboutText */ "./components/page_components/home_page/AboutText.tsx");
 /* harmony import */ var _services_home_page_services_home_particle_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../services/home_page_services/home.particle.service */ "./services/home_page_services/home.particle.service.ts");
-/* harmony import */ var _styles_home_page_styles_styled_components_WelcomeText__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../styles/home_page_styles/styled_components/WelcomeText */ "./styles/home_page_styles/styled_components/WelcomeText.ts");
+/* harmony import */ var _components_page_components_home_page_styles_styled_components_WelcomeText__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/page_components/home_page/styles/styled_components/WelcomeText */ "./components/page_components/home_page/styles/styled_components/WelcomeText.ts");
 /* harmony import */ var _components_Layout___WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/Layout/ */ "./components/Layout/index.tsx");
 var _jsxFileName = "/Users/ericzorn/Dropbox/Projects/UPDATED_PORTFOLIO/frontend/pages/index.tsx";
 
@@ -1755,7 +1827,7 @@ var HomePage = function HomePage() {
       lineNumber: 17
     },
     __self: this
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styles_home_page_styles_styled_components_WelcomeText__WEBPACK_IMPORTED_MODULE_6__["WelcomeTextWrapper"], {
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_page_components_home_page_styles_styled_components_WelcomeText__WEBPACK_IMPORTED_MODULE_6__["WelcomeTextWrapper"], {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 23
@@ -1971,78 +2043,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPDATE_SELECTED_THEME", function() { return UPDATE_SELECTED_THEME; });
 var LOAD_THEMES = "LOAD_THEMES";
 var UPDATE_SELECTED_THEME = "UPDATE_SELECTED_THEME";
-
-/***/ }),
-
-/***/ "./styles/global/styled_components/LoadingErrorBG.tsx":
-/*!************************************************************!*\
-  !*** ./styles/global/styled_components/LoadingErrorBG.tsx ***!
-  \************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/taggedTemplateLiteral */ "./node_modules/@babel/runtime-corejs2/helpers/esm/taggedTemplateLiteral.js");
-/* harmony import */ var _emotion_styled__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @emotion/styled */ "@emotion/styled");
-/* harmony import */ var _emotion_styled__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_emotion_styled__WEBPACK_IMPORTED_MODULE_1__);
-
-
-function _templateObject() {
-  var data = Object(_babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  width: 100vw;\n  min-width: 100vw;\n  height: 100vh;\n  min-height: 100vh;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  background-color: ", ";\n  color: ", ";\n"]);
-
-  _templateObject = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
-
-
-var LoadingErrorBG = _emotion_styled__WEBPACK_IMPORTED_MODULE_1___default.a.div(_templateObject(), function (props) {
-  return props.theme.primary || "#05396B";
-}, function (props) {
-  return props.theme.white || "white";
-});
-/* harmony default export */ __webpack_exports__["default"] = (LoadingErrorBG);
-
-/***/ }),
-
-/***/ "./styles/home_page_styles/styled_components/WelcomeText.ts":
-/*!******************************************************************!*\
-  !*** ./styles/home_page_styles/styled_components/WelcomeText.ts ***!
-  \******************************************************************/
-/*! exports provided: WelcomeTextWrapper */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "WelcomeTextWrapper", function() { return WelcomeTextWrapper; });
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/taggedTemplateLiteral */ "./node_modules/@babel/runtime-corejs2/helpers/esm/taggedTemplateLiteral.js");
-/* harmony import */ var _emotion_styled__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @emotion/styled */ "@emotion/styled");
-/* harmony import */ var _emotion_styled__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_emotion_styled__WEBPACK_IMPORTED_MODULE_1__);
-
-
-function _templateObject() {
-  var data = Object(_babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  display: grid;\n  grid-template-columns: repeat(2, 1fr);\n  position: absolute;\n  top: 0px;\n  width: 100vw;\n  padding-left: 200px;\n  padding-right: 200px;\n\n  @media (max-width: 900px) {\n    grid-template-columns: repeat(1, 1fr);\n    padding-left: 0;\n    padding-right: 0;\n\n    &.welcome-text {\n      text-align: center;\n    }\n  }\n\n  span {\n    font-size: 12px;\n  }\n\n  .about-json {\n    .json-pretty {\n      padding-top: 2em;\n    }\n    .json-selected {\n      background-color: rgba(139, 191, 228, 0.19999999999999996);\n    }\n\n    .json-string {\n      font-weight: 500;\n      color: ", ";\n    }\n\n    .json-key {\n      font-weight: 800;\n      color: ", ";\n    }\n\n    .json-boolean {\n      font-weight: 500;\n      color: ", ";\n    }\n\n    .json-number {\n      font-weight: 500;\n      color: ", ";\n    }\n  }\n\n  &.welcome-text {\n    grid-column: 1;\n  }\n\n  &.about-json {\n    grid-column: 2;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n  }\n"]);
-
-  _templateObject = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
-
-
-var WelcomeTextWrapper = _emotion_styled__WEBPACK_IMPORTED_MODULE_1___default.a.div(_templateObject(), function (props) {
-  return props.theme.secondary;
-}, function (props) {
-  return props.theme.light;
-}, function (props) {
-  return props.theme.secondary;
-}, function (props) {
-  return props.theme.secondary;
-});
 
 /***/ }),
 

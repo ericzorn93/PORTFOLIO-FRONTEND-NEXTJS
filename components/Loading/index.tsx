@@ -1,6 +1,6 @@
 import React from "react";
 
-import LoadingErrorBG from "../../styles/global/styled_components/LoadingErrorBG";
+import LoadingErrorBG from "../../global/styles/styled_components/LoadingErrorBG";
 
 const Loading: React.FC = () => {
   return (
