@@ -2,7 +2,7 @@
   "name": "with-apollo",
   "version": "3.0.0",
   "scripts": {
-    "start": "next start",
+    "start": "next start -p $PORT",
     "dev": "next",
     "build": "next build",
     "build:export": "next build && next export",
