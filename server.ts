@@ -11,5 +11,5 @@ async function main() {
     server.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
 }
 
-// Call to the main function
+// Call to the main function to begin the program
 main().then(() => null);
