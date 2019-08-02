@@ -16,13 +16,13 @@ class HomeParticleService {
         },
         line_linked: {
           shadow: {
-            enable: true,
+            enable: false,
             color: activeTheme.secondary,
-            blur: 5
+            blur: 4
           }
         },
         move: {
-          speed: 8
+          speed: 7
         }
       },
       interactivity: {

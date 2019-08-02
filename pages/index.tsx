@@ -7,6 +7,7 @@ import AboutText from "../components/page_components/home_page/AboutText";
 import HomeParticleService from "../services/home_page_services/home.particle.service";
 import { WelcomeTextWrapper } from "../components/page_components/home_page/styles/styled_components/WelcomeText";
 import Layout from "../components/Layout/";
+import * as React from "react";
 
 const HomePage: React.FC = () => {
   const activeTheme = useSelector((state: any) => state.themes.activeTheme);

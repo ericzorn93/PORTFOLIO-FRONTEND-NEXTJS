@@ -1,10 +1,10 @@
-import { IThemes } from "./../../utils/interfaces/theme.interface";
-import { LOAD_THEMES } from "./../types/theme.types";
+import { IThemes } from "../../utils/interfaces/theme.interface";
+import { LOAD_THEMES } from "../types/theme.types";
 
 export const loadThemesAction = (themes: IThemes, selectedTheme: string) => {
   console.log("theme action called");
 
-  return (dispatch: Function) => {
+  return async (dispatch: Function) => {
     dispatch({
       type: LOAD_THEMES,
       payload: {

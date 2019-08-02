@@ -36,8 +36,10 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     return <Loading />;
   }
 
-  const { getAllThemes } = themeData;
-  dispatch(loadThemesAction(getAllThemes, selectedTheme));
+  if(!Object.values(selectedTheme).length) {
+    const { getAllThemes } = themeData;
+    dispatch(loadThemesAction(getAllThemes, selectedTheme));
+  }
 
   return (
     <main>
