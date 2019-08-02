@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware } from "redux";
+import {createStore, applyMiddleware, compose} from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 
@@ -12,7 +12,7 @@ let loadMiddleware: any;
 if (process.env.NODE_ENV !== "production") {
   loadMiddleware = composeEnhancers(applyMiddleware(...middleware));
 } else {
-  loadMiddleware = applyMiddleware(...middleware);
+  loadMiddleware = compose(applyMiddleware(...middleware));
 }
 
-export default () => createStore(rootReducer, {}, loadMiddleware);
+export default () => createStore(rootReducer, loadMiddleware);

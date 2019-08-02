@@ -1659,7 +1659,7 @@ if (true) {
 } else {}
 
 /* harmony default export */ __webpack_exports__["default"] = (function () {
-  return Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers__WEBPACK_IMPORTED_MODULE_3__["default"], {}, loadMiddleware);
+  return Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers__WEBPACK_IMPORTED_MODULE_3__["default"], loadMiddleware);
 });
 
 /***/ }),
