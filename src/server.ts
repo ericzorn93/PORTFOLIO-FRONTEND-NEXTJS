@@ -1,4 +1,4 @@
-import express, {Application as ExpressApplication, Request, Response} from 'express';
+import express, {Request, Response} from 'express';
 import morgan from 'morgan';
 import next from 'next';
 
@@ -11,7 +11,7 @@ async function main() {
     await app.prepare();
 
     // Initialize Express JS Server
-    const server: ExpressApplication = express();
+    const server: express.Application = express();
 
     // Express Server Middleware
     server.use(morgan('dev'));
