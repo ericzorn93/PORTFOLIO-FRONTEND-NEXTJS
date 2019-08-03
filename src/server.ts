@@ -1,4 +1,4 @@
-import express, { Request, Response } from 'express';
+import express, {Application as ExpressApplication, Request, Response} from 'express';
 import morgan from 'morgan';
 import next from 'next';
 
@@ -10,16 +10,15 @@ async function main() {
     const handle = app.getRequestHandler();
     await app.prepare();
 
-
     // Initialize Express JS Server
-    const server: express.Application = express();
+    const server: ExpressApplication = express();
 
     // Express Server Middleware
     server.use(morgan('dev'));
 
     // Routing
     server.get('*', (req: Request, res: Response) => {
-        handle(req, res)
+        handle(req, res);
     });
 
     const PORT: number | string = process.env.PORT || 3000;
