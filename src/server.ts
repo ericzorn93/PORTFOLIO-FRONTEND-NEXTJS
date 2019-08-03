@@ -1,10 +1,15 @@
 import express, {Request, Response} from 'express';
 import morgan from 'morgan';
 import next from 'next';
+import fetch from 'isomorphic-unfetch';
+// import cors from 'cors';
 
 import isDevelopment from "./utils/is_development.util";
 
 async function main() {
+    // Global variables
+    (global as any).fetch = fetch;
+
     // Prepare Next Server
     const app = next({dev: isDevelopment});
     const handle = app.getRequestHandler();
