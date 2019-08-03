@@ -2,8 +2,8 @@
   "name": "with-apollo",
   "version": "3.0.0",
   "scripts": {
-    "start": "next start -p $PORT",
-    "dev": "next",
+    "start": "node src/server.ts",
+    "dev": "tsnd --respawn src/server.ts",
     "build": "next build",
     "build:export": "next build && next export",
     "generate-gql": "graphql-codegen --config codegen.yml"
@@ -68,6 +68,10 @@
     "graphql-codegen-typescript-client": "^0.18.2",
     "graphql-codegen-typescript-common": "^0.18.2",
     "graphql-codegen-typescript-react-apollo": "^0.18.2",
+    "nodemon": "^1.19.1",
+    "rollup": "^1.18.0",
+    "ts-node": "^8.3.0",
+    "ts-node-dev": "^1.0.0-pre.40",
     "tslint": "^5.18.0"
   },
   "author": "Eric Zorn <zornwebdev@gmail.com>",

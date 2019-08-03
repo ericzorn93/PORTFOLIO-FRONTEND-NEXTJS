@@ -5,8 +5,8 @@ import { ApolloProvider as ApolloHooksProvider } from "react-apollo-hooks";
 import withRedux from "next-redux-wrapper";
 import { Provider } from "react-redux";
 
-import withApolloClient from "../lib/with-apollo-client";
-import store from "../store";
+import withApolloClient from "../src/lib/with-apollo-client";
+import store from "../src/store";
 
 const MyApp: React.FC<any> = (props: any) => {
   const { Component, pageProps, apolloClient, store } = props;

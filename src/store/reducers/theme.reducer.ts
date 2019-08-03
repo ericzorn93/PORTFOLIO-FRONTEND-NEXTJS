@@ -1,4 +1,4 @@
-import { LOAD_THEMES, UPDATE_SELECTED_THEME } from "./../types/theme.types";
+import { LOAD_THEMES, UPDATE_SELECTED_THEME } from "../types/theme.types";
 import Action from "../interfaces/action.interface";
 
 const initialThemeState = {
