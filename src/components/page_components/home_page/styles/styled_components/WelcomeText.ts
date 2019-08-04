@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const WelcomeTextWrapper = styled.div`
+export const WelcomeTextWrapper = styled.div<any>`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   position: absolute;

@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-const LoadingErrorBG = styled.div`
+const LoadingErrorBG = styled.div<any>`
   width: 100vw;
   min-width: 100vw;
   height: 100vh;
