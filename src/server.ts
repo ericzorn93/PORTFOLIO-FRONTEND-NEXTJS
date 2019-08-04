@@ -1,4 +1,8 @@
-import express, { Request, Response } from "express";
+import express, {
+  Request,
+  Response,
+  Application as ExpressApplication
+} from "express";
 import morgan from "morgan";
 import next from "next";
 import fetch from "isomorphic-unfetch";
@@ -16,7 +20,7 @@ async function main() {
   await app.prepare();
 
   // Initialize Express JS Server
-  const server: express.Application = express();
+  const server: ExpressApplication = express();
 
   // Express Server Middleware
   server.use(morgan("dev"));
