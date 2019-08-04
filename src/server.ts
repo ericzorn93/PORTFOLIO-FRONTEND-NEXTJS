@@ -1,33 +1,33 @@
-import express, {Request, Response} from 'express';
-import morgan from 'morgan';
-import next from 'next';
-import fetch from 'isomorphic-unfetch';
+import express, { Request, Response } from "express";
+import morgan from "morgan";
+import next from "next";
+import fetch from "isomorphic-unfetch";
 // import cors from 'cors';
 
 import isDevelopment from "./utils/is_development.util";
 
 async function main() {
-    // Global variables
-    (global as any).fetch = fetch;
+  // Global variables
+  (global as any).fetch = fetch;
 
-    // Prepare Next Server
-    const app = next({dev: isDevelopment});
-    const handle = app.getRequestHandler();
-    await app.prepare();
+  // Prepare Next Server
+  const app = next({ dev: isDevelopment });
+  const handle = app.getRequestHandler();
+  await app.prepare();
 
-    // Initialize Express JS Server
-    const server: express.Application = express();
+  // Initialize Express JS Server
+  const server: express.Application = express();
 
-    // Express Server Middleware
-    server.use(morgan('dev'));
+  // Express Server Middleware
+  server.use(morgan("dev"));
 
-    // Routing
-    server.get('*', (req: Request, res: Response) => {
-        handle(req, res);
-    });
+  // Routing
+  server.get("*", (req: Request, res: Response) => {
+    handle(req, res);
+  });
 
-    const PORT: number | string = process.env.PORT || 3000;
-    server.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
+  const PORT: number | string = process.env.PORT || 3000;
+  server.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
 }
 
 // Call to the main function to begin the program
