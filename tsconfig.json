@@ -4,7 +4,6 @@
     "allowSyntheticDefaultImports": true,
     "jsx": "preserve",
     "lib": ["dom", "es2017"],
-    "module": "esnext",
     "moduleResolution": "node",
     "noEmit": true,
     "noUnusedLocals": false,
@@ -20,7 +19,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "experimentalDecorators": true,
-    "types": ["node", "@emotion/core", "@emotion/styled"]
+    "types": ["node", "@emotion/core", "@emotion/styled"],
+    "module": "esnext"
   },
   "exclude": ["node_modules"],
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]

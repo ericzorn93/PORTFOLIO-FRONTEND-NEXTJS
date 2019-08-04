@@ -2,11 +2,11 @@ import express, {
   Request,
   Response,
   Application as ExpressApplication
+  // import cors from 'cors';
 } from "express";
 import morgan from "morgan";
 import next from "next";
 import fetch from "isomorphic-unfetch";
-// import cors from 'cors';
 
 import isDevelopment from "./utils/is_development.util";
 
