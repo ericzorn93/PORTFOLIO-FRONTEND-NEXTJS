@@ -4,6 +4,7 @@
   "scripts": {
     "start": "node src/server.ts",
     "dev": "tsnd --respawn src/server.ts",
+    "dev:nodemon": "nodemon ",
     "build": "next build",
     "build:export": "next build && next export",
     "generate-gql": "graphql-codegen --config codegen.yml"
@@ -32,7 +33,7 @@
     "json-pretty-html": "^1.1.6",
     "moment": "^2.24.0",
     "morgan": "^1.9.1",
-    "next": "^9.0.1",
+    "next": "^9.0.3",
     "next-redux-wrapper": "^3.0.0-alpha.3",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
@@ -60,6 +61,7 @@
     "@types/graphql": "^14.2.2",
     "@types/moment": "^2.13.0",
     "@types/morgan": "^1.7.36",
+    "@types/next": "^8.0.6",
     "@types/next-redux-wrapper": "^2.0.2",
     "@types/react-redux": "^7.1.1",
     "@types/react-router-dom": "^4.3.4",
