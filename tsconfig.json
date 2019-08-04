@@ -19,6 +19,7 @@
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
+    "experimentalDecorators": true,
     "types": ["node", "@emotion/core", "@emotion/styled"]
   },
   "exclude": ["node_modules"],
