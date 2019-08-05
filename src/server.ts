@@ -1,8 +1,8 @@
+// import cors from "cors/config";
 import express, {
   Request,
   Response,
   Application as ExpressApplication
-  // import cors from 'cors';
 } from "express";
 import morgan from "morgan";
 import next from "next";
