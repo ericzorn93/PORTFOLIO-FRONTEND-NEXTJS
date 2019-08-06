@@ -2,11 +2,11 @@
   "name": "with-apollo",
   "version": "3.0.0",
   "scripts": {
-    "start": "node src/server.ts",
-    "dev": "tsnd --respawn src/server.ts",
-    "dev:nodemon": "nodemon ",
-    "build": "next build",
-    "build:export": "next build && next export",
+    "dev": "nodemon src/server/server.ts",
+    "build": "next build && tsc --project tsconfig.server.json",
+    "postinstall": "npm run build",
+    "start": "NODE_ENV=production ts-node src/server/server.ts",
+    "test": "mocha -r ts-node/register",
     "generate-gql": "graphql-codegen --config codegen.yml"
   },
   "dependencies": {
