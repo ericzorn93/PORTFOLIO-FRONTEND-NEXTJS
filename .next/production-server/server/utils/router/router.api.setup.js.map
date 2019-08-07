@@ -1,0 +1,1 @@
+{"version":3,"file":"router.api.setup.js","sourceRoot":"","sources":["../../../../../src/server/utils/router/router.api.setup.ts"],"names":[],"mappings":";;;;;AAEA,6FAAmE;AAEnE,SAAS,cAAc,CAAC,MAA0B;IAChD,qBAAqB;IACrB,MAAM,CAAC,GAAG,CAAC,IAAI,OAAO,CAAC,GAAG,CAAC,kBAAkB,EAAE,EAAE,4BAAgB,CAAC,CAAC;AACrE,CAAC;AAED,kBAAe,cAAc,CAAC"}
