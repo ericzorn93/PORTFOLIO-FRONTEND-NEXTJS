@@ -11,16 +11,17 @@ import fetch from "isomorphic-unfetch";
 import isDevelopment from "../config/utils/is_development.util";
 
 // Router Imports
-import primaryApiRoutes from "./routes/api/primary.api.routes";
+import setupApiRoutes from "./utils/router/router.api.setup";
 
 async function main(): Promise<void> {
   // Global variables
   (global as any).fetch = fetch;
 
   // Prepare Next Server
-  const app = next({ dev: isDevelopment });
-  const handle = app.getRequestHandler();
-  await app.prepare();
+  const nextApp = next({ dev: isDevelopment });
+  (global as any).nextApp = nextApp;
+  const handle = nextApp.getRequestHandler();
+  await nextApp.prepare();
 
   // Initialize Express JS Server
   const server: ExpressApplication = express();
@@ -29,7 +30,12 @@ async function main(): Promise<void> {
   server.use(morgan("dev"));
 
   // API Routes
-  server.use(`/${process.env.API_VERSION_PREFIX}`, primaryApiRoutes);
+  setupApiRoutes(server);
+
+  // View Routes
+  server.get("/", (req: Request, res: Response) => {
+    return nextApp.render(req, res, "/index", {});
+  });
 
   // Wildcard route for handling view requests with Next JS
   server.get("*", (req: Request, res: Response) => {
