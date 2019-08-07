@@ -1,4 +1,4 @@
-// import cors from "cors/config";
+import "dotenv/config";
 import express, {
   Request,
   Response,
@@ -10,7 +10,10 @@ import fetch from "isomorphic-unfetch";
 
 import isDevelopment from "../config/utils/is_development.util";
 
-async function main() {
+// Router Imports
+import primaryApiRoutes from "./routes/api/primary.api.routes";
+
+async function main(): Promise<void> {
   // Global variables
   (global as any).fetch = fetch;
 
@@ -25,7 +28,10 @@ async function main() {
   // Express Server Middleware
   server.use(morgan("dev"));
 
-  // Routing
+  // API Routes
+  server.use(`/${process.env.API_VERSION_PREFIX}`, primaryApiRoutes);
+
+  // Wildcard route for handling view requests with Next JS
   server.get("*", (req: Request, res: Response) => {
     handle(req, res);
   });

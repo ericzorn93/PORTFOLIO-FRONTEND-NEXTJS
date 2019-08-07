@@ -45700,7 +45700,7 @@ var UPDATE_SELECTED_THEME = "UPDATE_SELECTED_THEME";
 
 /***/ }),
 
-/***/ 1:
+/***/ 0:
 /*!************************************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2F&absolutePagePath=%2FUsers%2Fericzorn%2FDropbox%2FProjects%2FUPDATED_PORTFOLIO%2Ffrontend%2Fpages%2Findex.tsx ***!
   \************************************************************************************************************************************************************/
@@ -45723,5 +45723,5 @@ module.exports = dll_67fd39c255e518cbcc2b;
 
 /***/ })
 
-},[[1,"static/runtime/webpack.js"]]]);
+},[[0,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=index.js.map

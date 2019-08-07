@@ -1,1 +1,0 @@
-{"ast":null,"code":"import React from \"react\";\nimport LoadingErrorBG from \"../../global/styles/styled_components/LoadingErrorBG\";\n\nconst Loading = () => {\n  return React.createElement(LoadingErrorBG, null, React.createElement(\"h1\", null, \"Loading...\"));\n};\n\nexport default Loading;","map":null,"metadata":{},"sourceType":"module"}
