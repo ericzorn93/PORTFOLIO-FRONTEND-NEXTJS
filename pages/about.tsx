@@ -7,7 +7,6 @@ import Layout from "../src/client/components/Layout";
 const AboutPage = (props: any) => (
   <Layout>
     <h1>About</h1>
-    <p>{props.todos[0].title}</p>
   </Layout>
 );
 
