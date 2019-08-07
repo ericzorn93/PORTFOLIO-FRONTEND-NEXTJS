@@ -29,13 +29,22 @@ async function main(): Promise<void> {
   // Express Server Middleware
   server.use(morgan("dev"));
 
-  // API Routes
+  /*** API Routes ***/
   setupApiRoutes(server);
+  /** End API Routes */
 
-  // View Routes
+  /** View Routes */
   server.get("/", (req: Request, res: Response) => {
     return nextApp.render(req, res, "/index", {});
   });
+
+  server.get("/about", async (req: Request, res: Response) => {
+    const response = await fetch("https://jsonplaceholder.typicode.com/todos");
+    const data = await response.json();
+
+    return nextApp.render(req, res, "/about", { todos: data });
+  });
+  /** End View Routes */
 
   // Wildcard route for handling view requests with Next JS
   server.get("*", (req: Request, res: Response) => {
