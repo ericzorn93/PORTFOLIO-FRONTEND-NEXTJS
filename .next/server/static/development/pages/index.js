@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -768,9 +768,9 @@ module.exports = __webpack_require__(/*! ./dist/client/link */ "./node_modules/n
 
 /***/ }),
 
-/***/ "./pages/about.tsx":
+/***/ "./pages/index.tsx":
 /*!*************************!*\
-  !*** ./pages/about.tsx ***!
+  !*** ./pages/index.tsx ***!
   \*************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -779,24 +779,43 @@ module.exports = __webpack_require__(/*! ./dist/client/link */ "./node_modules/n
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _src_client_components_Layout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../src/client/components/Layout */ "./src/client/components/Layout/index.tsx");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "react-redux");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_particles_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-particles-js */ "react-particles-js");
+/* harmony import */ var react_particles_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_particles_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _src_client_components_page_components_home_page_HomeText__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../src/client/components/page_components/home_page/HomeText */ "./src/client/components/page_components/home_page/HomeText.tsx");
+/* harmony import */ var _src_client_components_page_components_home_page_AboutText__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../src/client/components/page_components/home_page/AboutText */ "./src/client/components/page_components/home_page/AboutText.tsx");
+/* harmony import */ var _src_client_services_home_page_services_home_particle_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../src/client/services/home_page_services/home.particle.service */ "./src/client/services/home_page_services/home.particle.service.ts");
+/* harmony import */ var _src_client_components_page_components_home_page_styles_styled_components_WelcomeText__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../src/client/components/page_components/home_page/styles/styled_components/WelcomeText */ "./src/client/components/page_components/home_page/styles/styled_components/WelcomeText.ts");
+/* harmony import */ var _src_client_components_Layout___WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../src/client/components/Layout/ */ "./src/client/components/Layout/index.tsx");
 
- // interface IAboutPageProps {
-//   todos: any[];
-// }
 
-const AboutPage = props => react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_src_client_components_Layout__WEBPACK_IMPORTED_MODULE_1__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "About"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, props.todos[0].title));
 
-AboutPage.getInitialProps = props => {
-  const {
-    query
-  } = props;
-  return {
-    todos: query.todos
-  };
+
+
+
+
+
+
+
+const HomePage = () => {
+  const activeTheme = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(state => state.themes.activeTheme);
+  return react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_src_client_components_Layout___WEBPACK_IMPORTED_MODULE_7__["default"], null, react__WEBPACK_IMPORTED_MODULE_0__["createElement"](react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, react__WEBPACK_IMPORTED_MODULE_0__["createElement"](react_particles_js__WEBPACK_IMPORTED_MODULE_2___default.a, {
+    width: "100%",
+    height: "100%",
+    params: _src_client_services_home_page_services_home_particle_service__WEBPACK_IMPORTED_MODULE_5__["default"].updateParticles(activeTheme),
+    style: {
+      backgroundColor: activeTheme.primary,
+      zIndex: -1
+    }
+  }), react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_src_client_components_page_components_home_page_styles_styled_components_WelcomeText__WEBPACK_IMPORTED_MODULE_6__["WelcomeTextWrapper"], null, react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", {
+    className: "welcome-text"
+  }, react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_src_client_components_page_components_home_page_HomeText__WEBPACK_IMPORTED_MODULE_3__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", {
+    className: "about-json"
+  }, react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_src_client_components_page_components_home_page_AboutText__WEBPACK_IMPORTED_MODULE_4__["default"], null)))));
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (AboutPage);
+/* harmony default export */ __webpack_exports__["default"] = (HomePage);
 
 /***/ }),
 
@@ -952,6 +971,156 @@ const Loading = () => {
 
 /***/ }),
 
+/***/ "./src/client/components/page_components/home_page/AboutText.tsx":
+/*!***********************************************************************!*\
+  !*** ./src/client/components/page_components/home_page/AboutText.tsx ***!
+  \***********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ "moment");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _services_home_page_services_home_default_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../services/home_page_services/home.default.service */ "./src/client/services/home_page_services/home.default.service.ts");
+ // tslint-disable-line
+
+
+
+
+const prettyHtml = __webpack_require__(/*! json-pretty-html */ "json-pretty-html").default;
+
+const AboutText = () => {
+  const myBirthday = new Date(1995, 7, 30, 16, 9).toISOString();
+  const [formattedBirthday] = moment__WEBPACK_IMPORTED_MODULE_1___default()(myBirthday).fromNow().split(" ");
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    dangerouslySetInnerHTML: {
+      __html: prettyHtml(_services_home_page_services_home_default_service__WEBPACK_IMPORTED_MODULE_2__["default"].getAboutJson(formattedBirthday))
+    }
+  }));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (AboutText);
+
+/***/ }),
+
+/***/ "./src/client/components/page_components/home_page/HomeText.tsx":
+/*!**********************************************************************!*\
+  !*** ./src/client/components/page_components/home_page/HomeText.tsx ***!
+  \**********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+const HomeText = () => {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+    style: {
+      color: "white",
+      fontFamily: "sans-serif"
+    }
+  }, "Hi, I'm Eric,"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+    style: {
+      color: "white",
+      fontFamily: "sans-serif"
+    }
+  }, "Full-Stack Software Engineer"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+    style: {
+      color: "white",
+      fontFamily: "sans-serif"
+    }
+  }, "I Enjoy all things tech and hip."));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (HomeText);
+
+/***/ }),
+
+/***/ "./src/client/components/page_components/home_page/styles/styled_components/WelcomeText.ts":
+/*!*************************************************************************************************!*\
+  !*** ./src/client/components/page_components/home_page/styles/styled_components/WelcomeText.ts ***!
+  \*************************************************************************************************/
+/*! exports provided: WelcomeTextWrapper */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "WelcomeTextWrapper", function() { return WelcomeTextWrapper; });
+/* harmony import */ var _emotion_styled__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @emotion/styled */ "@emotion/styled");
+/* harmony import */ var _emotion_styled__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_emotion_styled__WEBPACK_IMPORTED_MODULE_0__);
+
+const WelcomeTextWrapper = _emotion_styled__WEBPACK_IMPORTED_MODULE_0___default.a.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  position: absolute;
+  top: 0px;
+  width: 100vw;
+  padding-left: 200px;
+  padding-right: 200px;
+
+  @media (max-width: 900px) {
+    grid-template-columns: repeat(1, 1fr);
+    padding-left: 0;
+    padding-right: 0;
+
+    &.welcome-text {
+      text-align: center;
+    }
+  }
+
+  span {
+    font-size: 12px;
+  }
+
+  .about-json {
+    .json-pretty {
+      padding-top: 2em;
+    }
+    .json-selected {
+      background-color: rgba(139, 191, 228, 0.19999999999999996);
+    }
+
+    .json-string {
+      font-weight: 500;
+      color: ${props => props.theme.secondary};
+    }
+
+    .json-key {
+      font-weight: 800;
+      color: ${props => props.theme.light};
+    }
+
+    .json-boolean {
+      font-weight: 500;
+      color: ${props => props.theme.secondary};
+    }
+
+    .json-number {
+      font-weight: 500;
+      color: ${props => props.theme.secondary};
+    }
+  }
+
+  &.welcome-text {
+    grid-column: 1;
+  }
+
+  &.about-json {
+    grid-column: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+`;
+
+/***/ }),
+
 /***/ "./src/client/global/styles/styled_components/LoadingErrorBG.tsx":
 /*!***********************************************************************!*\
   !*** ./src/client/global/styles/styled_components/LoadingErrorBG.tsx ***!
@@ -1019,6 +1188,110 @@ const THEME_QUERY = apollo_boost__WEBPACK_IMPORTED_MODULE_0__["gql"]`
 
 /***/ }),
 
+/***/ "./src/client/services/home_page_services/home.default.service.ts":
+/*!************************************************************************!*\
+  !*** ./src/client/services/home_page_services/home.default.service.ts ***!
+  \************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+class HomeDefaultService {
+  static getAboutJson(birthday) {
+    return {
+      author: "Eric Zorn",
+      username: "@zornwebdev",
+      description: "Full-Stack Software Engineer",
+      homepage: "zornwebdev.com",
+      birthday,
+      repository: {
+        type: "Open-source",
+        url: "github.com/ericzorn93"
+      },
+      engines: ["js", "ts", "html", "css", "nodejs", "python", "ruby", "php"],
+      dependencies: {
+        "@emotion/styled": "^10.0.14",
+        graphql: "^14.4.2",
+        "json-pretty-html": "^1.1.6",
+        react: "^16.8.6",
+        "react-redux": "^7.1.0",
+        redux: "^4.0.1",
+        "redux-thunk": "^2.3.0",
+        typescript: "3.5.2"
+      },
+      devDependencies: {
+        music: "Blink-182",
+        internet: "100mbps",
+        editor: ["VSCode", "WebStorm", "PyCharm", "GemMine", "Atom", "PHPStorm"]
+      }
+    };
+  }
+
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (HomeDefaultService);
+
+/***/ }),
+
+/***/ "./src/client/services/home_page_services/home.particle.service.ts":
+/*!*************************************************************************!*\
+  !*** ./src/client/services/home_page_services/home.particle.service.ts ***!
+  \*************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+class HomeParticleService {
+  /**
+   * @param activeTheme {ITheme} used to access properties on theme from the redux store
+   * @returns object for react-particles-js
+   */
+  static updateParticles(activeTheme) {
+    return {
+      particles: {
+        number: {
+          value: 100
+        },
+        shape: {
+          type: "star"
+        },
+        line_linked: {
+          shadow: {
+            enable: false,
+            color: activeTheme.secondary,
+            blur: 4
+          }
+        },
+        move: {
+          speed: 7
+        }
+      },
+      interactivity: {
+        detect_on: "canvas",
+        events: {
+          onhover: {
+            enable: true,
+            mode: "repulse"
+          },
+          onclick: {
+            enable: true,
+            mode: "push"
+          },
+          resize: true
+        }
+      },
+      retina_detect: true
+    };
+  }
+
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (HomeParticleService);
+
+/***/ }),
+
 /***/ "./src/client/store/actions/theme.actions.ts":
 /*!***************************************************!*\
   !*** ./src/client/store/actions/theme.actions.ts ***!
@@ -1064,14 +1337,14 @@ const UPDATE_SELECTED_THEME = "UPDATE_SELECTED_THEME";
 
 /***/ }),
 
-/***/ 5:
+/***/ 3:
 /*!*******************************!*\
-  !*** multi ./pages/about.tsx ***!
+  !*** multi ./pages/index.tsx ***!
   \*******************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/ericzorn/Dropbox/Projects/UPDATED_PORTFOLIO/frontend/pages/about.tsx */"./pages/about.tsx");
+module.exports = __webpack_require__(/*! /Users/ericzorn/Dropbox/Projects/UPDATED_PORTFOLIO/frontend/pages/index.tsx */"./pages/index.tsx");
 
 
 /***/ }),
@@ -1150,6 +1423,28 @@ module.exports = require("core-js/library/fn/object/get-own-property-descriptor"
 /***/ (function(module, exports) {
 
 module.exports = require("core-js/library/fn/object/values");
+
+/***/ }),
+
+/***/ "json-pretty-html":
+/*!***********************************!*\
+  !*** external "json-pretty-html" ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("json-pretty-html");
+
+/***/ }),
+
+/***/ "moment":
+/*!*************************!*\
+  !*** external "moment" ***!
+  \*************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("moment");
 
 /***/ }),
 
@@ -1252,6 +1547,17 @@ module.exports = require("react-apollo-hooks");
 
 /***/ }),
 
+/***/ "react-particles-js":
+/*!*************************************!*\
+  !*** external "react-particles-js" ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("react-particles-js");
+
+/***/ }),
+
 /***/ "react-redux":
 /*!******************************!*\
   !*** external "react-redux" ***!
@@ -1275,4 +1581,4 @@ module.exports = require("url");
 /***/ })
 
 /******/ });
-//# sourceMappingURL=about.js.map
+//# sourceMappingURL=index.js.map

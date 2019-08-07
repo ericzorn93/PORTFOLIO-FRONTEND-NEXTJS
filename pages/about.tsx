@@ -1,13 +1,13 @@
 import Layout from "../src/client/components/Layout";
 
-interface IAboutPageProps {
-  todos: any[];
-}
+// interface IAboutPageProps {
+//   todos: any[];
+// }
 
-const AboutPage = (props: IAboutPageProps) => (
+const AboutPage = (props: any) => (
   <Layout>
     <h1>About</h1>
-    {props.todos[0].title}
+    <p>{props.todos[0].title}</p>
   </Layout>
 );
 
