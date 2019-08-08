@@ -1,0 +1,1 @@
+{"ast":null,"code":"import { combineReducers } from \"redux\";\nimport themeReducer from \"./theme.reducer\";\nvar rootReducer = combineReducers({\n  themes: themeReducer\n});\nexport default rootReducer;","map":null,"metadata":{},"sourceType":"module"}
