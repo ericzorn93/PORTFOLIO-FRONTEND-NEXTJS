@@ -27334,26 +27334,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _src_client_components_Layout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../src/client/components/Layout */ "./src/client/components/Layout/index.tsx");
-var _jsxFileName = "/Users/ericzorn/Dropbox/Projects/UPDATED_PORTFOLIO/frontend/pages/about.tsx";
 
  // interface IAboutPageProps {
 //   todos: any[];
 // }
 
 var AboutPage = function AboutPage(props) {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_src_client_components_Layout__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 8
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 9
-    },
-    __self: this
-  }, "About"));
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_src_client_components_Layout__WEBPACK_IMPORTED_MODULE_1__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "About"));
 };
 
 AboutPage.getInitialProps = function (props) {
@@ -27378,18 +27365,11 @@ AboutPage.getInitialProps = function (props) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-var _jsxFileName = "/Users/ericzorn/Dropbox/Projects/UPDATED_PORTFOLIO/frontend/src/client/components/Error/index.tsx";
 
 
 var ErrorMessage = function ErrorMessage(_ref) {
   var message = _ref.message;
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("aside", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 6
-    },
-    __self: this
-  }, message);
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("aside", null, message);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (ErrorMessage);
@@ -27411,45 +27391,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_2__);
-var _jsxFileName = "/Users/ericzorn/Dropbox/Projects/UPDATED_PORTFOLIO/frontend/src/client/components/Header/index.tsx";
 
 
 
 
 var Header = function Header() {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 6
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
-    href: "/",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 7
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 8
-    },
-    __self: this
-  }, "Home")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
-    href: "/about",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 10
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 11
-    },
-    __self: this
-  }, "About")));
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
+    href: "/"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "Home")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
+    href: "/about"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "About")));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(next_router__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(Header));
@@ -27477,7 +27428,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Error__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../Error */ "./src/client/components/Error/index.tsx");
 /* harmony import */ var _store_actions_theme_actions__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../store/actions/theme.actions */ "./src/client/store/actions/theme.actions.ts");
 
-var _jsxFileName = "/Users/ericzorn/Dropbox/Projects/UPDATED_PORTFOLIO/frontend/src/client/components/Layout/index.tsx";
 
 
 
@@ -27512,23 +27462,12 @@ var Layout = function Layout(_ref) {
 
   if (themeError) {
     return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Error__WEBPACK_IMPORTED_MODULE_7__["default"], {
-      message: "Could not upload themes",
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 32
-      },
-      __self: this
+      message: "Could not upload themes"
     });
   }
 
   if (themeLoading) {
-    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Loading__WEBPACK_IMPORTED_MODULE_6__["default"], {
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 36
-      },
-      __self: this
-    });
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Loading__WEBPACK_IMPORTED_MODULE_6__["default"], null);
   }
 
   if (!_babel_runtime_corejs2_core_js_object_values__WEBPACK_IMPORTED_MODULE_0___default()(selectedTheme).length) {
@@ -27536,19 +27475,7 @@ var Layout = function Layout(_ref) {
     dispatch(Object(_store_actions_theme_actions__WEBPACK_IMPORTED_MODULE_8__["loadThemesAction"])(getAllThemes, selectedTheme));
   }
 
-  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("main", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 45
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Header__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 46
-    },
-    __self: this
-  }), children);
+  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("main", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Header__WEBPACK_IMPORTED_MODULE_4__["default"], null), children);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Layout);
@@ -27567,24 +27494,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _global_styles_styled_components_LoadingErrorBG__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../global/styles/styled_components/LoadingErrorBG */ "./src/client/global/styles/styled_components/LoadingErrorBG.tsx");
-var _jsxFileName = "/Users/ericzorn/Dropbox/Projects/UPDATED_PORTFOLIO/frontend/src/client/components/Loading/index.tsx";
 
 
 
 var Loading = function Loading() {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_global_styles_styled_components_LoadingErrorBG__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 7
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 8
-    },
-    __self: this
-  }, "Loading..."));
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_global_styles_styled_components_LoadingErrorBG__WEBPACK_IMPORTED_MODULE_1__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Loading..."));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Loading);
@@ -27725,7 +27639,7 @@ var UPDATE_SELECTED_THEME = "UPDATE_SELECTED_THEME";
 
 /***/ }),
 
-/***/ 1:
+/***/ 2:
 /*!*****************************************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2Fabout&absolutePagePath=%2FUsers%2Fericzorn%2FDropbox%2FProjects%2FUPDATED_PORTFOLIO%2Ffrontend%2Fpages%2Fabout.tsx ***!
   \*****************************************************************************************************************************************************************/
@@ -27748,5 +27662,5 @@ module.exports = dll_67fd39c255e518cbcc2b;
 
 /***/ })
 
-},[[1,"static/runtime/webpack.js"]]]);
+},[[2,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=about.js.map

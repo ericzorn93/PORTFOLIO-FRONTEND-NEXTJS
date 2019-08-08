@@ -3,7 +3,7 @@
   "version": "3.0.0",
   "scripts": {
     "dev": "nodemon src/server/server.ts",
-    "build": "next build && tsc --project tsconfig.server.json",
+    "build": "rm -rf .next/ && next build && tsc --project tsconfig.server.json",
     "postinstall": "npm run build",
     "start": "node .next/production-server/server/server.js",
     "test": "mocha -r ts-node/register",
