@@ -969,17 +969,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _emotion_styled__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_emotion_styled__WEBPACK_IMPORTED_MODULE_0__);
 
 const HeaderWrapper = _emotion_styled__WEBPACK_IMPORTED_MODULE_0___default.a.header`
-  height: 100vh;
-  width: 100px;
   position: fixed;
-  left: 0;
+  left: 0px;
+  height: 100vh;
   display: flex;
   flex-direction: column;
-
-  a {
-    color: white;
-    font-family: sans-serif;
-  }
 `;
 
 /***/ }),

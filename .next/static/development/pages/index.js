@@ -45168,7 +45168,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function _templateObject() {
-  var data = Object(_babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  height: 100vh;\n  width: 100px;\n  position: fixed;\n  left: 0;\n  display: flex;\n  flex-direction: column;\n\n  a {\n    color: white;\n    font-family: sans-serif;\n  }\n"]);
+  var data = Object(_babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  position: fixed;\n  left: 0px;\n  height: 100vh;\n  display: flex;\n  flex-direction: column;\n"]);
 
   _templateObject = function _templateObject() {
     return data;
