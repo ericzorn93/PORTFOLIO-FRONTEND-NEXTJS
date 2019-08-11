@@ -1,3 +1,4 @@
+import React from "react";
 import { useQuery } from "react-apollo-hooks";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -43,8 +44,10 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
   return (
     <main>
-      <Header />
-      {children}
+      <div>
+        <Header />
+      </div>
+      <div>{children}</div>
     </main>
   );
 };
