@@ -1,6 +1,6 @@
 overwrite: true
 schema: "https://ez-portfolio-backend-graphql.herokuapp.com/graphql"
-documents: "graphql/**/*.ts"
+documents: "src/client/graphql/**/*.ts"
 generates:
   generated/apolloComponents.tsx:
     plugins:
