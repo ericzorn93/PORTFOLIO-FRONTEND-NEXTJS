@@ -4,7 +4,6 @@
   "scripts": {
     "dev": "nodemon src/server/server.ts",
     "build": "rm -rf .next/ && next build && tsc --project tsconfig.server.json",
-    "postinstall": "npm run build",
     "start": "node .next/production-server/server/server.js",
     "test": "mocha -r ts-node/register",
     "generate-gql": "graphql-codegen --config codegen.yml"
@@ -38,6 +37,7 @@
     "morgan": "^1.9.1",
     "next": "^9.0.3",
     "next-redux-wrapper": "^3.0.0-alpha.3",
+    "next-server": "^9.0.3",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-apollo": "^2.5.8",
@@ -68,6 +68,7 @@
     "@types/morgan": "^1.7.36",
     "@types/next": "^8.0.6",
     "@types/next-redux-wrapper": "^2.0.2",
+    "@types/next-server": "^8.1.2",
     "@types/react-redux": "^7.1.1",
     "@types/react-router-dom": "^4.3.4",
     "@types/redux": "^3.6.0",

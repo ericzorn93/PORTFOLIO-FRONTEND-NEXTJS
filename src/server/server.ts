@@ -12,6 +12,7 @@ import isDevelopment from "../config/utils/is_development.util";
 
 // Router Imports
 import setupApiRoutes from "./utils/router/router.api.setup";
+import setupViewRouter from "./routes/views/primary.view.routes";
 
 async function main(): Promise<void> {
   // Global variables
@@ -34,16 +35,7 @@ async function main(): Promise<void> {
   /** End API Routes */
 
   /** View Routes */
-  server.get("/", (req: Request, res: Response) => {
-    return nextApp.render(req, res, "/index", {});
-  });
-
-  server.get("/about", async (req: Request, res: Response) => {
-    const response = await fetch("https://jsonplaceholder.typicode.com/todos");
-    const data = await response.json();
-
-    return nextApp.render(req, res, "/about", { todos: data });
-  });
+  setupViewRouter(nextApp);
   /** End View Routes */
 
   // Wildcard route for handling view requests with Next JS
