@@ -21,12 +21,9 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-<<<<<<< HEAD
     "experimentalDecorators": true,
-    "types": ["node", "@emotion/core", "@emotion/styled", "express"]
-=======
+    "types": ["node", "@emotion/core", "@emotion/styled", "express"],
     "noUnusedParameters": false
->>>>>>> 8d48d408936b8c7db1f2440ac2f241665e78c403
   },
   "exclude": ["node_modules"],
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
