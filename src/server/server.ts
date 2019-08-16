@@ -15,7 +15,7 @@ import setupApiRoutes from "./utils/router/router.api.setup";
 import setupViewRouter from "./routes/views/primary.view.routes";
 
 async function main(): Promise<void> {
-  // Global variables
+  // Global variables∏
   (global as any).fetch = fetch;
 
   // Prepare Next Server
