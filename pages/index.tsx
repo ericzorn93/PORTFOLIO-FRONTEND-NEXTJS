@@ -2,11 +2,11 @@ import { Fragment } from "react";
 import { useSelector } from "react-redux";
 import Particles from "react-particles-js";
 
-import HomeText from "../src/client/components/page_components/home_page/HomeText";
-import AboutText from "../src/client/components/page_components/home_page/AboutText";
-import HomeParticleService from "../src/client/services/home_page_services/home.particle.service";
-import { WelcomeTextWrapper } from "../src/client/components/page_components/home_page/styles/styled_components/WelcomeText";
-import Layout from "../src/client/components/Layout/";
+import HomeText from "../src/components/page_components/home_page/HomeText";
+import AboutText from "../src/components/page_components/home_page/AboutText";
+import HomeParticleService from "../src/services/home_page_services/home.particle.service";
+import { WelcomeTextWrapper } from "../src/components/page_components/home_page/styles/styled_components/WelcomeText";
+import Layout from "../src/components/Layout/";
 import * as React from "react";
 
 const HomePage: React.FC = () => {
