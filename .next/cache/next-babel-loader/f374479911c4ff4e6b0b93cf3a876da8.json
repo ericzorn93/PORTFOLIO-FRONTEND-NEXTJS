@@ -1,1 +1,0 @@
-{"ast":null,"code":"import styled from \"@emotion/styled\";\nexport const HeaderWrapper = styled.header`\n  position: fixed;\n  left: 0px;\n  height: 100vh;\n  display: flex;\n  flex-direction: column;\n`;","map":null,"metadata":{},"sourceType":"module"}
