@@ -2,9 +2,9 @@
   "name": "with-apollo",
   "version": "3.0.0",
   "scripts": {
-    "dev": "nodemon src/server/server.ts",
-    "build": "rm -rf .next/ && next build && tsc --project tsconfig.server.json",
-    "start": "node .next/production-server/server/server.js",
+    "start": "next start",
+    "dev": "next",
+    "build": "rm -rf .next/ && next build",
     "test": "mocha -r ts-node/register",
     "generate-gql": "graphql-codegen --config codegen.yml"
   },

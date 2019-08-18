@@ -1,4 +1,4 @@
-import Layout from "../src/client/components/Layout";
+import Layout from "../src/components/Layout";
 
 // interface IAboutPageProps {
 //   todos: any[];
