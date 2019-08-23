@@ -5,7 +5,7 @@ import LoadingErrorBG from "../../global/styles/styled_components/LoadingErrorBG
 const Loading: React.FC = () => {
   return (
     <LoadingErrorBG>
-      <h1>Loading...</h1>
+      <h1 style={{ fontFamily: "sans-serif" }}>Loading...</h1>
     </LoadingErrorBG>
   );
 };
