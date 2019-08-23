@@ -5,6 +5,7 @@
 /tmp
 /out-tsc
 /src/.next
+.next
 
 # Only exists if Bazel was run
 /bazel-out
