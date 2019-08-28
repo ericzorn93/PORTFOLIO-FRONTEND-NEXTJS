@@ -55,17 +55,20 @@ const Layout: React.FC<LayoutProps> = ({ children, title }) => {
             * {
               box-sizing: border-box;
               margin: 0;
-              padding: 0
+              padding: 0;
+              font-family: sans-serif;
             }
             html {
               box-sizing: border-box;
               margin: 0;
-              padding: 0
+              padding: 0;
+              font-family: sans-serif;
             }
             body {
               box-sizing: border-box;
               margin: 0;
-              padding: 0
+              padding: 0;
+              font-family: sans-serif;
             }
           `}
         </style>
