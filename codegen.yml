@@ -1,9 +1,0 @@
-overwrite: true
-schema: "https://ez-portfolio-backend-graphql.herokuapp.com/graphql"
-documents: "src/client/graphql/**/*.ts"
-generates:
-  generated/apolloComponents.tsx:
-    plugins:
-      - "typescript"
-      - "typescript-operations"
-      - "typescript-react-apollo"
