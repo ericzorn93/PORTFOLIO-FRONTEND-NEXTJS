@@ -1,9 +1,9 @@
-import {IReduxAction} from "../../../../types/redux_types";
+import { IReduxAction } from "../../../../types/redux_types";
 
 interface IThemeState {
-  allThemes: object[],
-  darkMode: object,
-  lightMode: object,
+  allThemes: object[];
+  darkMode: object;
+  lightMode: object;
 }
 
 const initialState = {
@@ -12,7 +12,10 @@ const initialState = {
   lightMode: {}
 };
 
-const themesReducer = (state: IThemeState = initialState,  action: IReduxAction) => {
+const themesReducer = (
+  state: IThemeState = initialState,
+  action: IReduxAction
+) => {
   switch (action.type) {
     default:
       return state;
