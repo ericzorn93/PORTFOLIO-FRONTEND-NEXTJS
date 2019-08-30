@@ -1,5 +1,5 @@
 {
-  "name": "Eric Zorn Portfolio",
+  "name": "ericzornportfolio",
   "private": true,
   "description": "A personal portfolio built in React, Redux, GraphQL, Apollo, and Apollo Server",
   "version": "0.1.0",
