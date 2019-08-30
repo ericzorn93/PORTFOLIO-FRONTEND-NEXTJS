@@ -8,3 +8,5 @@ const apolloClient = new ApolloClient({
   fetch,
   cache: InMemoryCache,
 });
+
+export default apolloClient;
