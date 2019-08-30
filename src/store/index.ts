@@ -3,6 +3,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 
 import rootReducer from "./reducers";
+import PrimaryUtils from "../utils/primary_utils/PrimaryUtils";
 
 /**
  * @description Returns the necessary instance of the redux store
@@ -11,7 +12,7 @@ const assembleStore = () => {
   const reduxMiddleware = [thunk];
 
   let composedTools: any;
-  if (process.env.NODE_ENV === "production") {
+  if (PrimaryUtils.isDevelopment) {
     const composeEnhancers = composeWithDevTools({});
     composedTools = composeEnhancers(applyMiddleware(...reduxMiddleware));
   } else {

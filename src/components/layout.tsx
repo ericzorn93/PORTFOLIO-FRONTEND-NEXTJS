@@ -31,34 +31,34 @@ const Layout = ({ children }: ILayout) => {
     }
   `);
 
-  const themeData = useStaticQuery(graphql`
-    query allThemesQuery {
-      zornwebdev {
-        allThemes {
-          darkMode {
-            primary
-            secondary
-            alternate
-            lightAlternate
-            light
-            black
-            white
-          }
-          lightMode {
-            primary
-            secondary
-            alternate
-            lightAlternate
-            light
-            black
-            white
-          }
-        }
-      }
-    }
-  `);
+  // const themeData = useStaticQuery(graphql`
+  //   query allThemesQuery {
+  //     zornwebdev {
+  //       allThemes {
+  //         darkMode {
+  //           primary
+  //           secondary
+  //           alternate
+  //           lightAlternate
+  //           light
+  //           black
+  //           white
+  //         }
+  //         lightMode {
+  //           primary
+  //           secondary
+  //           alternate
+  //           lightAlternate
+  //           light
+  //           black
+  //           white
+  //         }
+  //       }
+  //     }
+  //   }
+  // `);
 
-  console.log(themeData);
+  // console.log(themeData);
 
   return (
     <>
