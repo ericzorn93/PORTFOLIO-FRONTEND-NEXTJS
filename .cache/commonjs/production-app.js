@@ -109,7 +109,7 @@ window.___webpackCompilationHash = window.webpackCompilationHash;
     });
   }
 
-  loader.loadPage(browserLoc.pathname).then(page => {
+  _loader.publicLoader.loadPage(browserLoc.pathname).then(page => {
     if (!page || page.status === `error`) {
       throw new Error(`page resources for ${browserLoc.pathname} not found. Not rendering React`);
     }
