@@ -1,5 +1,5 @@
 import ApolloClient from "apollo-boost";
-import {InMemoryCache} from "apollo-cache-inmemory";
+import { InMemoryCache } from "apollo-cache-inmemory";
 import fetch from "isomorphic-unfetch";
 
 // @ts-ignore

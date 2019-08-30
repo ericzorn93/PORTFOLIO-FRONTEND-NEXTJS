@@ -5,9 +5,12 @@
   "version": "0.1.0",
   "author": "Eric Zorn <zornwebdev@gmail.com>",
   "dependencies": {
+    "@emotion/core": "^10.0.16",
+    "@emotion/styled": "^10.0.15",
     "apollo-boost": "^0.4.4",
     "apollo-cache-inmemory": "^1.6.3",
     "date-fns": "^2.0.1",
+    "emotion-theming": "^10.0.14",
     "fetch": "^1.1.0",
     "gatsby": "^2.13.73",
     "gatsby-image": "^2.2.10",
