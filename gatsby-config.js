@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `Eric Zorn Portfolio`,
+    description: `Personalized portfolio with backend built in TypeScript and GraphQL.`,
+    author: `@ericzorn93`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -28,8 +28,17 @@ module.exports = {
       },
     },
     "gatsby-plugin-typescript",
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+    `gatsby-plugin-offline`,
+    {
+      resolve: "gatsby-source-graphql",
+      options: {
+        // This type will contain remote schema Query type
+        typeName: "ZORNWEBDEV",
+        // This is the field under which it's accessible
+        fieldName: "zornwebdev",
+        // URL to query from
+        url: "https://ez-portfolio-backend-graphql.herokuapp.com/graphql",
+      },
+    },
   ],
 };
