@@ -1,0 +1,5 @@
+schema: https://ez-portfolio-backend-graphql.herokuapp.com/graphql
+generates:
+  ./src/types.d.ts:
+    plugins:
+      - typescript
