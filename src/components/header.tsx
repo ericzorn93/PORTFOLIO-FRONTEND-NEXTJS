@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Link, useStaticQuery, graphql } from "gatsby";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import { ThemeNamesEnum } from "../utils/primary_enums/theme.enum";
 import { ThemeActions } from "../store/actions/theme_actions";
+import { ITheme } from "../utils/primary_interfaces/theme.interface";
 
 interface IHeaderProps {
   siteTitle: string;
@@ -41,10 +42,15 @@ const Header = (props: IHeaderProps) => {
 
   /** Beginning of Redux */
   const dispatch = useDispatch();
+  const currentTheme: ITheme = useSelector(
+    (state: any) => state.themes.currentTheme
+  );
+  const currentThemeName: ThemeNamesEnum = useSelector(
+    (state: any) => state.themes.currentThemeName
+  );
   /** End of Redux */
 
   /** Beginning of State */
-  const [currentTheme, setCurrentTheme] = useState(ThemeNamesEnum.darkMode);
   /** End of State */
 
   /** Beginning of Side Effects */
@@ -56,15 +62,22 @@ const Header = (props: IHeaderProps) => {
   /** End of Side Effecs */
 
   const handleButtonClick = () => {
-    switch (currentTheme) {
+    console.log(currentThemeName);
+    switch (currentThemeName) {
       case ThemeNamesEnum.darkMode:
-        setCurrentTheme(ThemeNamesEnum.lightMode);
+        dispatch(
+          ThemeActions.updateCurrentThemeAction(ThemeNamesEnum.lightMode)
+        );
         break;
       case ThemeNamesEnum.lightMode:
-        setCurrentTheme(ThemeNamesEnum.darkMode);
+        dispatch(
+          ThemeActions.updateCurrentThemeAction(ThemeNamesEnum.darkMode)
+        );
         break;
       default:
-        setCurrentTheme(ThemeNamesEnum.darkMode);
+        dispatch(
+          ThemeActions.updateCurrentThemeAction(ThemeNamesEnum.darkMode)
+        );
         break;
     }
   };
@@ -72,7 +85,9 @@ const Header = (props: IHeaderProps) => {
   return (
     <header
       style={{
-        background: themeData.zornwebdev.allThemes[currentTheme].primary,
+        background:
+          currentTheme.primary ||
+          themeData.zornwebdev.allThemes.darkMode.primary,
         marginBottom: `1.45rem`
       }}
     >
