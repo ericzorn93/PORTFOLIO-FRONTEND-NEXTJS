@@ -1,19 +1,19 @@
-import { BaseLoader } from "./loader";
-import { cleanPath } from "./find-path";
+import { BaseLoader } from "./loader"
+import { cleanPath } from "./find-path"
 
 class DevLoader extends BaseLoader {
   constructor(syncRequires, matchPaths) {
     const loadComponent = chunkName =>
-      Promise.resolve(syncRequires.components[chunkName]);
-    super(loadComponent, matchPaths);
+      Promise.resolve(syncRequires.components[chunkName])
+    super(loadComponent, matchPaths)
   }
 
   loadPage(pagePath) {
-    const realPath = cleanPath(pagePath);
+    const realPath = cleanPath(pagePath)
     return super.loadPage(realPath).then(result => {
-      require(`./socketIo`).getPageData(realPath);
-      return result;
-    });
+      require(`./socketIo`).getPageData(realPath)
+      return result
+    })
   }
 
   loadPageDataJson(rawPath) {
@@ -23,16 +23,16 @@ class DevLoader extends BaseLoader {
       if (data.status === `failure`) {
         return this.loadPageDataJson(`/dev-404-page/`).then(result =>
           Object.assign({}, data, result)
-        );
+        )
       }
 
-      return data;
-    });
+      return data
+    })
   }
 
   doPrefetch(pagePath) {
-    return Promise.resolve(require(`./socketIo`).getPageData(pagePath));
+    return Promise.resolve(require(`./socketIo`).getPageData(pagePath))
   }
 }
 
-export default DevLoader;
+export default DevLoader

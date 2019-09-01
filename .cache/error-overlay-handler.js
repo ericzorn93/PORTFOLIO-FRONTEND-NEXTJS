@@ -1,10 +1,10 @@
-import * as ErrorOverlay from "react-error-overlay";
+import * as ErrorOverlay from "react-error-overlay"
 
 // Report runtime errors
 ErrorOverlay.startReportingRuntimeErrors({
   onError: () => {},
-  filename: `/commons.js`
-});
+  filename: `/commons.js`,
+})
 ErrorOverlay.setEditorHandler(errorLocation =>
   window.fetch(
     `/__open-stack-frame-in-editor?fileName=` +
@@ -12,30 +12,30 @@ ErrorOverlay.setEditorHandler(errorLocation =>
       `&lineNumber=` +
       window.encodeURIComponent(errorLocation.lineNumber || 1)
   )
-);
+)
 
-const errorMap = {};
+const errorMap = {}
 
 const handleErrorOverlay = () => {
-  const errors = Object.values(errorMap);
+  const errors = Object.values(errorMap)
   if (errors.length > 0) {
-    const errorMsg = errors.join(`\n\n`);
-    ErrorOverlay.reportBuildError(errorMsg);
+    const errorMsg = errors.join(`\n\n`)
+    ErrorOverlay.reportBuildError(errorMsg)
   } else {
-    ErrorOverlay.dismissBuildError();
+    ErrorOverlay.dismissBuildError()
   }
-};
+}
 
 export const clearError = errorID => {
-  delete errorMap[errorID];
-  handleErrorOverlay();
-};
+  delete errorMap[errorID]
+  handleErrorOverlay()
+}
 
 export const reportError = (errorID, error) => {
   if (error) {
-    errorMap[errorID] = error;
+    errorMap[errorID] = error
   }
-  handleErrorOverlay();
-};
+  handleErrorOverlay()
+}
 
-export { errorMap };
+export { errorMap }

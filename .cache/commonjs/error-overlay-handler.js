@@ -12,14 +12,7 @@ ErrorOverlay.startReportingRuntimeErrors({
   onError: () => {},
   filename: `/commons.js`
 });
-ErrorOverlay.setEditorHandler(errorLocation =>
-  window.fetch(
-    `/__open-stack-frame-in-editor?fileName=` +
-      window.encodeURIComponent(errorLocation.fileName) +
-      `&lineNumber=` +
-      window.encodeURIComponent(errorLocation.lineNumber || 1)
-  )
-);
+ErrorOverlay.setEditorHandler(errorLocation => window.fetch(`/__open-stack-frame-in-editor?fileName=` + window.encodeURIComponent(errorLocation.fileName) + `&lineNumber=` + window.encodeURIComponent(errorLocation.lineNumber || 1)));
 const errorMap = {};
 exports.errorMap = errorMap;
 

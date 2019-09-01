@@ -4,6 +4,6 @@
  */
 
 export default (str, prefix = ``) => {
-  if (str.substr(0, prefix.length) === prefix) return str.slice(prefix.length);
-  return str;
-};
+  if (str.substr(0, prefix.length) === prefix) return str.slice(prefix.length)
+  return str
+}
