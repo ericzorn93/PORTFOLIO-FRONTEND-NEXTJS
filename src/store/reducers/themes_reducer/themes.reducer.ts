@@ -43,7 +43,7 @@ const themesReducer = (
       return {
         ...state,
         currentTheme: state.allThemes[action.payload],
-        currentThemeName: action.payload.currentThemeName
+        currentThemeName: action.payload
       };
     default:
       return state;

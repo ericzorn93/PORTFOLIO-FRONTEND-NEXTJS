@@ -30,7 +30,9 @@ export class ThemeActions {
   /**
    * @description Updates the current theme in the redux store, based on the the theme selected
    */
-  public static updateCurrentThemeAction(newThemeName: string): Function {
+  public static updateCurrentThemeAction(
+    newThemeName: ThemeNamesEnum
+  ): Function {
     return (dispatch: Function) => {
       if (
         newThemeName !== ThemeNamesEnum.darkMode &&
