@@ -9,9 +9,16 @@ export class ThemeActions {
    */
   public static addAllThemeDataAction(themeData: ICombinedTheme): Function {
     return (dispatch: Function, getState: Function) => {
-      const { allThemes } = getState().themes; // Used to retrieve the the theme data from the redux store
+      const {
+        allThemes: { darkMode, lightMode }
+      } = getState().themes; // Used to retrieve the the theme data from the redux store
 
       if (!themeData) {
+        return;
+      } else if (
+        Object.values(darkMode).length ||
+        Object.values(lightMode).length
+      ) {
         return;
       }
 

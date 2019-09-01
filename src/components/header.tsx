@@ -50,9 +50,6 @@ const Header = (props: IHeaderProps) => {
   );
   /** End of Redux */
 
-  /** Beginning of State */
-  /** End of State */
-
   /** Beginning of Side Effects */
   useEffect(() => {
     dispatch(
@@ -62,7 +59,6 @@ const Header = (props: IHeaderProps) => {
   /** End of Side Effecs */
 
   const handleButtonClick = () => {
-    console.log(currentThemeName);
     switch (currentThemeName) {
       case ThemeNamesEnum.darkMode:
         dispatch(
