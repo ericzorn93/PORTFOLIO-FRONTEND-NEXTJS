@@ -1,0 +1,91 @@
+{
+  "errors": [],
+  "warnings": [],
+  "namedChunkGroups": {
+    "app": {
+      "chunks": [6, 0, 1],
+      "assets": [
+        "webpack-runtime-75448b484270987ce94a.js",
+        "webpack-runtime-75448b484270987ce94a.js.map",
+        "commons.d5ef0abb16ee382cea7f.css",
+        "commons-e8618fbac3839f9d83df.js",
+        "commons-e8618fbac3839f9d83df.js.map",
+        "app-f6e2a43c66c315226a76.js",
+        "app-f6e2a43c66c315226a76.js.map"
+      ],
+      "children": {},
+      "childAssets": {}
+    },
+    "component---node-modules-gatsby-plugin-offline-app-shell-js": {
+      "chunks": [2],
+      "assets": [
+        "component---node-modules-gatsby-plugin-offline-app-shell-js-1e184ea6c7e3dc99bc00.js",
+        "component---node-modules-gatsby-plugin-offline-app-shell-js-1e184ea6c7e3dc99bc00.js.map"
+      ],
+      "children": {},
+      "childAssets": {}
+    },
+    "component---src-pages-404-tsx": {
+      "chunks": [0, 3],
+      "assets": [
+        "commons.d5ef0abb16ee382cea7f.css",
+        "commons-e8618fbac3839f9d83df.js",
+        "commons-e8618fbac3839f9d83df.js.map",
+        "component---src-pages-404-tsx-f9bd2a41b51998059488.js",
+        "component---src-pages-404-tsx-f9bd2a41b51998059488.js.map"
+      ],
+      "children": {},
+      "childAssets": {}
+    },
+    "component---src-pages-index-tsx": {
+      "chunks": [0, 4],
+      "assets": [
+        "commons.d5ef0abb16ee382cea7f.css",
+        "commons-e8618fbac3839f9d83df.js",
+        "commons-e8618fbac3839f9d83df.js.map",
+        "component---src-pages-index-tsx-8ddf215c27d99bdbc5f8.js",
+        "component---src-pages-index-tsx-8ddf215c27d99bdbc5f8.js.map"
+      ],
+      "children": {},
+      "childAssets": {}
+    },
+    "component---src-pages-page-2-tsx": {
+      "chunks": [0, 5],
+      "assets": [
+        "commons.d5ef0abb16ee382cea7f.css",
+        "commons-e8618fbac3839f9d83df.js",
+        "commons-e8618fbac3839f9d83df.js.map",
+        "component---src-pages-page-2-tsx-3208d00c205c62fa59f0.js",
+        "component---src-pages-page-2-tsx-3208d00c205c62fa59f0.js.map"
+      ],
+      "children": {},
+      "childAssets": {}
+    }
+  },
+  "assetsByChunkName": {
+    "app": [
+      "webpack-runtime-75448b484270987ce94a.js",
+      "commons.d5ef0abb16ee382cea7f.css",
+      "commons-e8618fbac3839f9d83df.js",
+      "app-f6e2a43c66c315226a76.js"
+    ],
+    "component---node-modules-gatsby-plugin-offline-app-shell-js": [
+      "component---node-modules-gatsby-plugin-offline-app-shell-js-1e184ea6c7e3dc99bc00.js"
+    ],
+    "component---src-pages-404-tsx": [
+      "commons.d5ef0abb16ee382cea7f.css",
+      "commons-e8618fbac3839f9d83df.js",
+      "component---src-pages-404-tsx-f9bd2a41b51998059488.js"
+    ],
+    "component---src-pages-index-tsx": [
+      "commons.d5ef0abb16ee382cea7f.css",
+      "commons-e8618fbac3839f9d83df.js",
+      "component---src-pages-index-tsx-8ddf215c27d99bdbc5f8.js"
+    ],
+    "component---src-pages-page-2-tsx": [
+      "commons.d5ef0abb16ee382cea7f.css",
+      "commons-e8618fbac3839f9d83df.js",
+      "component---src-pages-page-2-tsx-3208d00c205c62fa59f0.js"
+    ]
+  }
+}

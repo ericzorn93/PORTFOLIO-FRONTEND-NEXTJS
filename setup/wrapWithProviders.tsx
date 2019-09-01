@@ -1,6 +1,6 @@
 import React from "react";
 import { Provider } from "react-redux";
-import { ApolloProvider } from 'react-apollo';
+import { ApolloProvider } from "react-apollo";
 
 import assembleStore from "../src/store";
 import apolloClient from "../src/apollo/apolloClient";
@@ -13,9 +13,7 @@ const wrapWithProviders = ({ element }: { element: any }) => {
   return (
     <>
       <ApolloProvider client={apolloClient}>
-        <Provider store={store}>
-          {element}
-        </Provider>
+        <Provider store={store}>{element}</Provider>
       </ApolloProvider>
     </>
   );

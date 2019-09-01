@@ -1,1 +1,6 @@
-{"componentChunkName":"component---src-pages-page-2-tsx","path":"/page-2/","webpackCompilationHash":"","result":{"pageContext":{"isCreatedByStatefulCreatePages":true}}}
+{
+  "componentChunkName": "component---src-pages-page-2-tsx",
+  "path": "/page-2/",
+  "webpackCompilationHash": "5ac5c143dc9583079331",
+  "result": { "pageContext": { "isCreatedByStatefulCreatePages": true } }
+}

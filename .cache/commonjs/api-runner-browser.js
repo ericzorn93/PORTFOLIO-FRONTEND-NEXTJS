@@ -27,7 +27,6 @@ exports.apiRunner = (api, args = {}, defaultReturn, argTransform) => {
       return undefined;
     } // Deprecated April 2019. Use `loadPageSync` instead
 
-
     args.getResourcesForPathnameSync = getResourcesForPathnameSync; // Deprecated April 2019. Use `loadPage` instead
 
     args.getResourcesForPathname = getResourcesForPathname;
@@ -58,4 +57,11 @@ exports.apiRunner = (api, args = {}, defaultReturn, argTransform) => {
   }
 };
 
-exports.apiRunnerAsync = (api, args, defaultReturn) => plugins.reduce((previous, next) => next.plugin[api] ? previous.then(() => next.plugin[api](args, next.options)) : previous, Promise.resolve());
+exports.apiRunnerAsync = (api, args, defaultReturn) =>
+  plugins.reduce(
+    (previous, next) =>
+      next.plugin[api]
+        ? previous.then(() => next.plugin[api](args, next.options))
+        : previous,
+    Promise.resolve()
+  );
