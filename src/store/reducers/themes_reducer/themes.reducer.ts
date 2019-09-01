@@ -1,3 +1,4 @@
+import { ThemeTypes } from "./../../types/theme_types/index";
 import { IReduxAction } from "../../../../types/redux_types";
 
 interface IThemeState {
@@ -17,6 +18,13 @@ const themesReducer = (
   action: IReduxAction
 ) => {
   switch (action.type) {
+    case ThemeTypes.ADD_ALL_THEME_DATA:
+      return {
+        ...state,
+        allThemes: action.payload.allThemes,
+        lightMode: action.payload.lightMode,
+        darkMode: action.payload.darkMode
+      };
     default:
       return state;
   }
