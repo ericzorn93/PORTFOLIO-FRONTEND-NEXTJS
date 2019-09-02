@@ -1,22 +1,23 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useEffect } from "react"; // @ts-ignore
+import React, { useEffect } from 'react'; // @ts-ignore
 /** @jsx jsx */
-import { jsx } from "@emotion/core";
-import { Link, useStaticQuery, graphql } from "gatsby";
-import { useSelector, useDispatch } from "react-redux";
+import { jsx } from '@emotion/core';
+// eslint-disable-next-line no-unused-vars
+import { Link, useStaticQuery, graphql } from 'gatsby';
+import { useSelector, useDispatch } from 'react-redux';
 
-import { ThemeNamesEnum } from "../../utils/primary_enums/theme.enum";
-import { ThemeActions } from "../../store/actions/theme_actions";
-import { ITheme } from "../../utils/primary_interfaces/theme.interface";
-import { HeaderTitle, HeaderWrapper } from "./styles/header.styles";
-import SEO from "../SEO/seo";
+import { ThemeNamesEnum } from '../../utils/primary_enums/theme.enum';
+import { ThemeActions } from '../../store/actions/theme_actions';
+import { ITheme } from '../../utils/primary_interfaces/theme.interface';
+import { HeaderTitle, HeaderWrapper } from './styles/header.styles';
+import SEO from '../SEO/seo';
 
 interface IHeaderProps {
   siteTitle: string;
 }
 
 const Header = (props: IHeaderProps) => {
-  const { siteTitle = "" } = props;
+  const { siteTitle = '' } = props;
 
   const themeData = useStaticQuery(graphql`
     query allThemesQuery {
@@ -84,15 +85,11 @@ const Header = (props: IHeaderProps) => {
   };
 
   return (
-    <HeaderWrapper
-      css={{
-        background:
-          currentTheme.primary ||
-          themeData.zornwebdev.allThemes.darkMode.primary
-      }}
-    >
-      <SEO title={"Eric Zorn Portfolio" || siteTitle} />
+    // eslint-disable-next-line react/jsx-filename-extension
+    <HeaderWrapper css={{ background: currentTheme.primary }}>
+      <SEO title={siteTitle} />
       <HeaderTitle theme={currentTheme}>Eric Zorn Portfolio</HeaderTitle>
+      <button onClick={handleButtonClick}>Toggle Theme</button>
     </HeaderWrapper>
   );
 };
