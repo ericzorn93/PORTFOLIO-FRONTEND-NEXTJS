@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import React, { useEffect } from "react"; // @ts-ignore
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
@@ -7,7 +8,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { ThemeNamesEnum } from "../../utils/primary_enums/theme.enum";
 import { ThemeActions } from "../../store/actions/theme_actions";
 import { ITheme } from "../../utils/primary_interfaces/theme.interface";
-import { HeaderWrapper } from "./styles/header.styles";
+import { HeaderTitle, HeaderWrapper } from "./styles/header.styles";
+import SEO from "../SEO/seo";
 
 interface IHeaderProps {
   siteTitle: string;
@@ -59,7 +61,7 @@ const Header = (props: IHeaderProps) => {
       ThemeActions.addAllThemeDataAction(themeData.zornwebdev.allThemes)
     );
   }, []);
-  /** End of Side Effecs */
+  /** End of Side Effects */
 
   const handleButtonClick = () => {
     switch (currentThemeName) {
@@ -82,27 +84,15 @@ const Header = (props: IHeaderProps) => {
   };
 
   return (
-    <HeaderWrapper css={{background: currentTheme.primary || themeData.zornwebdev.allThemes.darkMode.primary}}>
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `1.45rem 1.0875rem`
-        }}
-      >
-        <h1 style={{ margin: 0 }}>
-          <Link
-            to="/"
-            style={{
-              color: `white`,
-              textDecoration: `none`
-            }}
-          >
-            {siteTitle}
-          </Link>
-        </h1>
-        <button onClick={handleButtonClick}>Toggle Theme</button>
-      </div>
+    <HeaderWrapper
+      css={{
+        background:
+          currentTheme.primary ||
+          themeData.zornwebdev.allThemes.darkMode.primary
+      }}
+    >
+      <SEO title={"Eric Zorn Portfolio" || siteTitle} />
+      <HeaderTitle theme={currentTheme}>Eric Zorn Portfolio</HeaderTitle>
     </HeaderWrapper>
   );
 };

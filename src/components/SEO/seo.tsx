@@ -12,9 +12,9 @@ import { useStaticQuery, graphql } from "gatsby";
 
 interface ISEOProps {
   description?: string;
-  lang: string;
-  meta: any[];
-  title: string;
+  lang?: string;
+  meta?: any[];
+  title?: string;
 }
 
 const SEO = (props: ISEOProps) => {

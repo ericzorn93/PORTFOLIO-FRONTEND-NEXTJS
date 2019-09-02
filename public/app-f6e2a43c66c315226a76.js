@@ -11206,14 +11206,12 @@
                         ((t = Object(S.a)({}, t, { variables: f })),
                         (d = h = "network-only" === u || "no-cache" === u),
                         h ||
-                          ((v = this.dataStore
-                            .getCache()
-                            .diff({
-                              query: l,
-                              variables: f,
-                              returnPartialData: !0,
-                              optimistic: !1
-                            })),
+                          ((v = this.dataStore.getCache().diff({
+                            query: l,
+                            variables: f,
+                            returnPartialData: !0,
+                            optimistic: !1
+                          })),
                           (y = v.complete),
                           (m = v.result),
                           (d = !y || "cache-and-network" === u),
@@ -11370,14 +11368,12 @@
                               (b && b.graphQLErrors) !== n.graphQLErrors;
                           if (f && f.data && !g) (y = f.data), (m = !1);
                           else {
-                            var w = r.dataStore
-                              .getCache()
-                              .diff({
-                                query: s,
-                                variables: n.previousVariables || n.variables,
-                                returnPartialData: !0,
-                                optimistic: !0
-                              });
+                            var w = r.dataStore.getCache().diff({
+                              query: s,
+                              variables: n.previousVariables || n.variables,
+                              returnPartialData: !0,
+                              optimistic: !0
+                            });
                             (y = w.result), (m = !w.complete);
                           }
                         }
@@ -11630,15 +11626,13 @@
               if (s && s.complete) return { data: s.result, partial: !1 };
               if ("no-cache" === i || "network-only" === i)
                 return { data: void 0, partial: !1 };
-              var c = this.dataStore
-                  .getCache()
-                  .diff({
-                    query: o,
-                    variables: r,
-                    previousResult: u ? u.data : void 0,
-                    returnPartialData: !0,
-                    optimistic: t
-                  }),
+              var c = this.dataStore.getCache().diff({
+                  query: o,
+                  variables: r,
+                  previousResult: u ? u.data : void 0,
+                  returnPartialData: !0,
+                  optimistic: t
+                }),
                 l = c.result,
                 f = c.complete;
               return { data: f || a ? l : void 0, partial: !f };
@@ -11787,14 +11781,12 @@
                       )
                         t = e.data;
                       else {
-                        var h = r.dataStore
-                            .getCache()
-                            .diff({
-                              variables: c,
-                              query: a,
-                              optimistic: !1,
-                              returnPartialData: !0
-                            }),
+                        var h = r.dataStore.getCache().diff({
+                            variables: c,
+                            query: a,
+                            optimistic: !1,
+                            returnPartialData: !0
+                          }),
                           d = h.result;
                         (h.complete || u.returnPartialData) && (t = d);
                       }
