@@ -1,11 +1,11 @@
 (this.workbox = this.workbox || {}),
   (this.workbox.routing = (function(t, e) {
-    "use strict";
+    'use strict';
     try {
-      self.workbox.v["workbox:routing:3.6.3"] = 1;
+      self.workbox.v['workbox:routing:3.6.3'] = 1;
     } catch (t) {}
-    const r = "GET";
-    var s = t => (t && "object" == typeof t ? t : { handle: t });
+    const r = 'GET';
+    var s = t => (t && 'object' == typeof t ? t : { handle: t });
     class n {
       constructor(t, e, n) {
         (this.handler = s(e)), (this.match = t), (this.method = n || r);
@@ -33,7 +33,7 @@
       }
       handleRequest(t) {
         const e = new URL(t.request.url);
-        if (!e.protocol.startsWith("http")) return;
+        if (!e.protocol.startsWith('http')) return;
         let r = null,
           s = null,
           n = null;
@@ -88,12 +88,12 @@
       unregisterRoute(e) {
         if (!this.t.has(e.method))
           throw new t.WorkboxError(
-            "unregister-route-but-not-found-with-method",
+            'unregister-route-but-not-found-with-method',
             { method: e.method }
           );
         const r = this.t.get(e.method).indexOf(e);
         if (!(r > -1))
-          throw new t.WorkboxError("unregister-route-route-not-registered");
+          throw new t.WorkboxError('unregister-route-route-not-registered');
         this.t.get(e.method).splice(r, 1);
       }
     }
@@ -102,7 +102,7 @@
         super((...t) => this.n(...t), t), (this.o = e), (this.i = r);
       }
       n({ event: t, url: e }) {
-        if ("navigate" !== t.request.mode) return !1;
+        if ('navigate' !== t.request.mode) return !1;
         const r = e.pathname + e.search;
         return !this.i.some(t => t.test(r)) && !!this.o.some(t => t.test(r));
       }
@@ -111,23 +111,23 @@
       RegExpRoute: o,
       Route: n,
       Router: i,
-      NavigationRoute: u
+      NavigationRoute: u,
     });
     const c = new (class extends i {
-      registerRoute(e, r, s = "GET") {
+      registerRoute(e, r, s = 'GET') {
         let i;
-        if ("string" == typeof e) {
+        if ('string' == typeof e) {
           const t = new URL(e, location);
           i = new n(({ url: e }) => e.href === t.href, r, s);
         } else if (e instanceof RegExp) i = new o(e, r, s);
-        else if ("function" == typeof e) i = new n(e, r, s);
+        else if ('function' == typeof e) i = new n(e, r, s);
         else {
           if (!(e instanceof n))
-            throw new t.WorkboxError("unsupported-route-type", {
-              moduleName: "workbox-routing",
-              className: "DefaultRouter",
-              funcName: "registerRoute",
-              paramName: "capture"
+            throw new t.WorkboxError('unsupported-route-type', {
+              moduleName: 'workbox-routing',
+              className: 'DefaultRouter',
+              funcName: 'registerRoute',
+              paramName: 'capture',
             });
           i = e;
         }
@@ -152,7 +152,7 @@
       }
     })();
     return (
-      self.addEventListener("fetch", t => {
+      self.addEventListener('fetch', t => {
         const e = c.handleRequest(t);
         e && t.respondWith(e);
       }),

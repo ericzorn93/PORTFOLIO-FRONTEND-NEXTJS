@@ -13,23 +13,23 @@
           if (!c.done)
             return Promise.resolve(l).then(
               function(e) {
-                n("next", e);
+                n('next', e);
               },
               function(e) {
-                n("throw", e);
+                n('throw', e);
               }
             );
           e(l);
-        })("next");
+        })('next');
       });
     };
-  }
+  },
 }),
   (this.workbox = this.workbox || {}),
   (this.workbox.core = (function() {
-    "use strict";
+    'use strict';
     try {
-      self.workbox.v["workbox:core:3.6.3"] = 1;
+      self.workbox.v['workbox:core:3.6.3'] = 1;
     } catch (e) {}
     var e = { debug: 0, log: 1, warn: 2, error: 3, silent: 4 };
     const t = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
@@ -39,13 +39,13 @@
       i = () => r,
       c = e.error,
       l = function(r, o, i) {
-        const l = 0 === r.indexOf("group") ? c : e[r];
+        const l = 0 === r.indexOf('group') ? c : e[r];
         if (!n(l)) return;
-        if (!i || ("groupCollapsed" === r && t)) return void console[r](...o);
+        if (!i || ('groupCollapsed' === r && t)) return void console[r](...o);
         const s = [
-          "%cworkbox",
+          '%cworkbox',
           `background: ${i}; color: white; padding: 2px 0.5em; ` +
-            "border-radius: 0.5em;"
+            'border-radius: 0.5em;',
         ];
         console[r](...s, ...o);
       },
@@ -54,11 +54,11 @@
       },
       u = { groupEnd: s, unprefixed: { groupEnd: s } },
       a = {
-        debug: "#7f8c8d",
-        log: "#2ecc71",
-        warn: "#f39c12",
-        error: "#c0392b",
-        groupCollapsed: "#3498db"
+        debug: '#7f8c8d',
+        log: '#2ecc71',
+        warn: '#f39c12',
+        error: '#c0392b',
+        groupCollapsed: '#3498db',
       };
     var f, d;
     Object.keys(a).forEach(
@@ -104,7 +104,7 @@
                 let n = !1;
                 setTimeout(function() {
                   (n = !0),
-                    r(new Error("The open request was blocked and timed out"));
+                    r(new Error('The open request was blocked and timed out'));
                 }, e.OPEN_TIMEOUT);
                 const o = indexedDB.open(e.t, e.r);
                 (o.onerror = function(e) {
@@ -127,25 +127,25 @@
       get(e, ...t) {
         var r = this;
         return babelHelpers.asyncToGenerator(function*() {
-          return yield r.i("get", e, "readonly", ...t);
+          return yield r.i('get', e, 'readonly', ...t);
         })();
       }
       add(e, ...t) {
         var r = this;
         return babelHelpers.asyncToGenerator(function*() {
-          return yield r.i("add", e, "readwrite", ...t);
+          return yield r.i('add', e, 'readwrite', ...t);
         })();
       }
       put(e, ...t) {
         var r = this;
         return babelHelpers.asyncToGenerator(function*() {
-          return yield r.i("put", e, "readwrite", ...t);
+          return yield r.i('put', e, 'readwrite', ...t);
         })();
       }
       delete(e, ...t) {
         var r = this;
         return babelHelpers.asyncToGenerator(function*() {
-          yield r.i("delete", e, "readwrite", ...t);
+          yield r.i('delete', e, 'readwrite', ...t);
         })();
       }
       deleteDatabase() {
@@ -159,7 +159,7 @@
                 return r(e.target.error);
               }),
                 (n.onblocked = function() {
-                  return r(new Error("Deletion was blocked."));
+                  return r(new Error('Deletion was blocked.'));
                 }),
                 (n.onsuccess = function() {
                   return t();
@@ -170,20 +170,20 @@
       getAll(e, t, r) {
         var n = this;
         return babelHelpers.asyncToGenerator(function*() {
-          return "getAll" in IDBObjectStore.prototype
-            ? yield n.i("getAll", e, "readonly", t, r)
+          return 'getAll' in IDBObjectStore.prototype
+            ? yield n.i('getAll', e, 'readonly', t, r)
             : yield n.getAllMatching(e, { query: t, count: r });
         })();
       }
       getAllMatching(e, t = {}) {
         var r = this;
         return babelHelpers.asyncToGenerator(function*() {
-          return yield r.transaction([e], "readonly", function(r, n) {
+          return yield r.transaction([e], 'readonly', function(r, n) {
             const o = r[e],
               i = t.index ? o.index(t.index) : o,
               c = [],
               l = t.query || null,
-              s = t.direction || "next";
+              s = t.direction || 'next';
             i.openCursor(l, s).onsuccess = function(e) {
               const r = e.target.result;
               if (r) {
@@ -219,7 +219,7 @@
                   return o(e);
                 },
                 function() {
-                  i(new Error("The transaction was manually aborted")),
+                  i(new Error('The transaction was manually aborted')),
                     c.abort();
                 }
               );
@@ -247,13 +247,13 @@
     }
     v.prototype.OPEN_TIMEOUT = 2e3;
     const w = {
-        prefix: "workbox",
+        prefix: 'workbox',
         suffix: self.registration.scope,
-        googleAnalytics: "googleAnalytics",
-        precache: "precache",
-        runtime: "runtime"
+        googleAnalytics: 'googleAnalytics',
+        precache: 'precache',
+        runtime: 'runtime',
       },
-      m = e => [w.prefix, e, w.suffix].filter(e => e.length > 0).join("-"),
+      m = e => [w.prefix, e, w.suffix].filter(e => e.length > 0).join('-'),
       q = {
         updateDetails: e => {
           Object.keys(w).forEach(t => {
@@ -262,13 +262,13 @@
         },
         getGoogleAnalyticsName: e => e || m(w.googleAnalytics),
         getPrecacheName: e => e || m(w.precache),
-        getRuntimeName: e => e || m(w.runtime)
+        getRuntimeName: e => e || m(w.runtime),
       };
-    var E = "cacheDidUpdate",
-      L = "cacheWillUpdate",
-      x = "cachedResponseWillBeUsed",
-      H = "fetchDidFail",
-      N = "requestWillFetch",
+    var E = 'cacheDidUpdate',
+      L = 'cacheWillUpdate',
+      x = 'cachedResponseWillBeUsed',
+      H = 'fetchDidFail',
+      N = 'requestWillFetch',
       O = (e, t) => e.filter(e => t in e);
     const k = e => {
         const t = new URL(e, location);
@@ -280,9 +280,9 @@
           request: t,
           response: r,
           event: n,
-          plugins: o = []
+          plugins: o = [],
         } = {}) {
-          if (!r) throw new p("cache-put-with-no-response", { url: k(t.url) });
+          if (!r) throw new p('cache-put-with-no-response', { url: k(t.url) });
           let i = yield P({ request: t, response: r, event: n, plugins: o });
           if (!i) return;
           const c = yield caches.open(e),
@@ -291,7 +291,7 @@
           try {
             yield c.put(t, i);
           } catch (e) {
-            throw ("QuotaExceededError" === e.name && (yield b()), e);
+            throw ('QuotaExceededError' === e.name && (yield b()), e);
           }
           for (let r of l)
             yield r[E].call(r, {
@@ -299,7 +299,7 @@
               request: t,
               event: n,
               oldResponse: s,
-              newResponse: i
+              newResponse: i,
             });
         });
         return function() {
@@ -312,7 +312,7 @@
           request: t,
           event: r,
           matchOptions: n,
-          plugins: o = []
+          plugins: o = [],
         }) {
           let i = yield (yield caches.open(e)).match(t, n);
           for (let c of o)
@@ -322,7 +322,7 @@
                 request: t,
                 event: r,
                 matchOptions: n,
-                cachedResponse: i
+                cachedResponse: i,
               }));
           return i;
         })),
@@ -335,7 +335,7 @@
         request: e,
         response: t,
         event: r,
-        plugins: n
+        plugins: n,
       }) {
         let o = t,
           i = !1;
@@ -359,13 +359,13 @@
             request: e,
             fetchOptions: t,
             event: r,
-            plugins: n = []
+            plugins: n = [],
           }) {
             if (r && r.preloadResponse) {
               const e = yield r.preloadResponse;
               if (e) return e;
             }
-            "string" == typeof e && (e = new Request(e));
+            'string' == typeof e && (e = new Request(e));
             const o = O(n, H),
               i = o.length > 0 ? e.clone() : null;
             try {
@@ -373,8 +373,8 @@
                 N in t &&
                   (e = yield t[N].call(t, { request: e.clone(), event: r }));
             } catch (e) {
-              throw new p("plugin-error-request-will-fetch", {
-                thrownError: e
+              throw new p('plugin-error-request-will-fetch', {
+                thrownError: e,
               });
             }
             const c = e.clone();
@@ -386,7 +386,7 @@
                   error: e,
                   event: r,
                   originalRequest: i.clone(),
-                  request: c.clone()
+                  request: c.clone(),
                 });
               throw e;
             }
@@ -394,7 +394,7 @@
           return function(t) {
             return e.apply(this, arguments);
           };
-        })()
+        })(),
       };
     var j = Object.freeze({
       DBWrapper: v,
@@ -404,7 +404,7 @@
       cacheWrapper: S,
       fetchWrapper: _,
       getFriendlyURL: k,
-      logger: u
+      logger: u,
     });
     var B = new (class {
       constructor() {
@@ -416,7 +416,7 @@
         return {
           googleAnalytics: q.getGoogleAnalyticsName(),
           precache: q.getPrecacheName(),
-          runtime: q.getRuntimeName()
+          runtime: q.getRuntimeName(),
         };
       }
       setCacheNameDetails(e) {
@@ -427,11 +427,11 @@
       }
       setLogLevel(t) {
         if (t > e.silent || t < e.debug)
-          throw new p("invalid-value", {
-            paramName: "logLevel",
+          throw new p('invalid-value', {
+            paramName: 'logLevel',
             validValueDescription:
               "Please use a value from LOG_LEVELS, i.e 'logLevel = workbox.core.LOG_LEVELS.debug'.",
-            value: t
+            value: t,
           });
         o(t);
       }
@@ -441,7 +441,7 @@
       LOG_LEVELS: e,
       registerQuotaErrorCallback: function(e) {
         g.add(e);
-      }
+      },
     });
   })());
 

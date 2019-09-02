@@ -1,6 +1,6 @@
-import { ThemeNamesEnum } from "./../../../utils/primary_enums/theme.enum";
-import { ThemeTypes } from "./../../types/theme_types/index";
-import { ICombinedTheme } from "../../../utils/primary_interfaces/theme.interface";
+import { ThemeNamesEnum } from './../../../utils/primary_enums/theme.enum';
+import { ThemeTypes } from './../../types/theme_types/index';
+import { ICombinedTheme } from '../../../utils/primary_interfaces/theme.interface';
 
 export class ThemeActions {
   /**
@@ -10,7 +10,7 @@ export class ThemeActions {
   public static addAllThemeDataAction(themeData: ICombinedTheme): Function {
     return (dispatch: Function, getState: Function) => {
       const {
-        allThemes: { darkMode, lightMode }
+        allThemes: { darkMode, lightMode },
       } = getState().themes; // Used to retrieve the the theme data from the redux store
 
       if (!themeData) {
@@ -28,8 +28,8 @@ export class ThemeActions {
           allThemes: themeData,
           lightMode: themeData.lightMode,
           darkMode: themeData.darkMode,
-          currentThemeName: ThemeNamesEnum.darkMode
-        }
+          currentThemeName: ThemeNamesEnum.darkMode,
+        },
       });
     };
   }
@@ -50,7 +50,7 @@ export class ThemeActions {
 
       dispatch({
         type: ThemeTypes.UPDATE_CURRENT_THEME,
-        payload: newThemeName
+        payload: newThemeName,
       });
     };
   }

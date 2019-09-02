@@ -11,10 +11,10 @@
  * See https://goo.gl/2aRDsh
  */
 
-importScripts("workbox-v3.6.3/workbox-sw.js");
-workbox.setConfig({ modulePathPrefix: "workbox-v3.6.3" });
+importScripts('workbox-v3.6.3/workbox-sw.js');
+workbox.setConfig({ modulePathPrefix: 'workbox-v3.6.3' });
 
-workbox.core.setCacheNameDetails({ prefix: "gatsby-plugin-offline" });
+workbox.core.setCacheNameDetails({ prefix: 'gatsby-plugin-offline' });
 
 workbox.skipWaiting();
 workbox.clientsClaim();
@@ -26,29 +26,29 @@ workbox.clientsClaim();
  */
 self.__precacheManifest = [
   {
-    url: "webpack-runtime-75448b484270987ce94a.js"
+    url: 'webpack-runtime-75448b484270987ce94a.js',
   },
   {
-    url: "commons.d5ef0abb16ee382cea7f.css"
+    url: 'commons.d5ef0abb16ee382cea7f.css',
   },
   {
-    url: "commons-e8618fbac3839f9d83df.js"
+    url: 'commons-e8618fbac3839f9d83df.js',
   },
   {
-    url: "app-f6e2a43c66c315226a76.js"
+    url: 'app-f6e2a43c66c315226a76.js',
   },
   {
     url:
-      "component---node-modules-gatsby-plugin-offline-app-shell-js-1e184ea6c7e3dc99bc00.js"
+      'component---node-modules-gatsby-plugin-offline-app-shell-js-1e184ea6c7e3dc99bc00.js',
   },
   {
-    url: "offline-plugin-app-shell-fallback/index.html",
-    revision: "c9dd48d816ba552ba2779a6703cfcc07"
+    url: 'offline-plugin-app-shell-fallback/index.html',
+    revision: 'c9dd48d816ba552ba2779a6703cfcc07',
   },
   {
-    url: "manifest.webmanifest",
-    revision: "26fddabe57933113828feddab9e4cd99"
-  }
+    url: 'manifest.webmanifest',
+    revision: '26fddabe57933113828feddab9e4cd99',
+  },
 ].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
@@ -56,22 +56,22 @@ workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 workbox.routing.registerRoute(
   /(\.js$|\.css$|static\/)/,
   workbox.strategies.cacheFirst(),
-  "GET"
+  'GET'
 );
 workbox.routing.registerRoute(
   /^https?:.*\page-data\/.*\/page-data\.json/,
   workbox.strategies.networkFirst(),
-  "GET"
+  'GET'
 );
 workbox.routing.registerRoute(
   /^https?:.*\.(png|jpg|jpeg|webp|svg|gif|tiff|js|woff|woff2|json|css)$/,
   workbox.strategies.staleWhileRevalidate(),
-  "GET"
+  'GET'
 );
 workbox.routing.registerRoute(
   /^https?:\/\/fonts\.googleapis\.com\/css/,
   workbox.strategies.staleWhileRevalidate(),
-  "GET"
+  'GET'
 );
 
 /* global importScripts, workbox, idbKeyval */
@@ -113,7 +113,7 @@ const messageApi = {
 
   clearPathResources(event) {
     event.waitUntil(idbKeyval.clear());
-  }
+  },
 };
 
 self.addEventListener(`message`, event => {

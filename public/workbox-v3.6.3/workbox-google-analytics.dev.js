@@ -8,10 +8,10 @@ this.workbox.googleAnalytics = (function(
   NetworkFirst_mjs,
   NetworkOnly_mjs
 ) {
-  "use strict";
+  'use strict';
 
   try {
-    self.workbox.v["workbox:google-analytics:3.6.3"] = 1;
+    self.workbox.v['workbox:google-analytics:3.6.3'] = 1;
   } catch (e) {} // eslint-disable-line
 
   /*
@@ -29,12 +29,12 @@ this.workbox.googleAnalytics = (function(
       limitations under the License.
      */
 
-  const QUEUE_NAME = "workbox-google-analytics";
+  const QUEUE_NAME = 'workbox-google-analytics';
   const MAX_RETENTION_TIME = 60 * 48; // Two days in minutes
-  const GOOGLE_ANALYTICS_HOST = "www.google-analytics.com";
-  const GTM_HOST = "www.googletagmanager.com";
-  const ANALYTICS_JS_PATH = "/analytics.js";
-  const GTAG_JS_PATH = "/gtag/js";
+  const GOOGLE_ANALYTICS_HOST = 'www.google-analytics.com';
+  const GTM_HOST = 'www.googletagmanager.com';
+  const ANALYTICS_JS_PATH = '/analytics.js';
+  const GTAG_JS_PATH = '/gtag/js';
 
   // This RegExp matches all known Measurement Protocol single-hit collect
   // endpoints. Most of the time the default path (/collect) is used, but
@@ -120,11 +120,11 @@ this.workbox.googleAnalytics = (function(
 
         // Calculate the qt param, accounting for the fact that an existing
         // qt param may be present and should be updated rather than replaced.
-        const originalHitTime = timestamp - (Number(params.get("qt")) || 0);
+        const originalHitTime = timestamp - (Number(params.get('qt')) || 0);
         const queueTime = Date.now() - originalHitTime;
 
         // Set the qt param prior to applying the hitFilter or parameterOverrides.
-        params.set("qt", queueTime);
+        params.set('qt', queueTime);
 
         if (config.parameterOverrides) {
           for (const param of Object.keys(config.parameterOverrides)) {
@@ -133,15 +133,15 @@ this.workbox.googleAnalytics = (function(
           }
         }
 
-        if (typeof config.hitFilter === "function") {
+        if (typeof config.hitFilter === 'function') {
           config.hitFilter.call(null, params);
         }
 
         requestInit.body = params.toString();
-        requestInit.method = "POST";
-        requestInit.mode = "cors";
-        requestInit.credentials = "omit";
-        requestInit.headers = { "Content-Type": "text/plain" };
+        requestInit.method = 'POST';
+        requestInit.mode = 'cors';
+        requestInit.credentials = 'omit';
+        requestInit.headers = { 'Content-Type': 'text/plain' };
 
         // Ignore URL search params as they're now in the post body.
         storableRequest.url = `${url.origin}${url.pathname}`;
@@ -167,12 +167,12 @@ this.workbox.googleAnalytics = (function(
       COLLECT_PATHS_REGEX.test(url.pathname);
 
     const handler = new NetworkOnly_mjs.NetworkOnly({
-      plugins: [queuePlugin]
+      plugins: [queuePlugin],
     });
 
     return [
-      new Route_mjs.Route(match, handler, "GET"),
-      new Route_mjs.Route(match, handler, "POST")
+      new Route_mjs.Route(match, handler, 'GET'),
+      new Route_mjs.Route(match, handler, 'POST'),
     ];
   };
 
@@ -190,7 +190,7 @@ this.workbox.googleAnalytics = (function(
       url.pathname === ANALYTICS_JS_PATH;
     const handler = new NetworkFirst_mjs.NetworkFirst({ cacheName });
 
-    return new Route_mjs.Route(match, handler, "GET");
+    return new Route_mjs.Route(match, handler, 'GET');
   };
 
   /**
@@ -206,7 +206,7 @@ this.workbox.googleAnalytics = (function(
       url.hostname === GTM_HOST && url.pathname === GTAG_JS_PATH;
     const handler = new NetworkFirst_mjs.NetworkFirst({ cacheName });
 
-    return new Route_mjs.Route(match, handler, "GET");
+    return new Route_mjs.Route(match, handler, 'GET');
   };
 
   /**
@@ -233,14 +233,14 @@ this.workbox.googleAnalytics = (function(
     const queuePlugin = new Plugin_mjs.Plugin(QUEUE_NAME, {
       maxRetentionTime: MAX_RETENTION_TIME,
       callbacks: {
-        requestWillReplay: createRequestWillReplayCallback(options)
-      }
+        requestWillReplay: createRequestWillReplayCallback(options),
+      },
     });
 
     const routes = [
       createAnalyticsJsRoute(cacheName),
       createGtagJsRoute(cacheName),
-      ...createCollectRoutes(queuePlugin)
+      ...createCollectRoutes(queuePlugin),
     ];
 
     const router = new Router_mjs.Router();
@@ -248,7 +248,7 @@ this.workbox.googleAnalytics = (function(
       router.registerRoute(route);
     }
 
-    self.addEventListener("fetch", evt => {
+    self.addEventListener('fetch', evt => {
       const responsePromise = router.handleRequest(evt);
       if (responsePromise) {
         evt.respondWith(responsePromise);

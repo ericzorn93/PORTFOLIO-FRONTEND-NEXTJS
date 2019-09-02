@@ -1,9 +1,9 @@
-import { createStore, compose, applyMiddleware } from "redux";
-import { composeWithDevTools } from "redux-devtools-extension";
-import thunk from "redux-thunk";
+import { createStore, compose, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import thunk from 'redux-thunk';
 
-import rootReducer from "./reducers";
-import PrimaryUtils from "../utils/primary_utils/PrimaryUtils";
+import rootReducer from './reducers';
+import PrimaryUtils from '../utils/primary_utils/PrimaryUtils';
 
 /**
  * @description Returns the necessary instance of the redux store

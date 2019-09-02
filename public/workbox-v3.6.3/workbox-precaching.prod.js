@@ -1,42 +1,42 @@
 (this.workbox = this.workbox || {}),
   (this.workbox.precaching = (function(e, t, n, r, s) {
-    "use strict";
+    'use strict';
     try {
-      self.workbox.v["workbox:precaching:3.6.3"] = 1;
+      self.workbox.v['workbox:precaching:3.6.3'] = 1;
     } catch (e) {}
     class i {
       constructor(e, t, n, r) {
         (this.e = e), (this.t = t), (this.n = n);
-        const s = new Request(t, { credentials: "same-origin" });
+        const s = new Request(t, { credentials: 'same-origin' });
         (this.r = s), (this.s = r ? this.i(s) : s);
       }
       i(e) {
         let t = e.url;
-        const n = { credentials: "same-origin" };
-        if ("cache" in Request.prototype) n.cache = "reload";
+        const n = { credentials: 'same-origin' };
+        if ('cache' in Request.prototype) n.cache = 'reload';
         else {
           const e = new URL(t, location),
             n = encodeURIComponent;
           (e.search +=
-            (e.search ? "&" : "") + n("_workbox-cache-bust") + "=" + n(this.n)),
+            (e.search ? '&' : '') + n('_workbox-cache-bust') + '=' + n(this.n)),
             (t = e.toString());
         }
         return new Request(t, n);
       }
     }
-    const c = "revision",
-      o = "url",
-      l = "precached-details-models";
+    const c = 'revision',
+      o = 'url',
+      l = 'precached-details-models';
     class a {
       constructor(t) {
-        const n = t.replace(/[^\w-]/g, "_");
+        const n = t.replace(/[^\w-]/g, '_');
         this.c = new e.DBWrapper(n, 2, { onupgradeneeded: this.o });
       }
       o(e) {
         const t = e.target.result;
         e.oldVersion < 2 &&
-          (t.objectStoreNames.contains("workbox-precaching") &&
-            t.deleteObjectStore("workbox-precaching"),
+          (t.objectStoreNames.contains('workbox-precaching') &&
+            t.deleteObjectStore('workbox-precaching'),
           t.objectStoreNames.contains(l) && t.deleteObjectStore(l)),
           t.createObjectStore(l);
       }
@@ -78,11 +78,11 @@
     const u =
       ((d = babelHelpers.asyncToGenerator(function*(e) {
         const t = e.clone(),
-          n = yield "body" in t ? Promise.resolve(t.body) : t.blob();
+          n = yield 'body' in t ? Promise.resolve(t.body) : t.blob();
         return new Response(n, {
           headers: t.headers,
           status: t.status,
-          statusText: t.statusText
+          statusText: t.statusText,
         });
       })),
       function(e) {
@@ -102,13 +102,13 @@
       }
       w(e) {
         switch (typeof e) {
-          case "string":
+          case 'string':
             return new i(e, e, e);
-          case "object":
+          case 'object':
             return new i(e, e.url, e.revision || e.url, !!e.revision);
           default:
-            throw new n.WorkboxError("add-to-cache-list-unexpected-type", {
-              entry: e
+            throw new n.WorkboxError('add-to-cache-list-unexpected-type', {
+              entry: e,
             });
         }
       }
@@ -116,9 +116,9 @@
         const t = this.f.get(e.t);
         if (t) {
           if (t.n !== e.n)
-            throw new n.WorkboxError("add-to-cache-list-conflicting-entries", {
+            throw new n.WorkboxError('add-to-cache-list-conflicting-entries', {
               firstEntry: t.e,
-              secondEntry: e.e
+              secondEntry: e.e,
             });
         } else this.f.set(e.t, e);
       }
@@ -157,7 +157,7 @@
               cacheName: t.p,
               request: i,
               response: r,
-              plugins: e.plugins
+              plugins: e.plugins,
             }),
               yield n.delete(i);
           }
@@ -174,7 +174,7 @@
             request: e.s,
             event: t,
             fetchOptions: null,
-            plugins: n
+            plugins: n,
           });
           return (
             c.redirected && (c = yield u(c)),
@@ -183,7 +183,7 @@
               request: e.r,
               response: c,
               event: t,
-              plugins: n
+              plugins: n,
             }),
             yield i.y.d(e),
             !0
@@ -256,31 +256,31 @@
         e,
         {
           ignoreUrlParametersMatching: t = [/^utm_/],
-          directoryIndex: n = "index.html",
+          directoryIndex: n = 'index.html',
           cleanUrls: r = !0,
-          urlManipulation: s = null
+          urlManipulation: s = null,
         } = {}
       ) => {
         const i = new URL(e, location);
-        i.hash = "";
+        i.hash = '';
         const c = ((e, t) => {
           const n = e.search
               .slice(1)
-              .split("&")
-              .map(e => e.split("="))
+              .split('&')
+              .map(e => e.split('='))
               .filter(e => t.every(t => !t.test(e[0])))
-              .map(e => e.join("=")),
+              .map(e => e.join('=')),
             r = new URL(e);
-          return (r.search = n.join("&")), r;
+          return (r.search = n.join('&')), r;
         })(i, t);
         let o = [i, c];
-        if (n && c.pathname.endsWith("/")) {
+        if (n && c.pathname.endsWith('/')) {
           const e = new URL(c);
           (e.pathname += n), o.push(e);
         }
         if (r) {
           const e = new URL(c);
-          (e.pathname += ".html"), o.push(e);
+          (e.pathname += '.html'), o.push(e);
         }
         if (s) {
           const e = s({ url: i });
@@ -296,19 +296,19 @@
             f ||
               e.length <= 0 ||
               ((f = !0),
-              self.addEventListener("install", e => {
+              self.addEventListener('install', e => {
                 e.waitUntil(
                   v.install({ event: e, plugins: w, suppressWarnings: b })
                 );
               }),
-              self.addEventListener("activate", e => {
+              self.addEventListener('activate', e => {
                 e.waitUntil(v.activate({ event: e, plugins: w }));
               }));
         },
         addRoute: e => {
           y ||
             ((y = !0),
-            self.addEventListener("fetch", t => {
+            self.addEventListener('fetch', t => {
               const n = m(t.request.url, e);
               if (!n) return;
               let r = caches
@@ -326,7 +326,7 @@
         },
         addPlugins: e => {
           w = w.concat(e);
-        }
+        },
       };
     return Object.assign(R, p);
   })(

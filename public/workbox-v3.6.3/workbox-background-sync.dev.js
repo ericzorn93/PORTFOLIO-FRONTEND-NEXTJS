@@ -6,10 +6,10 @@ this.workbox.backgroundSync = (function(
   assert_mjs,
   getFriendlyURL_mjs
 ) {
-  "use strict";
+  'use strict';
 
   try {
-    self.workbox.v["workbox:background-sync:3.6.3"] = 1;
+    self.workbox.v['workbox:background-sync:3.6.3'] = 1;
   } catch (e) {} // eslint-disable-line
 
   /*
@@ -28,15 +28,15 @@ this.workbox.backgroundSync = (function(
   */
 
   const serializableProperties = [
-    "method",
-    "referrer",
-    "referrerPolicy",
-    "mode",
-    "credentials",
-    "cache",
-    "redirect",
-    "integrity",
-    "keepalive"
+    'method',
+    'referrer',
+    'referrerPolicy',
+    'mode',
+    'credentials',
+    'cache',
+    'redirect',
+    'integrity',
+    'keepalive',
   ];
 
   /**
@@ -60,7 +60,7 @@ this.workbox.backgroundSync = (function(
         const requestInit = { headers: {} };
 
         // Set the body if present.
-        if (request.method !== "GET") {
+        if (request.method !== 'GET') {
           // Use blob to support non-text request bodies,
           // and clone first in case the caller still needs the request.
           requestInit.body = yield request.clone().blob();
@@ -126,7 +126,7 @@ this.workbox.backgroundSync = (function(
       return {
         url: this.url,
         timestamp: this.timestamp,
-        requestInit: this.requestInit
+        requestInit: this.requestInit,
       };
     }
 
@@ -158,7 +158,7 @@ this.workbox.backgroundSync = (function(
       return new StorableRequest({
         url: this.url,
         timestamp: this.timestamp,
-        requestInit
+        requestInit,
       });
     }
   }
@@ -178,10 +178,10 @@ this.workbox.backgroundSync = (function(
    limitations under the License.
   */
 
-  const DB_NAME = "workbox-background-sync";
-  const OBJECT_STORE_NAME = "requests";
-  const INDEXED_PROP = "queueName";
-  const TAG_PREFIX = "workbox-background-sync";
+  const DB_NAME = 'workbox-background-sync';
+  const OBJECT_STORE_NAME = 'requests';
+  const INDEXED_PROP = 'queueName';
+  const TAG_PREFIX = 'workbox-background-sync';
   const MAX_RETENTION_TIME = 60 * 24 * 7; // 7 days in minutes
 
   /*
@@ -220,7 +220,7 @@ this.workbox.backgroundSync = (function(
         onupgradeneeded: evt =>
           evt.target.result
             .createObjectStore(OBJECT_STORE_NAME, { autoIncrement: true })
-            .createIndex(INDEXED_PROP, INDEXED_PROP, { unique: false })
+            .createIndex(INDEXED_PROP, INDEXED_PROP, { unique: false }),
       });
     }
 
@@ -238,7 +238,7 @@ this.workbox.backgroundSync = (function(
       return babelHelpers.asyncToGenerator(function*() {
         yield _this._db.add(OBJECT_STORE_NAME, {
           queueName: _this._queue.name,
-          storableRequest: storableRequest.toObject()
+          storableRequest: storableRequest.toObject(),
         });
       })();
     }
@@ -260,7 +260,7 @@ this.workbox.backgroundSync = (function(
           index: INDEXED_PROP,
           query: IDBKeyRange.only(_this2._queue.name),
           count: 1,
-          includeKeys: true
+          includeKeys: true,
         });
 
         if (entry) {
@@ -328,8 +328,8 @@ this.workbox.backgroundSync = (function(
     ) {
       // Ensure the store name is not already being used
       if (queueNames.has(name)) {
-        throw new WorkboxError_mjs.WorkboxError("duplicate-queue-name", {
-          name
+        throw new WorkboxError_mjs.WorkboxError('duplicate-queue-name', {
+          name,
         });
       } else {
         queueNames.add(name);
@@ -363,17 +363,17 @@ this.workbox.backgroundSync = (function(
       return babelHelpers.asyncToGenerator(function*() {
         {
           assert_mjs.assert.isInstance(request, Request, {
-            moduleName: "workbox-background-sync",
-            className: "Queue",
-            funcName: "addRequest",
-            paramName: "request"
+            moduleName: 'workbox-background-sync',
+            className: 'Queue',
+            funcName: 'addRequest',
+            paramName: 'request',
           });
         }
 
         const storableRequest = yield StorableRequest.fromRequest(
           request.clone()
         );
-        yield _this._runCallback("requestWillEnqueue", storableRequest);
+        yield _this._runCallback('requestWillEnqueue', storableRequest);
         yield _this._queueStore.addEntry(storableRequest);
         yield _this._registerSync();
         {
@@ -413,7 +413,7 @@ this.workbox.backgroundSync = (function(
             continue;
           }
 
-          yield _this2._runCallback("requestWillReplay", storableRequest);
+          yield _this2._runCallback('requestWillReplay', storableRequest);
 
           const replay = { request: storableRequest.toRequest() };
 
@@ -442,7 +442,7 @@ this.workbox.backgroundSync = (function(
           replayedRequests.push(replay);
         }
 
-        yield _this2._runCallback("queueDidReplay", replayedRequests);
+        yield _this2._runCallback('queueDidReplay', replayedRequests);
 
         // If any requests failed, put the failed requests back in the queue
         // and rethrow the failed requests count.
@@ -453,9 +453,9 @@ this.workbox.backgroundSync = (function(
             })
           );
 
-          throw new WorkboxError_mjs.WorkboxError("queue-replay-failed", {
+          throw new WorkboxError_mjs.WorkboxError('queue-replay-failed', {
             name: _this2._name,
-            count: failedRequests.length
+            count: failedRequests.length,
           });
         }
       })();
@@ -472,7 +472,7 @@ this.workbox.backgroundSync = (function(
       var _this3 = this;
 
       return babelHelpers.asyncToGenerator(function*() {
-        if (typeof _this3._callbacks[name] === "function") {
+        if (typeof _this3._callbacks[name] === 'function') {
           yield _this3._callbacks[name].apply(null, args);
         }
       })();
@@ -486,8 +486,8 @@ this.workbox.backgroundSync = (function(
      * @private
      */
     _addSyncListener() {
-      if ("sync" in registration) {
-        self.addEventListener("sync", event => {
+      if ('sync' in registration) {
+        self.addEventListener('sync', event => {
           if (event.tag === `${TAG_PREFIX}:${this._name}`) {
             {
               logger_mjs.logger.log(`Background sync for tag '${event.tag}'
@@ -517,7 +517,7 @@ this.workbox.backgroundSync = (function(
       var _this4 = this;
 
       return babelHelpers.asyncToGenerator(function*() {
-        if ("sync" in registration) {
+        if ('sync' in registration) {
           try {
             yield registration.sync.register(`${TAG_PREFIX}:${_this4._name}`);
           } catch (err) {
@@ -610,7 +610,7 @@ this.workbox.backgroundSync = (function(
 
   var publicAPI = /*#__PURE__*/ Object.freeze({
     Queue: Queue,
-    Plugin: Plugin
+    Plugin: Plugin,
   });
 
   /*

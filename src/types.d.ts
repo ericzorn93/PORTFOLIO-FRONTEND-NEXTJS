@@ -9,25 +9,25 @@ export type Scalars = {
 };
 
 export type CombinedTheme = {
-  __typename?: "CombinedTheme";
+  __typename?: 'CombinedTheme';
   darkMode: Theme;
   lightMode: Theme;
 };
 
 export type CreateProjectInput = {
-  name: Scalars["String"];
-  description: Scalars["String"];
-  userId: Scalars["String"];
-  tagIds?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  name: Scalars['String'];
+  description: Scalars['String'];
+  userId: Scalars['String'];
+  tagIds?: Maybe<Array<Maybe<Scalars['String']>>>;
 };
 
 export type FindUserInput = {
-  id?: Maybe<Scalars["String"]>;
-  emailAddress?: Maybe<Scalars["String"]>;
+  id?: Maybe<Scalars['String']>;
+  emailAddress?: Maybe<Scalars['String']>;
 };
 
 export type Mutation = {
-  __typename?: "Mutation";
+  __typename?: 'Mutation';
   registerUser: User;
   deleteUser: User;
   updateUserRole: User;
@@ -43,7 +43,7 @@ export type MutationRegisterUserArgs = {
 };
 
 export type MutationDeleteUserArgs = {
-  emailAddress: Scalars["String"];
+  emailAddress: Scalars['String'];
 };
 
 export type MutationUpdateUserRoleArgs = {
@@ -55,7 +55,7 @@ export type MutationCreateProjectArgs = {
 };
 
 export type MutationDeleteProjectArgs = {
-  projectId: Scalars["String"];
+  projectId: Scalars['String'];
 };
 
 export type MutationCreateTagArgs = {
@@ -67,22 +67,22 @@ export type MutationUpdateTagWithProjectsArgs = {
 };
 
 export type MutationDeleteTagArgs = {
-  tagId: Scalars["String"];
+  tagId: Scalars['String'];
 };
 
 export type Project = {
-  __typename?: "Project";
-  id: Scalars["ID"];
-  name: Scalars["String"];
-  description: Scalars["String"];
+  __typename?: 'Project';
+  id: Scalars['ID'];
+  name: Scalars['String'];
+  description: Scalars['String'];
   user?: Maybe<User>;
   tags?: Maybe<Array<Tag>>;
-  createdAt: Scalars["String"];
-  updatedAt: Scalars["String"];
+  createdAt: Scalars['String'];
+  updatedAt: Scalars['String'];
 };
 
 export type Query = {
-  __typename?: "Query";
+  __typename?: 'Query';
   allUsers: Array<User>;
   findUser: User;
   allProjects: Array<Project>;
@@ -95,57 +95,57 @@ export type QueryFindUserArgs = {
 };
 
 export type RegisterUserInput = {
-  firstName: Scalars["String"];
-  lastName: Scalars["String"];
-  emailAddress: Scalars["String"];
-  phoneNumber: Scalars["String"];
-  role?: Maybe<Scalars["String"]>;
+  firstName: Scalars['String'];
+  lastName: Scalars['String'];
+  emailAddress: Scalars['String'];
+  phoneNumber: Scalars['String'];
+  role?: Maybe<Scalars['String']>;
 };
 
 export type Tag = {
-  __typename?: "Tag";
-  id: Scalars["ID"];
-  name: Scalars["String"];
+  __typename?: 'Tag';
+  id: Scalars['ID'];
+  name: Scalars['String'];
   projects?: Maybe<Array<Project>>;
-  createdAt: Scalars["String"];
-  updatedAt: Scalars["String"];
+  createdAt: Scalars['String'];
+  updatedAt: Scalars['String'];
 };
 
 export type TagInput = {
-  name: Scalars["String"];
-  projectIds: Array<Scalars["String"]>;
+  name: Scalars['String'];
+  projectIds: Array<Scalars['String']>;
 };
 
 export type Theme = {
-  __typename?: "Theme";
-  primary: Scalars["String"];
-  secondary: Scalars["String"];
-  alternate: Scalars["String"];
-  lightAlternate: Scalars["String"];
-  light: Scalars["String"];
-  black: Scalars["String"];
-  white: Scalars["String"];
+  __typename?: 'Theme';
+  primary: Scalars['String'];
+  secondary: Scalars['String'];
+  alternate: Scalars['String'];
+  lightAlternate: Scalars['String'];
+  light: Scalars['String'];
+  black: Scalars['String'];
+  white: Scalars['String'];
 };
 
 export type UpdateTagProjectsInput = {
-  tagId: Scalars["String"];
-  projectIds: Array<Scalars["String"]>;
+  tagId: Scalars['String'];
+  projectIds: Array<Scalars['String']>;
 };
 
 export type UpdateUserRoleInput = {
-  emailAddress: Scalars["String"];
-  role: Scalars["String"];
+  emailAddress: Scalars['String'];
+  role: Scalars['String'];
 };
 
 export type User = {
-  __typename?: "User";
-  id: Scalars["ID"];
-  firstName: Scalars["String"];
-  lastName: Scalars["String"];
-  emailAddress: Scalars["String"];
-  phoneNumber: Scalars["String"];
-  role: Scalars["String"];
+  __typename?: 'User';
+  id: Scalars['ID'];
+  firstName: Scalars['String'];
+  lastName: Scalars['String'];
+  emailAddress: Scalars['String'];
+  phoneNumber: Scalars['String'];
+  role: Scalars['String'];
   projects: Array<Project>;
-  createdAt: Scalars["String"];
-  updatedAt: Scalars["String"];
+  createdAt: Scalars['String'];
+  updatedAt: Scalars['String'];
 };

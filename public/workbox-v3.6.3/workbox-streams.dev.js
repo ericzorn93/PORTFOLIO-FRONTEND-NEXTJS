@@ -1,9 +1,9 @@
 this.workbox = this.workbox || {};
 this.workbox.streams = (function(exports, logger_mjs, assert_mjs) {
-  "use strict";
+  'use strict';
 
   try {
-    self.workbox.v["workbox:streams:3.6.3"] = 1;
+    self.workbox.v['workbox:streams:3.6.3'] = 1;
   } catch (e) {} // eslint-disable-line
 
   /*
@@ -61,9 +61,9 @@ this.workbox.streams = (function(exports, logger_mjs, assert_mjs) {
   function concatenate(sourcePromises) {
     {
       assert_mjs.assert.isArray(sourcePromises, {
-        moduleName: "workbox-streams",
-        funcName: "concatenate",
-        paramName: "sourcePromises"
+        moduleName: 'workbox-streams',
+        funcName: 'concatenate',
+        paramName: 'sourcePromises',
       });
     }
 
@@ -90,8 +90,8 @@ this.workbox.streams = (function(exports, logger_mjs, assert_mjs) {
             if (result.done) {
               {
                 logMessages.push([
-                  "Reached the end of source:",
-                  sourcePromises[i]
+                  'Reached the end of source:',
+                  sourcePromises[i],
                 ]);
               }
 
@@ -109,7 +109,7 @@ this.workbox.streams = (function(exports, logger_mjs, assert_mjs) {
                       logger_mjs.logger.log(message);
                     }
                   }
-                  logger_mjs.logger.log("Finished reading all sources.");
+                  logger_mjs.logger.log('Finished reading all sources.');
                   logger_mjs.logger.groupEnd();
                 }
 
@@ -125,7 +125,7 @@ this.workbox.streams = (function(exports, logger_mjs, assert_mjs) {
           })
           .catch(error => {
             {
-              logger_mjs.logger.error("An error occurred:", error);
+              logger_mjs.logger.error('An error occurred:', error);
             }
             fullyStreamedReject(error);
             throw error;
@@ -134,11 +134,11 @@ this.workbox.streams = (function(exports, logger_mjs, assert_mjs) {
 
       cancel() {
         {
-          logger_mjs.logger.warn("The ReadableStream was cancelled.");
+          logger_mjs.logger.warn('The ReadableStream was cancelled.');
         }
 
         fullyStreamedResolve();
-      }
+      },
     });
 
     return { done, stream };
@@ -175,8 +175,8 @@ this.workbox.streams = (function(exports, logger_mjs, assert_mjs) {
   function createHeaders(headersInit = {}) {
     // See https://github.com/GoogleChrome/workbox/issues/1461
     const headers = new Headers(headersInit);
-    if (!headers.has("content-type")) {
-      headers.set("content-type", "text/html");
+    if (!headers.has('content-type')) {
+      headers.set('content-type', 'text/html');
     }
     return headers;
   }
@@ -301,7 +301,7 @@ this.workbox.streams = (function(exports, logger_mjs, assert_mjs) {
       var _ref = babelHelpers.asyncToGenerator(function*({
         event,
         url,
-        params
+        params,
       }) {
         if (isSupported()) {
           const { done, response } = concatenateToResponse(

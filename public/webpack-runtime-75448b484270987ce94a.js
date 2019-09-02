@@ -41,28 +41,28 @@
         });
         r.push((t[2] = n));
         var a,
-          c = document.createElement("script");
-        (c.charset = "utf-8"),
+          c = document.createElement('script');
+        (c.charset = 'utf-8'),
           (c.timeout = 120),
-          u.nc && c.setAttribute("nonce", u.nc),
+          u.nc && c.setAttribute('nonce', u.nc),
           (c.src = (function(e) {
             return (
               u.p +
-              "" +
+              '' +
               ({
-                2: "component---node-modules-gatsby-plugin-offline-app-shell-js",
-                3: "component---src-pages-404-tsx",
-                4: "component---src-pages-index-tsx",
-                5: "component---src-pages-page-2-tsx"
+                2: 'component---node-modules-gatsby-plugin-offline-app-shell-js',
+                3: 'component---src-pages-404-tsx',
+                4: 'component---src-pages-index-tsx',
+                5: 'component---src-pages-page-2-tsx',
               }[e] || e) +
-              "-" +
+              '-' +
               {
-                2: "1e184ea6c7e3dc99bc00",
-                3: "f9bd2a41b51998059488",
-                4: "8ddf215c27d99bdbc5f8",
-                5: "3208d00c205c62fa59f0"
+                2: '1e184ea6c7e3dc99bc00',
+                3: 'f9bd2a41b51998059488',
+                4: '8ddf215c27d99bdbc5f8',
+                5: '3208d00c205c62fa59f0',
               }[e] +
-              ".js"
+              '.js'
             );
           })(e));
         var i = new Error();
@@ -71,11 +71,11 @@
           var t = o[e];
           if (0 !== t) {
             if (t) {
-              var n = r && ("load" === r.type ? "missing" : r.type),
+              var n = r && ('load' === r.type ? 'missing' : r.type),
                 a = r && r.target && r.target.src;
               (i.message =
-                "Loading chunk " + e + " failed.\n(" + n + ": " + a + ")"),
-                (i.name = "ChunkLoadError"),
+                'Loading chunk ' + e + ' failed.\n(' + n + ': ' + a + ')'),
+                (i.name = 'ChunkLoadError'),
                 (i.type = n),
                 (i.request = a),
                 t[1](i);
@@ -84,7 +84,7 @@
           }
         };
         var l = setTimeout(function() {
-          a({ type: "timeout", target: c });
+          a({ type: 'timeout', target: c });
         }, 12e4);
         (c.onerror = c.onload = a), document.head.appendChild(c);
       }
@@ -96,19 +96,19 @@
       u.o(e, r) || Object.defineProperty(e, r, { enumerable: !0, get: t });
     }),
     (u.r = function(e) {
-      "undefined" != typeof Symbol &&
+      'undefined' != typeof Symbol &&
         Symbol.toStringTag &&
-        Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
-        Object.defineProperty(e, "__esModule", { value: !0 });
+        Object.defineProperty(e, Symbol.toStringTag, { value: 'Module' }),
+        Object.defineProperty(e, '__esModule', { value: !0 });
     }),
     (u.t = function(e, r) {
       if ((1 & r && (e = u(e)), 8 & r)) return e;
-      if (4 & r && "object" == typeof e && e && e.__esModule) return e;
+      if (4 & r && 'object' == typeof e && e && e.__esModule) return e;
       var t = Object.create(null);
       if (
         (u.r(t),
-        Object.defineProperty(t, "default", { enumerable: !0, value: e }),
-        2 & r && "string" != typeof e)
+        Object.defineProperty(t, 'default', { enumerable: !0, value: e }),
+        2 & r && 'string' != typeof e)
       )
         for (var n in e)
           u.d(
@@ -129,12 +129,12 @@
           : function() {
               return e;
             };
-      return u.d(r, "a", r), r;
+      return u.d(r, 'a', r), r;
     }),
     (u.o = function(e, r) {
       return Object.prototype.hasOwnProperty.call(e, r);
     }),
-    (u.p = "/"),
+    (u.p = '/'),
     (u.oe = function(e) {
       throw (console.error(e), e);
     });

@@ -1,8 +1,8 @@
 (this.workbox = this.workbox || {}),
   (this.workbox.googleAnalytics = (function(e, n, t, o, r, c, s) {
-    "use strict";
+    'use strict';
     try {
-      self.workbox.v["workbox:google-analytics:3.6.3"] = 1;
+      self.workbox.v['workbox:google-analytics:3.6.3'] = 1;
     } catch (e) {}
     const l = /^\/(\w+\/)?collect/,
       i =
@@ -30,19 +30,19 @@
           const e = r.body instanceof Blob ? yield i(r.body) : r.body;
           t = new URLSearchParams(e);
         } else t = o.searchParams;
-        const s = c - (Number(t.get("qt")) || 0),
+        const s = c - (Number(t.get('qt')) || 0),
           l = Date.now() - s;
-        if ((t.set("qt", l), e.parameterOverrides))
+        if ((t.set('qt', l), e.parameterOverrides))
           for (const n of Object.keys(e.parameterOverrides)) {
             const o = e.parameterOverrides[n];
             t.set(n, o);
           }
-        "function" == typeof e.hitFilter && e.hitFilter.call(null, t),
+        'function' == typeof e.hitFilter && e.hitFilter.call(null, t),
           (r.body = t.toString()),
-          (r.method = "POST"),
-          (r.mode = "cors"),
-          (r.credentials = "omit"),
-          (r.headers = { "Content-Type": "text/plain" }),
+          (r.method = 'POST'),
+          (r.mode = 'cors'),
+          (r.credentials = 'omit'),
+          (r.headers = { 'Content-Type': 'text/plain' }),
           (n.url = `${o.origin}${o.pathname}`);
       })),
       function(e) {
@@ -53,42 +53,42 @@
     return (
       (e.initialize = (e = {}) => {
         const i = t.cacheNames.getGoogleAnalyticsName(e.cacheName),
-          a = new n.Plugin("workbox-google-analytics", {
+          a = new n.Plugin('workbox-google-analytics', {
             maxRetentionTime: 2880,
-            callbacks: { requestWillReplay: w(e) }
+            callbacks: { requestWillReplay: w(e) },
           }),
           u = [
             (e => {
               const n = new c.NetworkFirst({ cacheName: e });
               return new o.Route(
                 ({ url: e }) =>
-                  "www.google-analytics.com" === e.hostname &&
-                  "/analytics.js" === e.pathname,
+                  'www.google-analytics.com' === e.hostname &&
+                  '/analytics.js' === e.pathname,
                 n,
-                "GET"
+                'GET'
               );
             })(i),
             (e => {
               const n = new c.NetworkFirst({ cacheName: e });
               return new o.Route(
                 ({ url: e }) =>
-                  "www.googletagmanager.com" === e.hostname &&
-                  "/gtag/js" === e.pathname,
+                  'www.googletagmanager.com' === e.hostname &&
+                  '/gtag/js' === e.pathname,
                 n,
-                "GET"
+                'GET'
               );
             })(i),
             ...(e => {
               const n = ({ url: e }) =>
-                  "www.google-analytics.com" === e.hostname &&
+                  'www.google-analytics.com' === e.hostname &&
                   l.test(e.pathname),
                 t = new s.NetworkOnly({ plugins: [e] });
-              return [new o.Route(n, t, "GET"), new o.Route(n, t, "POST")];
-            })(a)
+              return [new o.Route(n, t, 'GET'), new o.Route(n, t, 'POST')];
+            })(a),
           ],
           f = new r.Router();
         for (const e of u) f.registerRoute(e);
-        self.addEventListener("fetch", e => {
+        self.addEventListener('fetch', e => {
           const n = f.handleRequest(e);
           n && e.respondWith(n);
         });

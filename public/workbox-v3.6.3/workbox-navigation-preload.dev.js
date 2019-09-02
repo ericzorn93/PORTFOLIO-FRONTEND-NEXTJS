@@ -1,9 +1,9 @@
 this.workbox = this.workbox || {};
 this.workbox.navigationPreload = (function(exports, logger_mjs) {
-  "use strict";
+  'use strict';
 
   try {
-    self.workbox.v["workbox:navigation-preload:3.6.3"] = 1;
+    self.workbox.v['workbox:navigation-preload:3.6.3'] = 1;
   } catch (e) {} // eslint-disable-line
 
   /*
@@ -55,7 +55,7 @@ this.workbox.navigationPreload = (function(exports, logger_mjs) {
    */
   function disable() {
     if (isSupported()) {
-      self.addEventListener("activate", event => {
+      self.addEventListener('activate', event => {
         event.waitUntil(
           self.registration.navigationPreload.disable().then(() => {
             {
@@ -101,7 +101,7 @@ this.workbox.navigationPreload = (function(exports, logger_mjs) {
    */
   function enable(headerValue) {
     if (isSupported()) {
-      self.addEventListener("activate", event => {
+      self.addEventListener('activate', event => {
         event.waitUntil(
           self.registration.navigationPreload.enable().then(() => {
             // Defaults to Service-Worker-Navigation-Preload: true if not set.

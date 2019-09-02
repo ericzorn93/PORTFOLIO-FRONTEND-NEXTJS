@@ -1,8 +1,8 @@
 (this.workbox = this.workbox || {}),
   (this.workbox.streams = (function(e) {
-    "use strict";
+    'use strict';
     try {
-      self.workbox.v["workbox:streams:3.6.3"] = 1;
+      self.workbox.v['workbox:streams:3.6.3'] = 1;
     } catch (e) {}
     function n(e) {
       const n = e.map(e =>
@@ -36,13 +36,13 @@
           },
           cancel() {
             r();
-          }
-        })
+          },
+        }),
       };
     }
     function t(e = {}) {
       const n = new Headers(e);
-      return n.has("content-type") || n.set("content-type", "text/html"), n;
+      return n.has('content-type') || n.set('content-type', 'text/html'), n;
     }
     function r(e, r) {
       const { done: s, stream: o } = n(e),
@@ -68,7 +68,7 @@
           (s = babelHelpers.asyncToGenerator(function*({
             event: s,
             url: u,
-            params: i
+            params: i,
           }) {
             if (o()) {
               const { done: t, response: o } = r(

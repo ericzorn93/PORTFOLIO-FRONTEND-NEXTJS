@@ -1,24 +1,24 @@
 (this.workbox = this.workbox || {}),
   (this.workbox.expiration = (function(e, t, r, n, i) {
-    "use strict";
+    'use strict';
     try {
-      self.workbox.v["workbox:cache-expiration:3.6.3"] = 1;
+      self.workbox.v['workbox:cache-expiration:3.6.3'] = 1;
     } catch (e) {}
-    const s = "url",
-      a = "timestamp";
+    const s = 'url',
+      a = 'timestamp';
     class l {
       constructor(e) {
         (this.e = e),
           (this.t = e),
           (this.r = new t.DBWrapper(this.e, 2, {
-            onupgradeneeded: e => this.n(e)
+            onupgradeneeded: e => this.n(e),
           }));
       }
       n(e) {
         const t = e.target.result;
         e.oldVersion < 2 &&
-          t.objectStoreNames.contains("workbox-cache-expiration") &&
-          t.deleteObjectStore("workbox-cache-expiration"),
+          t.objectStoreNames.contains('workbox-cache-expiration') &&
+          t.deleteObjectStore('workbox-cache-expiration'),
           t
             .createObjectStore(this.t, { keyPath: s })
             .createIndex(a, a, { unique: !1 });
@@ -121,20 +121,20 @@
         var t = this;
         return babelHelpers.asyncToGenerator(function*() {
           const r = new URL(e, location);
-          (r.hash = ""), yield t.o.setTimestamp(r.href, Date.now());
+          (r.hash = ''), yield t.o.setTimestamp(r.href, Date.now());
         })();
       }
       isURLExpired(e) {
         var t = this;
         return babelHelpers.asyncToGenerator(function*() {
           if (!t.l)
-            throw new r.WorkboxError("expired-test-without-max-age", {
-              methodName: "isURLExpired",
-              paramName: "maxAgeSeconds"
+            throw new r.WorkboxError('expired-test-without-max-age', {
+              methodName: 'isURLExpired',
+              paramName: 'maxAgeSeconds',
             });
           const n = new URL(e, location);
           return (
-            (n.hash = ""),
+            (n.hash = ''),
             (yield t.o.getTimestamp(n.href)) < Date.now() - 1e3 * t.l
           );
         })();
@@ -158,7 +158,7 @@
         }
         f(e) {
           if (e === n.cacheNames.getRuntimeName())
-            throw new r.WorkboxError("expire-custom-caches-only");
+            throw new r.WorkboxError('expire-custom-caches-only');
           let t = this.b.get(e);
           return t || ((t = new o(e, this.p)), this.b.set(e, t)), t;
         }
@@ -173,8 +173,8 @@
           return null === t || t >= Date.now() - 1e3 * this.l;
         }
         y(e) {
-          if (!e.headers.has("date")) return null;
-          const t = e.headers.get("date"),
+          if (!e.headers.has('date')) return null;
+          const t = e.headers.get('date'),
             r = new Date(t).getTime();
           return isNaN(r) ? null : r;
         }

@@ -5,10 +5,10 @@ this.workbox.broadcastUpdate = (function(
   logger_mjs,
   assert_mjs
 ) {
-  "use strict";
+  'use strict';
 
   try {
-    self.workbox.v["workbox:broadcast-cache-update:3.6.3"] = 1;
+    self.workbox.v['workbox:broadcast-cache-update:3.6.3'] = 1;
   } catch (e) {} // eslint-disable-line
 
   /*
@@ -47,7 +47,7 @@ this.workbox.broadcastUpdate = (function(
         )
       ) {
         throw new WorkboxError_mjs.WorkboxError(
-          "invalid-responses-are-same-args"
+          'invalid-responses-are-same-args'
         );
       }
     }
@@ -105,7 +105,7 @@ this.workbox.broadcastUpdate = (function(
   */
 
   var messageTypes = {
-    CACHE_UPDATED: "CACHE_UPDATED"
+    CACHE_UPDATED: 'CACHE_UPDATED',
   };
 
   /*
@@ -164,7 +164,7 @@ this.workbox.broadcastUpdate = (function(
     // There are browsers which support service workers but don't support the
     // Broadcast Channel API.
     // See https://github.com/GoogleChrome/workbox/issues/1304
-    if (!("BroadcastChannel" in self && channel)) {
+    if (!('BroadcastChannel' in self && channel)) {
       {
         logger_mjs.logger.debug(
           `${url} was updated, but the Broadcast Channel API is not ` +
@@ -176,28 +176,28 @@ this.workbox.broadcastUpdate = (function(
 
     {
       assert_mjs.assert.isInstance(channel, BroadcastChannel, {
-        moduleName: "workbox-broadcast-cache-update",
-        className: "~",
-        funcName: "broadcastUpdate",
-        paramName: "channel"
+        moduleName: 'workbox-broadcast-cache-update',
+        className: '~',
+        funcName: 'broadcastUpdate',
+        paramName: 'channel',
       });
-      assert_mjs.assert.isType(cacheName, "string", {
-        moduleName: "workbox-broadcast-cache-update",
-        className: "~",
-        funcName: "broadcastUpdate",
-        paramName: "cacheName"
+      assert_mjs.assert.isType(cacheName, 'string', {
+        moduleName: 'workbox-broadcast-cache-update',
+        className: '~',
+        funcName: 'broadcastUpdate',
+        paramName: 'cacheName',
       });
-      assert_mjs.assert.isType(url, "string", {
-        moduleName: "workbox-broadcast-cache-update",
-        className: "~",
-        funcName: "broadcastUpdate",
-        paramName: "url"
+      assert_mjs.assert.isType(url, 'string', {
+        moduleName: 'workbox-broadcast-cache-update',
+        className: '~',
+        funcName: 'broadcastUpdate',
+        paramName: 'url',
       });
-      assert_mjs.assert.isType(source, "string", {
-        moduleName: "workbox-broadcast-cache-update",
-        className: "~",
-        funcName: "broadcastUpdate",
-        paramName: "source"
+      assert_mjs.assert.isType(source, 'string', {
+        moduleName: 'workbox-broadcast-cache-update',
+        className: '~',
+        funcName: 'broadcastUpdate',
+        paramName: 'source',
       });
     }
 
@@ -206,8 +206,8 @@ this.workbox.broadcastUpdate = (function(
       meta: source,
       payload: {
         cacheName: cacheName,
-        updatedUrl: url
-      }
+        updatedUrl: url,
+      },
     });
   };
 
@@ -252,18 +252,18 @@ this.workbox.broadcastUpdate = (function(
      */
     constructor(channelName, { headersToCheck, source } = {}) {
       {
-        if (typeof channelName !== "string" || channelName.length === 0) {
-          throw new WorkboxError_mjs.WorkboxError("channel-name-required");
+        if (typeof channelName !== 'string' || channelName.length === 0) {
+          throw new WorkboxError_mjs.WorkboxError('channel-name-required');
         }
       }
 
       this._channelName = channelName;
       this._headersToCheck = headersToCheck || [
-        "content-length",
-        "etag",
-        "last-modified"
+        'content-length',
+        'etag',
+        'last-modified',
       ];
-      this._source = source || "workbox-broadcast-cache-update";
+      this._source = source || 'workbox-broadcast-cache-update';
 
       // TODO assert typeof headersToCheck instanceof Array
     }
@@ -276,7 +276,7 @@ this.workbox.broadcastUpdate = (function(
      * @private
      */
     _getChannel() {
-      if ("BroadcastChannel" in self && !this._channel) {
+      if ('BroadcastChannel' in self && !this._channel) {
         this._channel = new BroadcastChannel(this._channelName);
       }
       return this._channel;
@@ -357,23 +357,23 @@ this.workbox.broadcastUpdate = (function(
      */
     cacheDidUpdate({ cacheName, oldResponse, newResponse, request }) {
       {
-        assert_mjs.assert.isType(cacheName, "string", {
-          moduleName: "workbox-broadcast-cache-update",
-          className: "Plugin",
-          funcName: "cacheDidUpdate",
-          paramName: "cacheName"
+        assert_mjs.assert.isType(cacheName, 'string', {
+          moduleName: 'workbox-broadcast-cache-update',
+          className: 'Plugin',
+          funcName: 'cacheDidUpdate',
+          paramName: 'cacheName',
         });
         assert_mjs.assert.isInstance(newResponse, Response, {
-          moduleName: "workbox-broadcast-cache-update",
-          className: "Plugin",
-          funcName: "cacheDidUpdate",
-          paramName: "newResponse"
+          moduleName: 'workbox-broadcast-cache-update',
+          className: 'Plugin',
+          funcName: 'cacheDidUpdate',
+          paramName: 'newResponse',
         });
         assert_mjs.assert.isInstance(request, Request, {
-          moduleName: "workbox-broadcast-cache-update",
-          className: "Plugin",
-          funcName: "cacheDidUpdate",
-          paramName: "request"
+          moduleName: 'workbox-broadcast-cache-update',
+          className: 'Plugin',
+          funcName: 'cacheDidUpdate',
+          paramName: 'request',
         });
       }
 

@@ -6,10 +6,10 @@ this.workbox.cacheableResponse = (function(
   getFriendlyURL_mjs,
   logger_mjs
 ) {
-  "use strict";
+  'use strict';
 
   try {
-    self.workbox.v["workbox:cacheable-response:3.6.3"] = 1;
+    self.workbox.v['workbox:cacheable-response:3.6.3'] = 1;
   } catch (e) {} // eslint-disable-line
 
   /*
@@ -55,30 +55,30 @@ this.workbox.cacheableResponse = (function(
       {
         if (!(config.statuses || config.headers)) {
           throw new WorkboxError_mjs.WorkboxError(
-            "statuses-or-headers-required",
+            'statuses-or-headers-required',
             {
-              moduleName: "workbox-cacheable-response",
-              className: "CacheableResponse",
-              funcName: "constructor"
+              moduleName: 'workbox-cacheable-response',
+              className: 'CacheableResponse',
+              funcName: 'constructor',
             }
           );
         }
 
         if (config.statuses) {
           assert_mjs.assert.isArray(config.statuses, {
-            moduleName: "workbox-cacheable-response",
-            className: "CacheableResponse",
-            funcName: "constructor",
-            paramName: "config.statuses"
+            moduleName: 'workbox-cacheable-response',
+            className: 'CacheableResponse',
+            funcName: 'constructor',
+            paramName: 'config.statuses',
           });
         }
 
         if (config.headers) {
-          assert_mjs.assert.isType(config.headers, "object", {
-            moduleName: "workbox-cacheable-response",
-            className: "CacheableResponse",
-            funcName: "constructor",
-            paramName: "config.headers"
+          assert_mjs.assert.isType(config.headers, 'object', {
+            moduleName: 'workbox-cacheable-response',
+            className: 'CacheableResponse',
+            funcName: 'constructor',
+            paramName: 'config.headers',
           });
         }
       }
@@ -99,10 +99,10 @@ this.workbox.cacheableResponse = (function(
     isResponseCacheable(response) {
       {
         assert_mjs.assert.isInstance(response, Response, {
-          moduleName: "workbox-cacheable-response",
-          className: "CacheableResponse",
-          funcName: "isResponseCacheable",
-          paramName: "response"
+          moduleName: 'workbox-cacheable-response',
+          className: 'CacheableResponse',
+          funcName: 'isResponseCacheable',
+          paramName: 'response',
         });
       }
 

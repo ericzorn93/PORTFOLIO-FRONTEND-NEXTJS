@@ -3,6 +3,8 @@ schema: "https://ez-portfolio-backend-graphql.herokuapp.com/graphql"
 documents: "graphql/**/*.ts"
 generates:
   generated/apolloComponents.tsx:
+    config:
+      noNameSpaces: true
     plugins:
       - "typescript-common"
       - "typescript-client"

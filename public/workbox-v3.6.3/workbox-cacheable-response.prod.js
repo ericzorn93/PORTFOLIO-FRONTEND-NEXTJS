@@ -1,8 +1,8 @@
 (this.workbox = this.workbox || {}),
   (this.workbox.cacheableResponse = (function(t) {
-    "use strict";
+    'use strict';
     try {
-      self.workbox.v["workbox:cacheable-response:3.6.3"] = 1;
+      self.workbox.v['workbox:cacheable-response:3.6.3'] = 1;
     } catch (t) {}
     class s {
       constructor(t = {}) {

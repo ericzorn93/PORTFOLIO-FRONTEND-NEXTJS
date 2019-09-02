@@ -7,10 +7,10 @@ this.workbox.strategies = (function(
   fetchWrapper_mjs,
   getFriendlyURL_mjs
 ) {
-  "use strict";
+  'use strict';
 
   try {
-    self.workbox.v["workbox:strategies:3.6.3"] = 1;
+    self.workbox.v['workbox:strategies:3.6.3'] = 1;
   } catch (e) {} // eslint-disable-line
 
   /*
@@ -46,7 +46,7 @@ this.workbox.strategies = (function(
         logger_mjs.logger.unprefixed.log(response);
         logger_mjs.logger.groupEnd();
       }
-    }
+    },
   };
 
   /*
@@ -112,16 +112,16 @@ this.workbox.strategies = (function(
       return babelHelpers.asyncToGenerator(function*() {
         {
           assert_mjs.assert.isInstance(event, FetchEvent, {
-            moduleName: "workbox-strategies",
-            className: "CacheFirst",
-            funcName: "handle",
-            paramName: "event"
+            moduleName: 'workbox-strategies',
+            className: 'CacheFirst',
+            funcName: 'handle',
+            paramName: 'event',
           });
         }
 
         return _this.makeRequest({
           event,
-          request: event.request
+          request: event.request,
         });
       })();
     }
@@ -147,16 +147,16 @@ this.workbox.strategies = (function(
       return babelHelpers.asyncToGenerator(function*() {
         const logs = [];
 
-        if (typeof request === "string") {
+        if (typeof request === 'string') {
           request = new Request(request);
         }
 
         {
           assert_mjs.assert.isInstance(request, Request, {
-            moduleName: "workbox-strategies",
-            className: "CacheFirst",
-            funcName: "makeRequest",
-            paramName: "request"
+            moduleName: 'workbox-strategies',
+            className: 'CacheFirst',
+            funcName: 'makeRequest',
+            paramName: 'request',
           });
         }
 
@@ -165,7 +165,7 @@ this.workbox.strategies = (function(
           request,
           event,
           matchOptions: _this2._matchOptions,
-          plugins: _this2._plugins
+          plugins: _this2._plugins,
         });
 
         let error;
@@ -199,7 +199,7 @@ this.workbox.strategies = (function(
 
         {
           logger_mjs.logger.groupCollapsed(
-            messages.strategyStart("CacheFirst", request)
+            messages.strategyStart('CacheFirst', request)
           );
           for (let log of logs) {
             logger_mjs.logger.log(log);
@@ -235,7 +235,7 @@ this.workbox.strategies = (function(
           request,
           event,
           fetchOptions: _this3._fetchOptions,
-          plugins: _this3._plugins
+          plugins: _this3._plugins,
         });
 
         // Keep the service worker while we put the request to the cache
@@ -245,7 +245,7 @@ this.workbox.strategies = (function(
           request,
           response: responseClone,
           event,
-          plugins: _this3._plugins
+          plugins: _this3._plugins,
         });
 
         if (event) {
@@ -326,16 +326,16 @@ this.workbox.strategies = (function(
       return babelHelpers.asyncToGenerator(function*() {
         {
           assert_mjs.assert.isInstance(event, FetchEvent, {
-            moduleName: "workbox-strategies",
-            className: "CacheOnly",
-            funcName: "handle",
-            paramName: "event"
+            moduleName: 'workbox-strategies',
+            className: 'CacheOnly',
+            funcName: 'handle',
+            paramName: 'event',
           });
         }
 
         return _this.makeRequest({
           event,
-          request: event.request
+          request: event.request,
         });
       })();
     }
@@ -359,16 +359,16 @@ this.workbox.strategies = (function(
       var _this2 = this;
 
       return babelHelpers.asyncToGenerator(function*() {
-        if (typeof request === "string") {
+        if (typeof request === 'string') {
           request = new Request(request);
         }
 
         {
           assert_mjs.assert.isInstance(request, Request, {
-            moduleName: "workbox-strategies",
-            className: "CacheOnly",
-            funcName: "makeRequest",
-            paramName: "request"
+            moduleName: 'workbox-strategies',
+            className: 'CacheOnly',
+            funcName: 'makeRequest',
+            paramName: 'request',
           });
         }
 
@@ -377,12 +377,12 @@ this.workbox.strategies = (function(
           request,
           event,
           matchOptions: _this2._matchOptions,
-          plugins: _this2._plugins
+          plugins: _this2._plugins,
         });
 
         {
           logger_mjs.logger.groupCollapsed(
-            messages.strategyStart("CacheOnly", request)
+            messages.strategyStart('CacheOnly', request)
           );
           if (response) {
             logger_mjs.logger.log(
@@ -434,7 +434,7 @@ this.workbox.strategies = (function(
         return response;
       }
       return null;
-    }
+    },
   };
 
   /*
@@ -503,11 +503,11 @@ this.workbox.strategies = (function(
       this._networkTimeoutSeconds = options.networkTimeoutSeconds;
       {
         if (this._networkTimeoutSeconds) {
-          assert_mjs.assert.isType(this._networkTimeoutSeconds, "number", {
-            moduleName: "workbox-strategies",
-            className: "NetworkFirst",
-            funcName: "constructor",
-            paramName: "networkTimeoutSeconds"
+          assert_mjs.assert.isType(this._networkTimeoutSeconds, 'number', {
+            moduleName: 'workbox-strategies',
+            className: 'NetworkFirst',
+            funcName: 'constructor',
+            paramName: 'networkTimeoutSeconds',
           });
         }
       }
@@ -532,16 +532,16 @@ this.workbox.strategies = (function(
       return babelHelpers.asyncToGenerator(function*() {
         {
           assert_mjs.assert.isInstance(event, FetchEvent, {
-            moduleName: "workbox-strategies",
-            className: "NetworkFirst",
-            funcName: "handle",
-            paramName: "event"
+            moduleName: 'workbox-strategies',
+            className: 'NetworkFirst',
+            funcName: 'handle',
+            paramName: 'event',
           });
         }
 
         return _this.makeRequest({
           event,
-          request: event.request
+          request: event.request,
         });
       })();
     }
@@ -567,16 +567,16 @@ this.workbox.strategies = (function(
       return babelHelpers.asyncToGenerator(function*() {
         const logs = [];
 
-        if (typeof request === "string") {
+        if (typeof request === 'string') {
           request = new Request(request);
         }
 
         {
           assert_mjs.assert.isInstance(request, Request, {
-            moduleName: "workbox-strategies",
-            className: "NetworkFirst",
-            funcName: "handle",
-            paramName: "makeRequest"
+            moduleName: 'workbox-strategies',
+            className: 'NetworkFirst',
+            funcName: 'handle',
+            paramName: 'makeRequest',
           });
         }
 
@@ -587,7 +587,7 @@ this.workbox.strategies = (function(
           const { id, promise } = _this2._getTimeoutPromise({
             request,
             event,
-            logs
+            logs,
           });
           timeoutId = id;
           promises.push(promise);
@@ -597,7 +597,7 @@ this.workbox.strategies = (function(
           timeoutId,
           request,
           event,
-          logs
+          logs,
         });
         promises.push(networkPromise);
 
@@ -614,7 +614,7 @@ this.workbox.strategies = (function(
 
         {
           logger_mjs.logger.groupCollapsed(
-            messages.strategyStart("NetworkFirst", request)
+            messages.strategyStart('NetworkFirst', request)
           );
           for (let log of logs) {
             logger_mjs.logger.log(log);
@@ -666,7 +666,7 @@ this.workbox.strategies = (function(
 
       return {
         promise: timeoutPromise,
-        id: timeoutId
+        id: timeoutId,
       };
     }
 
@@ -691,7 +691,7 @@ this.workbox.strategies = (function(
             request,
             event,
             fetchOptions: _this4._fetchOptions,
-            plugins: _this4._plugins
+            plugins: _this4._plugins,
           });
         } catch (err) {
           error = err;
@@ -734,7 +734,7 @@ this.workbox.strategies = (function(
             request,
             response: responseClone,
             event,
-            plugins: _this4._plugins
+            plugins: _this4._plugins,
           });
 
           if (event) {
@@ -775,7 +775,7 @@ this.workbox.strategies = (function(
         request,
         event,
         matchOptions: this._matchOptions,
-        plugins: this._plugins
+        plugins: this._plugins,
       });
     }
   }
@@ -840,16 +840,16 @@ this.workbox.strategies = (function(
       return babelHelpers.asyncToGenerator(function*() {
         {
           assert_mjs.assert.isInstance(event, FetchEvent, {
-            moduleName: "workbox-strategies",
-            className: "NetworkOnly",
-            funcName: "handle",
-            paramName: "event"
+            moduleName: 'workbox-strategies',
+            className: 'NetworkOnly',
+            funcName: 'handle',
+            paramName: 'event',
           });
         }
 
         return _this.makeRequest({
           event,
-          request: event.request
+          request: event.request,
         });
       })();
     }
@@ -873,16 +873,16 @@ this.workbox.strategies = (function(
       var _this2 = this;
 
       return babelHelpers.asyncToGenerator(function*() {
-        if (typeof request === "string") {
+        if (typeof request === 'string') {
           request = new Request(request);
         }
 
         {
           assert_mjs.assert.isInstance(request, Request, {
-            moduleName: "workbox-strategies",
-            className: "NetworkOnly",
-            funcName: "handle",
-            paramName: "request"
+            moduleName: 'workbox-strategies',
+            className: 'NetworkOnly',
+            funcName: 'handle',
+            paramName: 'request',
           });
         }
 
@@ -893,7 +893,7 @@ this.workbox.strategies = (function(
             request,
             event,
             fetchOptions: _this2._fetchOptions,
-            plugins: _this2._plugins
+            plugins: _this2._plugins,
           });
         } catch (err) {
           error = err;
@@ -901,7 +901,7 @@ this.workbox.strategies = (function(
 
         {
           logger_mjs.logger.groupCollapsed(
-            messages.strategyStart("NetworkOnly", request)
+            messages.strategyStart('NetworkOnly', request)
           );
           if (response) {
             logger_mjs.logger.log(`Got response from network.`);
@@ -1006,16 +1006,16 @@ this.workbox.strategies = (function(
       return babelHelpers.asyncToGenerator(function*() {
         {
           assert_mjs.assert.isInstance(event, FetchEvent, {
-            moduleName: "workbox-strategies",
-            className: "StaleWhileRevalidate",
-            funcName: "handle",
-            paramName: "event"
+            moduleName: 'workbox-strategies',
+            className: 'StaleWhileRevalidate',
+            funcName: 'handle',
+            paramName: 'event',
           });
         }
 
         return _this.makeRequest({
           event,
-          request: event.request
+          request: event.request,
         });
       })();
     }
@@ -1041,16 +1041,16 @@ this.workbox.strategies = (function(
       return babelHelpers.asyncToGenerator(function*() {
         const logs = [];
 
-        if (typeof request === "string") {
+        if (typeof request === 'string') {
           request = new Request(request);
         }
 
         {
           assert_mjs.assert.isInstance(request, Request, {
-            moduleName: "workbox-strategies",
-            className: "StaleWhileRevalidate",
-            funcName: "handle",
-            paramName: "request"
+            moduleName: 'workbox-strategies',
+            className: 'StaleWhileRevalidate',
+            funcName: 'handle',
+            paramName: 'request',
           });
         }
 
@@ -1061,7 +1061,7 @@ this.workbox.strategies = (function(
           request,
           event,
           matchOptions: _this2._matchOptions,
-          plugins: _this2._plugins
+          plugins: _this2._plugins,
         });
 
         if (response) {
@@ -1098,7 +1098,7 @@ this.workbox.strategies = (function(
 
         {
           logger_mjs.logger.groupCollapsed(
-            messages.strategyStart("StaleWhileRevalidate", request)
+            messages.strategyStart('StaleWhileRevalidate', request)
           );
           for (let log of logs) {
             logger_mjs.logger.log(log);
@@ -1127,7 +1127,7 @@ this.workbox.strategies = (function(
           request,
           event,
           fetchOptions: _this3._fetchOptions,
-          plugins: _this3._plugins
+          plugins: _this3._plugins,
         });
 
         const cachePutPromise = cacheWrapper_mjs.cacheWrapper.put({
@@ -1135,7 +1135,7 @@ this.workbox.strategies = (function(
           request,
           response: response.clone(),
           event,
-          plugins: _this3._plugins
+          plugins: _this3._plugins,
         });
 
         if (event) {
@@ -1179,7 +1179,7 @@ this.workbox.strategies = (function(
     CacheOnly: CacheOnly,
     NetworkFirst: NetworkFirst,
     NetworkOnly: NetworkOnly,
-    StaleWhileRevalidate: StaleWhileRevalidate
+    StaleWhileRevalidate: StaleWhileRevalidate,
   });
 
   /*
@@ -1232,7 +1232,7 @@ this.workbox.strategies = (function(
     cacheOnly: CacheOnly,
     networkFirst: NetworkFirst,
     networkOnly: NetworkOnly,
-    staleWhileRevalidate: StaleWhileRevalidate
+    staleWhileRevalidate: StaleWhileRevalidate,
   };
 
   const defaultExport = {};

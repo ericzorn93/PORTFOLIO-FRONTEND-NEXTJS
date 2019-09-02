@@ -1,8 +1,8 @@
 (this.workbox = this.workbox || {}),
   (this.workbox.broadcastUpdate = (function(t) {
-    "use strict";
+    'use strict';
     try {
-      self.workbox.v["workbox:broadcast-cache-update:3.6.3"] = 1;
+      self.workbox.v['workbox:broadcast-cache-update:3.6.3'] = 1;
     } catch (t) {}
     const e = (t, e, s) => {
       return (
@@ -14,25 +14,25 @@
         })
       );
     };
-    var s = { CACHE_UPDATED: "CACHE_UPDATED" };
+    var s = { CACHE_UPDATED: 'CACHE_UPDATED' };
     const a = (t, e, a, n) => {
-      "BroadcastChannel" in self &&
+      'BroadcastChannel' in self &&
         t &&
         t.postMessage({
           type: s.CACHE_UPDATED,
           meta: n,
-          payload: { cacheName: e, updatedUrl: a }
+          payload: { cacheName: e, updatedUrl: a },
         });
     };
     class n {
       constructor(t, { headersToCheck: e, source: s } = {}) {
         (this.t = t),
-          (this.e = e || ["content-length", "etag", "last-modified"]),
-          (this.s = s || "workbox-broadcast-cache-update");
+          (this.e = e || ['content-length', 'etag', 'last-modified']),
+          (this.s = s || 'workbox-broadcast-cache-update');
       }
       a() {
         return (
-          "BroadcastChannel" in self &&
+          'BroadcastChannel' in self &&
             !this.n &&
             (this.n = new BroadcastChannel(this.t)),
           this.n
@@ -52,7 +52,7 @@
           cacheName: t,
           oldResponse: e,
           newResponse: s,
-          request: a
+          request: a,
         }) {
           e && this.c.notifyIfUpdated(e, s, a.url, t);
         }

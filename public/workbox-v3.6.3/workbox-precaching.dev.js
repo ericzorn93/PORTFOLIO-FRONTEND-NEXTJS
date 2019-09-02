@@ -9,10 +9,10 @@ this.workbox.precaching = (function(
   assert_mjs,
   getFriendlyURL_mjs
 ) {
-  "use strict";
+  'use strict';
 
   try {
-    self.workbox.v["workbox:precaching:3.6.3"] = 1;
+    self.workbox.v['workbox:precaching:3.6.3'] = 1;
   } catch (e) {} // eslint-disable-line
 
   /*
@@ -52,7 +52,7 @@ this.workbox.precaching = (function(
       this._entryId = url;
       this._revision = revision;
       const requestAsCacheKey = new Request(url, {
-        credentials: "same-origin"
+        credentials: 'same-origin',
       });
       this._cacheRequest = requestAsCacheKey;
       this._networkRequest = shouldCacheBust
@@ -72,13 +72,13 @@ this.workbox.precaching = (function(
     _cacheBustRequest(request) {
       let url = request.url;
       const requestOptions = {
-        credentials: "same-origin"
+        credentials: 'same-origin',
       };
-      if ("cache" in Request.prototype) {
+      if ('cache' in Request.prototype) {
         // Make use of the Request cache mode where we can.
         // Reload skips the HTTP cache for outgoing requests and updates
         // the cache with the returned response.
-        requestOptions.cache = "reload";
+        requestOptions.cache = 'reload';
       } else {
         const parsedURL = new URL(url, location);
 
@@ -86,9 +86,9 @@ this.workbox.precaching = (function(
         const _encodeURIComponent = encodeURIComponent;
 
         parsedURL.search +=
-          (parsedURL.search ? "&" : "") +
+          (parsedURL.search ? '&' : '') +
           _encodeURIComponent(`_workbox-cache-bust`) +
-          "=" +
+          '=' +
           _encodeURIComponent(this._revision);
         url = parsedURL.toString();
       }
@@ -114,9 +114,9 @@ this.workbox.precaching = (function(
   */
 
   // Allows minifier to mangle this name
-  const REVISON_IDB_FIELD = "revision";
-  const URL_IDB_FIELD = "url";
-  const DB_STORE_NAME = "precached-details-models";
+  const REVISON_IDB_FIELD = 'revision';
+  const URL_IDB_FIELD = 'url';
+  const DB_STORE_NAME = 'precached-details-models';
   /**
    * This model will track the relevant information of entries that
    * are cached and their matching revision details.
@@ -132,9 +132,9 @@ this.workbox.precaching = (function(
      */
     constructor(dbName) {
       // This ensures the db name contains only letters, numbers, '-', '_' and '$'
-      const filteredDBName = dbName.replace(/[^\w-]/g, "_");
+      const filteredDBName = dbName.replace(/[^\w-]/g, '_');
       this._db = new DBWrapper_mjs.DBWrapper(filteredDBName, 2, {
-        onupgradeneeded: this._handleUpgrade
+        onupgradeneeded: this._handleUpgrade,
       });
     }
 
@@ -151,8 +151,8 @@ this.workbox.precaching = (function(
         // IndexedDB version 1 used both 'workbox-precaching' and
         // 'precached-details-model' before upgrading to version 2.
         // Delete them and create a new store with latest schema.
-        if (db.objectStoreNames.contains("workbox-precaching")) {
-          db.deleteObjectStore("workbox-precaching");
+        if (db.objectStoreNames.contains('workbox-precaching')) {
+          db.deleteObjectStore('workbox-precaching');
         }
         if (db.objectStoreNames.contains(DB_STORE_NAME)) {
           db.deleteObjectStore(DB_STORE_NAME);
@@ -200,7 +200,7 @@ this.workbox.precaching = (function(
 
       return babelHelpers.asyncToGenerator(function*() {
         return yield _this2._db.getAllMatching(DB_STORE_NAME, {
-          includeKeys: true
+          includeKeys: true,
         });
       })();
     }
@@ -237,7 +237,7 @@ this.workbox.precaching = (function(
           DB_STORE_NAME,
           {
             [REVISON_IDB_FIELD]: precacheEntry._revision,
-            [URL_IDB_FIELD]: precacheEntry._cacheRequest.url
+            [URL_IDB_FIELD]: precacheEntry._cacheRequest.url,
           },
           precacheEntry._entryId
         );
@@ -290,7 +290,7 @@ this.workbox.precaching = (function(
   var showWarningsIfNeeded = entriesMap => {
     const urlOnlyEntries = [];
     entriesMap.forEach(entry => {
-      if (typeof entry === "string" || !entry._originalInput.revision) {
+      if (typeof entry === 'string' || !entry._originalInput.revision) {
         urlOnlyEntries.push(entry._originalInput);
       }
     });
@@ -300,7 +300,7 @@ this.workbox.precaching = (function(
       return;
     }
 
-    logger_mjs.logger.groupCollapsed("Are your precached assets revisioned?");
+    logger_mjs.logger.groupCollapsed('Are your precached assets revisioned?');
 
     const urlsList = urlOnlyEntries
       .map(urlOnlyEntry => {
@@ -375,12 +375,12 @@ this.workbox.precaching = (function(
     const precachedCount = entriesToPrecache.length;
     const alreadyPrecachedCount = alreadyPrecachedEntries.length;
     let printText = `Precaching ${precachedCount} file${
-      precachedCount === 1 ? "" : "s"
+      precachedCount === 1 ? '' : 's'
     }.`;
     if (alreadyPrecachedCount > 0) {
       printText +=
         ` ${alreadyPrecachedCount} ` +
-        `file${alreadyPrecachedCount === 1 ? " is" : "s are"} already cached.`;
+        `file${alreadyPrecachedCount === 1 ? ' is' : 's are'} already cached.`;
     }
 
     logger_mjs.logger.groupCollapsed(printText);
@@ -439,18 +439,18 @@ this.workbox.precaching = (function(
 
     const cacheDeleteText =
       `${cacheDeleteCount} cached ` +
-      `request${cacheDeleteCount === 1 ? " was" : "s were"} deleted`;
+      `request${cacheDeleteCount === 1 ? ' was' : 's were'} deleted`;
     const revisionDeleteText =
       `${revisionDeleteCount} ` +
-      `${revisionDeleteCount === 1 ? "entry" : "entries"} ` +
-      `${revisionDeleteCount === 1 ? "was" : "were"} deleted from IndexedDB.`;
+      `${revisionDeleteCount === 1 ? 'entry' : 'entries'} ` +
+      `${revisionDeleteCount === 1 ? 'was' : 'were'} deleted from IndexedDB.`;
 
     logger_mjs.logger.groupCollapsed(
       `During precaching cleanup, ${cacheDeleteText} and ${revisionDeleteText}`
     );
 
-    logGroup("Deleted Cache Requests", deletedCacheRequests);
-    logGroup("Revision Details Deleted from DB", deletedRevisionDetails);
+    logGroup('Deleted Cache Requests', deletedCacheRequests);
+    logGroup('Revision Details Deleted from DB', deletedRevisionDetails);
 
     logger_mjs.logger.groupEnd();
   };
@@ -485,7 +485,7 @@ this.workbox.precaching = (function(
       // Not all browsers support the Response.body stream, so fall back
       // to reading the entire body into memory as a blob.
       const bodyPromise =
-        "body" in clonedResponse
+        'body' in clonedResponse
           ? Promise.resolve(clonedResponse.body)
           : clonedResponse.blob();
 
@@ -495,7 +495,7 @@ this.workbox.precaching = (function(
       return new Response(body, {
         headers: clonedResponse.headers,
         status: clonedResponse.status,
-        statusText: clonedResponse.statusText
+        statusText: clonedResponse.statusText,
       });
     });
 
@@ -549,10 +549,10 @@ this.workbox.precaching = (function(
     addToCacheList(entries) {
       {
         assert_mjs.assert.isArray(entries, {
-          moduleName: "workbox-precaching",
-          className: "PrecacheController",
-          funcName: "addToCacheList",
-          paramName: "entries"
+          moduleName: 'workbox-precaching',
+          className: 'PrecacheController',
+          funcName: 'addToCacheList',
+          paramName: 'entries',
         });
       }
 
@@ -570,13 +570,13 @@ this.workbox.precaching = (function(
      */
     _parseEntry(input) {
       switch (typeof input) {
-        case "string": {
+        case 'string': {
           {
             if (input.length === 0) {
               throw new WorkboxError_mjs.WorkboxError(
-                "add-to-cache-list-unexpected-type",
+                'add-to-cache-list-unexpected-type',
                 {
-                  entry: input
+                  entry: input,
                 }
               );
             }
@@ -584,13 +584,13 @@ this.workbox.precaching = (function(
 
           return new PrecacheEntry(input, input, input);
         }
-        case "object": {
+        case 'object': {
           {
             if (!input || !input.url) {
               throw new WorkboxError_mjs.WorkboxError(
-                "add-to-cache-list-unexpected-type",
+                'add-to-cache-list-unexpected-type',
                 {
-                  entry: input
+                  entry: input,
                 }
               );
             }
@@ -605,9 +605,9 @@ this.workbox.precaching = (function(
         }
         default:
           throw new WorkboxError_mjs.WorkboxError(
-            "add-to-cache-list-unexpected-type",
+            'add-to-cache-list-unexpected-type',
             {
-              entry: input
+              entry: input,
             }
           );
       }
@@ -631,10 +631,10 @@ this.workbox.precaching = (function(
       // is the same.
       if (existingEntry._revision !== entryToAdd._revision) {
         throw new WorkboxError_mjs.WorkboxError(
-          "add-to-cache-list-conflicting-entries",
+          'add-to-cache-list-conflicting-entries',
           {
             firstEntry: existingEntry._originalInput,
-            secondEntry: entryToAdd._originalInput
+            secondEntry: entryToAdd._originalInput,
           }
         );
       }
@@ -662,10 +662,10 @@ this.workbox.precaching = (function(
 
           if (plugins) {
             assert_mjs.assert.isArray(plugins, {
-              moduleName: "workbox-precaching",
-              className: "PrecacheController",
-              funcName: "install",
-              paramName: "plugins"
+              moduleName: 'workbox-precaching',
+              className: 'PrecacheController',
+              funcName: 'install',
+              paramName: 'plugins',
             });
           }
         }
@@ -713,7 +713,7 @@ this.workbox.precaching = (function(
 
         return {
           updatedEntries: entriesToPrecache,
-          notUpdatedEntries: entriesAlreadyPrecached
+          notUpdatedEntries: entriesAlreadyPrecached,
         };
       })();
     }
@@ -745,7 +745,7 @@ this.workbox.precaching = (function(
             cacheName: _this2._cacheName,
             request,
             response,
-            plugins: options.plugins
+            plugins: options.plugins,
           });
           yield tempCache.delete(request);
         }
@@ -788,7 +788,7 @@ this.workbox.precaching = (function(
           request: precacheEntry._networkRequest,
           event,
           fetchOptions: null,
-          plugins
+          plugins,
         });
 
         if (response.redirected) {
@@ -800,7 +800,7 @@ this.workbox.precaching = (function(
           request: precacheEntry._cacheRequest,
           response,
           event,
-          plugins
+          plugins,
         });
 
         yield _this3._precacheDetailsModel._addEntry(precacheEntry);
@@ -834,10 +834,10 @@ this.workbox.precaching = (function(
 
         const [
           deletedCacheRequests,
-          deletedRevisionDetails
+          deletedRevisionDetails,
         ] = yield Promise.all([
           _this4._cleanupCache(expectedCacheUrls),
-          _this4._cleanupDetailsModel(expectedCacheUrls)
+          _this4._cleanupDetailsModel(expectedCacheUrls),
         ]);
 
         {
@@ -846,7 +846,7 @@ this.workbox.precaching = (function(
 
         return {
           deletedCacheRequests,
-          deletedRevisionDetails
+          deletedRevisionDetails,
         };
       })();
     }
@@ -951,7 +951,7 @@ this.workbox.precaching = (function(
   */
 
   var publicAPI = /*#__PURE__*/ Object.freeze({
-    PrecacheController: PrecacheController
+    PrecacheController: PrecacheController,
   });
 
   /*
@@ -971,7 +971,7 @@ this.workbox.precaching = (function(
   */
 
   {
-    assert_mjs.assert.isSwEnv("workbox-precaching");
+    assert_mjs.assert.isSwEnv('workbox-precaching');
   }
 
   let installActivateListenersAdded = false;
@@ -990,10 +990,10 @@ this.workbox.precaching = (function(
     const searchString = origUrlObject.search.slice(1);
 
     // Split into an array of 'key=value' strings
-    const keyValueStrings = searchString.split("&");
+    const keyValueStrings = searchString.split('&');
     const keyValuePairs = keyValueStrings.map(keyValueString => {
       // Split each 'key=value' string into a [key, value] array
-      return keyValueString.split("=");
+      return keyValueString.split('=');
     });
     const filteredKeyValuesPairs = keyValuePairs.filter(keyValuePair => {
       return ignoreUrlParametersMatching.every(ignoredRegex => {
@@ -1003,13 +1003,13 @@ this.workbox.precaching = (function(
     });
     const filteredStrings = filteredKeyValuesPairs.map(keyValuePair => {
       // Join each [key, value] array into a 'key=value' string
-      return keyValuePair.join("=");
+      return keyValuePair.join('=');
     });
 
     // Join the array of 'key=value' strings into a string with '&' in
     // between each
     const urlClone = new URL(origUrlObject);
-    urlClone.search = filteredStrings.join("&");
+    urlClone.search = filteredStrings.join('&');
     return urlClone;
   };
 
@@ -1028,15 +1028,15 @@ this.workbox.precaching = (function(
     url,
     {
       ignoreUrlParametersMatching = [/^utm_/],
-      directoryIndex = "index.html",
+      directoryIndex = 'index.html',
       cleanUrls = true,
-      urlManipulation = null
+      urlManipulation = null,
     } = {}
   ) => {
     const urlObject = new URL(url, location);
 
     // Change '/some-url#123' => '/some-url'
-    urlObject.hash = "";
+    urlObject.hash = '';
 
     const urlWithoutIgnoredParams = _removeIgnoreUrlParams(
       urlObject,
@@ -1047,11 +1047,11 @@ this.workbox.precaching = (function(
       // Test the URL that was fetched
       urlObject,
       // Test the URL without search params
-      urlWithoutIgnoredParams
+      urlWithoutIgnoredParams,
     ];
 
     // Test the URL with a directory index
-    if (directoryIndex && urlWithoutIgnoredParams.pathname.endsWith("/")) {
+    if (directoryIndex && urlWithoutIgnoredParams.pathname.endsWith('/')) {
       const directoryUrl = new URL(urlWithoutIgnoredParams);
       directoryUrl.pathname += directoryIndex;
       urlsToAttempt.push(directoryUrl);
@@ -1060,7 +1060,7 @@ this.workbox.precaching = (function(
     // Test the URL with a '.html' extension
     if (cleanUrls) {
       const cleanUrl = new URL(urlWithoutIgnoredParams);
-      cleanUrl.pathname += ".html";
+      cleanUrl.pathname += '.html';
       urlsToAttempt.push(cleanUrl);
     }
 
@@ -1115,20 +1115,20 @@ this.workbox.precaching = (function(
     }
 
     installActivateListenersAdded = true;
-    self.addEventListener("install", event => {
+    self.addEventListener('install', event => {
       event.waitUntil(
         precacheController.install({
           event,
           plugins,
-          suppressWarnings
+          suppressWarnings,
         })
       );
     });
-    self.addEventListener("activate", event => {
+    self.addEventListener('activate', event => {
       event.waitUntil(
         precacheController.activate({
           event,
-          plugins
+          plugins,
         })
       );
     });
@@ -1165,7 +1165,7 @@ this.workbox.precaching = (function(
     }
 
     fetchListenersAdded = true;
-    self.addEventListener("fetch", event => {
+    self.addEventListener('fetch', event => {
       const precachedUrl = _getPrecachedUrl(event.request.url, options);
       if (!precachedUrl) {
         {

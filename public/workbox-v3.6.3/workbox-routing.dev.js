@@ -6,10 +6,10 @@ this.workbox.routing = (function(
   getFriendlyURL_mjs,
   cacheNames_mjs
 ) {
-  "use strict";
+  'use strict';
 
   try {
-    self.workbox.v["workbox:routing:3.6.3"] = 1;
+    self.workbox.v['workbox:routing:3.6.3'] = 1;
   } catch (e) {} // eslint-disable-line
 
   /*
@@ -35,7 +35,7 @@ this.workbox.routing = (function(
    *
    * @private
    */
-  const defaultMethod = "GET";
+  const defaultMethod = 'GET';
 
   /**
    * The list of valid HTTP methods associated with requests that could be routed.
@@ -44,7 +44,7 @@ this.workbox.routing = (function(
    *
    * @private
    */
-  const validMethods = ["DELETE", "GET", "HEAD", "PATCH", "POST", "PUT"];
+  const validMethods = ['DELETE', 'GET', 'HEAD', 'PATCH', 'POST', 'PUT'];
 
   /*
    Copyright 2017 Google Inc. All Rights Reserved.
@@ -69,23 +69,23 @@ this.workbox.routing = (function(
    * @private
    */
   var normalizeHandler = handler => {
-    if (handler && typeof handler === "object") {
+    if (handler && typeof handler === 'object') {
       {
-        assert_mjs.assert.hasMethod(handler, "handle", {
-          moduleName: "workbox-routing",
-          className: "Route",
-          funcName: "constructor",
-          paramName: "handler"
+        assert_mjs.assert.hasMethod(handler, 'handle', {
+          moduleName: 'workbox-routing',
+          className: 'Route',
+          funcName: 'constructor',
+          paramName: 'handler',
         });
       }
       return handler;
     } else {
       {
-        assert_mjs.assert.isType(handler, "function", {
-          moduleName: "workbox-routing",
-          className: "Route",
-          funcName: "constructor",
-          paramName: "handler"
+        assert_mjs.assert.isType(handler, 'function', {
+          moduleName: 'workbox-routing',
+          className: 'Route',
+          funcName: 'constructor',
+          paramName: 'handler',
         });
       }
       return { handle: handler };
@@ -130,16 +130,16 @@ this.workbox.routing = (function(
      */
     constructor(match, handler, method) {
       {
-        assert_mjs.assert.isType(match, "function", {
-          moduleName: "workbox-routing",
-          className: "Route",
-          funcName: "constructor",
-          paramName: "match"
+        assert_mjs.assert.isType(match, 'function', {
+          moduleName: 'workbox-routing',
+          className: 'Route',
+          funcName: 'constructor',
+          paramName: 'match',
         });
 
         if (method) {
           assert_mjs.assert.isOneOf(method, validMethods, {
-            paramName: "method"
+            paramName: 'method',
           });
         }
       }
@@ -197,10 +197,10 @@ this.workbox.routing = (function(
     constructor(regExp, handler, method) {
       {
         assert_mjs.assert.isInstance(regExp, RegExp, {
-          moduleName: "workbox-routing",
-          className: "RegExpRoute",
-          funcName: "constructor",
-          paramName: "pattern"
+          moduleName: 'workbox-routing',
+          className: 'RegExpRoute',
+          funcName: 'constructor',
+          paramName: 'pattern',
         });
       }
 
@@ -294,15 +294,15 @@ this.workbox.routing = (function(
     handleRequest(event) {
       {
         assert_mjs.assert.isInstance(event, FetchEvent, {
-          moduleName: "workbox-routing",
-          className: "Router",
-          funcName: "handleRequest",
-          paramName: "event"
+          moduleName: 'workbox-routing',
+          className: 'Router',
+          funcName: 'handleRequest',
+          paramName: 'event',
         });
       }
 
       const url = new URL(event.request.url);
-      if (!url.protocol.startsWith("http")) {
+      if (!url.protocol.startsWith('http')) {
         {
           logger_mjs.logger.debug(
             `Workbox Router only supports URLs that start with 'http'.`
@@ -327,7 +327,7 @@ this.workbox.routing = (function(
           if (params) {
             debugMessages.push([
               `Passing the following params to the route's handler:`,
-              params
+              params,
             ]);
           }
         }
@@ -343,7 +343,7 @@ this.workbox.routing = (function(
           );
 
           // This is used for debugging in logs in the case of an error.
-          route = "[Default Handler]";
+          route = '[Default Handler]';
         }
         handler = this._defaultHandler;
       }
@@ -447,7 +447,7 @@ this.workbox.routing = (function(
           return {
             route,
             params: matchResult,
-            handler: route.handler
+            handler: route.handler,
           };
         }
       }
@@ -488,39 +488,39 @@ this.workbox.routing = (function(
      */
     registerRoute(route) {
       {
-        assert_mjs.assert.isType(route, "object", {
-          moduleName: "workbox-routing",
-          className: "Router",
-          funcName: "registerRoute",
-          paramName: "route"
+        assert_mjs.assert.isType(route, 'object', {
+          moduleName: 'workbox-routing',
+          className: 'Router',
+          funcName: 'registerRoute',
+          paramName: 'route',
         });
 
-        assert_mjs.assert.hasMethod(route, "match", {
-          moduleName: "workbox-routing",
-          className: "Router",
-          funcName: "registerRoute",
-          paramName: "route"
+        assert_mjs.assert.hasMethod(route, 'match', {
+          moduleName: 'workbox-routing',
+          className: 'Router',
+          funcName: 'registerRoute',
+          paramName: 'route',
         });
 
-        assert_mjs.assert.isType(route.handler, "object", {
-          moduleName: "workbox-routing",
-          className: "Router",
-          funcName: "registerRoute",
-          paramName: "route"
+        assert_mjs.assert.isType(route.handler, 'object', {
+          moduleName: 'workbox-routing',
+          className: 'Router',
+          funcName: 'registerRoute',
+          paramName: 'route',
         });
 
-        assert_mjs.assert.hasMethod(route.handler, "handle", {
-          moduleName: "workbox-routing",
-          className: "Router",
-          funcName: "registerRoute",
-          paramName: "route.handler"
+        assert_mjs.assert.hasMethod(route.handler, 'handle', {
+          moduleName: 'workbox-routing',
+          className: 'Router',
+          funcName: 'registerRoute',
+          paramName: 'route.handler',
         });
 
-        assert_mjs.assert.isType(route.method, "string", {
-          moduleName: "workbox-routing",
-          className: "Router",
-          funcName: "registerRoute",
-          paramName: "route.method"
+        assert_mjs.assert.isType(route.method, 'string', {
+          moduleName: 'workbox-routing',
+          className: 'Router',
+          funcName: 'registerRoute',
+          paramName: 'route.method',
         });
       }
 
@@ -541,9 +541,9 @@ this.workbox.routing = (function(
     unregisterRoute(route) {
       if (!this._routes.has(route.method)) {
         throw new WorkboxError_mjs.WorkboxError(
-          "unregister-route-but-not-found-with-method",
+          'unregister-route-but-not-found-with-method',
           {
-            method: route.method
+            method: route.method,
           }
         );
       }
@@ -553,7 +553,7 @@ this.workbox.routing = (function(
         this._routes.get(route.method).splice(routeIndex, 1);
       } else {
         throw new WorkboxError_mjs.WorkboxError(
-          "unregister-route-route-not-registered"
+          'unregister-route-route-not-registered'
         );
       }
     }
@@ -612,16 +612,16 @@ this.workbox.routing = (function(
     constructor(handler, { whitelist = [/./], blacklist = [] } = {}) {
       {
         assert_mjs.assert.isArrayOfClass(whitelist, RegExp, {
-          moduleName: "workbox-routing",
-          className: "NavigationRoute",
-          funcName: "constructor",
-          paramName: "options.whitelist"
+          moduleName: 'workbox-routing',
+          className: 'NavigationRoute',
+          funcName: 'constructor',
+          paramName: 'options.whitelist',
         });
         assert_mjs.assert.isArrayOfClass(blacklist, RegExp, {
-          moduleName: "workbox-routing",
-          className: "NavigationRoute",
-          funcName: "constructor",
-          paramName: "options.blacklist"
+          moduleName: 'workbox-routing',
+          className: 'NavigationRoute',
+          funcName: 'constructor',
+          paramName: 'options.blacklist',
         });
       }
 
@@ -642,7 +642,7 @@ this.workbox.routing = (function(
      * @private
      */
     _match({ event, url }) {
-      if (event.request.mode !== "navigate") {
+      if (event.request.mode !== 'navigate') {
         return false;
       }
 
@@ -696,7 +696,7 @@ this.workbox.routing = (function(
     RegExpRoute: RegExpRoute,
     Route: Route,
     Router: Router,
-    NavigationRoute: NavigationRoute
+    NavigationRoute: NavigationRoute,
   });
 
   /*
@@ -716,7 +716,7 @@ this.workbox.routing = (function(
   */
 
   {
-    assert_mjs.assert.isSwEnv("workbox-routing");
+    assert_mjs.assert.isSwEnv('workbox-routing');
   }
 
   /**
@@ -747,29 +747,29 @@ this.workbox.routing = (function(
      *
      * @alias workbox.routing.registerRoute
      */
-    registerRoute(capture, handler, method = "GET") {
+    registerRoute(capture, handler, method = 'GET') {
       let route;
 
-      if (typeof capture === "string") {
+      if (typeof capture === 'string') {
         const captureUrl = new URL(capture, location);
 
         {
-          if (!(capture.startsWith("/") || capture.startsWith("http"))) {
-            throw new WorkboxError_mjs.WorkboxError("invalid-string", {
-              moduleName: "workbox-routing",
-              className: "DefaultRouter",
-              funcName: "registerRoute",
-              paramName: "capture"
+          if (!(capture.startsWith('/') || capture.startsWith('http'))) {
+            throw new WorkboxError_mjs.WorkboxError('invalid-string', {
+              moduleName: 'workbox-routing',
+              className: 'DefaultRouter',
+              funcName: 'registerRoute',
+              paramName: 'capture',
             });
           }
 
           // We want to check if Express-style wildcards are in the pathname only.
           // TODO: Remove this log message in v4.
-          const valueToCheck = capture.startsWith("http")
+          const valueToCheck = capture.startsWith('http')
             ? captureUrl.pathname
             : capture;
           // See https://github.com/pillarjs/path-to-regexp#parameters
-          const wildcards = "[*:?+]";
+          const wildcards = '[*:?+]';
           if (valueToCheck.match(new RegExp(`${wildcards}`))) {
             logger_mjs.logger.debug(
               `The '$capture' parameter contains an Express-style wildcard ` +
@@ -799,16 +799,16 @@ this.workbox.routing = (function(
         route = new Route(matchCallback, handler, method);
       } else if (capture instanceof RegExp) {
         route = new RegExpRoute(capture, handler, method);
-      } else if (typeof capture === "function") {
+      } else if (typeof capture === 'function') {
         route = new Route(capture, handler, method);
       } else if (capture instanceof Route) {
         route = capture;
       } else {
-        throw new WorkboxError_mjs.WorkboxError("unsupported-route-type", {
-          moduleName: "workbox-routing",
-          className: "DefaultRouter",
-          funcName: "registerRoute",
-          paramName: "capture"
+        throw new WorkboxError_mjs.WorkboxError('unsupported-route-type', {
+          moduleName: 'workbox-routing',
+          className: 'DefaultRouter',
+          funcName: 'registerRoute',
+          paramName: 'capture',
         });
       }
 
@@ -845,11 +845,11 @@ this.workbox.routing = (function(
      */
     registerNavigationRoute(cachedAssetUrl, options = {}) {
       {
-        assert_mjs.assert.isType(cachedAssetUrl, "string", {
-          moduleName: "workbox-routing",
-          className: "[default export]",
-          funcName: "registerNavigationRoute",
-          paramName: "cachedAssetUrl"
+        assert_mjs.assert.isType(cachedAssetUrl, 'string', {
+          moduleName: 'workbox-routing',
+          className: '[default export]',
+          funcName: 'registerNavigationRoute',
+          paramName: 'cachedAssetUrl',
         });
       }
 
@@ -888,7 +888,7 @@ this.workbox.routing = (function(
 
       const route = new NavigationRoute(handler, {
         whitelist: options.whitelist,
-        blacklist: options.blacklist
+        blacklist: options.blacklist,
       });
       super.registerRoute(route);
 
@@ -900,7 +900,7 @@ this.workbox.routing = (function(
 
   // By default, register a fetch event listener that will respond to a request
   // only if there's a matching route.
-  self.addEventListener("fetch", event => {
+  self.addEventListener('fetch', event => {
     const responsePromise = router.handleRequest(event);
     if (responsePromise) {
       event.respondWith(responsePromise);

@@ -2,7 +2,7 @@
   [4],
   {
     250: function(e, t, a) {
-      "use strict";
+      'use strict';
       a.r(t);
       var r = a(0),
         i = a.n(r),
@@ -14,7 +14,7 @@
         c = function() {
           var e = d.data;
           return i.a.createElement(l.a, {
-            fluid: e.placeholderImage.childImageSharp.fluid
+            fluid: e.placeholderImage.childImageSharp.fluid,
           });
         },
         u = a(245);
@@ -22,16 +22,16 @@
         return r.createElement(
           n.a,
           null,
-          r.createElement(u.a, { title: "Home" }),
-          r.createElement("h1", null, "Hi people"),
-          r.createElement("p", null, "Welcome to your new Gatsby site."),
-          r.createElement("p", null, "Now go build something great."),
+          r.createElement(u.a, { title: 'Home' }),
+          r.createElement('h1', null, 'Hi people'),
+          r.createElement('p', null, 'Welcome to your new Gatsby site.'),
+          r.createElement('p', null, 'Now go build something great.'),
           r.createElement(
-            "div",
-            { style: { maxWidth: "300px", marginBottom: "1.45rem" } },
+            'div',
+            { style: { maxWidth: '300px', marginBottom: '1.45rem' } },
             r.createElement(c, null)
           ),
-          r.createElement(s.a, { to: "/page-2/" }, "Go to page 2")
+          r.createElement(s.a, { to: '/page-2/' }, 'Go to page 2')
         );
       };
     },
@@ -41,7 +41,7 @@
       );
     },
     253: function(e, t, a) {
-      "use strict";
+      'use strict';
       a(6), a(7), a(4), a(47), a(84), a(254);
       var r = a(44);
       (t.__esModule = !0), (t.default = void 0);
@@ -60,7 +60,7 @@
           return (
             a && ((t.fixed = a), delete t.resolutions),
             r && ((t.fluid = r), delete t.sizes),
-            i && (t.loading = "eager"),
+            i && (t.loading = 'eager'),
             t.fluid && (t.fluid = v([].concat(t.fluid))),
             t.fixed && (t.fixed = v([].concat(t.fixed))),
             t
@@ -78,9 +78,9 @@
           return g[a] || !1;
         },
         h =
-          "undefined" != typeof HTMLImageElement &&
-          "loading" in HTMLImageElement.prototype,
-        m = "undefined" != typeof window,
+          'undefined' != typeof HTMLImageElement &&
+          'loading' in HTMLImageElement.prototype,
+        m = 'undefined' != typeof window,
         b = m && window.IntersectionObserver,
         S = new WeakMap();
       function y(e) {
@@ -94,13 +94,13 @@
             l.default.Fragment,
             { key: t },
             r &&
-              l.default.createElement("source", {
-                type: "image/webp",
+              l.default.createElement('source', {
+                type: 'image/webp',
                 media: i,
                 srcSet: r,
-                sizes: s
+                sizes: s,
               }),
-            l.default.createElement("source", { media: i, srcSet: a, sizes: s })
+            l.default.createElement('source', { media: i, srcSet: a, sizes: s })
           );
         });
       }
@@ -119,10 +119,10 @@
           var t = e.src,
             a = e.media,
             r = e.tracedSVG;
-          return l.default.createElement("source", {
+          return l.default.createElement('source', {
             key: t,
             media: a,
-            srcSet: r
+            srcSet: r,
           });
         });
       }
@@ -131,10 +131,10 @@
           var t = e.src,
             a = e.media,
             r = e.base64;
-          return l.default.createElement("source", {
+          return l.default.createElement('source', {
             key: t,
             media: a,
-            srcSet: r
+            srcSet: r,
           });
         });
       }
@@ -144,20 +144,20 @@
           i = e.media,
           s = e.sizes;
         return (
-          "<source " +
-          (t ? "type='image/webp' " : "") +
-          (i ? 'media="' + i + '" ' : "") +
+          '<source ' +
+          (t ? "type='image/webp' " : '') +
+          (i ? 'media="' + i + '" ' : '') +
           'srcset="' +
           (t ? r : a) +
           '" ' +
-          (s ? 'sizes="' + s + '" ' : "") +
-          "/>"
+          (s ? 'sizes="' + s + '" ' : '') +
+          '/>'
         );
       }
       var L = function(e, t) {
           var a =
             (void 0 === i &&
-              "undefined" != typeof window &&
+              'undefined' != typeof window &&
               window.IntersectionObserver &&
               (i = new window.IntersectionObserver(
                 function(e) {
@@ -169,7 +169,7 @@
                     }
                   });
                 },
-                { rootMargin: "200px" }
+                { rootMargin: '200px' }
               )),
             i);
           return (
@@ -181,23 +181,23 @@
         },
         z = function(e) {
           var t = e.src ? 'src="' + e.src + '" ' : 'src="" ',
-            a = e.sizes ? 'sizes="' + e.sizes + '" ' : "",
-            r = e.srcSet ? 'srcset="' + e.srcSet + '" ' : "",
-            i = e.title ? 'title="' + e.title + '" ' : "",
+            a = e.sizes ? 'sizes="' + e.sizes + '" ' : '',
+            r = e.srcSet ? 'srcset="' + e.srcSet + '" ' : '',
+            i = e.title ? 'title="' + e.title + '" ' : '',
             s = e.alt ? 'alt="' + e.alt + '" ' : 'alt="" ',
-            n = e.width ? 'width="' + e.width + '" ' : "",
-            d = e.height ? 'height="' + e.height + '" ' : "",
-            o = e.crossOrigin ? 'crossorigin="' + e.crossOrigin + '" ' : "",
-            l = e.loading ? 'loading="' + e.loading + '" ' : "",
-            c = e.draggable ? 'draggable="' + e.draggable + '" ' : "";
+            n = e.width ? 'width="' + e.width + '" ' : '',
+            d = e.height ? 'height="' + e.height + '" ' : '',
+            o = e.crossOrigin ? 'crossorigin="' + e.crossOrigin + '" ' : '',
+            l = e.loading ? 'loading="' + e.loading + '" ' : '',
+            c = e.draggable ? 'draggable="' + e.draggable + '" ' : '';
           return (
-            "<picture>" +
+            '<picture>' +
             e.imageVariants
               .map(function(e) {
-                return (e.srcSetWebp ? I(e, !0) : "") + I(e);
+                return (e.srcSetWebp ? I(e, !0) : '') + I(e);
               })
-              .join("") +
-            "<img " +
+              .join('') +
+            '<img ' +
             l +
             n +
             d +
@@ -218,7 +218,7 @@
             i = e.spreadProps,
             s = l.default.createElement(O, (0, o.default)({ src: t }, i));
           return a.length > 1
-            ? l.default.createElement("picture", null, r(a), s)
+            ? l.default.createElement('picture', null, r(a), s)
             : s;
         },
         O = l.default.forwardRef(function(e, t) {
@@ -231,17 +231,17 @@
             u = e.loading,
             f = e.draggable,
             g = (0, d.default)(e, [
-              "sizes",
-              "srcSet",
-              "src",
-              "style",
-              "onLoad",
-              "onError",
-              "loading",
-              "draggable"
+              'sizes',
+              'srcSet',
+              'src',
+              'style',
+              'onLoad',
+              'onError',
+              'loading',
+              'draggable',
             ]);
           return l.default.createElement(
-            "img",
+            'img',
             (0, o.default)({ sizes: a, srcSet: r, src: i }, g, {
               onLoad: n,
               onError: c,
@@ -250,29 +250,29 @@
               draggable: f,
               style: (0, o.default)(
                 {
-                  position: "absolute",
+                  position: 'absolute',
                   top: 0,
                   left: 0,
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                  objectPosition: "center"
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  objectPosition: 'center',
                 },
                 s
-              )
+              ),
             })
           );
         });
       O.propTypes = {
         style: c.default.object,
         onError: c.default.func,
-        onLoad: c.default.func
+        onLoad: c.default.func,
       };
       var A = (function(e) {
         function t(t) {
           var a;
           ((a = e.call(this, t) || this).seenBefore = m && p(t)),
-            (a.isCritical = "eager" === t.loading || t.critical),
+            (a.isCritical = 'eager' === t.loading || t.critical),
             (a.addNoScript = !(a.isCritical && !t.fadeIn)),
             (a.useIOSupport = !h && b && !a.isCritical && !a.seenBefore);
           var r = a.isCritical || (m && (h || !a.useIOSupport));
@@ -281,7 +281,7 @@
               isVisible: r,
               imgLoaded: !1,
               imgCached: !1,
-              fadeIn: !a.seenBefore && t.fadeIn
+              fadeIn: !a.seenBefore && t.fadeIn,
             }),
             (a.imageRef = l.default.createRef()),
             (a.handleImageLoaded = a.handleImageLoaded.bind((0, s.default)(a))),
@@ -295,7 +295,7 @@
           (a.componentDidMount = function() {
             if (
               (this.state.isVisible &&
-                "function" == typeof this.props.onStartLoad &&
+                'function' == typeof this.props.onStartLoad &&
                 this.props.onStartLoad({ wasCached: p(this.props) }),
               this.isCritical)
             ) {
@@ -313,12 +313,12 @@
               (this.cleanUpListeners = L(e, function() {
                 var e = p(t.props);
                 t.state.isVisible ||
-                  "function" != typeof t.props.onStartLoad ||
+                  'function' != typeof t.props.onStartLoad ||
                   t.props.onStartLoad({ wasCached: e }),
                   t.setState({ isVisible: !0 }, function() {
                     return t.setState({
                       imgLoaded: e,
-                      imgCached: !!t.imageRef.current.currentSrc
+                      imgCached: !!t.imageRef.current.currentSrc,
                     });
                   });
               }));
@@ -357,12 +357,12 @@
               C = (0, o.default)(
                 {
                   opacity: A ? 1 : 0,
-                  transition: V ? "opacity " + b + "ms" : "none"
+                  transition: V ? 'opacity ' + b + 'ms' : 'none',
                 },
                 d
               ),
-              N = "boolean" == typeof m ? "lightgray" : m,
-              T = { transitionDelay: b + "ms" },
+              N = 'boolean' == typeof m ? 'lightgray' : m,
+              T = { transitionDelay: b + 'ms' },
               W = (0, o.default)(
                 { opacity: this.state.imgLoaded ? 0 : 1 },
                 V && T,
@@ -373,9 +373,9 @@
               ),
               x = {
                 title: t,
-                alt: this.state.isVisible ? "" : a,
+                alt: this.state.isVisible ? '' : a,
                 style: W,
-                className: g
+                className: g,
               };
             if (p) {
               var q = p,
@@ -383,19 +383,19 @@
               return l.default.createElement(
                 S,
                 {
-                  className: (r || "") + " gatsby-image-wrapper",
+                  className: (r || '') + ' gatsby-image-wrapper',
                   style: (0, o.default)(
-                    { position: "relative", overflow: "hidden" },
+                    { position: 'relative', overflow: 'hidden' },
                     s
                   ),
                   ref: this.handleRef,
-                  key: "fluid-" + JSON.stringify(M.srcSet)
+                  key: 'fluid-' + JSON.stringify(M.srcSet),
                 },
                 l.default.createElement(S, {
                   style: {
-                    width: "100%",
-                    paddingBottom: 100 / M.aspectRatio + "%"
-                  }
+                    width: '100%',
+                    paddingBottom: 100 / M.aspectRatio + '%',
+                  },
                 }),
                 N &&
                   l.default.createElement(S, {
@@ -403,33 +403,33 @@
                     style: (0, o.default)(
                       {
                         backgroundColor: N,
-                        position: "absolute",
+                        position: 'absolute',
                         top: 0,
                         bottom: 0,
                         opacity: this.state.imgLoaded ? 0 : 1,
                         right: 0,
-                        left: 0
+                        left: 0,
                       },
                       V && T
-                    )
+                    ),
                   }),
                 M.base64 &&
                   l.default.createElement(R, {
                     src: M.base64,
                     spreadProps: x,
                     imageVariants: q,
-                    generateSources: w
+                    generateSources: w,
                   }),
                 M.tracedSVG &&
                   l.default.createElement(R, {
                     src: M.tracedSVG,
                     spreadProps: x,
                     imageVariants: q,
-                    generateSources: E
+                    generateSources: E,
                   }),
                 this.state.isVisible &&
                   l.default.createElement(
-                    "picture",
+                    'picture',
                     null,
                     y(q),
                     l.default.createElement(O, {
@@ -445,18 +445,18 @@
                       onError: this.props.onError,
                       itemProp: v,
                       loading: I,
-                      draggable: L
+                      draggable: L,
                     })
                   ),
                 this.addNoScript &&
-                  l.default.createElement("noscript", {
+                  l.default.createElement('noscript', {
                     dangerouslySetInnerHTML: {
                       __html: z(
                         (0, o.default)({ alt: a, title: t, loading: I }, M, {
-                          imageVariants: q
+                          imageVariants: q,
                         })
-                      )
-                    }
+                      ),
+                    },
                   })
               );
             }
@@ -465,23 +465,23 @@
                 H = j[0],
                 J = (0, o.default)(
                   {
-                    position: "relative",
-                    overflow: "hidden",
-                    display: "inline-block",
+                    position: 'relative',
+                    overflow: 'hidden',
+                    display: 'inline-block',
                     width: H.width,
-                    height: H.height
+                    height: H.height,
                   },
                   s
                 );
               return (
-                "inherit" === s.display && delete J.display,
+                'inherit' === s.display && delete J.display,
                 l.default.createElement(
                   S,
                   {
-                    className: (r || "") + " gatsby-image-wrapper",
+                    className: (r || '') + ' gatsby-image-wrapper',
                     style: J,
                     ref: this.handleRef,
-                    key: "fixed-" + JSON.stringify(H.srcSet)
+                    key: 'fixed-' + JSON.stringify(H.srcSet),
                   },
                   N &&
                     l.default.createElement(S, {
@@ -491,28 +491,28 @@
                           backgroundColor: N,
                           width: H.width,
                           opacity: this.state.imgLoaded ? 0 : 1,
-                          height: H.height
+                          height: H.height,
                         },
                         V && T
-                      )
+                      ),
                     }),
                   H.base64 &&
                     l.default.createElement(R, {
                       src: H.base64,
                       spreadProps: x,
                       imageVariants: j,
-                      generateSources: w
+                      generateSources: w,
                     }),
                   H.tracedSVG &&
                     l.default.createElement(R, {
                       src: H.tracedSVG,
                       spreadProps: x,
                       imageVariants: j,
-                      generateSources: E
+                      generateSources: E,
                     }),
                   this.state.isVisible &&
                     l.default.createElement(
-                      "picture",
+                      'picture',
                       null,
                       y(j),
                       l.default.createElement(O, {
@@ -530,18 +530,18 @@
                         onError: this.props.onError,
                         itemProp: v,
                         loading: I,
-                        draggable: L
+                        draggable: L,
                       })
                     ),
                   this.addNoScript &&
-                    l.default.createElement("noscript", {
+                    l.default.createElement('noscript', {
                       dangerouslySetInnerHTML: {
                         __html: z(
                           (0, o.default)({ alt: a, title: t, loading: I }, H, {
-                            imageVariants: j
+                            imageVariants: j,
                           })
-                        )
-                      }
+                        ),
+                      },
                     })
                 )
               );
@@ -554,9 +554,9 @@
       A.defaultProps = {
         fadeIn: !0,
         durationFadeIn: 500,
-        alt: "",
-        Tag: "div",
-        loading: "lazy"
+        alt: '',
+        Tag: 'div',
+        loading: 'lazy',
       };
       var V = c.default.shape({
           width: c.default.number.isRequired,
@@ -567,7 +567,7 @@
           tracedSVG: c.default.string,
           srcWebp: c.default.string,
           srcSetWebp: c.default.string,
-          media: c.default.string
+          media: c.default.string,
         }),
         C = c.default.shape({
           aspectRatio: c.default.number.isRequired,
@@ -578,7 +578,7 @@
           tracedSVG: c.default.string,
           srcWebp: c.default.string,
           srcSetWebp: c.default.string,
-          media: c.default.string
+          media: c.default.string,
         });
       A.propTypes = {
         resolutions: V,
@@ -598,27 +598,27 @@
         placeholderClassName: c.default.string,
         backgroundColor: c.default.oneOfType([
           c.default.string,
-          c.default.bool
+          c.default.bool,
         ]),
         onLoad: c.default.func,
         onError: c.default.func,
         onStartLoad: c.default.func,
         Tag: c.default.string,
         itemProp: c.default.string,
-        loading: c.default.oneOf(["auto", "lazy", "eager"]),
-        draggable: c.default.bool
+        loading: c.default.oneOf(['auto', 'lazy', 'eager']),
+        draggable: c.default.bool,
       };
       var N = A;
       t.default = N;
     },
     254: function(e, t, a) {
-      "use strict";
-      a(176)("fixed", function(e) {
+      'use strict';
+      a(176)('fixed', function(e) {
         return function() {
-          return e(this, "tt", "", "");
+          return e(this, 'tt', '', '');
         };
       });
-    }
-  }
+    },
+  },
 ]);
 //# sourceMappingURL=component---src-pages-index-tsx-8ddf215c27d99bdbc5f8.js.map

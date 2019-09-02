@@ -1,10 +1,10 @@
-import { ThemeTypes } from "./../../types/theme_types/index";
-import { IReduxAction } from "../../../../types/redux_types";
+import { ThemeTypes } from './../../types/theme_types/index';
+import { IReduxAction } from '../../../../types/redux_types';
 
 import {
   ITheme,
-  ICombinedTheme
-} from "../../../utils/primary_interfaces/theme.interface";
+  ICombinedTheme,
+} from '../../../utils/primary_interfaces/theme.interface';
 
 interface IThemeState {
   allThemes: ICombinedTheme;
@@ -17,12 +17,12 @@ interface IThemeState {
 const initialState: IThemeState = {
   allThemes: {
     darkMode: {},
-    lightMode: {}
+    lightMode: {},
   },
   darkMode: {},
   lightMode: {},
-  currentThemeName: "",
-  currentTheme: {}
+  currentThemeName: '',
+  currentTheme: {},
 };
 
 const themesReducer = (
@@ -37,13 +37,13 @@ const themesReducer = (
         lightMode: action.payload.lightMode,
         darkMode: action.payload.darkMode,
         currentTheme: action.payload.darkMode,
-        currentThemeName: action.payload.currentThemeName
+        currentThemeName: action.payload.currentThemeName,
       };
     case ThemeTypes.UPDATE_CURRENT_THEME:
       return {
         ...state,
         currentTheme: state.allThemes[action.payload],
-        currentThemeName: action.payload
+        currentThemeName: action.payload,
       };
     default:
       return state;

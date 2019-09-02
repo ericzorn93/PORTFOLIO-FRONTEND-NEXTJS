@@ -1,25 +1,25 @@
 (this.workbox = this.workbox || {}),
   (this.workbox.backgroundSync = (function(e, t) {
-    "use strict";
+    'use strict';
     try {
-      self.workbox.v["workbox:background-sync:3.6.3"] = 1;
+      self.workbox.v['workbox:background-sync:3.6.3'] = 1;
     } catch (e) {}
     const r = [
-      "method",
-      "referrer",
-      "referrerPolicy",
-      "mode",
-      "credentials",
-      "cache",
-      "redirect",
-      "integrity",
-      "keepalive"
+      'method',
+      'referrer',
+      'referrerPolicy',
+      'mode',
+      'credentials',
+      'cache',
+      'redirect',
+      'integrity',
+      'keepalive',
     ];
     class s {
       static fromRequest(e) {
         return babelHelpers.asyncToGenerator(function*() {
           const t = { headers: {} };
-          "GET" !== e.method && (t.body = yield e.clone().blob());
+          'GET' !== e.method && (t.body = yield e.clone().blob());
           for (const [r, s] of e.headers.entries()) t.headers[r] = s;
           for (const s of r) void 0 !== e[s] && (t[s] = e[s]);
           return new s({ url: e.url, requestInit: t });
@@ -35,7 +35,7 @@
         return {
           url: this.url,
           timestamp: this.timestamp,
-          requestInit: this.requestInit
+          requestInit: this.requestInit,
         };
       }
       toRequest() {
@@ -50,10 +50,10 @@
         );
       }
     }
-    const i = "workbox-background-sync",
-      n = "requests",
-      u = "queueName",
-      c = "workbox-background-sync",
+    const i = 'workbox-background-sync',
+      n = 'requests',
+      u = 'queueName',
+      c = 'workbox-background-sync',
       o = 10080;
     class l {
       constructor(t) {
@@ -62,7 +62,7 @@
             onupgradeneeded: e =>
               e.target.result
                 .createObjectStore(n, { autoIncrement: !0 })
-                .createIndex(u, u, { unique: !1 })
+                .createIndex(u, u, { unique: !1 }),
           }));
       }
       addEntry(e) {
@@ -70,7 +70,7 @@
         return babelHelpers.asyncToGenerator(function*() {
           yield t.r.add(n, {
             queueName: t.t.name,
-            storableRequest: e.toObject()
+            storableRequest: e.toObject(),
           });
         })();
       }
@@ -81,7 +81,7 @@
             index: u,
             query: IDBKeyRange.only(e.t.name),
             count: 1,
-            includeKeys: !0
+            includeKeys: !0,
           });
           if (t)
             return (
@@ -94,7 +94,7 @@
     class h {
       constructor(e, { callbacks: r = {}, maxRetentionTime: s = o } = {}) {
         if (a.has(e))
-          throw new t.WorkboxError("duplicate-queue-name", { name: e });
+          throw new t.WorkboxError('duplicate-queue-name', { name: e });
         a.add(e),
           (this.s = e),
           (this.i = r),
@@ -109,7 +109,7 @@
         var t = this;
         return babelHelpers.asyncToGenerator(function*() {
           const r = yield s.fromRequest(e.clone());
-          yield t.o("requestWillEnqueue", r),
+          yield t.o('requestWillEnqueue', r),
             yield t.u.addEntry(r),
             yield t.l();
         })();
@@ -125,7 +125,7 @@
             const t = n.clone(),
               u = 60 * e.n * 1e3;
             if (r - n.timestamp > u) continue;
-            yield e.o("requestWillReplay", n);
+            yield e.o('requestWillReplay', n);
             const c = { request: n.toRequest() };
             try {
               c.response = yield fetch(c.request.clone());
@@ -134,27 +134,27 @@
             }
             s.push(c);
           }
-          if ((yield e.o("queueDidReplay", s), i.length))
+          if ((yield e.o('queueDidReplay', s), i.length))
             throw (yield Promise.all(
               i.map(function(t) {
                 return e.u.addEntry(t);
               })
             ),
-            new t.WorkboxError("queue-replay-failed", {
+            new t.WorkboxError('queue-replay-failed', {
               name: e.s,
-              count: i.length
+              count: i.length,
             }));
         })();
       }
       o(e, ...t) {
         var r = this;
         return babelHelpers.asyncToGenerator(function*() {
-          "function" == typeof r.i[e] && (yield r.i[e].apply(null, t));
+          'function' == typeof r.i[e] && (yield r.i[e].apply(null, t));
         })();
       }
       c() {
-        "sync" in registration
-          ? self.addEventListener("sync", e => {
+        'sync' in registration
+          ? self.addEventListener('sync', e => {
               e.tag === `${c}:${this.s}` && e.waitUntil(this.replayRequests());
             })
           : this.replayRequests();
@@ -162,7 +162,7 @@
       l() {
         var e = this;
         return babelHelpers.asyncToGenerator(function*() {
-          if ("sync" in registration)
+          if ('sync' in registration)
             try {
               yield registration.sync.register(`${c}:${e.s}`);
             } catch (e) {}
@@ -185,7 +185,7 @@
             yield t.t.addRequest(e);
           })();
         }
-      }
+      },
     });
   })(workbox.core._private, workbox.core._private));
 

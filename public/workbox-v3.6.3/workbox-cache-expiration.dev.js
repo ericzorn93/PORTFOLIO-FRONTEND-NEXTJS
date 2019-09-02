@@ -8,10 +8,10 @@ this.workbox.expiration = (function(
   cacheNames_mjs,
   index_mjs
 ) {
-  "use strict";
+  'use strict';
 
   try {
-    self.workbox.v["workbox:cache-expiration:3.6.3"] = 1;
+    self.workbox.v['workbox:cache-expiration:3.6.3'] = 1;
   } catch (e) {} // eslint-disable-line
 
   /*
@@ -30,8 +30,8 @@ this.workbox.expiration = (function(
     limitations under the License.
   */
 
-  const URL_KEY = "url";
-  const TIMESTAMP_KEY = "timestamp";
+  const URL_KEY = 'url';
+  const TIMESTAMP_KEY = 'timestamp';
 
   /**
    * Returns the timestamp model.
@@ -52,7 +52,7 @@ this.workbox.expiration = (function(
       this._storeName = cacheName;
 
       this._db = new DBWrapper_mjs.DBWrapper(this._cacheName, 2, {
-        onupgradeneeded: evt => this._handleUpgrade(evt)
+        onupgradeneeded: evt => this._handleUpgrade(evt),
       });
     }
 
@@ -67,8 +67,8 @@ this.workbox.expiration = (function(
       const db = evt.target.result;
       if (evt.oldVersion < 2) {
         // Remove old databases.
-        if (db.objectStoreNames.contains("workbox-cache-expiration")) {
-          db.deleteObjectStore("workbox-cache-expiration");
+        if (db.objectStoreNames.contains('workbox-cache-expiration')) {
+          db.deleteObjectStore('workbox-cache-expiration');
         }
       }
 
@@ -91,7 +91,7 @@ this.workbox.expiration = (function(
       return babelHelpers.asyncToGenerator(function*() {
         yield _this._db.put(_this._storeName, {
           [URL_KEY]: new URL(url, location).href,
-          [TIMESTAMP_KEY]: timestamp
+          [TIMESTAMP_KEY]: timestamp,
         });
       })();
     }
@@ -108,7 +108,7 @@ this.workbox.expiration = (function(
 
       return babelHelpers.asyncToGenerator(function*() {
         return yield _this2._db.getAllMatching(_this2._storeName, {
-          index: TIMESTAMP_KEY
+          index: TIMESTAMP_KEY,
         });
       })();
     }
@@ -193,41 +193,41 @@ this.workbox.expiration = (function(
      */
     constructor(cacheName, config = {}) {
       {
-        assert_mjs.assert.isType(cacheName, "string", {
-          moduleName: "workbox-cache-expiration",
-          className: "CacheExpiration",
-          funcName: "constructor",
-          paramName: "cacheName"
+        assert_mjs.assert.isType(cacheName, 'string', {
+          moduleName: 'workbox-cache-expiration',
+          className: 'CacheExpiration',
+          funcName: 'constructor',
+          paramName: 'cacheName',
         });
 
         if (!(config.maxEntries || config.maxAgeSeconds)) {
           throw new WorkboxError_mjs.WorkboxError(
-            "max-entries-or-age-required",
+            'max-entries-or-age-required',
             {
-              moduleName: "workbox-cache-expiration",
-              className: "CacheExpiration",
-              funcName: "constructor"
+              moduleName: 'workbox-cache-expiration',
+              className: 'CacheExpiration',
+              funcName: 'constructor',
             }
           );
         }
 
         if (config.maxEntries) {
-          assert_mjs.assert.isType(config.maxEntries, "number", {
-            moduleName: "workbox-cache-expiration",
-            className: "CacheExpiration",
-            funcName: "constructor",
-            paramName: "config.maxEntries"
+          assert_mjs.assert.isType(config.maxEntries, 'number', {
+            moduleName: 'workbox-cache-expiration',
+            className: 'CacheExpiration',
+            funcName: 'constructor',
+            paramName: 'config.maxEntries',
           });
 
           // TODO: Assert is positive
         }
 
         if (config.maxAgeSeconds) {
-          assert_mjs.assert.isType(config.maxAgeSeconds, "number", {
-            moduleName: "workbox-cache-expiration",
-            className: "CacheExpiration",
-            funcName: "constructor",
-            paramName: "config.maxAgeSeconds"
+          assert_mjs.assert.isType(config.maxAgeSeconds, 'number', {
+            moduleName: 'workbox-cache-expiration',
+            className: 'CacheExpiration',
+            funcName: 'constructor',
+            paramName: 'config.maxAgeSeconds',
           });
 
           // TODO: Assert is positive
@@ -269,7 +269,7 @@ this.workbox.expiration = (function(
 
         yield Promise.all([
           _this._deleteFromCache(allUrls),
-          _this._deleteFromIDB(allUrls)
+          _this._deleteFromIDB(allUrls),
         ]);
 
         {
@@ -277,12 +277,12 @@ this.workbox.expiration = (function(
           if (allUrls.length > 0) {
             logger_mjs.logger.groupCollapsed(
               `Expired ${allUrls.length} ` +
-                `${allUrls.length === 1 ? "entry" : "entries"} and removed ` +
-                `${allUrls.length === 1 ? "it" : "them"} from the ` +
+                `${allUrls.length === 1 ? 'entry' : 'entries'} and removed ` +
+                `${allUrls.length === 1 ? 'it' : 'them'} from the ` +
                 `'${_this._cacheName}' cache.`
             );
             logger_mjs.logger.log(
-              `Expired the following ${allUrls.length === 1 ? "URL" : "URLs"}:`
+              `Expired the following ${allUrls.length === 1 ? 'URL' : 'URLs'}:`
             );
             allUrls.forEach(function(url) {
               return logger_mjs.logger.log(`    ${url}`);
@@ -316,11 +316,11 @@ this.workbox.expiration = (function(
 
       return babelHelpers.asyncToGenerator(function*() {
         {
-          assert_mjs.assert.isType(expireFromTimestamp, "number", {
-            moduleName: "workbox-cache-expiration",
-            className: "CacheExpiration",
-            funcName: "_findOldEntries",
-            paramName: "expireFromTimestamp"
+          assert_mjs.assert.isType(expireFromTimestamp, 'number', {
+            moduleName: 'workbox-cache-expiration',
+            className: 'CacheExpiration',
+            funcName: '_findOldEntries',
+            paramName: 'expireFromTimestamp',
           });
         }
 
@@ -410,16 +410,16 @@ this.workbox.expiration = (function(
 
       return babelHelpers.asyncToGenerator(function*() {
         {
-          assert_mjs.assert.isType(url, "string", {
-            moduleName: "workbox-cache-expiration",
-            className: "CacheExpiration",
-            funcName: "updateTimestamp",
-            paramName: "url"
+          assert_mjs.assert.isType(url, 'string', {
+            moduleName: 'workbox-cache-expiration',
+            className: 'CacheExpiration',
+            funcName: 'updateTimestamp',
+            paramName: 'url',
           });
         }
 
         const urlObject = new URL(url, location);
-        urlObject.hash = "";
+        urlObject.hash = '';
 
         yield _this6._timestampModel.setTimestamp(urlObject.href, Date.now());
       })();
@@ -444,13 +444,13 @@ this.workbox.expiration = (function(
           throw new WorkboxError_mjs.WorkboxError(
             `expired-test-without-max-age`,
             {
-              methodName: "isURLExpired",
-              paramName: "maxAgeSeconds"
+              methodName: 'isURLExpired',
+              paramName: 'maxAgeSeconds',
             }
           );
         }
         const urlObject = new URL(url, location);
-        urlObject.hash = "";
+        urlObject.hash = '';
 
         const timestamp = yield _this7._timestampModel.getTimestamp(
           urlObject.href
@@ -521,30 +521,30 @@ this.workbox.expiration = (function(
       {
         if (!(config.maxEntries || config.maxAgeSeconds)) {
           throw new WorkboxError_mjs.WorkboxError(
-            "max-entries-or-age-required",
+            'max-entries-or-age-required',
             {
-              moduleName: "workbox-cache-expiration",
-              className: "Plugin",
-              funcName: "constructor"
+              moduleName: 'workbox-cache-expiration',
+              className: 'Plugin',
+              funcName: 'constructor',
             }
           );
         }
 
         if (config.maxEntries) {
-          assert_mjs.assert.isType(config.maxEntries, "number", {
-            moduleName: "workbox-cache-expiration",
-            className: "Plugin",
-            funcName: "constructor",
-            paramName: "config.maxEntries"
+          assert_mjs.assert.isType(config.maxEntries, 'number', {
+            moduleName: 'workbox-cache-expiration',
+            className: 'Plugin',
+            funcName: 'constructor',
+            paramName: 'config.maxEntries',
           });
         }
 
         if (config.maxAgeSeconds) {
-          assert_mjs.assert.isType(config.maxAgeSeconds, "number", {
-            moduleName: "workbox-cache-expiration",
-            className: "Plugin",
-            funcName: "constructor",
-            paramName: "config.maxAgeSeconds"
+          assert_mjs.assert.isType(config.maxAgeSeconds, 'number', {
+            moduleName: 'workbox-cache-expiration',
+            className: 'Plugin',
+            funcName: 'constructor',
+            paramName: 'config.maxAgeSeconds',
           });
         }
       }
@@ -571,7 +571,7 @@ this.workbox.expiration = (function(
      */
     _getCacheExpiration(cacheName) {
       if (cacheName === cacheNames_mjs.cacheNames.getRuntimeName()) {
-        throw new WorkboxError_mjs.WorkboxError("expire-custom-caches-only");
+        throw new WorkboxError_mjs.WorkboxError('expire-custom-caches-only');
       }
 
       let cacheExpiration = this._cacheExpirations.get(cacheName);
@@ -651,11 +651,11 @@ this.workbox.expiration = (function(
      * @private
      */
     _getDateHeaderTimestamp(cachedResponse) {
-      if (!cachedResponse.headers.has("date")) {
+      if (!cachedResponse.headers.has('date')) {
         return null;
       }
 
-      const dateHeader = cachedResponse.headers.get("date");
+      const dateHeader = cachedResponse.headers.get('date');
       const parsedDate = new Date(dateHeader);
       const headerTime = parsedDate.getTime();
 
@@ -683,17 +683,17 @@ this.workbox.expiration = (function(
 
       return babelHelpers.asyncToGenerator(function*() {
         {
-          assert_mjs.assert.isType(cacheName, "string", {
-            moduleName: "workbox-cache-expiration",
-            className: "Plugin",
-            funcName: "cacheDidUpdate",
-            paramName: "cacheName"
+          assert_mjs.assert.isType(cacheName, 'string', {
+            moduleName: 'workbox-cache-expiration',
+            className: 'Plugin',
+            funcName: 'cacheDidUpdate',
+            paramName: 'cacheName',
           });
           assert_mjs.assert.isInstance(request, Request, {
-            moduleName: "workbox-cache-expiration",
-            className: "Plugin",
-            funcName: "cacheDidUpdate",
-            paramName: "request"
+            moduleName: 'workbox-cache-expiration',
+            className: 'Plugin',
+            funcName: 'cacheDidUpdate',
+            paramName: 'request',
           });
         }
 
