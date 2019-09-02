@@ -39,6 +39,7 @@
     "@graphql-codegen/typescript": "^1.6.1",
     "@types/date-fns": "^2.6.0",
     "@types/express": "^4.17.1",
+    "@types/graphql": "^14.5.0",
     "@types/node": "^12.7.2",
     "@types/react-redux": "^7.1.2",
     "@types/redux": "^3.6.0",
@@ -47,6 +48,9 @@
     "eslint-config-airbnb": "^18.0.1",
     "eslint-plugin-ava": "^8.0.0",
     "graphql-code-generator": "^0.18.2",
+    "graphql-codegen-typescript-client": "^0.18.2",
+    "graphql-codegen-typescript-common": "^0.18.2",
+    "graphql-codegen-typescript-react-apollo": "^0.18.2",
     "prettier": "^1.18.2"
   },
   "keywords": [
@@ -60,7 +64,7 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing \"",
-    "generate": "graphql-codegen"
+    "generate": "gql-gen --config codegen.yml"
   },
   "repository": {
     "type": "git",

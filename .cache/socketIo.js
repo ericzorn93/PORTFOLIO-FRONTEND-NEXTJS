@@ -1,5 +1,5 @@
-import { reportError, clearError } from "./error-overlay-handler";
-import normalizePagePath from "./normalize-page-path";
+import { reportError, clearError } from './error-overlay-handler';
+import normalizePagePath from './normalize-page-path';
 
 let socket = null;
 
@@ -35,14 +35,14 @@ export default function socketIo() {
             if (didDataChange(msg, staticQueryData)) {
               staticQueryData = {
                 ...staticQueryData,
-                [msg.payload.id]: msg.payload.result
+                [msg.payload.id]: msg.payload.result,
               };
             }
           } else if (msg.type === `pageQueryResult`) {
             if (didDataChange(msg, pageQueryData)) {
               pageQueryData = {
                 ...pageQueryData,
-                [normalizePagePath(msg.payload.id)]: msg.payload.result
+                [normalizePagePath(msg.payload.id)]: msg.payload.result,
               };
             }
           } else if (msg.type === `overlayError`) {

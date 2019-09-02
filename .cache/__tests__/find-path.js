@@ -1,4 +1,4 @@
-import { cleanPath, findMatchPath, setMatchPaths } from "../find-path";
+import { cleanPath, findMatchPath, setMatchPaths } from '../find-path';
 
 describe(`find-path`, () => {
   describe(`cleanPath`, () => {
@@ -31,8 +31,8 @@ describe(`find-path`, () => {
       setMatchPaths([
         {
           matchPath: `/app/*`,
-          path: `/app`
-        }
+          path: `/app`,
+        },
       ]);
 
       expect(findMatchPath(`/app/dynamic-page#anchor?gatsby=cool`)).toBe(
@@ -44,8 +44,8 @@ describe(`find-path`, () => {
       setMatchPaths([
         {
           matchPath: `/app/*`,
-          path: `/app`
-        }
+          path: `/app`,
+        },
       ]);
 
       expect(findMatchPath(`/notanapp/dynamic-page`)).toBeNull();

@@ -1,5 +1,5 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 import Link, {
   withPrefix,
   withAssetPrefix,
@@ -7,10 +7,10 @@ import Link, {
   push,
   replace,
   navigateTo,
-  parsePath
-} from "gatsby-link";
-import PageRenderer from "./public-page-renderer";
-import loader from "./loader";
+  parsePath,
+} from 'gatsby-link';
+import PageRenderer from './public-page-renderer';
+import loader from './loader';
 
 const prefetchPathname = loader.enqueue;
 
@@ -72,7 +72,7 @@ StaticQuery.propTypes = {
   data: PropTypes.object,
   query: PropTypes.string.isRequired,
   render: PropTypes.func,
-  children: PropTypes.func
+  children: PropTypes.func,
 };
 
 function graphql() {
@@ -98,5 +98,5 @@ export {
   StaticQuery,
   PageRenderer,
   useStaticQuery,
-  prefetchPathname
+  prefetchPathname,
 };

@@ -10,7 +10,7 @@ const {
   flatten,
   uniqBy,
   flattenDeep,
-  replace
+  replace,
 } = require(`lodash`);
 
 const apiRunner = require(`./api-runner-ssr`);
@@ -84,7 +84,7 @@ export const sanitizeComponents = components => {
     // And not asset server when an assetPrefix is used
     if (__ASSET_PREFIX__ && component.props.rel === `manifest`) {
       return React.cloneElement(component, {
-        href: replace(component.props.href, __ASSET_PREFIX__, ``)
+        href: replace(component.props.href, __ASSET_PREFIX__, ``),
       });
     }
     return component;
@@ -110,7 +110,7 @@ export default (pagePath, callback) => {
       name="generator"
       content={`Gatsby ${gatsbyVersion}`}
       key={`generator-${gatsbyVersion}`}
-    />
+    />,
   ];
   let htmlAttributes = {};
   let bodyAttributes = {};
@@ -179,7 +179,7 @@ export default (pagePath, callback) => {
         ...this.props,
         ...pageData.result,
         // pathContext was deprecated in v2. Renamed to pageContext
-        pathContext: pageData.result ? pageData.result.pageContext : undefined
+        pathContext: pageData.result ? pageData.result.pageContext : undefined,
       };
 
       const pageElement = createElement(
@@ -207,7 +207,7 @@ export default (pagePath, callback) => {
       Router,
       {
         id: `gatsby-focus-wrapper`,
-        baseuri: `${__BASE_PATH__}`
+        baseuri: `${__BASE_PATH__}`,
       },
       createElement(RouteHandler, { path: `/*` })
     )
@@ -233,7 +233,7 @@ export default (pagePath, callback) => {
     setPostBodyComponents,
     setBodyProps,
     pathname: pagePath,
-    pathPrefix: __PATH_PREFIX__
+    pathPrefix: __PATH_PREFIX__,
   });
 
   // If no one stepped up, we'll handle it.
@@ -306,7 +306,7 @@ export default (pagePath, callback) => {
     bodyHtml,
     scripts,
     styles,
-    pathPrefix: __PATH_PREFIX__
+    pathPrefix: __PATH_PREFIX__,
   });
 
   scripts
@@ -360,7 +360,7 @@ export default (pagePath, callback) => {
               __html: fs.readFileSync(
                 join(process.cwd(), `public`, style.name),
                 `utf-8`
-              )
+              ),
             }}
           />
         );
@@ -377,7 +377,7 @@ export default (pagePath, callback) => {
       key={`script-loader`}
       id={`gatsby-script-loader`}
       dangerouslySetInnerHTML={{
-        __html: windowPageData
+        __html: windowPageData,
       }}
     />
   );
@@ -392,7 +392,7 @@ export default (pagePath, callback) => {
       key={`chunk-mapping`}
       id={`gatsby-chunk-mapping`}
       dangerouslySetInnerHTML={{
-        __html: scriptChunkMapping
+        __html: scriptChunkMapping,
       }}
     />
   );
@@ -419,7 +419,7 @@ export default (pagePath, callback) => {
     getPostBodyComponents,
     replacePostBodyComponents,
     pathname: pagePath,
-    pathPrefix: __PATH_PREFIX__
+    pathPrefix: __PATH_PREFIX__,
   });
 
   const html = `<!DOCTYPE html>${renderToStaticMarkup(

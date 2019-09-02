@@ -1,19 +1,19 @@
-import React from "react";
-import fs from "fs";
+import React from 'react';
+import fs from 'fs';
 const { join } = require(`path`);
 
-import DevelopStaticEntry from "../develop-static-entry";
+import DevelopStaticEntry from '../develop-static-entry';
 
 jest.mock(`fs`, () => {
   const fs = jest.requireActual(`fs`);
   return {
     ...fs,
-    readFileSync: jest.fn()
+    readFileSync: jest.fn(),
   };
 });
 jest.mock(`gatsby/package.json`, () => {
   return {
-    version: `2.0.0`
+    version: `2.0.0`,
   };
 });
 
@@ -22,12 +22,12 @@ jest.mock(
   () => {
     return {
       components: {
-        "page-component---src-pages-test-js": () => null
-      }
+        'page-component---src-pages-test-js': () => null,
+      },
     };
   },
   {
-    virtual: true
+    virtual: true,
   }
 );
 
@@ -40,8 +40,8 @@ const MOCK_FILE_INFO = {
   )]: JSON.stringify({
     componentChunkName: `page-component---src-pages-test-js`,
     path: `/about/`,
-    webpackCompilationHash: `1234567890abcdef1234`
-  })
+    webpackCompilationHash: `1234567890abcdef1234`,
+  }),
 };
 
 let StaticEntry;
@@ -56,8 +56,8 @@ const reverseHeadersPlugin = {
       const headComponents = getHeadComponents();
       headComponents.reverse();
       replaceHeadComponents(headComponents);
-    }
-  }
+    },
+  },
 };
 
 const injectValuePlugin = (hookName, methodName, value) => {
@@ -66,8 +66,8 @@ const injectValuePlugin = (hookName, methodName, value) => {
       [hookName]: staticEntry => {
         const method = staticEntry[methodName];
         method(value);
-      }
-    }
+      },
+    },
   };
 };
 
@@ -84,7 +84,7 @@ const checkNonEmptyHeadersPlugin = {
     onPreRenderHTML: ({
       getHeadComponents,
       getPreBodyComponents,
-      getPostBodyComponents
+      getPostBodyComponents,
     }) => {
       const headComponents = getHeadComponents();
       const preBodyComponents = getPreBodyComponents();
@@ -92,8 +92,8 @@ const checkNonEmptyHeadersPlugin = {
       checkSanitized(headComponents);
       checkSanitized(preBodyComponents);
       checkSanitized(postBodyComponents);
-    }
-  }
+    },
+  },
 };
 
 const fakeStylesPlugin = {
@@ -102,9 +102,9 @@ const fakeStylesPlugin = {
       setHeadComponents([
         <style key="style1"> .style1 {} </style>,
         <style key="style2"> .style2 {} </style>,
-        <style key="style3"> .style3 {} </style>
-      ])
-  }
+        <style key="style3"> .style3 {} </style>,
+      ]),
+  },
 };
 
 const reverseBodyComponentsPluginFactory = type => {
@@ -114,8 +114,8 @@ const reverseBodyComponentsPluginFactory = type => {
         const components = props[`get${type}BodyComponents`]();
         components.reverse();
         props[`replace${type}BodyComponents`](components);
-      }
-    }
+      },
+    },
   };
 };
 
@@ -126,10 +126,10 @@ const fakeComponentsPluginFactory = type => {
         props[`set${type}BodyComponents`]([
           <div key="div1"> div1 </div>,
           <div key="div2"> div2 </div>,
-          <div key="div3"> div3 </div>
+          <div key="div3"> div3 </div>,
         ]);
-      }
-    }
+      },
+    },
   };
 };
 
@@ -146,7 +146,7 @@ describe(`develop-static-entry`, () => {
   test(`onPreRenderHTML can be used to replace postBodyComponents`, done => {
     global.plugins = [
       fakeComponentsPluginFactory(`Post`),
-      reverseBodyComponentsPluginFactory(`Post`)
+      reverseBodyComponentsPluginFactory(`Post`),
     ];
 
     DevelopStaticEntry(`/about/`, (_, html) => {
@@ -158,7 +158,7 @@ describe(`develop-static-entry`, () => {
   test(`onPreRenderHTML can be used to replace preBodyComponents`, done => {
     global.plugins = [
       fakeComponentsPluginFactory(`Pre`),
-      reverseBodyComponentsPluginFactory(`Pre`)
+      reverseBodyComponentsPluginFactory(`Pre`),
     ];
 
     DevelopStaticEntry(`/about/`, (_, html) => {
@@ -198,7 +198,7 @@ describe(`static-entry sanity checks`, () => {
   const methodsToCheck = [
     `replaceHeadComponents`,
     `replacePreBodyComponents`,
-    `replacePostBodyComponents`
+    `replacePostBodyComponents`,
   ];
 
   methodsToCheck.forEach(methodName => {
@@ -214,7 +214,7 @@ describe(`static-entry sanity checks`, () => {
     test(`${methodName} can filter out null values`, done => {
       const plugin = injectValuePlugin(`onPreRenderHTML`, methodName, [
         null,
-        null
+        null,
       ]);
       global.plugins = [plugin, checkNonEmptyHeadersPlugin];
 
@@ -246,7 +246,7 @@ describe(`static-entry sanity checks`, () => {
         <style key="style1"> .style1 {} </style>,
         <style key="style2"> .style2 {} </style>,
         <style key="style3"> .style3 {} </style>,
-        [<style key="style4"> .style3 {} </style>]
+        [<style key="style4"> .style3 {} </style>],
       ]);
       global.plugins = [plugin, checkNonEmptyHeadersPlugin];
 
@@ -275,7 +275,7 @@ describe(`static-entry`, () => {
   test(`onPreRenderHTML can be used to replace postBodyComponents`, done => {
     global.plugins = [
       fakeComponentsPluginFactory(`Post`),
-      reverseBodyComponentsPluginFactory(`Post`)
+      reverseBodyComponentsPluginFactory(`Post`),
     ];
 
     StaticEntry(`/about/`, (_, html) => {
@@ -287,7 +287,7 @@ describe(`static-entry`, () => {
   test(`onPreRenderHTML can be used to replace preBodyComponents`, done => {
     global.plugins = [
       fakeComponentsPluginFactory(`Pre`),
-      reverseBodyComponentsPluginFactory(`Pre`)
+      reverseBodyComponentsPluginFactory(`Pre`),
     ];
 
     StaticEntry(`/about/`, (_, html) => {
@@ -323,7 +323,7 @@ describe(`sanitizeComponents`, () => {
       <link
         rel="manifest"
         href="https://gatsbyjs.org/blog/manifest.webmanifest"
-      />
+      />,
     ]);
     expect(sanitizedComponents[0].props.href).toBe(
       `/blog/manifest.webmanifest`

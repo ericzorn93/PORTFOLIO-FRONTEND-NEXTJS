@@ -1,16 +1,16 @@
-"use strict";
+'use strict';
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+var _interopRequireDefault = require('@babel/runtime/helpers/interopRequireDefault');
 
 exports.__esModule = true;
 exports.cleanPath = exports.findMatchPath = exports.setMatchPaths = void 0;
 
-var _utils = require("@reach/router/lib/utils");
+var _utils = require('@reach/router/lib/utils');
 
-var _stripPrefix = _interopRequireDefault(require("./strip-prefix"));
+var _stripPrefix = _interopRequireDefault(require('./strip-prefix'));
 
 var _normalizePagePath = _interopRequireDefault(
-  require("./normalize-page-path")
+  require('./normalize-page-path')
 );
 
 let matchPaths = [];

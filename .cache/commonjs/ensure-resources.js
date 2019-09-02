@@ -1,15 +1,15 @@
-"use strict";
+'use strict';
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+var _interopRequireDefault = require('@babel/runtime/helpers/interopRequireDefault');
 
 exports.__esModule = true;
 exports.default = void 0;
 
-var _react = _interopRequireDefault(require("react"));
+var _react = _interopRequireDefault(require('react'));
 
-var _loader = _interopRequireDefault(require("./loader"));
+var _loader = _interopRequireDefault(require('./loader'));
 
-var _shallowCompare = _interopRequireDefault(require("shallow-compare"));
+var _shallowCompare = _interopRequireDefault(require('shallow-compare'));
 
 class EnsureResources extends _react.default.Component {
   constructor(props) {
@@ -18,7 +18,7 @@ class EnsureResources extends _react.default.Component {
     this.state = {
       location: Object.assign({}, location),
       pageResources:
-        pageResources || _loader.default.loadPageSync(location.pathname)
+        pageResources || _loader.default.loadPageSync(location.pathname),
     };
   }
 
@@ -28,7 +28,7 @@ class EnsureResources extends _react.default.Component {
 
       return {
         pageResources,
-        location: Object.assign({}, location)
+        location: Object.assign({}, location),
       };
     }
 
@@ -40,7 +40,7 @@ class EnsureResources extends _react.default.Component {
       if (pageResources && pageResources.status !== `error`) {
         this.setState({
           location: Object.assign({}, window.location),
-          pageResources
+          pageResources,
         });
       } else {
         window.history.replaceState({}, ``, location.href);

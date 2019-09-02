@@ -1,4 +1,4 @@
-import { apiRunner } from "./api-runner-browser";
+import { apiRunner } from './api-runner-browser';
 
 if (
   window.location.protocol !== `https:` &&

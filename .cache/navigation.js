@@ -1,11 +1,11 @@
-import React from "react";
-import PropTypes from "prop-types";
-import loader from "./loader";
-import redirects from "./redirects.json";
-import { apiRunner } from "./api-runner-browser";
-import emitter from "./emitter";
-import { navigate as reachNavigate } from "@reach/router";
-import { parsePath } from "gatsby-link";
+import React from 'react';
+import PropTypes from 'prop-types';
+import loader from './loader';
+import redirects from './redirects.json';
+import { apiRunner } from './api-runner-browser';
+import emitter from './emitter';
+import { navigate as reachNavigate } from '@reach/router';
+import { parsePath } from 'gatsby-link';
 
 // Convert to a map for faster lookup in maybeRedirect()
 const redirectMap = redirects.reduce((map, redirect) => {
@@ -77,7 +77,7 @@ const navigate = (to, options = {}) => {
   const timeoutId = setTimeout(() => {
     emitter.emit(`onDelayedLoadPageResources`, { pathname });
     apiRunner(`onRouteUpdateDelayed`, {
-      location: window.location
+      location: window.location,
     });
   }, 1000);
 
@@ -106,7 +106,7 @@ const navigate = (to, options = {}) => {
           navigator.serviceWorker.controller.state === `activated`
         ) {
           navigator.serviceWorker.controller.postMessage({
-            gatsbyApi: `resetWhitelist`
+            gatsbyApi: `resetWhitelist`,
           });
         }
 
@@ -126,7 +126,7 @@ function shouldUpdateScroll(prevRouterProps, { location }) {
     // `pathname` for backwards compatibility
     pathname,
     routerProps: { location },
-    getSavedScrollPosition: args => this._stateStorage.read(args)
+    getSavedScrollPosition: args => this._stateStorage.read(args),
   });
   if (results.length > 0) {
     // Use the latest registered shouldUpdateScroll result, this allows users to override plugin's configuration
@@ -136,7 +136,7 @@ function shouldUpdateScroll(prevRouterProps, { location }) {
 
   if (prevRouterProps) {
     const {
-      location: { pathname: oldPathname }
+      location: { pathname: oldPathname },
     } = prevRouterProps;
     if (oldPathname === pathname) {
       // Scroll to element if it exists, if it doesn't, or no hash is provided,
@@ -191,7 +191,7 @@ class RouteUpdates extends React.Component {
 }
 
 RouteUpdates.propTypes = {
-  location: PropTypes.object.isRequired
+  location: PropTypes.object.isRequired,
 };
 
 export { init, shouldUpdateScroll, RouteUpdates };

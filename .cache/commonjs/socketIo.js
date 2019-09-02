@@ -1,6 +1,6 @@
-"use strict";
+'use strict';
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+var _interopRequireDefault = require('@babel/runtime/helpers/interopRequireDefault');
 
 exports.__esModule = true;
 exports.default = socketIo;
@@ -9,10 +9,10 @@ exports.registerPath = registerPath;
 exports.unregisterPath = unregisterPath;
 exports.getIsInitialized = exports.getPageQueryData = exports.getStaticQueryData = void 0;
 
-var _errorOverlayHandler = require("./error-overlay-handler");
+var _errorOverlayHandler = require('./error-overlay-handler');
 
 var _normalizePagePath = _interopRequireDefault(
-  require("./normalize-page-path")
+  require('./normalize-page-path')
 );
 
 let socket = null;
@@ -55,14 +55,14 @@ function socketIo() {
           if (msg.type === `staticQueryResult`) {
             if (didDataChange(msg, staticQueryData)) {
               staticQueryData = Object.assign({}, staticQueryData, {
-                [msg.payload.id]: msg.payload.result
+                [msg.payload.id]: msg.payload.result,
               });
             }
           } else if (msg.type === `pageQueryResult`) {
             if (didDataChange(msg, pageQueryData)) {
               pageQueryData = Object.assign({}, pageQueryData, {
                 [(0, _normalizePagePath.default)(msg.payload.id)]: msg.payload
-                  .result
+                  .result,
               });
             }
           } else if (msg.type === `overlayError`) {

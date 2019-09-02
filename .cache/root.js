@@ -1,18 +1,18 @@
-import React from "react";
-import { Router, Location, BaseContext } from "@reach/router";
-import { ScrollContext } from "gatsby-react-router-scroll";
+import React from 'react';
+import { Router, Location, BaseContext } from '@reach/router';
+import { ScrollContext } from 'gatsby-react-router-scroll';
 
 import {
   shouldUpdateScroll,
   init as navigationInit,
-  RouteUpdates
-} from "./navigation";
-import { apiRunner } from "./api-runner-browser";
-import loader from "./loader";
-import JSONStore from "./json-store";
-import EnsureResources from "./ensure-resources";
+  RouteUpdates,
+} from './navigation';
+import { apiRunner } from './api-runner-browser';
+import loader from './loader';
+import JSONStore from './json-store';
+import EnsureResources from './ensure-resources';
 
-import { reportError, clearError } from "./error-overlay-handler";
+import { reportError, clearError } from './error-overlay-handler';
 
 if (window.__webpack_hot_middleware_reporter__ !== undefined) {
   const overlayErrorID = `webpack`;
@@ -27,7 +27,7 @@ if (window.__webpack_hot_middleware_reporter__ !== undefined) {
     },
     clear() {
       clearError(overlayErrorID);
-    }
+    },
   });
 }
 
@@ -45,7 +45,7 @@ const RouteHandler = props => (
   <BaseContext.Provider
     value={{
       baseuri: `/`,
-      basepath: `/`
+      basepath: `/`,
     }}
   >
     <JSONStore {...props} />

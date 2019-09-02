@@ -1,6 +1,6 @@
-"use strict";
+'use strict';
 
-var _apiRunnerBrowser = require("./api-runner-browser");
+var _apiRunnerBrowser = require('./api-runner-browser');
 
 if (
   window.location.protocol !== `https:` &&
@@ -15,7 +15,7 @@ if (
     .then(function(reg) {
       reg.addEventListener(`updatefound`, () => {
         (0, _apiRunnerBrowser.apiRunner)(`onServiceWorkerUpdateFound`, {
-          serviceWorker: reg
+          serviceWorker: reg,
         }); // The updatefound event implies that reg.installing is set; see
         // https://w3c.github.io/ServiceWorker/#service-worker-registration-updatefound-event
 
@@ -31,7 +31,7 @@ if (
                 window.___swUpdated = true; // We call the onServiceWorkerUpdateReady API so users can show update prompts.
 
                 (0, _apiRunnerBrowser.apiRunner)(`onServiceWorkerUpdateReady`, {
-                  serviceWorker: reg
+                  serviceWorker: reg,
                 }); // If resources failed for the current page, reload.
 
                 if (window.___failedResources) {
@@ -46,7 +46,7 @@ if (
                 // otherwise fetch is called too soon and resources aren't cached.
 
                 (0, _apiRunnerBrowser.apiRunner)(`onServiceWorkerInstalled`, {
-                  serviceWorker: reg
+                  serviceWorker: reg,
                 });
               }
 
@@ -55,13 +55,13 @@ if (
             case `redundant`:
               console.error(`The installing service worker became redundant.`);
               (0, _apiRunnerBrowser.apiRunner)(`onServiceWorkerRedundant`, {
-                serviceWorker: reg
+                serviceWorker: reg,
               });
               break;
 
             case `activated`:
               (0, _apiRunnerBrowser.apiRunner)(`onServiceWorkerActive`, {
-                serviceWorker: reg
+                serviceWorker: reg,
               });
               break;
           }

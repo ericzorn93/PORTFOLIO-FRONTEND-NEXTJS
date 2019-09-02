@@ -1,27 +1,27 @@
-"use strict";
+'use strict';
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+var _interopRequireDefault = require('@babel/runtime/helpers/interopRequireDefault');
 
 exports.__esModule = true;
 exports.init = init;
 exports.shouldUpdateScroll = shouldUpdateScroll;
 exports.RouteUpdates = void 0;
 
-var _react = _interopRequireDefault(require("react"));
+var _react = _interopRequireDefault(require('react'));
 
-var _propTypes = _interopRequireDefault(require("prop-types"));
+var _propTypes = _interopRequireDefault(require('prop-types'));
 
-var _loader = _interopRequireDefault(require("./loader"));
+var _loader = _interopRequireDefault(require('./loader'));
 
-var _redirects = _interopRequireDefault(require("./redirects.json"));
+var _redirects = _interopRequireDefault(require('./redirects.json'));
 
-var _apiRunnerBrowser = require("./api-runner-browser");
+var _apiRunnerBrowser = require('./api-runner-browser');
 
-var _emitter = _interopRequireDefault(require("./emitter"));
+var _emitter = _interopRequireDefault(require('./emitter'));
 
-var _router = require("@reach/router");
+var _router = require('@reach/router');
 
-var _gatsbyLink = require("gatsby-link");
+var _gatsbyLink = require('gatsby-link');
 
 // Convert to a map for faster lookup in maybeRedirect()
 const redirectMap = _redirects.default.reduce((map, redirect) => {
@@ -55,7 +55,7 @@ const onPreRouteUpdate = (location, prevLocation) => {
   if (!maybeRedirect(location.pathname)) {
     (0, _apiRunnerBrowser.apiRunner)(`onPreRouteUpdate`, {
       location,
-      prevLocation
+      prevLocation,
     });
   }
 };
@@ -64,7 +64,7 @@ const onRouteUpdate = (location, prevLocation) => {
   if (!maybeRedirect(location.pathname)) {
     (0, _apiRunnerBrowser.apiRunner)(`onRouteUpdate`, {
       location,
-      prevLocation
+      prevLocation,
     }); // Temp hack while awaiting https://github.com/reach/router/issues/119
 
     window.__navigatingToLink = false;
@@ -95,11 +95,11 @@ const navigate = (to, options = {}) => {
 
   const timeoutId = setTimeout(() => {
     _emitter.default.emit(`onDelayedLoadPageResources`, {
-      pathname
+      pathname,
     });
 
     (0, _apiRunnerBrowser.apiRunner)(`onRouteUpdateDelayed`, {
-      location: window.location
+      location: window.location,
     });
   }, 1000);
 
@@ -128,7 +128,7 @@ const navigate = (to, options = {}) => {
           navigator.serviceWorker.controller.state === `activated`
         ) {
           navigator.serviceWorker.controller.postMessage({
-            gatsbyApi: `resetWhitelist`
+            gatsbyApi: `resetWhitelist`,
           });
         }
 
@@ -149,9 +149,9 @@ function shouldUpdateScroll(prevRouterProps, { location }) {
     // `pathname` for backwards compatibility
     pathname,
     routerProps: {
-      location
+      location,
     },
-    getSavedScrollPosition: args => this._stateStorage.read(args)
+    getSavedScrollPosition: args => this._stateStorage.read(args),
   });
 
   if (results.length > 0) {
@@ -162,7 +162,7 @@ function shouldUpdateScroll(prevRouterProps, { location }) {
 
   if (prevRouterProps) {
     const {
-      location: { pathname: oldPathname }
+      location: { pathname: oldPathname },
     } = prevRouterProps;
 
     if (oldPathname === pathname) {
@@ -181,12 +181,12 @@ function init() {
 
   window.___push = to =>
     navigate(to, {
-      replace: false
+      replace: false,
     });
 
   window.___replace = to =>
     navigate(to, {
-      replace: true
+      replace: true,
     });
 
   window.___navigate = (to, options) => navigate(to, options); // Check for initial page-load redirect
@@ -226,5 +226,5 @@ class RouteUpdates extends _react.default.Component {
 
 exports.RouteUpdates = RouteUpdates;
 RouteUpdates.propTypes = {
-  location: _propTypes.default.object.isRequired
+  location: _propTypes.default.object.isRequired,
 };

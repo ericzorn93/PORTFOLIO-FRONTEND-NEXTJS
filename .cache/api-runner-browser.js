@@ -4,7 +4,7 @@ const {
   getResourcesForPathnameSync,
   getResourceURLsForPathname,
   loadPage,
-  loadPageSync
+  loadPageSync,
 } = require(`./loader`).publicLoader;
 
 exports.apiRunner = (api, args = {}, defaultReturn, argTransform) => {

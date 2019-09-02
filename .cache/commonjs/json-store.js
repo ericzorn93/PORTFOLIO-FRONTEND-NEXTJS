@@ -1,29 +1,29 @@
-"use strict";
+'use strict';
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+var _interopRequireDefault = require('@babel/runtime/helpers/interopRequireDefault');
 
 exports.__esModule = true;
 exports.default = void 0;
 
 var _extends2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/extends")
+  require('@babel/runtime/helpers/extends')
 );
 
 var _defineProperty2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/defineProperty")
+  require('@babel/runtime/helpers/defineProperty')
 );
 
-var _react = _interopRequireDefault(require("react"));
+var _react = _interopRequireDefault(require('react'));
 
-var _pageRenderer = _interopRequireDefault(require("./page-renderer"));
+var _pageRenderer = _interopRequireDefault(require('./page-renderer'));
 
 var _normalizePagePath = _interopRequireDefault(
-  require("./normalize-page-path")
+  require('./normalize-page-path')
 );
 
-var _gatsby = require("gatsby");
+var _gatsby = require('gatsby');
 
-var _socketIo = require("./socketIo");
+var _socketIo = require('./socketIo');
 
 if (process.env.NODE_ENV === `production`) {
   throw new Error(
@@ -44,16 +44,16 @@ const getPathFromProps = props =>
 class JSONStore extends _react.default.Component {
   constructor(props) {
     super(props);
-    (0, _defineProperty2.default)(this, "handleMittEvent", (type, event) => {
+    (0, _defineProperty2.default)(this, 'handleMittEvent', (type, event) => {
       this.setState({
         staticQueryData: (0, _socketIo.getStaticQueryData)(),
-        pageQueryData: (0, _socketIo.getPageQueryData)()
+        pageQueryData: (0, _socketIo.getPageQueryData)(),
       });
     });
     this.state = {
       staticQueryData: (0, _socketIo.getStaticQueryData)(),
       pageQueryData: (0, _socketIo.getPageQueryData)(),
-      path: null
+      path: null,
     };
   }
 
@@ -76,7 +76,7 @@ class JSONStore extends _react.default.Component {
       (0, _socketIo.unregisterPath)(state.path);
       (0, _socketIo.registerPath)(newPath);
       return {
-        path: newPath
+        path: newPath,
       };
     }
 
@@ -105,13 +105,13 @@ class JSONStore extends _react.default.Component {
     const data = this.state.pageQueryData[getPathFromProps(this.props)]; // eslint-disable-next-line
 
     if (!data) {
-      return _react.default.createElement("div", null);
+      return _react.default.createElement('div', null);
     }
 
     return _react.default.createElement(
       _gatsby.StaticQueryContext.Provider,
       {
-        value: this.state.staticQueryData
+        value: this.state.staticQueryData,
       },
       _react.default.createElement(
         _pageRenderer.default,

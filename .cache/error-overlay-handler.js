@@ -1,9 +1,9 @@
-import * as ErrorOverlay from "react-error-overlay";
+import * as ErrorOverlay from 'react-error-overlay';
 
 // Report runtime errors
 ErrorOverlay.startReportingRuntimeErrors({
   onError: () => {},
-  filename: `/commons.js`
+  filename: `/commons.js`,
 });
 ErrorOverlay.setEditorHandler(errorLocation =>
   window.fetch(

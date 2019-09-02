@@ -1,5 +1,5 @@
-import { BaseLoader } from "./loader";
-import { cleanPath } from "./find-path";
+import { BaseLoader } from './loader';
+import { cleanPath } from './find-path';
 
 class DevLoader extends BaseLoader {
   constructor(syncRequires, matchPaths) {

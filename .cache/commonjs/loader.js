@@ -1,15 +1,15 @@
-"use strict";
+'use strict';
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+var _interopRequireDefault = require('@babel/runtime/helpers/interopRequireDefault');
 
 exports.__esModule = true;
 exports.default = exports.publicLoader = exports.setLoader = exports.ProdLoader = exports.BaseLoader = void 0;
 
-var _prefetch = _interopRequireDefault(require("./prefetch"));
+var _prefetch = _interopRequireDefault(require('./prefetch'));
 
-var _emitter = _interopRequireDefault(require("./emitter"));
+var _emitter = _interopRequireDefault(require('./emitter'));
 
-var _findPath = require("./find-path");
+var _findPath = require('./find-path');
 
 const preferDefault = m => (m && m.default) || m;
 
@@ -54,7 +54,7 @@ const loadPageDataJson = loadObj => {
 
         return Object.assign(loadObj, {
           status: `success`,
-          payload: jsonPayload
+          payload: jsonPayload,
         });
       } catch (err) {
         // continue regardless of error
@@ -65,7 +65,7 @@ const loadPageDataJson = loadObj => {
       // If the request was for a 404 page and it doesn't exist, we're done
       if (pagePath === `/404.html`) {
         return Object.assign(loadObj, {
-          status: `failure`
+          status: `failure`,
         });
       } // Need some code here to cache the 404 request. In case
       // multiple loadPageDataJsons result in 404s
@@ -73,27 +73,27 @@ const loadPageDataJson = loadObj => {
       return loadPageDataJson(
         Object.assign(loadObj, {
           pagePath: `/404.html`,
-          notFound: true
+          notFound: true,
         })
       );
     } // handle 500 response (Unrecoverable)
 
     if (status === 500) {
       return Object.assign(loadObj, {
-        status: `error`
+        status: `error`,
       });
     } // Handle everything else, including status === 0, and 503s. Should retry
 
     if (retries < 3) {
       return loadPageDataJson(
         Object.assign(loadObj, {
-          retries: retries + 1
+          retries: retries + 1,
         })
       );
     } // Retried 3 times already, result is a failure.
 
     return Object.assign(loadObj, {
-      status: `error`
+      status: `error`,
     });
   });
 };
@@ -120,12 +120,12 @@ const toPageResources = (pageData, component = null) => {
     componentChunkName: pageData.componentChunkName,
     path: pageData.path,
     webpackCompilationHash: pageData.webpackCompilationHash,
-    matchPath: pageData.matchPath
+    matchPath: pageData.matchPath,
   };
   return {
     component,
     json: pageData.result,
-    page
+    page,
   };
 };
 
@@ -166,7 +166,7 @@ class BaseLoader {
     }
 
     return loadPageDataJson({
-      pagePath
+      pagePath,
     }).then(pageData => {
       this.pageDataDb.set(pagePath, pageData);
       return pageData;
@@ -205,7 +205,7 @@ class BaseLoader {
 
         if (result.status === `error`) {
           return {
-            status: `error`
+            status: `error`,
           };
         }
 
@@ -220,7 +220,7 @@ class BaseLoader {
         const { componentChunkName } = pageData;
         return this.loadComponent(componentChunkName).then(component => {
           const finalResult = {
-            createdAt: new Date()
+            createdAt: new Date(),
           };
           let pageResources;
 
@@ -238,7 +238,7 @@ class BaseLoader {
 
             _emitter.default.emit(`onPostLoadPageResources`, {
               page: pageResources,
-              pageResources
+              pageResources,
             });
           }
 
@@ -290,7 +290,7 @@ class BaseLoader {
 
     if (!this.prefetchTriggered.has(pagePath)) {
       this.apiRunner(`onPrefetchPathname`, {
-        pathname: pagePath
+        pathname: pagePath,
       });
       this.prefetchTriggered.add(pagePath);
     } // If a plugin has disabled core prefetching, stop now.
@@ -313,7 +313,7 @@ class BaseLoader {
 
       if (!this.prefetchCompleted.has(pagePath)) {
         this.apiRunner(`onPostPrefetchPathname`, {
-          pathname: pagePath
+          pathname: pagePath,
         });
         this.prefetchCompleted.add(pagePath);
       }
@@ -337,7 +337,7 @@ class BaseLoader {
       const pageResources = toPageResources(page.payload);
       return [
         ...createComponentUrls(pageResources.page.componentChunkName),
-        createPageDataUrl(pagePath)
+        createPageDataUrl(pagePath),
       ];
     } else {
       return null;
@@ -421,7 +421,7 @@ const publicLoader = {
   loadPageSync: rawPath => instance.loadPageSync(rawPath),
   prefetch: rawPath => instance.prefetch(rawPath),
   isPageNotFound: rawPath => instance.isPageNotFound(rawPath),
-  hovering: rawPath => instance.hovering(rawPath)
+  hovering: rawPath => instance.hovering(rawPath),
 };
 exports.publicLoader = publicLoader;
 var _default = publicLoader;

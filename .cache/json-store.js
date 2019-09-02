@@ -1,14 +1,14 @@
-import React from "react";
+import React from 'react';
 
-import PageRenderer from "./page-renderer";
-import normalizePagePath from "./normalize-page-path";
-import { StaticQueryContext } from "gatsby";
+import PageRenderer from './page-renderer';
+import normalizePagePath from './normalize-page-path';
+import { StaticQueryContext } from 'gatsby';
 import {
   getStaticQueryData,
   getPageQueryData,
   registerPath as socketRegisterPath,
-  unregisterPath as socketUnregisterPath
-} from "./socketIo";
+  unregisterPath as socketUnregisterPath,
+} from './socketIo';
 
 if (process.env.NODE_ENV === `production`) {
   throw new Error(
@@ -32,14 +32,14 @@ class JSONStore extends React.Component {
     this.state = {
       staticQueryData: getStaticQueryData(),
       pageQueryData: getPageQueryData(),
-      path: null
+      path: null,
     };
   }
 
   handleMittEvent = (type, event) => {
     this.setState({
       staticQueryData: getStaticQueryData(),
-      pageQueryData: getPageQueryData()
+      pageQueryData: getPageQueryData(),
     });
   };
 
@@ -59,7 +59,7 @@ class JSONStore extends React.Component {
       socketUnregisterPath(state.path);
       socketRegisterPath(newPath);
       return {
-        path: newPath
+        path: newPath,
       };
     }
 

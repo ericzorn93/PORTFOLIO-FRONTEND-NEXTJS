@@ -1,38 +1,38 @@
-"use strict";
+'use strict';
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+var _interopRequireDefault = require('@babel/runtime/helpers/interopRequireDefault');
 
 var _extends2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/extends")
+  require('@babel/runtime/helpers/extends')
 );
 
-var _apiRunnerBrowser = require("./api-runner-browser");
+var _apiRunnerBrowser = require('./api-runner-browser');
 
-var _react = _interopRequireDefault(require("react"));
+var _react = _interopRequireDefault(require('react'));
 
-var _reactDom = _interopRequireDefault(require("react-dom"));
+var _reactDom = _interopRequireDefault(require('react-dom'));
 
-var _router = require("@reach/router");
+var _router = require('@reach/router');
 
-var _gatsbyReactRouterScroll = require("gatsby-react-router-scroll");
+var _gatsbyReactRouterScroll = require('gatsby-react-router-scroll');
 
-var _domready = _interopRequireDefault(require("@mikaelkristiansson/domready"));
+var _domready = _interopRequireDefault(require('@mikaelkristiansson/domready'));
 
-var _navigation = require("./navigation");
+var _navigation = require('./navigation');
 
-var _emitter = _interopRequireDefault(require("./emitter"));
+var _emitter = _interopRequireDefault(require('./emitter'));
 
-var _pageRenderer = _interopRequireDefault(require("./page-renderer"));
+var _pageRenderer = _interopRequireDefault(require('./page-renderer'));
 
-var _asyncRequires = _interopRequireDefault(require("./async-requires"));
+var _asyncRequires = _interopRequireDefault(require('./async-requires'));
 
-var _loader = require("./loader");
+var _loader = require('./loader');
 
-var _ensureResources = _interopRequireDefault(require("./ensure-resources"));
+var _ensureResources = _interopRequireDefault(require('./ensure-resources'));
 
-var _stripPrefix = _interopRequireDefault(require("./strip-prefix"));
+var _stripPrefix = _interopRequireDefault(require('./strip-prefix'));
 
-var _matchPaths = _interopRequireDefault(require("./match-paths.json"));
+var _matchPaths = _interopRequireDefault(require('./match-paths.json'));
 
 // Generated during bootstrap
 const loader = new _loader.ProdLoader(
@@ -66,8 +66,8 @@ window.___webpackCompilationHash = window.webpackCompilationHash;
       {
         value: {
           baseuri: `/`,
-          basepath: `/`
-        }
+          basepath: `/`,
+        },
       },
       _react.default.createElement(_pageRenderer.default, props)
     );
@@ -78,26 +78,26 @@ window.___webpackCompilationHash = window.webpackCompilationHash;
       return _react.default.createElement(
         _ensureResources.default,
         {
-          location: location
+          location: location,
         },
         ({ pageResources, location }) =>
           _react.default.createElement(
             _navigation.RouteUpdates,
             {
-              location: location
+              location: location,
             },
             _react.default.createElement(
               _gatsbyReactRouterScroll.ScrollContext,
               {
                 location: location,
-                shouldUpdateScroll: _navigation.shouldUpdateScroll
+                shouldUpdateScroll: _navigation.shouldUpdateScroll,
               },
               _react.default.createElement(
                 _router.Router,
                 {
                   basepath: __BASE_PATH__,
                   location: location,
-                  id: "gatsby-focus-wrapper"
+                  id: 'gatsby-focus-wrapper',
                 },
                 _react.default.createElement(
                   RouteHandler,
@@ -111,12 +111,12 @@ window.___webpackCompilationHash = window.webpackCompilationHash;
                             )
                           : pageResources.page.matchPath ||
                               pageResources.page.path
-                      )
+                      ),
                     },
                     this.props,
                     {
                       location: location,
-                      pageResources: pageResources
+                      pageResources: pageResources,
                     },
                     pageResources.json
                   )
@@ -151,7 +151,7 @@ window.___webpackCompilationHash = window.webpackCompilationHash;
     (0, _router.navigate)(
       __BASE_PATH__ + pagePath + browserLoc.search + browserLoc.hash,
       {
-        replace: true
+        replace: true,
       }
     );
   }
@@ -171,12 +171,12 @@ window.___webpackCompilationHash = window.webpackCompilationHash;
     const WrappedRoot = (0, _apiRunnerBrowser.apiRunner)(
       `wrapRootElement`,
       {
-        element: _react.default.createElement(Root, null)
+        element: _react.default.createElement(Root, null),
       },
       _react.default.createElement(Root, null),
       ({ result }) => {
         return {
-          element: result
+          element: result,
         };
       }
     ).pop();

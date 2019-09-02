@@ -1,17 +1,17 @@
-"use strict";
+'use strict';
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+var _interopRequireDefault = require('@babel/runtime/helpers/interopRequireDefault');
 
 exports.__esModule = true;
 exports.default = void 0;
 
-var _react = _interopRequireDefault(require("react"));
+var _react = _interopRequireDefault(require('react'));
 
-var _server = require("react-dom/server");
+var _server = require('react-dom/server');
 
-var _lodash = require("lodash");
+var _lodash = require('lodash');
 
-var _apiRunnerSsr = _interopRequireDefault(require("./api-runner-ssr"));
+var _apiRunnerSsr = _interopRequireDefault(require('./api-runner-ssr'));
 
 // import testRequireError from "./test-require-error"
 // For some extremely mysterious reason, webpack adds the above module *after*
@@ -40,11 +40,11 @@ Html = Html && Html.__esModule ? Html.default : Html;
 
 var _default = (pagePath, callback) => {
   let headComponents = [
-    _react.default.createElement("meta", {
-      key: "environment",
-      name: "note",
-      content: "environment=development"
-    })
+    _react.default.createElement('meta', {
+      key: 'environment',
+      name: 'note',
+      content: 'environment=development',
+    }),
   ];
   let htmlAttributes = {};
   let bodyAttributes = {};
@@ -102,7 +102,7 @@ var _default = (pagePath, callback) => {
     setPreBodyComponents,
     setPostBodyComponents,
     setBodyProps,
-    pathname: pagePath
+    pathname: pagePath,
   });
   (0, _apiRunnerSsr.default)(`onPreRenderHTML`, {
     getHeadComponents,
@@ -111,7 +111,7 @@ var _default = (pagePath, callback) => {
     replacePreBodyComponents,
     getPostBodyComponents,
     replacePostBodyComponents,
-    pathname: pagePath
+    pathname: pagePath,
   });
 
   const htmlElement = _react.default.createElement(
@@ -119,20 +119,20 @@ var _default = (pagePath, callback) => {
     Object.assign({}, bodyProps, {
       body: ``,
       headComponents: headComponents.concat([
-        _react.default.createElement("script", {
+        _react.default.createElement('script', {
           key: `io`,
-          src: "/socket.io/socket.io.js"
-        })
+          src: '/socket.io/socket.io.js',
+        }),
       ]),
       htmlAttributes,
       bodyAttributes,
       preBodyComponents,
       postBodyComponents: postBodyComponents.concat([
-        _react.default.createElement("script", {
+        _react.default.createElement('script', {
           key: `commons`,
-          src: "/commons.js"
-        })
-      ])
+          src: '/commons.js',
+        }),
+      ]),
     })
   );
 

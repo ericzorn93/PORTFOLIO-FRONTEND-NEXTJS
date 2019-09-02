@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const plugins = require(`./api-runner-browser-plugins`);
 
@@ -7,7 +7,7 @@ const {
   getResourcesForPathnameSync,
   getResourceURLsForPathname,
   loadPage,
-  loadPageSync
+  loadPageSync,
 } = require(`./loader`).publicLoader;
 
 exports.apiRunner = (api, args = {}, defaultReturn, argTransform) => {
@@ -39,7 +39,7 @@ exports.apiRunner = (api, args = {}, defaultReturn, argTransform) => {
       args = argTransform({
         args,
         result,
-        plugin
+        plugin,
       });
     }
 

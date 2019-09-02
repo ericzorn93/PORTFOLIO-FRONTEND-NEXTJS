@@ -1,31 +1,31 @@
-"use strict";
+'use strict';
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+var _interopRequireDefault = require('@babel/runtime/helpers/interopRequireDefault');
 
 exports.__esModule = true;
 exports.default = void 0;
 
 var _extends2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/extends")
+  require('@babel/runtime/helpers/extends')
 );
 
-var _react = _interopRequireDefault(require("react"));
+var _react = _interopRequireDefault(require('react'));
 
-var _router = require("@reach/router");
+var _router = require('@reach/router');
 
-var _gatsbyReactRouterScroll = require("gatsby-react-router-scroll");
+var _gatsbyReactRouterScroll = require('gatsby-react-router-scroll');
 
-var _navigation = require("./navigation");
+var _navigation = require('./navigation');
 
-var _apiRunnerBrowser = require("./api-runner-browser");
+var _apiRunnerBrowser = require('./api-runner-browser');
 
-var _loader = _interopRequireDefault(require("./loader"));
+var _loader = _interopRequireDefault(require('./loader'));
 
-var _jsonStore = _interopRequireDefault(require("./json-store"));
+var _jsonStore = _interopRequireDefault(require('./json-store'));
 
-var _ensureResources = _interopRequireDefault(require("./ensure-resources"));
+var _ensureResources = _interopRequireDefault(require('./ensure-resources'));
 
-var _errorOverlayHandler = require("./error-overlay-handler");
+var _errorOverlayHandler = require('./error-overlay-handler');
 
 if (window.__webpack_hot_middleware_reporter__ !== undefined) {
   const overlayErrorID = `webpack`; // Report build errors
@@ -42,7 +42,7 @@ if (window.__webpack_hot_middleware_reporter__ !== undefined) {
 
     clear() {
       (0, _errorOverlayHandler.clearError)(overlayErrorID);
-    }
+    },
   });
 }
 
@@ -61,8 +61,8 @@ const RouteHandler = props =>
     {
       value: {
         baseuri: `/`,
-        basepath: `/`
-      }
+        basepath: `/`,
+      },
     },
     _react.default.createElement(_jsonStore.default, props)
   );
@@ -75,26 +75,26 @@ class LocationHandler extends _react.default.Component {
       return _react.default.createElement(
         _ensureResources.default,
         {
-          location: location
+          location: location,
         },
         locationAndPageResources =>
           _react.default.createElement(
             _navigation.RouteUpdates,
             {
-              location: location
+              location: location,
             },
             _react.default.createElement(
               _gatsbyReactRouterScroll.ScrollContext,
               {
                 location: location,
-                shouldUpdateScroll: _navigation.shouldUpdateScroll
+                shouldUpdateScroll: _navigation.shouldUpdateScroll,
               },
               _react.default.createElement(
                 _router.Router,
                 {
                   basepath: __BASE_PATH__,
                   location: location,
-                  id: "gatsby-focus-wrapper"
+                  id: 'gatsby-focus-wrapper',
                 },
                 _react.default.createElement(
                   RouteHandler,
@@ -103,7 +103,7 @@ class LocationHandler extends _react.default.Component {
                       path: encodeURI(
                         locationAndPageResources.pageResources.page.matchPath ||
                           locationAndPageResources.pageResources.page.path
-                      )
+                      ),
                     },
                     this.props,
                     locationAndPageResources
@@ -125,7 +125,7 @@ class LocationHandler extends _react.default.Component {
       custom404 = _react.default.createElement(
         _jsonStore.default,
         (0, _extends2.default)({}, this.props, {
-          pageResources: real404PageResources
+          pageResources: real404PageResources,
         })
       );
     }
@@ -133,20 +133,20 @@ class LocationHandler extends _react.default.Component {
     return _react.default.createElement(
       _navigation.RouteUpdates,
       {
-        location: location
+        location: location,
       },
       _react.default.createElement(
         _router.Router,
         {
           basepath: __BASE_PATH__,
           location: location,
-          id: "gatsby-focus-wrapper"
+          id: 'gatsby-focus-wrapper',
         },
         _react.default.createElement(RouteHandler, {
           path: location.pathname,
           location: location,
           pageResources: dev404PageResources,
-          custom404: custom404
+          custom404: custom404,
         })
       )
     );
@@ -161,12 +161,12 @@ const Root = () =>
 const WrappedRoot = (0, _apiRunnerBrowser.apiRunner)(
   `wrapRootElement`,
   {
-    element: _react.default.createElement(Root, null)
+    element: _react.default.createElement(Root, null),
   },
   _react.default.createElement(Root, null),
   ({ result, plugin }) => {
     return {
-      element: result
+      element: result,
     };
   }
 ).pop();

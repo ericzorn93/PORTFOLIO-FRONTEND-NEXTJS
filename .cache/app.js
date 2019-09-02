@@ -1,15 +1,15 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import domReady from "@mikaelkristiansson/domready";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import domReady from '@mikaelkristiansson/domready';
 
-import socketIo from "./socketIo";
-import emitter from "./emitter";
-import { apiRunner, apiRunnerAsync } from "./api-runner-browser";
-import { setLoader, publicLoader } from "./loader";
-import DevLoader from "./dev-loader";
-import syncRequires from "./sync-requires";
+import socketIo from './socketIo';
+import emitter from './emitter';
+import { apiRunner, apiRunnerAsync } from './api-runner-browser';
+import { setLoader, publicLoader } from './loader';
+import DevLoader from './dev-loader';
+import syncRequires from './sync-requires';
 // Generated during bootstrap
-import matchPaths from "./match-paths.json";
+import matchPaths from './match-paths.json';
 
 window.___emitter = emitter;
 
@@ -59,7 +59,7 @@ apiRunnerAsync(`onClientEntry`).then(() => {
   Promise.all([
     loader.loadPage(`/dev-404-page/`),
     loader.loadPage(`/404.html`),
-    loader.loadPage(window.location.pathname)
+    loader.loadPage(window.location.pathname),
   ]).then(() => {
     const preferDefault = m => (m && m.default) || m;
     let Root = preferDefault(require(`./root`));

@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const preferDefault = m => (m && m.default) || m;
 

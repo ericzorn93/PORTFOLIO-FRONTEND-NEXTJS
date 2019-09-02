@@ -1,11 +1,11 @@
-"use strict";
+'use strict';
 
 exports.__esModule = true;
 exports.default = void 0;
 
-var _loader = require("./loader");
+var _loader = require('./loader');
 
-var _findPath = require("./find-path");
+var _findPath = require('./find-path');
 
 class DevLoader extends _loader.BaseLoader {
   constructor(syncRequires, matchPaths) {

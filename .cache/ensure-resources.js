@@ -1,6 +1,6 @@
-import React from "react";
-import loader from "./loader";
-import shallowCompare from "shallow-compare";
+import React from 'react';
+import loader from './loader';
+import shallowCompare from 'shallow-compare';
 
 class EnsureResources extends React.Component {
   constructor(props) {
@@ -8,7 +8,7 @@ class EnsureResources extends React.Component {
     const { location, pageResources } = props;
     this.state = {
       location: { ...location },
-      pageResources: pageResources || loader.loadPageSync(location.pathname)
+      pageResources: pageResources || loader.loadPageSync(location.pathname),
     };
   }
 
@@ -17,7 +17,7 @@ class EnsureResources extends React.Component {
       const pageResources = loader.loadPageSync(location.pathname);
       return {
         pageResources,
-        location: { ...location }
+        location: { ...location },
       };
     }
 
@@ -29,7 +29,7 @@ class EnsureResources extends React.Component {
       if (pageResources && pageResources.status !== `error`) {
         this.setState({
           location: { ...window.location },
-          pageResources
+          pageResources,
         });
       } else {
         window.history.replaceState({}, ``, location.href);

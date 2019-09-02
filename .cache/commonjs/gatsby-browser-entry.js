@@ -1,18 +1,18 @@
-"use strict";
+'use strict';
 
-var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
+var _interopRequireWildcard = require('@babel/runtime/helpers/interopRequireWildcard');
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+var _interopRequireDefault = require('@babel/runtime/helpers/interopRequireDefault');
 
 exports.__esModule = true;
 exports.graphql = graphql;
 exports.prefetchPathname = exports.useStaticQuery = exports.StaticQuery = exports.StaticQueryContext = void 0;
 
-var _react = _interopRequireDefault(require("react"));
+var _react = _interopRequireDefault(require('react'));
 
-var _propTypes = _interopRequireDefault(require("prop-types"));
+var _propTypes = _interopRequireDefault(require('prop-types'));
 
-var _gatsbyLink = _interopRequireWildcard(require("gatsby-link"));
+var _gatsbyLink = _interopRequireWildcard(require('gatsby-link'));
 
 exports.Link = _gatsbyLink.default;
 exports.withPrefix = _gatsbyLink.withPrefix;
@@ -24,12 +24,12 @@ exports.navigateTo = _gatsbyLink.navigateTo;
 exports.parsePath = _gatsbyLink.parsePath;
 
 var _publicPageRenderer = _interopRequireDefault(
-  require("./public-page-renderer")
+  require('./public-page-renderer')
 );
 
 exports.PageRenderer = _publicPageRenderer.default;
 
-var _loader = _interopRequireDefault(require("./loader"));
+var _loader = _interopRequireDefault(require('./loader'));
 
 const prefetchPathname = _loader.default.enqueue;
 exports.prefetchPathname = prefetchPathname;
@@ -47,7 +47,7 @@ function StaticQueryDataRenderer({ staticQueryData, data, query, render }) {
     null,
     finalData && render(finalData),
     !finalData &&
-      _react.default.createElement("div", null, "Loading (StaticQuery)")
+      _react.default.createElement('div', null, 'Loading (StaticQuery)')
   );
 }
 
@@ -61,7 +61,7 @@ const StaticQuery = props => {
         data: data,
         query: query,
         render: render || children,
-        staticQueryData: staticQueryData
+        staticQueryData: staticQueryData,
       })
   );
 };
@@ -97,7 +97,7 @@ StaticQuery.propTypes = {
   data: _propTypes.default.object,
   query: _propTypes.default.string.isRequired,
   render: _propTypes.default.func,
-  children: _propTypes.default.func
+  children: _propTypes.default.func,
 };
 
 function graphql() {

@@ -1,12 +1,12 @@
-"use strict";
+'use strict';
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+var _interopRequireDefault = require('@babel/runtime/helpers/interopRequireDefault');
 
 exports.__esModule = true;
 exports.default = exports.sanitizeComponents = void 0;
 
 var _extends2 = _interopRequireDefault(
-  require("@babel/runtime/helpers/extends")
+  require('@babel/runtime/helpers/extends')
 );
 
 const React = require(`react`);
@@ -26,7 +26,7 @@ const {
   flatten,
   uniqBy,
   flattenDeep,
-  replace
+  replace,
 } = require(`lodash`);
 
 const apiRunner = require(`./api-runner-ssr`);
@@ -102,7 +102,7 @@ const sanitizeComponents = components => {
     // And not asset server when an assetPrefix is used
     if (__ASSET_PREFIX__ && component.props.rel === `manifest`) {
       return React.cloneElement(component, {
-        href: replace(component.props.href, __ASSET_PREFIX__, ``)
+        href: replace(component.props.href, __ASSET_PREFIX__, ``),
       });
     }
 
@@ -127,11 +127,11 @@ const ensureArray = components => {
 var _default = (pagePath, callback) => {
   let bodyHtml = ``;
   let headComponents = [
-    React.createElement("meta", {
-      name: "generator",
+    React.createElement('meta', {
+      name: 'generator',
       content: `Gatsby ${gatsbyVersion}`,
-      key: `generator-${gatsbyVersion}`
-    })
+      key: `generator-${gatsbyVersion}`,
+    }),
   ];
   let htmlAttributes = {};
   let bodyAttributes = {};
@@ -198,7 +198,7 @@ var _default = (pagePath, callback) => {
     render() {
       const props = Object.assign({}, this.props, {}, pageData.result, {
         // pathContext was deprecated in v2. Renamed to pageContext
-        pathContext: pageData.result ? pageData.result.pageContext : undefined
+        pathContext: pageData.result ? pageData.result.pageContext : undefined,
       });
       const pageElement = createElement(
         syncRequires.components[componentChunkName],
@@ -208,13 +208,13 @@ var _default = (pagePath, callback) => {
         `wrapPageElement`,
         {
           element: pageElement,
-          props
+          props,
         },
         pageElement,
         ({ result }) => {
           return {
             element: result,
-            props
+            props,
           };
         }
       ).pop();
@@ -225,16 +225,16 @@ var _default = (pagePath, callback) => {
   const routerElement = createElement(
     ServerLocation,
     {
-      url: `${__BASE_PATH__}${pagePath}`
+      url: `${__BASE_PATH__}${pagePath}`,
     },
     createElement(
       Router,
       {
         id: `gatsby-focus-wrapper`,
-        baseuri: `${__BASE_PATH__}`
+        baseuri: `${__BASE_PATH__}`,
       },
       createElement(RouteHandler, {
-        path: `/*`
+        path: `/*`,
       })
     )
   );
@@ -242,13 +242,13 @@ var _default = (pagePath, callback) => {
     `wrapRootElement`,
     {
       element: routerElement,
-      pathname: pagePath
+      pathname: pagePath,
     },
     routerElement,
     ({ result }) => {
       return {
         element: result,
-        pathname: pagePath
+        pathname: pagePath,
       };
     }
   ).pop(); // Let the site or plugin render the page component.
@@ -263,7 +263,7 @@ var _default = (pagePath, callback) => {
     setPostBodyComponents,
     setBodyProps,
     pathname: pagePath,
-    pathPrefix: __PATH_PREFIX__
+    pathPrefix: __PATH_PREFIX__,
   }); // If no one stepped up, we'll handle it.
 
   if (!bodyHtml) {
@@ -292,13 +292,13 @@ var _default = (pagePath, callback) => {
 
         return {
           rel: `preload`,
-          name: chunk
+          name: chunk,
         };
       });
       namedChunkGroups[s].assets.forEach(asset =>
         chunks.push({
           rel: `preload`,
-          name: asset
+          name: asset,
         })
       );
       const childAssets = namedChunkGroups[s].childAssets;
@@ -309,7 +309,7 @@ var _default = (pagePath, callback) => {
           childAssets[rel].map(chunk => {
             return {
               rel,
-              name: chunk
+              name: chunk,
             };
           })
         );
@@ -340,7 +340,7 @@ var _default = (pagePath, callback) => {
     bodyHtml,
     scripts,
     styles,
-    pathPrefix: __PATH_PREFIX__
+    pathPrefix: __PATH_PREFIX__,
   });
   scripts
     .slice(0)
@@ -348,23 +348,23 @@ var _default = (pagePath, callback) => {
     .forEach(script => {
       // Add preload/prefetch <link>s for scripts.
       headComponents.push(
-        React.createElement("link", {
-          as: "script",
+        React.createElement('link', {
+          as: 'script',
           rel: script.rel,
           key: script.name,
-          href: `${__PATH_PREFIX__}/${script.name}`
+          href: `${__PATH_PREFIX__}/${script.name}`,
         })
       );
     });
 
   if (pageData) {
     headComponents.push(
-      React.createElement("link", {
-        as: "fetch",
-        rel: "preload",
+      React.createElement('link', {
+        as: 'fetch',
+        rel: 'preload',
         key: pageDataUrl,
         href: pageDataUrl,
-        crossOrigin: "anonymous"
+        crossOrigin: 'anonymous',
       })
     );
   }
@@ -377,23 +377,23 @@ var _default = (pagePath, callback) => {
       // otherwise, inline as a <style> tag
       if (style.rel === `prefetch`) {
         headComponents.push(
-          React.createElement("link", {
-            as: "style",
+          React.createElement('link', {
+            as: 'style',
             rel: style.rel,
             key: style.name,
-            href: `${__PATH_PREFIX__}/${style.name}`
+            href: `${__PATH_PREFIX__}/${style.name}`,
           })
         );
       } else {
         headComponents.unshift(
-          React.createElement("style", {
-            "data-href": `${__PATH_PREFIX__}/${style.name}`,
+          React.createElement('style', {
+            'data-href': `${__PATH_PREFIX__}/${style.name}`,
             dangerouslySetInnerHTML: {
               __html: fs.readFileSync(
                 join(process.cwd(), `public`, style.name),
                 `utf-8`
-              )
-            }
+              ),
+            },
           })
         );
       }
@@ -402,12 +402,12 @@ var _default = (pagePath, callback) => {
 
   const windowPageData = `/*<![CDATA[*/window.pagePath="${pagePath}";window.webpackCompilationHash="${webpackCompilationHash}";/*]]>*/`;
   postBodyComponents.push(
-    React.createElement("script", {
+    React.createElement('script', {
       key: `script-loader`,
       id: `gatsby-script-loader`,
       dangerouslySetInnerHTML: {
-        __html: windowPageData
-      }
+        __html: windowPageData,
+      },
     })
   ); // Add chunk mapping metadata
 
@@ -415,12 +415,12 @@ var _default = (pagePath, callback) => {
     chunkMapping
   )};/*]]>*/`;
   postBodyComponents.push(
-    React.createElement("script", {
+    React.createElement('script', {
       key: `chunk-mapping`,
       id: `gatsby-chunk-mapping`,
       dangerouslySetInnerHTML: {
-        __html: scriptChunkMapping
-      }
+        __html: scriptChunkMapping,
+      },
     })
   ); // Filter out prefetched bundles as adding them as a script tag
   // would force high priority fetching.
@@ -432,10 +432,10 @@ var _default = (pagePath, callback) => {
         1,
         -1
       )}`;
-      return React.createElement("script", {
+      return React.createElement('script', {
         key: scriptPath,
         src: scriptPath,
-        async: true
+        async: true,
       });
     });
   postBodyComponents.push(...bodyScripts);
@@ -447,7 +447,7 @@ var _default = (pagePath, callback) => {
     getPostBodyComponents,
     replacePostBodyComponents,
     pathname: pagePath,
-    pathPrefix: __PATH_PREFIX__
+    pathPrefix: __PATH_PREFIX__,
   });
   const html = `<!DOCTYPE html>${renderToStaticMarkup(
     React.createElement(
@@ -459,7 +459,7 @@ var _default = (pagePath, callback) => {
         preBodyComponents: preBodyComponents,
         postBodyComponents: postBodyComponents,
         body: bodyHtml,
-        path: pagePath
+        path: pagePath,
       })
     )
   )}`;

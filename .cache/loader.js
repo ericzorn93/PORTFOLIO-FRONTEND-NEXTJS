@@ -1,6 +1,6 @@
-import prefetchHelper from "./prefetch";
-import emitter from "./emitter";
-import { setMatchPaths, findMatchPath, cleanPath } from "./find-path";
+import prefetchHelper from './prefetch';
+import emitter from './emitter';
+import { setMatchPaths, findMatchPath, cleanPath } from './find-path';
 
 const preferDefault = m => (m && m.default) || m;
 
@@ -43,7 +43,7 @@ const loadPageDataJson = loadObj => {
 
         return Object.assign(loadObj, {
           status: `success`,
-          payload: jsonPayload
+          payload: jsonPayload,
         });
       } catch (err) {
         // continue regardless of error
@@ -55,7 +55,7 @@ const loadPageDataJson = loadObj => {
       // If the request was for a 404 page and it doesn't exist, we're done
       if (pagePath === `/404.html`) {
         return Object.assign(loadObj, {
-          status: `failure`
+          status: `failure`,
         });
       }
 
@@ -69,7 +69,7 @@ const loadPageDataJson = loadObj => {
     // handle 500 response (Unrecoverable)
     if (status === 500) {
       return Object.assign(loadObj, {
-        status: `error`
+        status: `error`,
       });
     }
 
@@ -80,7 +80,7 @@ const loadPageDataJson = loadObj => {
 
     // Retried 3 times already, result is a failure.
     return Object.assign(loadObj, {
-      status: `error`
+      status: `error`,
     });
   });
 };
@@ -105,13 +105,13 @@ const toPageResources = (pageData, component = null) => {
     componentChunkName: pageData.componentChunkName,
     path: pageData.path,
     webpackCompilationHash: pageData.webpackCompilationHash,
-    matchPath: pageData.matchPath
+    matchPath: pageData.matchPath,
   };
 
   return {
     component,
     json: pageData.result,
-    page
+    page,
   };
 };
 
@@ -188,7 +188,7 @@ export class BaseLoader {
 
         if (result.status === `error`) {
           return {
-            status: `error`
+            status: `error`,
           };
         }
         if (result.status === `failure`) {
@@ -214,7 +214,7 @@ export class BaseLoader {
             finalResult.payload = pageResources;
             emitter.emit(`onPostLoadPageResources`, {
               page: pageResources,
-              pageResources
+              pageResources,
             });
           }
           this.pageDb.set(pagePath, finalResult);
@@ -313,7 +313,7 @@ export class BaseLoader {
 
       return [
         ...createComponentUrls(pageResources.page.componentChunkName),
-        createPageDataUrl(pagePath)
+        createPageDataUrl(pagePath),
       ];
     } else {
       return null;
@@ -393,7 +393,7 @@ export const publicLoader = {
   loadPageSync: rawPath => instance.loadPageSync(rawPath),
   prefetch: rawPath => instance.prefetch(rawPath),
   isPageNotFound: rawPath => instance.isPageNotFound(rawPath),
-  hovering: rawPath => instance.hovering(rawPath)
+  hovering: rawPath => instance.hovering(rawPath),
 };
 
 export default publicLoader;

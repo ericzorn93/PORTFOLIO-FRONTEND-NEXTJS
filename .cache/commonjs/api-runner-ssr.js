@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 // During bootstrap, we write requires at top of this file which looks like:
 // var plugins = [
@@ -29,7 +29,7 @@ module.exports = (api, args, defaultReturn, argTransform) => {
     if (result && argTransform) {
       args = argTransform({
         args,
-        result
+        result,
       });
     }
 
