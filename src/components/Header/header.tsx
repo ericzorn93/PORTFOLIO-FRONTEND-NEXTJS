@@ -1,10 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from "react"; // @ts-ignore
+/** @jsx jsx */
+import { jsx } from "@emotion/core";
 import { Link, useStaticQuery, graphql } from "gatsby";
 import { useSelector, useDispatch } from "react-redux";
 
-import { ThemeNamesEnum } from "../utils/primary_enums/theme.enum";
-import { ThemeActions } from "../store/actions/theme_actions";
-import { ITheme } from "../utils/primary_interfaces/theme.interface";
+import { ThemeNamesEnum } from "../../utils/primary_enums/theme.enum";
+import { ThemeActions } from "../../store/actions/theme_actions";
+import { ITheme } from "../../utils/primary_interfaces/theme.interface";
+import { HeaderWrapper } from "./styles/header.styles";
 
 interface IHeaderProps {
   siteTitle: string;
@@ -79,14 +82,7 @@ const Header = (props: IHeaderProps) => {
   };
 
   return (
-    <header
-      style={{
-        background:
-          currentTheme.primary ||
-          themeData.zornwebdev.allThemes.darkMode.primary,
-        marginBottom: `1.45rem`
-      }}
-    >
+    <HeaderWrapper css={{background: currentTheme.primary || themeData.zornwebdev.allThemes.darkMode.primary}}>
       <div
         style={{
           margin: `0 auto`,
@@ -107,7 +103,7 @@ const Header = (props: IHeaderProps) => {
         </h1>
         <button onClick={handleButtonClick}>Toggle Theme</button>
       </div>
-    </header>
+    </HeaderWrapper>
   );
 };
 
