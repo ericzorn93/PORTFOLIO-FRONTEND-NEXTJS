@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 const plugins = require(`./api-runner-browser-plugins`);
 
@@ -7,7 +7,7 @@ const {
   getResourcesForPathnameSync,
   getResourceURLsForPathname,
   loadPage,
-  loadPageSync,
+  loadPageSync
 } = require(`./loader`).publicLoader;
 
 exports.apiRunner = (api, args = {}, defaultReturn, argTransform) => {
@@ -27,6 +27,7 @@ exports.apiRunner = (api, args = {}, defaultReturn, argTransform) => {
       return undefined;
     } // Deprecated April 2019. Use `loadPageSync` instead
 
+
     args.getResourcesForPathnameSync = getResourcesForPathnameSync; // Deprecated April 2019. Use `loadPage` instead
 
     args.getResourcesForPathname = getResourcesForPathname;
@@ -39,7 +40,7 @@ exports.apiRunner = (api, args = {}, defaultReturn, argTransform) => {
       args = argTransform({
         args,
         result,
-        plugin,
+        plugin
       });
     }
 
@@ -57,11 +58,4 @@ exports.apiRunner = (api, args = {}, defaultReturn, argTransform) => {
   }
 };
 
-exports.apiRunnerAsync = (api, args, defaultReturn) =>
-  plugins.reduce(
-    (previous, next) =>
-      next.plugin[api]
-        ? previous.then(() => next.plugin[api](args, next.options))
-        : previous,
-    Promise.resolve()
-  );
+exports.apiRunnerAsync = (api, args, defaultReturn) => plugins.reduce((previous, next) => next.plugin[api] ? previous.then(() => next.plugin[api](args, next.options)) : previous, Promise.resolve());

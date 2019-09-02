@@ -1,25 +1,18 @@
-'use strict';
+"use strict";
 
-var _interopRequireWildcard = require('@babel/runtime/helpers/interopRequireWildcard');
+var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
 
 exports.__esModule = true;
 exports.errorMap = exports.reportError = exports.clearError = void 0;
 
-var ErrorOverlay = _interopRequireWildcard(require('react-error-overlay'));
+var ErrorOverlay = _interopRequireWildcard(require("react-error-overlay"));
 
 // Report runtime errors
 ErrorOverlay.startReportingRuntimeErrors({
   onError: () => {},
-  filename: `/commons.js`,
+  filename: `/commons.js`
 });
-ErrorOverlay.setEditorHandler(errorLocation =>
-  window.fetch(
-    `/__open-stack-frame-in-editor?fileName=` +
-      window.encodeURIComponent(errorLocation.fileName) +
-      `&lineNumber=` +
-      window.encodeURIComponent(errorLocation.lineNumber || 1)
-  )
-);
+ErrorOverlay.setEditorHandler(errorLocation => window.fetch(`/__open-stack-frame-in-editor?fileName=` + window.encodeURIComponent(errorLocation.fileName) + `&lineNumber=` + window.encodeURIComponent(errorLocation.lineNumber || 1)));
 const errorMap = {};
 exports.errorMap = errorMap;
 

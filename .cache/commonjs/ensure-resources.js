@@ -1,34 +1,38 @@
-'use strict';
+"use strict";
 
-var _interopRequireDefault = require('@babel/runtime/helpers/interopRequireDefault');
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
 exports.__esModule = true;
 exports.default = void 0;
 
-var _react = _interopRequireDefault(require('react'));
+var _react = _interopRequireDefault(require("react"));
 
-var _loader = _interopRequireDefault(require('./loader'));
+var _loader = _interopRequireDefault(require("./loader"));
 
-var _shallowCompare = _interopRequireDefault(require('shallow-compare'));
+var _shallowCompare = _interopRequireDefault(require("shallow-compare"));
 
 class EnsureResources extends _react.default.Component {
   constructor(props) {
     super();
-    const { location, pageResources } = props;
+    const {
+      location,
+      pageResources
+    } = props;
     this.state = {
       location: Object.assign({}, location),
-      pageResources:
-        pageResources || _loader.default.loadPageSync(location.pathname),
+      pageResources: pageResources || _loader.default.loadPageSync(location.pathname)
     };
   }
 
-  static getDerivedStateFromProps({ location }, prevState) {
+  static getDerivedStateFromProps({
+    location
+  }, prevState) {
     if (prevState.location.href !== location.href) {
       const pageResources = _loader.default.loadPageSync(location.pathname);
 
       return {
         pageResources,
-        location: Object.assign({}, location),
+        location: Object.assign({}, location)
       };
     }
 
@@ -40,7 +44,7 @@ class EnsureResources extends _react.default.Component {
       if (pageResources && pageResources.status !== `error`) {
         this.setState({
           location: Object.assign({}, window.location),
-          pageResources,
+          pageResources
         });
       } else {
         window.history.replaceState({}, ``, location.href);
@@ -56,13 +60,12 @@ class EnsureResources extends _react.default.Component {
       return false;
     } // Check if the component or json have changed.
 
+
     if (this.state.pageResources !== nextState.pageResources) {
       return true;
     }
 
-    if (
-      this.state.pageResources.component !== nextState.pageResources.component
-    ) {
+    if (this.state.pageResources.component !== nextState.pageResources.component) {
       return true;
     }
 
@@ -71,12 +74,8 @@ class EnsureResources extends _react.default.Component {
     } // Check if location has changed on a page using internal routing
     // via matchPath configuration.
 
-    if (
-      this.state.location.key !== nextState.location.key &&
-      nextState.pageResources.page &&
-      (nextState.pageResources.page.matchPath ||
-        nextState.pageResources.page.path)
-    ) {
+
+    if (this.state.location.key !== nextState.location.key && nextState.pageResources.page && (nextState.pageResources.page.matchPath || nextState.pageResources.page.path)) {
       return true;
     }
 
@@ -86,6 +85,7 @@ class EnsureResources extends _react.default.Component {
   render() {
     return this.props.children(this.state);
   }
+
 }
 
 var _default = EnsureResources;

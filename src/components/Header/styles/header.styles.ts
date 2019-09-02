@@ -7,6 +7,7 @@ export const HeaderWrapper = styled.header`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  border: 1px solid ${(props: any) => props.theme.secondary};
 `;
 
 export const HeaderTitle = styled.h1`

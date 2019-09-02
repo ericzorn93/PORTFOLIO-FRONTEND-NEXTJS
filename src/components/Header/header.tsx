@@ -10,15 +10,12 @@ import { ThemeNamesEnum } from '../../utils/primary_enums/theme.enum';
 import { ThemeActions } from '../../store/actions/theme_actions';
 import { ITheme } from '../../utils/primary_interfaces/theme.interface';
 import { HeaderTitle, HeaderWrapper } from './styles/header.styles';
-import SEO from '../SEO/seo';
 
 interface IHeaderProps {
-  siteTitle: string;
+  siteTitle?: string;
 }
 
 const Header = (props: IHeaderProps) => {
-  const { siteTitle = '' } = props;
-
   const themeData = useStaticQuery(graphql`
     query allThemesQuery {
       zornwebdev {
@@ -86,8 +83,10 @@ const Header = (props: IHeaderProps) => {
 
   return (
     // eslint-disable-next-line react/jsx-filename-extension
-    <HeaderWrapper css={{ background: currentTheme.primary }}>
-      <SEO title={siteTitle} />
+    <HeaderWrapper
+      css={{ background: currentTheme.primary }}
+      theme={currentTheme}
+    >
       <HeaderTitle theme={currentTheme}>Eric Zorn Portfolio</HeaderTitle>
       <button onClick={handleButtonClick}>Toggle Theme</button>
     </HeaderWrapper>
