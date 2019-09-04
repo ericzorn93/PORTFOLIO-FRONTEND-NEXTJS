@@ -4,6 +4,7 @@ import React, { useEffect } from 'react'; // @ts-ignore
 import { jsx } from '@emotion/core';
 // eslint-disable-next-line no-unused-vars
 import { Link, useStaticQuery, graphql } from 'gatsby';
+import {animated, useSpring} from "react-spring";
 import { useSelector, useDispatch } from 'react-redux';
 import { FaGithub, FaLinkedin, FaTwitterSquare } from 'react-icons/fa';
 import { IoIosContact, IoIosPaper, IoIosLaptop } from 'react-icons/io';
