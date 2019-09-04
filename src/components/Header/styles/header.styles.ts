@@ -8,6 +8,7 @@ export const HeaderWrapper = styled.header`
   justify-content: flex-start;
   align-items: center;
   border: 1px solid ${(props: any) => props.theme.secondary};
+  background: ${(props: any) => props.theme.primary};
 `;
 
 export const HeaderTitle = styled.h1`

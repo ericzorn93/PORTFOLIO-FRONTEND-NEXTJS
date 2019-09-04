@@ -83,14 +83,40 @@ const Header = (props: IHeaderProps) => {
 
   return (
     // eslint-disable-next-line react/jsx-filename-extension
-    <HeaderWrapper
-      css={{ background: currentTheme.primary }}
-      theme={currentTheme}
-    >
+    <HeaderWrapper theme={currentTheme}>
       <HeaderTitle theme={currentTheme}>
-        Eric Zorn | Full-Stack Engineer
+        <Link to="/">Eric Zorn | Full-Stack Engineer</Link>
       </HeaderTitle>
-      <button onClick={handleButtonClick}>Toggle Theme</button>
+      <ul>
+        <li>
+          <button onClick={handleButtonClick}>Toggle Theme</button>
+        </li>
+        <li>
+          <Link to="/projects">Projects</Link>
+        </li>
+        <li>
+          <Link to="/blog">Blog</Link>
+        </li>
+        <li>
+          <Link to="/contact">Contact Me</Link>
+        </li>
+
+        <li>
+          <a href="https://github.com/ericzorn93" target="_blank">
+            GitHub Profile
+          </a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/in/ericzorn/" target="_blank">
+            LinkedIn Profile
+          </a>
+        </li>
+        <li>
+          <a href="https://twitter.com/zornwebdev" target="_blank">
+            Twitter Profile
+          </a>
+        </li>
+      </ul>
     </HeaderWrapper>
   );
 };
