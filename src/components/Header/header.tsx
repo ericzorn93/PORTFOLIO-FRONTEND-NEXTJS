@@ -87,7 +87,9 @@ const Header = (props: IHeaderProps) => {
       css={{ background: currentTheme.primary }}
       theme={currentTheme}
     >
-      <HeaderTitle theme={currentTheme}>Eric Zorn Portfolio</HeaderTitle>
+      <HeaderTitle theme={currentTheme}>
+        Eric Zorn | Full-Stack Engineer
+      </HeaderTitle>
       <button onClick={handleButtonClick}>Toggle Theme</button>
     </HeaderWrapper>
   );

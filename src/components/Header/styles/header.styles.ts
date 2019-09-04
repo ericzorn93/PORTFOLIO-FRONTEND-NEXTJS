@@ -12,7 +12,7 @@ export const HeaderWrapper = styled.header`
 
 export const HeaderTitle = styled.h1`
   color: ${(props: any) => props.theme.white};
-  font-size: 1.5rem;
+  font-size: 1rem;
   text-align: center;
   margin-top: 1rem;
 `;
