@@ -4,6 +4,7 @@ import React, { useEffect } from 'react'; // @ts-ignore
 import { jsx } from '@emotion/core';
 // eslint-disable-next-line no-unused-vars
 import { Link, useStaticQuery, graphql } from 'gatsby';
+import { animated, useSpring } from 'react-spring';
 import { useSelector, useDispatch } from 'react-redux';
 import { FaGithub, FaLinkedin, FaTwitterSquare } from 'react-icons/fa';
 import { IoIosContact, IoIosPaper, IoIosLaptop } from 'react-icons/io';
@@ -100,8 +101,18 @@ const Header = (props: IHeaderProps) => {
   };
   /** End of Methods */
 
+  /** Beginning of Animations */
+  const menuAnimationProps = useSpring({
+    opacity: 1,
+    tranform: 'translateX(0px)',
+    from: {
+      transform: 'translateX(-200px)',
+      opacity: 0,
+    },
+  });
+  /** End of Animations */
+
   return (
-    // eslint-disable-next-line react/jsx-filename-extension
     <HeaderWrapper theme={currentTheme}>
       <HeaderTitle theme={currentTheme}>
         <Link to="/">Eric Zorn | Full-Stack Engineer</Link>
