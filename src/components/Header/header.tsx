@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { FaGithub, FaLinkedin, FaTwitterSquare } from 'react-icons/fa';
 import { IoIosContact, IoIosPaper, IoIosLaptop } from 'react-icons/io';
 import { MdWbSunny } from 'react-icons/md';
+import { GiHamburgerMenu } from 'react-icons/gi';
 
 import { ThemeNamesEnum } from '../../utils/primary_enums/theme.enum';
 import { ThemeActions } from '../../store/actions/theme_actions';
@@ -94,6 +95,11 @@ const Header = (props: IHeaderProps) => {
       </HeaderTitle>
 
       <NavList theme={currentTheme}>
+        <li>
+          <button>
+            <GiHamburgerMenu />
+          </button>
+        </li>
         <li>
           <button onClick={toggleTheme}>
             <MdWbSunny />

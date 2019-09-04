@@ -2,11 +2,9 @@ import styled from '@emotion/styled';
 
 export const HeaderWrapper = styled.nav`
   height: 100vh;
-  width: 200px;
+  width: 150px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
   border: 1px solid ${(props: any) => props.theme.secondary};
   background: ${(props: any) => props.theme.primary};
 `;
