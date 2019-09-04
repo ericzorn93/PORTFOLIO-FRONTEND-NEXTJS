@@ -1,5 +1,5 @@
 this.workbox = this.workbox || {};
-this.workbox.navigationPreload = (function(exports, logger_mjs) {
+this.workbox.navigationPreload = (function (exports,logger_mjs) {
   'use strict';
 
   try {
@@ -56,19 +56,15 @@ this.workbox.navigationPreload = (function(exports, logger_mjs) {
   function disable() {
     if (isSupported()) {
       self.addEventListener('activate', event => {
-        event.waitUntil(
-          self.registration.navigationPreload.disable().then(() => {
-            {
-              logger_mjs.logger.log(`Navigation preload is disabled.`);
-            }
-          })
-        );
+        event.waitUntil(self.registration.navigationPreload.disable().then(() => {
+          {
+            logger_mjs.logger.log(`Navigation preload is disabled.`);
+          }
+        }));
       });
     } else {
       {
-        logger_mjs.logger.log(
-          `Navigation preload is not supported in this browser.`
-        );
+        logger_mjs.logger.log(`Navigation preload is not supported in this browser.`);
       }
     }
   }
@@ -102,24 +98,20 @@ this.workbox.navigationPreload = (function(exports, logger_mjs) {
   function enable(headerValue) {
     if (isSupported()) {
       self.addEventListener('activate', event => {
-        event.waitUntil(
-          self.registration.navigationPreload.enable().then(() => {
-            // Defaults to Service-Worker-Navigation-Preload: true if not set.
-            if (headerValue) {
-              self.registration.navigationPreload.setHeaderValue(headerValue);
-            }
+        event.waitUntil(self.registration.navigationPreload.enable().then(() => {
+          // Defaults to Service-Worker-Navigation-Preload: true if not set.
+          if (headerValue) {
+            self.registration.navigationPreload.setHeaderValue(headerValue);
+          }
 
-            {
-              logger_mjs.logger.log(`Navigation preload is enabled.`);
-            }
-          })
-        );
+          {
+            logger_mjs.logger.log(`Navigation preload is enabled.`);
+          }
+        }));
       });
     } else {
       {
-        logger_mjs.logger.log(
-          `Navigation preload is not supported in this browser.`
-        );
+        logger_mjs.logger.log(`Navigation preload is not supported in this browser.`);
       }
     }
   }
@@ -161,6 +153,7 @@ this.workbox.navigationPreload = (function(exports, logger_mjs) {
   exports.isSupported = isSupported;
 
   return exports;
-})({}, workbox.core._private);
+
+}({},workbox.core._private));
 
 //# sourceMappingURL=workbox-navigation-preload.dev.js.map

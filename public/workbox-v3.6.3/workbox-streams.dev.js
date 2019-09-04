@@ -1,5 +1,5 @@
 this.workbox = this.workbox || {};
-this.workbox.streams = (function(exports, logger_mjs, assert_mjs) {
+this.workbox.streams = (function (exports,logger_mjs,assert_mjs) {
   'use strict';
 
   try {
@@ -63,7 +63,7 @@ this.workbox.streams = (function(exports, logger_mjs, assert_mjs) {
       assert_mjs.assert.isArray(sourcePromises, {
         moduleName: 'workbox-streams',
         funcName: 'concatenate',
-        paramName: 'sourcePromises',
+        paramName: 'sourcePromises'
       });
     }
 
@@ -84,52 +84,44 @@ this.workbox.streams = (function(exports, logger_mjs, assert_mjs) {
     const logMessages = [];
     const stream = new ReadableStream({
       pull(controller) {
-        return readerPromises[i]
-          .then(reader => reader.read())
-          .then(result => {
-            if (result.done) {
-              {
-                logMessages.push([
-                  'Reached the end of source:',
-                  sourcePromises[i],
-                ]);
-              }
-
-              i++;
-              if (i >= readerPromises.length) {
-                // Log all the messages in the group at once in a single group.
-                {
-                  logger_mjs.logger.groupCollapsed(
-                    `Concatenating ${readerPromises.length} sources.`
-                  );
-                  for (const message of logMessages) {
-                    if (Array.isArray(message)) {
-                      logger_mjs.logger.log(...message);
-                    } else {
-                      logger_mjs.logger.log(message);
-                    }
-                  }
-                  logger_mjs.logger.log('Finished reading all sources.');
-                  logger_mjs.logger.groupEnd();
-                }
-
-                controller.close();
-                fullyStreamedResolve();
-                return;
-              }
-
-              return this.pull(controller);
-            } else {
-              controller.enqueue(result.value);
-            }
-          })
-          .catch(error => {
+        return readerPromises[i].then(reader => reader.read()).then(result => {
+          if (result.done) {
             {
-              logger_mjs.logger.error('An error occurred:', error);
+              logMessages.push(['Reached the end of source:', sourcePromises[i]]);
             }
-            fullyStreamedReject(error);
-            throw error;
-          });
+
+            i++;
+            if (i >= readerPromises.length) {
+              // Log all the messages in the group at once in a single group.
+              {
+                logger_mjs.logger.groupCollapsed(`Concatenating ${readerPromises.length} sources.`);
+                for (const message of logMessages) {
+                  if (Array.isArray(message)) {
+                    logger_mjs.logger.log(...message);
+                  } else {
+                    logger_mjs.logger.log(message);
+                  }
+                }
+                logger_mjs.logger.log('Finished reading all sources.');
+                logger_mjs.logger.groupEnd();
+              }
+
+              controller.close();
+              fullyStreamedResolve();
+              return;
+            }
+
+            return this.pull(controller);
+          } else {
+            controller.enqueue(result.value);
+          }
+        }).catch(error => {
+          {
+            logger_mjs.logger.error('An error occurred:', error);
+          }
+          fullyStreamedReject(error);
+          throw error;
+        });
       },
 
       cancel() {
@@ -138,7 +130,7 @@ this.workbox.streams = (function(exports, logger_mjs, assert_mjs) {
         }
 
         fullyStreamedResolve();
-      },
+      }
     });
 
     return { done, stream };
@@ -298,57 +290,39 @@ this.workbox.streams = (function(exports, logger_mjs, assert_mjs) {
    */
   function strategy(sourceFunctions, headersInit) {
     return (() => {
-      var _ref = babelHelpers.asyncToGenerator(function*({
-        event,
-        url,
-        params,
-      }) {
+      var _ref = babelHelpers.asyncToGenerator(function* ({ event, url, params }) {
         if (isSupported()) {
-          const { done, response } = concatenateToResponse(
-            sourceFunctions.map(function(sourceFunction) {
-              return sourceFunction({ event, url, params });
-            }),
-            headersInit
-          );
+          const { done, response } = concatenateToResponse(sourceFunctions.map(function (sourceFunction) {
+            return sourceFunction({ event, url, params });
+          }), headersInit);
           event.waitUntil(done);
           return response;
         }
 
         {
-          logger_mjs.logger.log(
-            `The current browser doesn't support creating response ` +
-              `streams. Falling back to non-streaming response instead.`
-          );
+          logger_mjs.logger.log(`The current browser doesn't support creating response ` + `streams. Falling back to non-streaming response instead.`);
         }
 
         // Fallback to waiting for everything to finish, and concatenating the
         // responses.
-        const parts = yield Promise.all(
-          sourceFunctions
-            .map(function(sourceFunction) {
-              return sourceFunction({ event, url, params });
-            })
-            .map(
-              (() => {
-                var _ref2 = babelHelpers.asyncToGenerator(function*(
-                  responsePromise
-                ) {
-                  const response = yield responsePromise;
-                  if (response instanceof Response) {
-                    return response.blob();
-                  }
+        const parts = yield Promise.all(sourceFunctions.map(function (sourceFunction) {
+          return sourceFunction({ event, url, params });
+        }).map((() => {
+          var _ref2 = babelHelpers.asyncToGenerator(function* (responsePromise) {
+            const response = yield responsePromise;
+            if (response instanceof Response) {
+              return response.blob();
+            }
 
-                  // Otherwise, assume it's something like a string which can be used
-                  // as-is when constructing the final composite blob.
-                  return response;
-                });
+            // Otherwise, assume it's something like a string which can be used
+            // as-is when constructing the final composite blob.
+            return response;
+          });
 
-                return function(_x2) {
-                  return _ref2.apply(this, arguments);
-                };
-              })()
-            )
-        );
+          return function (_x2) {
+            return _ref2.apply(this, arguments);
+          };
+        })()));
 
         const headers = createHeaders(headersInit);
         // Constructing a new Response from a Blob source is well-supported.
@@ -356,7 +330,7 @@ this.workbox.streams = (function(exports, logger_mjs, assert_mjs) {
         return new Response(new Blob(parts), { headers });
       });
 
-      return function(_x) {
+      return function (_x) {
         return _ref.apply(this, arguments);
       };
     })();
@@ -400,6 +374,7 @@ this.workbox.streams = (function(exports, logger_mjs, assert_mjs) {
   exports.strategy = strategy;
 
   return exports;
-})({}, workbox.core._private, workbox.core._private);
+
+}({},workbox.core._private,workbox.core._private));
 
 //# sourceMappingURL=workbox-streams.dev.js.map

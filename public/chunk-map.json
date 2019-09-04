@@ -1,15 +1,1 @@
-{
-  "app": ["/app-f6e2a43c66c315226a76.js"],
-  "component---node-modules-gatsby-plugin-offline-app-shell-js": [
-    "/component---node-modules-gatsby-plugin-offline-app-shell-js-1e184ea6c7e3dc99bc00.js"
-  ],
-  "component---src-pages-404-tsx": [
-    "/component---src-pages-404-tsx-f9bd2a41b51998059488.js"
-  ],
-  "component---src-pages-index-tsx": [
-    "/component---src-pages-index-tsx-8ddf215c27d99bdbc5f8.js"
-  ],
-  "component---src-pages-page-2-tsx": [
-    "/component---src-pages-page-2-tsx-3208d00c205c62fa59f0.js"
-  ]
-}
+{"app":["/app-6197dc249deea5e76e44.js"],"component---node-modules-gatsby-plugin-offline-app-shell-js":["/component---node-modules-gatsby-plugin-offline-app-shell-js-50e067ec33bdcb4e6e5d.js"],"component---src-pages-404-tsx":["/component---src-pages-404-tsx-762f393a6989d490a980.js"],"component---src-pages-index-tsx":["/component---src-pages-index-tsx-0f04f9e5c82cd9424aca.js"],"component---src-pages-page-2-tsx":["/component---src-pages-page-2-tsx-8e91340c31225b532df2.js"]}

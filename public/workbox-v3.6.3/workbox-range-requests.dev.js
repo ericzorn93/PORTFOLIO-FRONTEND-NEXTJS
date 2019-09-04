@@ -1,10 +1,5 @@
 this.workbox = this.workbox || {};
-this.workbox.rangeRequests = (function(
-  exports,
-  WorkboxError_mjs,
-  assert_mjs,
-  logger_mjs
-) {
+this.workbox.rangeRequests = (function (exports,WorkboxError_mjs,assert_mjs,logger_mjs) {
   'use strict';
 
   try {
@@ -42,7 +37,7 @@ this.workbox.rangeRequests = (function(
       assert_mjs.assert.isInstance(blob, Blob, {
         moduleName: 'workbox-range-requests',
         funcName: 'calculateEffectiveBoundaries',
-        paramName: 'blob',
+        paramName: 'blob'
       });
     }
 
@@ -52,7 +47,7 @@ this.workbox.rangeRequests = (function(
       throw new WorkboxError_mjs.WorkboxError('range-not-satisfiable', {
         size: blobSize,
         end,
-        start,
+        start
       });
     }
 
@@ -73,7 +68,7 @@ this.workbox.rangeRequests = (function(
 
     return {
       start: effectiveStart,
-      end: effectiveEnd,
+      end: effectiveEnd
     };
   }
 
@@ -106,37 +101,31 @@ this.workbox.rangeRequests = (function(
       assert_mjs.assert.isType(rangeHeader, 'string', {
         moduleName: 'workbox-range-requests',
         funcName: 'parseRangeHeader',
-        paramName: 'rangeHeader',
+        paramName: 'rangeHeader'
       });
     }
 
     const normalizedRangeHeader = rangeHeader.trim().toLowerCase();
     if (!normalizedRangeHeader.startsWith('bytes=')) {
-      throw new WorkboxError_mjs.WorkboxError('unit-must-be-bytes', {
-        normalizedRangeHeader,
-      });
+      throw new WorkboxError_mjs.WorkboxError('unit-must-be-bytes', { normalizedRangeHeader });
     }
 
     // Specifying multiple ranges separate by commas is valid syntax, but this
     // library only attempts to handle a single, contiguous sequence of bytes.
     // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Range#Syntax
     if (normalizedRangeHeader.includes(',')) {
-      throw new WorkboxError_mjs.WorkboxError('single-range-only', {
-        normalizedRangeHeader,
-      });
+      throw new WorkboxError_mjs.WorkboxError('single-range-only', { normalizedRangeHeader });
     }
 
     const rangeParts = /(\d*)-(\d*)/.exec(normalizedRangeHeader);
     // We need either at least one of the start or end values.
     if (rangeParts === null || !(rangeParts[1] || rangeParts[2])) {
-      throw new WorkboxError_mjs.WorkboxError('invalid-range-values', {
-        normalizedRangeHeader,
-      });
+      throw new WorkboxError_mjs.WorkboxError('invalid-range-values', { normalizedRangeHeader });
     }
 
     return {
       start: rangeParts[1] === '' ? null : Number(rangeParts[1]),
-      end: rangeParts[2] === '' ? null : Number(rangeParts[2]),
+      end: rangeParts[2] === '' ? null : Number(rangeParts[2])
     };
   }
 
@@ -156,22 +145,19 @@ this.workbox.rangeRequests = (function(
    * @memberof workbox.rangeRequests
    */
   let createPartialResponse = (() => {
-    var _ref = babelHelpers.asyncToGenerator(function*(
-      request,
-      originalResponse
-    ) {
+    var _ref = babelHelpers.asyncToGenerator(function* (request, originalResponse) {
       try {
         {
           assert_mjs.assert.isInstance(request, Request, {
             moduleName: 'workbox-range-requests',
             funcName: 'createPartialResponse',
-            paramName: 'request',
+            paramName: 'request'
           });
 
           assert_mjs.assert.isInstance(originalResponse, Response, {
             moduleName: 'workbox-range-requests',
             funcName: 'createPartialResponse',
-            paramName: 'originalResponse',
+            paramName: 'originalResponse'
           });
         }
 
@@ -183,16 +169,9 @@ this.workbox.rangeRequests = (function(
         const boundaries = parseRangeHeader(rangeHeader);
         const originalBlob = yield originalResponse.blob();
 
-        const effectiveBoundaries = calculateEffectiveBoundaries(
-          originalBlob,
-          boundaries.start,
-          boundaries.end
-        );
+        const effectiveBoundaries = calculateEffectiveBoundaries(originalBlob, boundaries.start, boundaries.end);
 
-        const slicedBlob = originalBlob.slice(
-          effectiveBoundaries.start,
-          effectiveBoundaries.end
-        );
+        const slicedBlob = originalBlob.slice(effectiveBoundaries.start, effectiveBoundaries.end);
         const slicedBlobSize = slicedBlob.size;
 
         const slicedResponse = new Response(slicedBlob, {
@@ -200,23 +179,16 @@ this.workbox.rangeRequests = (function(
           // See https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/206
           status: 206,
           statusText: 'Partial Content',
-          headers: originalResponse.headers,
+          headers: originalResponse.headers
         });
 
         slicedResponse.headers.set('Content-Length', slicedBlobSize);
-        slicedResponse.headers.set(
-          'Content-Range',
-          `bytes ${effectiveBoundaries.start}-${effectiveBoundaries.end - 1}/` +
-            originalBlob.size
-        );
+        slicedResponse.headers.set('Content-Range', `bytes ${effectiveBoundaries.start}-${effectiveBoundaries.end - 1}/` + originalBlob.size);
 
         return slicedResponse;
       } catch (error) {
         {
-          logger_mjs.logger.warn(
-            `Unable to construct a partial response; returning a ` +
-              `416 Range Not Satisfiable response instead.`
-          );
+          logger_mjs.logger.warn(`Unable to construct a partial response; returning a ` + `416 Range Not Satisfiable response instead.`);
           logger_mjs.logger.groupCollapsed(`View details here.`);
           logger_mjs.logger.unprefixed.log(error);
           logger_mjs.logger.unprefixed.log(request);
@@ -226,7 +198,7 @@ this.workbox.rangeRequests = (function(
 
         return new Response('', {
           status: 416,
-          statusText: 'Range Not Satisfiable',
+          statusText: 'Range Not Satisfiable'
         });
       }
     });
@@ -271,7 +243,7 @@ this.workbox.rangeRequests = (function(
      * @private
      */
     cachedResponseWillBeUsed({ request, cachedResponse }) {
-      return babelHelpers.asyncToGenerator(function*() {
+      return babelHelpers.asyncToGenerator(function* () {
         // Only return a sliced response if there's something valid in the cache,
         // and there's a Range: header in the request.
         if (cachedResponse && request.headers.has('range')) {
@@ -321,6 +293,7 @@ this.workbox.rangeRequests = (function(
   exports.Plugin = Plugin;
 
   return exports;
-})({}, workbox.core._private, workbox.core._private, workbox.core._private);
+
+}({},workbox.core._private,workbox.core._private,workbox.core._private));
 
 //# sourceMappingURL=workbox-range-requests.dev.js.map
