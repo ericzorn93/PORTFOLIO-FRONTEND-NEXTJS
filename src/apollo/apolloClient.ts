@@ -6,7 +6,7 @@ import fetch from 'isomorphic-unfetch';
 const apolloClient = new ApolloClient({
   uri: 'https://ez-portfolio-backend-graphql.herokuapp.com/graphql',
   fetch,
-  cache: InMemoryCache,
+  cache: new InMemoryCache(),
 });
 
 export default apolloClient;
