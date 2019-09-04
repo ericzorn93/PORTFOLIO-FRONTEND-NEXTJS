@@ -9,7 +9,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { ThemeNamesEnum } from '../../utils/primary_enums/theme.enum';
 import { ThemeActions } from '../../store/actions/theme_actions';
 import { ITheme } from '../../utils/primary_interfaces/theme.interface';
-import { HeaderTitle, HeaderWrapper } from './styles/header.styles';
+import { HeaderTitle, HeaderWrapper, NavList } from './styles/header.styles';
 
 interface IHeaderProps {
   siteTitle?: string;
@@ -87,7 +87,8 @@ const Header = (props: IHeaderProps) => {
       <HeaderTitle theme={currentTheme}>
         <Link to="/">Eric Zorn | Full-Stack Engineer</Link>
       </HeaderTitle>
-      <ul>
+
+      <NavList theme={currentTheme}>
         <li>
           <button onClick={handleButtonClick}>Toggle Theme</button>
         </li>
@@ -116,7 +117,7 @@ const Header = (props: IHeaderProps) => {
             Twitter Profile
           </a>
         </li>
-      </ul>
+      </NavList>
     </HeaderWrapper>
   );
 };
