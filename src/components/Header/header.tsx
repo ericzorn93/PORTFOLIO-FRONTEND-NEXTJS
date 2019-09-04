@@ -12,6 +12,7 @@ import { GiHamburgerMenu } from 'react-icons/gi';
 
 import { ThemeNamesEnum } from '../../utils/primary_enums/theme.enum';
 import { ThemeActions } from '../../store/actions/theme_actions';
+import { MenuBarActions } from '../../store/actions/menu_bar_actions';
 import { ITheme } from '../../utils/primary_interfaces/theme.interface';
 import { HeaderTitle, HeaderWrapper, NavList } from './styles/header.styles';
 
@@ -55,6 +56,10 @@ const Header = (props: IHeaderProps) => {
   const currentThemeName: ThemeNamesEnum = useSelector(
     (state: any) => state.themes.currentThemeName
   );
+
+  const isMenuBarOpen: boolean = useSelector(
+    (state: any) => state.menuBar.isOpen
+  );
   /** End of Redux */
 
   /** Beginning of Side Effects */
@@ -66,6 +71,14 @@ const Header = (props: IHeaderProps) => {
   /** End of Side Effects */
 
   /** Beginning of Methods */
+  const toggleMenuBarOpen = (): void => {
+    if (isMenuBarOpen) {
+      dispatch(MenuBarActions.toggleMenuBarOpenAction(false));
+    } else {
+      dispatch(MenuBarActions.toggleMenuBarOpenAction(true));
+    }
+  };
+
   const toggleTheme = (): void => {
     switch (currentThemeName) {
       case ThemeNamesEnum.darkMode:
@@ -96,7 +109,7 @@ const Header = (props: IHeaderProps) => {
 
       <NavList theme={currentTheme}>
         <li>
-          <button>
+          <button onClick={toggleMenuBarOpen}>
             <GiHamburgerMenu />
           </button>
         </li>
