@@ -4,6 +4,7 @@ import { jsx } from '@emotion/core';
 import { useStaticQuery, graphql } from 'gatsby';
 
 import Header from '../Header/header';
+import Footer from '../Footer/footer';
 import './styles/layout.css';
 import { PageWrapper } from './styles/layout.styles';
 
@@ -41,9 +42,7 @@ const Layout = ({ children }: ILayout) => {
           <main>{children}</main>
         </div>
       </PageWrapper>
-      <footer>
-        <a href="https://www.gatsbyjs.org">Gatsby</a>
-      </footer>
+      <Footer />
     </React.Fragment>
   );
 };
