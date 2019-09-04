@@ -12,21 +12,47 @@ export const HeaderWrapper = styled.nav`
 `;
 
 export const HeaderTitle = styled.h1`
-  color: ${(props: any) => props.theme.white};
   font-size: 1rem;
-  text-align: center;
   margin-top: 1rem;
+  text-align: center;
+
+  a {
+    color: ${(props: any) => props.theme.white};
+    text-decoration: none;
+  }
 `;
 
 export const NavList = styled.ul`
+  height: 100%;
+  width: 100%;
   list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 0px;
 
   li {
-    margin-top: 2rem;
+    text-align: center;
+
     a {
+      font-size: 1.8rem;
       text-decoration: none;
       color: ${(props: any) => props.theme.white};
       font-family: Roboto, sans-serif;
+
+      &:hover {
+        color: ${(props: any) => props.theme.secondary};
+      }
+    }
+
+    button {
+      border: none;
+      outline: none;
+      background: none;
+      color: ${(props: any) => props.theme.white};
+      font-size: 1.8rem;
+      cursor: pointer;
 
       &:hover {
         color: ${(props: any) => props.theme.secondary};

@@ -5,6 +5,9 @@ import { jsx } from '@emotion/core';
 // eslint-disable-next-line no-unused-vars
 import { Link, useStaticQuery, graphql } from 'gatsby';
 import { useSelector, useDispatch } from 'react-redux';
+import { FaGithub, FaLinkedin, FaTwitterSquare } from 'react-icons/fa';
+import { IoIosContact, IoIosPaper, IoIosLaptop } from 'react-icons/io';
+import { MdWbSunny } from 'react-icons/md';
 
 import { ThemeNamesEnum } from '../../utils/primary_enums/theme.enum';
 import { ThemeActions } from '../../store/actions/theme_actions';
@@ -61,7 +64,8 @@ const Header = (props: IHeaderProps) => {
   }, []);
   /** End of Side Effects */
 
-  const handleButtonClick = () => {
+  /** Beginning of Methods */
+  const toggleTheme = (): void => {
     switch (currentThemeName) {
       case ThemeNamesEnum.darkMode:
         dispatch(
@@ -80,6 +84,7 @@ const Header = (props: IHeaderProps) => {
         break;
     }
   };
+  /** End of Methods */
 
   return (
     // eslint-disable-next-line react/jsx-filename-extension
@@ -90,31 +95,39 @@ const Header = (props: IHeaderProps) => {
 
       <NavList theme={currentTheme}>
         <li>
-          <button onClick={handleButtonClick}>Toggle Theme</button>
+          <button onClick={toggleTheme}>
+            <MdWbSunny />
+          </button>
         </li>
         <li>
-          <Link to="/projects">Projects</Link>
+          <Link to="/projects">
+            <IoIosLaptop />
+          </Link>
         </li>
         <li>
-          <Link to="/blog">Blog</Link>
+          <Link to="/blog">
+            <IoIosPaper />
+          </Link>
         </li>
         <li>
-          <Link to="/contact">Contact Me</Link>
+          <Link to="/contact">
+            <IoIosContact />
+          </Link>
         </li>
 
         <li>
           <a href="https://github.com/ericzorn93" target="_blank">
-            GitHub Profile
+            <FaGithub />
           </a>
         </li>
         <li>
           <a href="https://www.linkedin.com/in/ericzorn/" target="_blank">
-            LinkedIn Profile
+            <FaLinkedin />
           </a>
         </li>
         <li>
           <a href="https://twitter.com/zornwebdev" target="_blank">
-            Twitter Profile
+            <FaTwitterSquare />
           </a>
         </li>
       </NavList>
