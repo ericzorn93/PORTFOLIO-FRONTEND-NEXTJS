@@ -13,7 +13,13 @@ import Img from 'gatsby-image';
  * - `useStaticQuery`: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-const Image = () => {
+interface IImageProps {
+  imageName?: string;
+}
+
+const Image = (props: IImageProps) => {
+  // const imageName = props.imageName || 'gatsby-astronaut.png';
+
   const data = useStaticQuery(graphql`
     query {
       placeholderImage: file(relativePath: { eq: "gatsby-astronaut.png" }) {

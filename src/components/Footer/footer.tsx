@@ -11,7 +11,7 @@ const Footer: React.FC = () => {
 
   return (
     <FooterWrapper theme={currentTheme}>
-      <Link to="/">Eric Zorn | Full-Stack Software Engineer</Link>
+      <Link to="/">&copy; Eric Zorn | Full-Stack Software Engineer - 2019</Link>
     </FooterWrapper>
   );
 };

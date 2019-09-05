@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'; // ts-ignore
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { useSelector, useDispatch } from 'react-redux';
@@ -11,6 +11,8 @@ interface IHeaderToggleBtnProps {
 }
 
 const HeaderToggleBtn = (props: IHeaderToggleBtnProps) => {
+  const { optionalStyles = {} } = props;
+
   /** Beginning of Redux Selectors */
   const dispatch = useDispatch();
 
@@ -28,7 +30,7 @@ const HeaderToggleBtn = (props: IHeaderToggleBtnProps) => {
   /** End of Methods */
   return (
     <React.Fragment>
-      <button onClick={toggleMenuBarOpen} css={props.optionalStyles}>
+      <button onClick={toggleMenuBarOpen} css={{ ...optionalStyles }}>
         <GiHamburgerMenu />
       </button>
     </React.Fragment>

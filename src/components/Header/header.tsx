@@ -13,9 +13,8 @@ import { MdWbSunny } from 'react-icons/md';
 import { ThemeNamesEnum } from '../../utils/primary_enums/theme.enum';
 import HeaderToggleBtn from './components/HeaderToggleBtn';
 import { ThemeActions } from '../../store/actions/theme_actions';
-import { MenuBarActions } from '../../store/actions/menu_bar_actions';
 import { ITheme } from '../../utils/primary_interfaces/theme.interface';
-import { HeaderTitle, HeaderWrapper, NavList } from './styles/header.styles';
+import { HeaderWrapper, NavList } from './styles/header.styles';
 
 interface IHeaderProps {
   siteTitle?: string;
@@ -110,6 +109,8 @@ const Header = (props: IHeaderProps) => {
     background: 'none',
     border: 'none',
     cursor: 'pointer',
+    fontSize: '2rem',
+    color: currentTheme.primary,
     '&:hover': {
       color: currentTheme.secondary,
     },
@@ -120,10 +121,6 @@ const Header = (props: IHeaderProps) => {
     <React.Fragment>
       <animated.div style={{ ...menuAnimationProps }}>
         <HeaderWrapper theme={currentTheme}>
-          <HeaderTitle theme={currentTheme}>
-            <Link to="/">Eric Zorn | Full-Stack Engineer</Link>
-          </HeaderTitle>
-
           <NavList theme={currentTheme}>
             <li>
               <HeaderToggleBtn />
