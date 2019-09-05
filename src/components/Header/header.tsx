@@ -9,9 +9,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { FaGithub, FaLinkedin, FaTwitterSquare } from 'react-icons/fa';
 import { IoIosContact, IoIosPaper, IoIosLaptop } from 'react-icons/io';
 import { MdWbSunny } from 'react-icons/md';
-import { GiHamburgerMenu } from 'react-icons/gi';
 
 import { ThemeNamesEnum } from '../../utils/primary_enums/theme.enum';
+import HeaderToggleBtn from './components/HeaderToggleBtn';
 import { ThemeActions } from '../../store/actions/theme_actions';
 import { MenuBarActions } from '../../store/actions/menu_bar_actions';
 import { ITheme } from '../../utils/primary_interfaces/theme.interface';
@@ -72,13 +72,6 @@ const Header = (props: IHeaderProps) => {
   /** End of Side Effects */
 
   /** Beginning of Methods */
-  const toggleMenuBarOpen = (): void => {
-    if (isMenuBarOpen) {
-      dispatch(MenuBarActions.toggleMenuBarOpenAction(false));
-    } else {
-      dispatch(MenuBarActions.toggleMenuBarOpenAction(true));
-    }
-  };
 
   const toggleTheme = (): void => {
     switch (currentThemeName) {
@@ -103,63 +96,62 @@ const Header = (props: IHeaderProps) => {
 
   /** Beginning of Animations */
   const menuAnimationProps = useSpring({
-    opacity: 1,
     transform: `translateX(${isMenuBarOpen ? 0 : -200}px)`,
   });
   /** End of Animations */
 
   return (
-    <animated.div css={{ ...menuAnimationProps }}>
-      <HeaderWrapper theme={currentTheme}>
-        <HeaderTitle theme={currentTheme}>
-          <Link to="/">Eric Zorn | Full-Stack Engineer</Link>
-        </HeaderTitle>
+    <React.Fragment>
+      <animated.div style={{ ...menuAnimationProps }}>
+        <HeaderWrapper theme={currentTheme}>
+          <HeaderTitle theme={currentTheme}>
+            <Link to="/">Eric Zorn | Full-Stack Engineer</Link>
+          </HeaderTitle>
 
-        <NavList theme={currentTheme}>
-          <li>
-            <button onClick={toggleMenuBarOpen}>
-              <GiHamburgerMenu />
-            </button>
-          </li>
-          <li>
-            <button onClick={toggleTheme}>
-              <MdWbSunny />
-            </button>
-          </li>
-          <li>
-            <Link to="/projects">
-              <IoIosLaptop />
-            </Link>
-          </li>
-          <li>
-            <Link to="/blog">
-              <IoIosPaper />
-            </Link>
-          </li>
-          <li>
-            <Link to="/contact">
-              <IoIosContact />
-            </Link>
-          </li>
+          <NavList theme={currentTheme}>
+            <li>
+              <HeaderToggleBtn />
+            </li>
+            <li>
+              <button onClick={toggleTheme}>
+                <MdWbSunny />
+              </button>
+            </li>
+            <li>
+              <Link to="/projects">
+                <IoIosLaptop />
+              </Link>
+            </li>
+            <li>
+              <Link to="/blog">
+                <IoIosPaper />
+              </Link>
+            </li>
+            <li>
+              <Link to="/contact">
+                <IoIosContact />
+              </Link>
+            </li>
 
-          <li>
-            <a href="https://github.com/ericzorn93" target="_blank">
-              <FaGithub />
-            </a>
-          </li>
-          <li>
-            <a href="https://www.linkedin.com/in/ericzorn/" target="_blank">
-              <FaLinkedin />
-            </a>
-          </li>
-          <li>
-            <a href="https://twitter.com/zornwebdev" target="_blank">
-              <FaTwitterSquare />
-            </a>
-          </li>
-        </NavList>
-      </HeaderWrapper>
-    </animated.div>
+            <li>
+              <a href="https://github.com/ericzorn93" target="_blank">
+                <FaGithub />
+              </a>
+            </li>
+            <li>
+              <a href="https://www.linkedin.com/in/ericzorn/" target="_blank">
+                <FaLinkedin />
+              </a>
+            </li>
+            <li>
+              <a href="https://twitter.com/zornwebdev" target="_blank">
+                <FaTwitterSquare />
+              </a>
+            </li>
+          </NavList>
+        </HeaderWrapper>
+      </animated.div>
+    </React.Fragment>
   );
 };
 
