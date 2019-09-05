@@ -5,8 +5,8 @@
   "version": "1.2.0",
   "author": "Eric Zorn <zornwebdev@gmail.com>",
   "dependencies": {
-    "@emotion/core": "^10.0.16",
-    "@emotion/styled": "^10.0.15",
+    "@emotion/core": "^10.0.17",
+    "@emotion/styled": "^10.0.17",
     "apollo-boost": "^0.4.4",
     "apollo-cache-inmemory": "^1.6.3",
     "date-fns": "^2.0.1",
@@ -14,6 +14,7 @@
     "fetch": "^1.1.0",
     "gatsby": "^2.13.73",
     "gatsby-image": "^2.2.10",
+    "gatsby-plugin-emotion": "^4.1.5",
     "gatsby-plugin-manifest": "^2.2.6",
     "gatsby-plugin-offline": "^2.2.7",
     "gatsby-plugin-react-helmet": "^3.1.4",
@@ -32,6 +33,7 @@
     "react-helmet": "^5.2.1",
     "react-icons": "^3.7.0",
     "react-redux": "^7.1.1",
+    "react-spring": "^8.0.27",
     "redux": "^4.0.4",
     "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.3.0"

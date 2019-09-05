@@ -4,7 +4,7 @@ import React, { useEffect } from 'react'; // @ts-ignore
 import { jsx } from '@emotion/core';
 // eslint-disable-next-line no-unused-vars
 import { Link, useStaticQuery, graphql } from 'gatsby';
-import {animated, useSpring} from "react-spring";
+import { animated, useSpring } from 'react-spring';
 import { useSelector, useDispatch } from 'react-redux';
 import { FaGithub, FaLinkedin, FaTwitterSquare } from 'react-icons/fa';
 import { IoIosContact, IoIosPaper, IoIosLaptop } from 'react-icons/io';
@@ -101,57 +101,65 @@ const Header = (props: IHeaderProps) => {
   };
   /** End of Methods */
 
+  /** Beginning of Animations */
+  const menuAnimationProps = useSpring({
+    opacity: 1,
+    transform: `translateX(${isMenuBarOpen ? 0 : -200}px)`,
+  });
+  /** End of Animations */
+
   return (
-    // eslint-disable-next-line react/jsx-filename-extension
-    <HeaderWrapper theme={currentTheme}>
-      <HeaderTitle theme={currentTheme}>
-        <Link to="/">Eric Zorn | Full-Stack Engineer</Link>
-      </HeaderTitle>
+    <animated.div css={{ ...menuAnimationProps }}>
+      <HeaderWrapper theme={currentTheme}>
+        <HeaderTitle theme={currentTheme}>
+          <Link to="/">Eric Zorn | Full-Stack Engineer</Link>
+        </HeaderTitle>
 
-      <NavList theme={currentTheme}>
-        <li>
-          <button onClick={toggleMenuBarOpen}>
-            <GiHamburgerMenu />
-          </button>
-        </li>
-        <li>
-          <button onClick={toggleTheme}>
-            <MdWbSunny />
-          </button>
-        </li>
-        <li>
-          <Link to="/projects">
-            <IoIosLaptop />
-          </Link>
-        </li>
-        <li>
-          <Link to="/blog">
-            <IoIosPaper />
-          </Link>
-        </li>
-        <li>
-          <Link to="/contact">
-            <IoIosContact />
-          </Link>
-        </li>
+        <NavList theme={currentTheme}>
+          <li>
+            <button onClick={toggleMenuBarOpen}>
+              <GiHamburgerMenu />
+            </button>
+          </li>
+          <li>
+            <button onClick={toggleTheme}>
+              <MdWbSunny />
+            </button>
+          </li>
+          <li>
+            <Link to="/projects">
+              <IoIosLaptop />
+            </Link>
+          </li>
+          <li>
+            <Link to="/blog">
+              <IoIosPaper />
+            </Link>
+          </li>
+          <li>
+            <Link to="/contact">
+              <IoIosContact />
+            </Link>
+          </li>
 
-        <li>
-          <a href="https://github.com/ericzorn93" target="_blank">
-            <FaGithub />
-          </a>
-        </li>
-        <li>
-          <a href="https://www.linkedin.com/in/ericzorn/" target="_blank">
-            <FaLinkedin />
-          </a>
-        </li>
-        <li>
-          <a href="https://twitter.com/zornwebdev" target="_blank">
-            <FaTwitterSquare />
-          </a>
-        </li>
-      </NavList>
-    </HeaderWrapper>
+          <li>
+            <a href="https://github.com/ericzorn93" target="_blank">
+              <FaGithub />
+            </a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/in/ericzorn/" target="_blank">
+              <FaLinkedin />
+            </a>
+          </li>
+          <li>
+            <a href="https://twitter.com/zornwebdev" target="_blank">
+              <FaTwitterSquare />
+            </a>
+          </li>
+        </NavList>
+      </HeaderWrapper>
+    </animated.div>
   );
 };
 

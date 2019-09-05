@@ -4,6 +4,14 @@
       "plugins": [],
       "presets": [
         {
+          "name": "E:\\Dropbox\\Projects\\UPDATED_PORTFOLIO\\frontend\\node_modules\\@emotion\\babel-preset-css-prop\\dist\\babel-preset-css-prop.cjs.js",
+          "options": {
+            "sourceMap": true,
+            "autoLabel": true,
+            "plugins": []
+          }
+        },
+        {
           "name": "E:\\Dropbox\\Projects\\UPDATED_PORTFOLIO\\frontend\\node_modules\\@babel\\preset-typescript\\lib\\index.js",
           "options": {
             "plugins": []
@@ -18,6 +26,14 @@
     "develop-html": {
       "plugins": [],
       "presets": [
+        {
+          "name": "E:\\Dropbox\\Projects\\UPDATED_PORTFOLIO\\frontend\\node_modules\\@emotion\\babel-preset-css-prop\\dist\\babel-preset-css-prop.cjs.js",
+          "options": {
+            "sourceMap": true,
+            "autoLabel": true,
+            "plugins": []
+          }
+        },
         {
           "name": "E:\\Dropbox\\Projects\\UPDATED_PORTFOLIO\\frontend\\node_modules\\@babel\\preset-typescript\\lib\\index.js",
           "options": {
@@ -34,6 +50,14 @@
       "plugins": [],
       "presets": [
         {
+          "name": "E:\\Dropbox\\Projects\\UPDATED_PORTFOLIO\\frontend\\node_modules\\@emotion\\babel-preset-css-prop\\dist\\babel-preset-css-prop.cjs.js",
+          "options": {
+            "sourceMap": true,
+            "autoLabel": true,
+            "plugins": []
+          }
+        },
+        {
           "name": "E:\\Dropbox\\Projects\\UPDATED_PORTFOLIO\\frontend\\node_modules\\@babel\\preset-typescript\\lib\\index.js",
           "options": {
             "plugins": []
@@ -48,6 +72,14 @@
     "build-javascript": {
       "plugins": [],
       "presets": [
+        {
+          "name": "E:\\Dropbox\\Projects\\UPDATED_PORTFOLIO\\frontend\\node_modules\\@emotion\\babel-preset-css-prop\\dist\\babel-preset-css-prop.cjs.js",
+          "options": {
+            "sourceMap": true,
+            "autoLabel": true,
+            "plugins": []
+          }
+        },
         {
           "name": "E:\\Dropbox\\Projects\\UPDATED_PORTFOLIO\\frontend\\node_modules\\@babel\\preset-typescript\\lib\\index.js",
           "options": {

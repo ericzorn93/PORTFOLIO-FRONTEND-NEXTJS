@@ -6,6 +6,7 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-emotion`, // Used for emotion styling
     {
       resolve: `gatsby-source-filesystem`,
       options: {
