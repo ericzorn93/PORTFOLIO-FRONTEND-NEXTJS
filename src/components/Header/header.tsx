@@ -94,7 +94,7 @@ const Header = (props: IHeaderProps) => {
   };
   /** End of Methods */
 
-  /** Beginning of Animations */
+  /** Beginning of Animations and Styles */
   const menuAnimationProps = useSpring({
     transform: `translateX(${isMenuBarOpen ? 0 : -200}px)`,
   });
@@ -102,7 +102,19 @@ const Header = (props: IHeaderProps) => {
   const menuButtonAnimationProps = useSpring({
     opacity: isMenuBarOpen ? 0 : 1,
   });
-  /** End of Animations */
+
+  const optionalMenuBarStyles = {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    background: 'none',
+    border: 'none',
+    cursor: 'pointer',
+    '&:hover': {
+      color: currentTheme.secondary,
+    },
+  };
+  /** End of Animations and Styles */
 
   return (
     <React.Fragment>
@@ -164,19 +176,7 @@ const Header = (props: IHeaderProps) => {
           ...menuButtonAnimationProps,
         }}
       >
-        <HeaderToggleBtn
-          optionalStyles={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            background: 'none',
-            border: 'none',
-            cursor: 'pointer',
-            '&:hover': {
-              color: currentTheme.secondary,
-            },
-          }}
-        />
+        <HeaderToggleBtn optionalStyles={optionalMenuBarStyles} />
       </animated.div>
     </React.Fragment>
   );
