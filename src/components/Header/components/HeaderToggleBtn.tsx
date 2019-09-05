@@ -1,10 +1,16 @@
 import React from 'react';
+/** @jsx jsx */
+import { jsx } from '@emotion/core';
 import { useSelector, useDispatch } from 'react-redux';
 import { GiHamburgerMenu } from 'react-icons/gi';
 
 import { MenuBarActions } from '../../../store/actions/menu_bar_actions';
 
-const HeaderToggleBtn: React.FC = () => {
+interface IHeaderToggleBtnProps {
+  optionalStyles?: object;
+}
+
+const HeaderToggleBtn = (props: IHeaderToggleBtnProps) => {
   /** Beginning of Redux Selectors */
   const dispatch = useDispatch();
 
@@ -22,7 +28,7 @@ const HeaderToggleBtn: React.FC = () => {
   /** End of Methods */
   return (
     <React.Fragment>
-      <button onClick={toggleMenuBarOpen}>
+      <button onClick={toggleMenuBarOpen} css={props.optionalStyles}>
         <GiHamburgerMenu />
       </button>
     </React.Fragment>

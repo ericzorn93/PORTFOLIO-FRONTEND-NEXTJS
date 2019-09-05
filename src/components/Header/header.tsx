@@ -98,6 +98,10 @@ const Header = (props: IHeaderProps) => {
   const menuAnimationProps = useSpring({
     transform: `translateX(${isMenuBarOpen ? 0 : -200}px)`,
   });
+
+  const menuButtonAnimationProps = useSpring({
+    opacity: isMenuBarOpen ? 0 : 1,
+  });
   /** End of Animations */
 
   return (
@@ -150,6 +154,29 @@ const Header = (props: IHeaderProps) => {
             </li>
           </NavList>
         </HeaderWrapper>
+      </animated.div>
+
+      <animated.div
+        style={{
+          position: 'absolute',
+          left: 20,
+          top: 20,
+          ...menuButtonAnimationProps,
+        }}
+      >
+        <HeaderToggleBtn
+          optionalStyles={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            background: 'none',
+            border: 'none',
+            cursor: 'pointer',
+            '&:hover': {
+              color: currentTheme.secondary,
+            },
+          }}
+        />
       </animated.div>
     </React.Fragment>
   );
