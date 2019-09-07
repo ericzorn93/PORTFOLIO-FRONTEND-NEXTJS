@@ -4,9 +4,9 @@ import { jsx } from '@emotion/core';
 import { Link } from 'gatsby';
 
 import Layout from '../components/Layout/layout';
-import Image from '../components/Image/image';
 import SEO from '../components/SEO/seo';
 import { IndexPageWrapper } from '../components/Page/index.page.style';
+import Particles from '../components/Particles/Particles';
 
 const IndexPage: React.FC = () => (
   <Layout>
@@ -18,9 +18,7 @@ const IndexPage: React.FC = () => (
         <em>Specializing in JavaScript, Python, and Ruby</em>
       </p>
       <p>Passionate Tech Enthusiast, Programmer, and Golfer</p>
-      <div css={{ maxWidth: '300px', marginBottom: '1.45rem' }}>
-        <Image />
-      </div>
+      <Particles backgroundColor="black" />
       <Link to="/page-2/">Go to page 2</Link>
     </IndexPageWrapper>
   </Layout>

@@ -111,6 +111,7 @@ const Header = (props: IHeaderProps) => {
     cursor: 'pointer',
     fontSize: '2rem',
     color: currentTheme.primary,
+    outline: 'none',
     '&:hover': {
       color: currentTheme.secondary,
     },
