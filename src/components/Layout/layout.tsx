@@ -8,11 +8,9 @@ import Header from '../Header/header';
 import Footer from '../Footer/footer';
 import { PageWrapper } from './styles/layout.styles';
 
-interface ILayout {
-  children: any[] | any;
-}
+interface ILayout {}
 
-const Layout = ({ children }: ILayout) => {
+const Layout: React.FC<ILayout> = ({ children }) => {
   const {
     site: {
       siteMetadata: { title: siteTitle },

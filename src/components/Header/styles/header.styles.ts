@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 export const HeaderWrapper = styled.nav`
   height: 100vh;
-  width: 150px;
+  width: 80px;
   display: flex;
   flex-direction: column;
   border: 1px solid ${(props: any) => props.theme.secondary};

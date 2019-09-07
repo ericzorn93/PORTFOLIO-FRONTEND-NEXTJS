@@ -1,11 +1,18 @@
 import React, { Fragment } from 'react';
+import { useSelector } from 'react-redux';
 import ReactParticles from 'react-particles-js';
 
-interface ParticleProps {
-  backgroundColor?: string;
-}
+import { ITheme } from '../../utils/primary_interfaces/theme.interface';
+
+interface ParticleProps {}
 
 const Particles: React.FC<ParticleProps> = props => {
+  /** Redux Selectors */
+  const currentTheme: ITheme = useSelector(
+    (state: any) => state.themes.currentTheme
+  );
+  /** End of Redux Selectors */
+
   const particleParams = {
     particles: {
       line_linked: {
@@ -23,7 +30,7 @@ const Particles: React.FC<ParticleProps> = props => {
     top: 0,
     bottom: 0,
     zIndex: -1,
-    backgroundColor: props.backgroundColor,
+    backgroundColor: currentTheme.secondary || 'white',
   };
 
   return (

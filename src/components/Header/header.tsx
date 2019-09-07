@@ -112,9 +112,6 @@ const Header = (props: IHeaderProps) => {
     fontSize: '2rem',
     color: currentTheme.primary,
     outline: 'none',
-    '&:hover': {
-      color: currentTheme.secondary,
-    },
   };
   /** End of Animations and Styles */
 
