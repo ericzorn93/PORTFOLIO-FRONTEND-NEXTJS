@@ -40,7 +40,11 @@ export const IntroductionWrapper = styled.div`
     padding: 0 1rem;
 
     #json {
-      font-size: 1em;
+      font-size: 0.8em;
+
+      .json-key {
+        color: ${(props: any) => props.theme.primary};
+      }
     }
   }
 `;
