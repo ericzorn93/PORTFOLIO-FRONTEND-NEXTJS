@@ -14,7 +14,9 @@ import { ITheme } from '../utils/primary_interfaces/theme.interface';
 const prettyHtml = require('json-pretty-html').default;
 
 const IndexPage: React.FC = () => {
-  const currentTheme: ITheme = useSelector((state: any) => state.themes.currentTheme);
+  const currentTheme: ITheme = useSelector(
+    (state: any) => state.themes.currentTheme
+  );
 
   const handleNavigateToContactPage = (): void => {
     navigate('/contact');
@@ -38,9 +40,11 @@ const IndexPage: React.FC = () => {
             </button>
           </div>
           <div className="secondColumn">
-            {/* <h1 css={{ textAlign: 'center' }}>About Me</h1> */}
             <br />
-            <p id="json" dangerouslySetInnerHTML={{ __html: prettyHtml(aboutJson) }} />
+            <p
+              id="json"
+              dangerouslySetInnerHTML={{ __html: prettyHtml(aboutJson) }}
+            />
           </div>
         </IntroductionWrapper>
       </Layout>
