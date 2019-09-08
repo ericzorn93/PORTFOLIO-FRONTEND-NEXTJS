@@ -38,7 +38,6 @@ export const NavList = styled.ul`
       font-size: 1.8rem;
       text-decoration: none;
       color: ${(props: any) => props.theme.white};
-      font-family: Roboto, sans-serif;
 
       &:hover {
         color: ${(props: any) => props.theme.secondary};

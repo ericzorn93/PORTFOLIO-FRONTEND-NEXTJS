@@ -15,6 +15,9 @@ const Particles: React.FC<ParticleProps> = props => {
 
   const particleParams = {
     particles: {
+      number: {
+        value: 80
+      },
       line_linked: {
         shadow: {
           enable: true,

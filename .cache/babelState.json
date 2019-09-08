@@ -4,7 +4,7 @@
       "plugins": [],
       "presets": [
         {
-          "name": "/Users/ericzorn/Dropbox/Projects/UPDATED_PORTFOLIO/frontend/node_modules/@emotion/babel-preset-css-prop/dist/babel-preset-css-prop.cjs.js",
+          "name": "E:\\Dropbox\\Projects\\UPDATED_PORTFOLIO\\frontend\\node_modules\\@emotion\\babel-preset-css-prop\\dist\\babel-preset-css-prop.cjs.js",
           "options": {
             "sourceMap": true,
             "autoLabel": true,
@@ -12,7 +12,7 @@
           }
         },
         {
-          "name": "/Users/ericzorn/Dropbox/Projects/UPDATED_PORTFOLIO/frontend/node_modules/@babel/preset-typescript/lib/index.js",
+          "name": "E:\\Dropbox\\Projects\\UPDATED_PORTFOLIO\\frontend\\node_modules\\@babel\\preset-typescript\\lib\\index.js",
           "options": {
             "plugins": []
           }
@@ -27,7 +27,7 @@
       "plugins": [],
       "presets": [
         {
-          "name": "/Users/ericzorn/Dropbox/Projects/UPDATED_PORTFOLIO/frontend/node_modules/@emotion/babel-preset-css-prop/dist/babel-preset-css-prop.cjs.js",
+          "name": "E:\\Dropbox\\Projects\\UPDATED_PORTFOLIO\\frontend\\node_modules\\@emotion\\babel-preset-css-prop\\dist\\babel-preset-css-prop.cjs.js",
           "options": {
             "sourceMap": true,
             "autoLabel": true,
@@ -35,7 +35,7 @@
           }
         },
         {
-          "name": "/Users/ericzorn/Dropbox/Projects/UPDATED_PORTFOLIO/frontend/node_modules/@babel/preset-typescript/lib/index.js",
+          "name": "E:\\Dropbox\\Projects\\UPDATED_PORTFOLIO\\frontend\\node_modules\\@babel\\preset-typescript\\lib\\index.js",
           "options": {
             "plugins": []
           }
@@ -50,7 +50,7 @@
       "plugins": [],
       "presets": [
         {
-          "name": "/Users/ericzorn/Dropbox/Projects/UPDATED_PORTFOLIO/frontend/node_modules/@emotion/babel-preset-css-prop/dist/babel-preset-css-prop.cjs.js",
+          "name": "E:\\Dropbox\\Projects\\UPDATED_PORTFOLIO\\frontend\\node_modules\\@emotion\\babel-preset-css-prop\\dist\\babel-preset-css-prop.cjs.js",
           "options": {
             "sourceMap": true,
             "autoLabel": true,
@@ -58,7 +58,7 @@
           }
         },
         {
-          "name": "/Users/ericzorn/Dropbox/Projects/UPDATED_PORTFOLIO/frontend/node_modules/@babel/preset-typescript/lib/index.js",
+          "name": "E:\\Dropbox\\Projects\\UPDATED_PORTFOLIO\\frontend\\node_modules\\@babel\\preset-typescript\\lib\\index.js",
           "options": {
             "plugins": []
           }
@@ -73,7 +73,7 @@
       "plugins": [],
       "presets": [
         {
-          "name": "/Users/ericzorn/Dropbox/Projects/UPDATED_PORTFOLIO/frontend/node_modules/@emotion/babel-preset-css-prop/dist/babel-preset-css-prop.cjs.js",
+          "name": "E:\\Dropbox\\Projects\\UPDATED_PORTFOLIO\\frontend\\node_modules\\@emotion\\babel-preset-css-prop\\dist\\babel-preset-css-prop.cjs.js",
           "options": {
             "sourceMap": true,
             "autoLabel": true,
@@ -81,7 +81,7 @@
           }
         },
         {
-          "name": "/Users/ericzorn/Dropbox/Projects/UPDATED_PORTFOLIO/frontend/node_modules/@babel/preset-typescript/lib/index.js",
+          "name": "E:\\Dropbox\\Projects\\UPDATED_PORTFOLIO\\frontend\\node_modules\\@babel\\preset-typescript\\lib\\index.js",
           "options": {
             "plugins": []
           }

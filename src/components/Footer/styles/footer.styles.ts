@@ -12,6 +12,5 @@ export const FooterWrapper = styled.footer`
   a {
     color: ${(props: any) => props.theme.white};
     text-decoration: none;
-    font-family: Roboto, sans-serif;
   }
 `;
