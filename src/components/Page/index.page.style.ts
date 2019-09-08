@@ -38,5 +38,9 @@ export const IntroductionWrapper = styled.div`
   .secondColumn {
     margin-top: 3rem;
     padding: 0 1rem;
+
+    #json {
+      font-size: 1em;
+    }
   }
 `;

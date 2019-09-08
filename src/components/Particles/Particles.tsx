@@ -4,13 +4,13 @@ import ReactParticles from 'react-particles-js';
 
 import { ITheme } from '../../utils/primary_interfaces/theme.interface';
 
-interface ParticleProps {}
+interface ParticleProps {
+  style?: object;
+}
 
-const Particles: React.FC<ParticleProps> = props => {
+const Particles: React.FC<ParticleProps> = (props) => {
   /** Redux Selectors */
-  const currentTheme: ITheme = useSelector(
-    (state: any) => state.themes.currentTheme
-  );
+  const currentTheme: ITheme = useSelector((state: any) => state.themes.currentTheme);
   /** End of Redux Selectors */
 
   const particleParams = {
@@ -27,8 +27,8 @@ const Particles: React.FC<ParticleProps> = props => {
       },
     },
     interactivity: {
-      onhover: { 
-        enable: true 
+      onhover: {
+        enable: true,
       },
     },
   };
@@ -39,12 +39,13 @@ const Particles: React.FC<ParticleProps> = props => {
     bottom: 0,
     zIndex: -1,
     backgroundColor: currentTheme.secondary || 'white',
+    ...props.style,
   };
 
   return (
-    <Fragment>
+    <>
       <ReactParticles params={particleParams} style={styles} />
-    </Fragment>
+    </>
   );
 };
 
