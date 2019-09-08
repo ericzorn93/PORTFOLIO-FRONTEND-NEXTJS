@@ -16,7 +16,7 @@ const Particles: React.FC<ParticleProps> = props => {
   const particleParams = {
     particles: {
       number: {
-        value: 80
+        value: 80,
       },
       line_linked: {
         shadow: {
@@ -24,6 +24,11 @@ const Particles: React.FC<ParticleProps> = props => {
           color: '#3CA9D1',
           blur: 5,
         },
+      },
+    },
+    interactivity: {
+      onhover: { 
+        enable: true 
       },
     },
   };
