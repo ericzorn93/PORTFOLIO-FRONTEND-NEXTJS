@@ -38,7 +38,7 @@ const IndexPage: React.FC = () => {
             </button>
           </div>
           <div className="secondColumn">
-            <h3 css={{ textAlign: 'center' }}>About Me</h3>
+            {/* <h1 css={{ textAlign: 'center' }}>About Me</h1> */}
             <br />
             <p id="json" dangerouslySetInnerHTML={{ __html: prettyHtml(aboutJson) }} />
           </div>

@@ -18,18 +18,6 @@ const Particles: React.FC<ParticleProps> = (props) => {
       number: {
         value: 80,
       },
-      line_linked: {
-        shadow: {
-          enable: true,
-          color: '#3CA9D1',
-          blur: 5,
-        },
-      },
-    },
-    interactivity: {
-      onhover: {
-        enable: true,
-      },
     },
   };
 
@@ -39,6 +27,7 @@ const Particles: React.FC<ParticleProps> = (props) => {
     bottom: 0,
     zIndex: -1,
     backgroundColor: currentTheme.secondary || 'white',
+    width: '100vw',
     ...props.style,
   };
 
