@@ -2,7 +2,7 @@
   "name": "ericzornportfolio",
   "private": true,
   "description": "A personal portfolio built in React, Redux, GraphQL, Apollo, and Apollo Server",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "author": "Eric Zorn <zornwebdev@gmail.com>",
   "dependencies": {
     "@emotion/core": "^10.0.17",
