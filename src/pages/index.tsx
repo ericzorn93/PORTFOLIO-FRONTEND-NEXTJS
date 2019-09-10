@@ -39,13 +39,15 @@ const IndexPage: React.FC = () => {
               Contact Me
             </button>
           </div>
-          <div className="secondColumn">
-            <br />
-            <p
-              id="json"
-              dangerouslySetInnerHTML={{ __html: prettyHtml(aboutJson) }}
-            />
-          </div>
+          {window.innerWidth >= 500 && (
+            <div className="secondColumn">
+              <br />
+              <p
+                id="json"
+                dangerouslySetInnerHTML={{ __html: prettyHtml(aboutJson) }}
+              />
+            </div>
+          )}
         </IntroductionWrapper>
       </Layout>
     </React.Fragment>

@@ -2,7 +2,7 @@ import React from 'react';
 
 import Layout from '../components/Layout/layout';
 
-const Contact = () => {
+const Contact: React.FC = () => {
   return (
     <>
       <Layout>
