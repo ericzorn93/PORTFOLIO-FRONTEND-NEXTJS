@@ -39,7 +39,7 @@ const IndexPage: React.FC = () => {
               Contact Me
             </button>
           </div>
-          {window.innerWidth >= 500 && (
+          {window && window.innerWidth >= 500 && (
             <div className="secondColumn">
               <br />
               <p
