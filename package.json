@@ -15,6 +15,7 @@
     "gatsby": "^2.13.73",
     "gatsby-image": "^2.2.10",
     "gatsby-plugin-emotion": "^4.1.5",
+    "gatsby-plugin-google-analytics": "^2.1.16",
     "gatsby-plugin-manifest": "^2.2.6",
     "gatsby-plugin-offline": "^2.2.7",
     "gatsby-plugin-react-helmet": "^3.1.4",
@@ -38,7 +39,8 @@
     "react-spring": "^8.0.27",
     "redux": "^4.0.4",
     "redux-devtools-extension": "^2.13.8",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "ua-parser-js": "^0.7.20"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^1.6.1",
@@ -52,6 +54,7 @@
     "@types/redux": "^3.6.0",
     "@types/redux-devtools-extension": "^2.13.2",
     "@types/redux-thunk": "^2.1.0",
+    "@types/ua-parser-js": "^0.7.33",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-plugin-ava": "^8.0.0",
     "graphql-code-generator": "^0.18.2",
