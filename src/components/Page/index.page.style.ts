@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
 
 export const IntroductionWrapper = styled.div`
-  margin-top: 1em;
   margin-left: 5em;
   color: white;
   height: 100%;
@@ -15,7 +14,7 @@ export const IntroductionWrapper = styled.div`
 
   /* Nested Columns */
   .firstColumn {
-    margin-top: 3rem;
+    margin-top: 2rem;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -41,7 +40,7 @@ export const IntroductionWrapper = styled.div`
   }
 
   .secondColumn {
-    margin-top: 3rem;
+    margin-top: -0.5em;
     padding: 0 1rem;
 
     #json {
@@ -50,6 +49,11 @@ export const IntroductionWrapper = styled.div`
       .json-key {
         color: ${(props: any) => props.theme.primary};
       }
+    }
+
+    /* Hide Second Column for mobile breakpoints */
+    @media (max-width: 900px) {
+      display: none;
     }
   }
 `;
