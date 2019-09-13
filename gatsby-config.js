@@ -1,7 +1,8 @@
 module.exports = {
   siteMetadata: {
     title: 'Eric Zorn Portfolio',
-    description: 'Personalized portfolio with backend built in TypeScript and GraphQL.',
+    description:
+      'Personalized portfolio with backend built in TypeScript and GraphQL.',
     author: '@ericzorn93',
   },
   plugins: [
@@ -39,6 +40,33 @@ module.exports = {
         fieldName: 'zornwebdev',
         // URL to query from
         url: 'https://ez-portfolio-backend-graphql.herokuapp.com/graphql',
+      },
+    },
+
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: 'UA-132682812-2',
+        // Defines where to place the tracking script - `true` in the head and `false` in the body
+        head: false,
+        // Setting this parameter is optional
+        anonymize: true,
+        // Setting this parameter is also optional
+        respectDNT: true,
+        // Avoids sending pageview hits from custom paths
+        // exclude: ["/preview/**", "/do-not-track/me/too/"],
+        // Delays sending pageview hits on route update (in milliseconds)
+        pageTransitionDelay: 0,
+        // Enables Google Optimize using your container Id
+        // optimizeId: "YOUR_GOOGLE_OPTIMIZE_TRACKING_ID",
+        // Enables Google Optimize Experiment ID
+        // experimentId: "YOUR_GOOGLE_EXPERIMENT_ID",
+        // Set Variation ID. 0 for original 1,2,3....
+        // variationId: "YOUR_GOOGLE_OPTIMIZE_VARIATION_ID",
+        // Any additional optional fields
+        sampleRate: 5,
+        siteSpeedSampleRate: 10,
+        cookieDomain: 'zornwebdev.com',
       },
     },
   ],
