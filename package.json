@@ -1,5 +1,6 @@
 {
-  "name": "new-frontend",
+  "name": "ez-portfolio-frontend",
+  "author": "Eric Zorn <zornwebdev@gmail.com>",
   "version": "1.0.0",
   "private": true,
   "dependencies": {
