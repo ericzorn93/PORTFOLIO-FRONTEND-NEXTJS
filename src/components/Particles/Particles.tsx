@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import ReactParticles from 'react-particles-js';
 
@@ -8,9 +8,11 @@ interface ParticleProps {
   style?: object;
 }
 
-const Particles: React.FC<ParticleProps> = (props) => {
+const Particles: React.FC<ParticleProps> = props => {
   /** Redux Selectors */
-  const currentTheme: ITheme = useSelector((state: any) => state.themes.currentTheme);
+  const currentTheme: ITheme = useSelector(
+    (state: any) => state.themes.currentTheme,
+  );
   /** End of Redux Selectors */
 
   const particleParams = {

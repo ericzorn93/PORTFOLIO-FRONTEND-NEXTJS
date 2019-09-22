@@ -1,9 +1,8 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useEffect } from 'react'; // @ts-ignore
+import React from 'react'; // @ts-ignore
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-// eslint-disable-next-line no-unused-vars
-import { Link, useStaticQuery, graphql } from 'gatsby';
+import { Link } from 'react-router-dom';
 import { animated, useSpring } from 'react-spring';
 import { useSelector, useDispatch } from 'react-redux';
 import { FaGithub, FaLinkedin, FaTwitterSquare } from 'react-icons/fa';
@@ -17,64 +16,38 @@ import { ThemeActions } from '../../store/actions/theme_actions';
 import { ITheme } from '../../utils/primary_interfaces/theme.interface';
 import { HeaderWrapper, NavList } from './styles/header.styles';
 
-interface IHeaderProps {
-  siteTitle?: string;
-}
-
-const Header = (props: IHeaderProps) => {
-  const themeData = useStaticQuery(graphql`
-    query allThemesQuery {
-      zornwebdev {
-        allThemes {
-          darkMode {
-            primary
-            secondary
-            alternate
-            lightAlternate
-            light
-            black
-            white
-          }
-          lightMode {
-            primary
-            secondary
-            alternate
-            lightAlternate
-            light
-            black
-            white
-          }
-        }
-      }
-    }
-  `);
-
+const Header: React.FC = () => {
   /** Beginning of Redux */
   const dispatch = useDispatch();
-  const currentTheme: ITheme = useSelector((state: any) => state.themes.currentTheme);
-  const currentThemeName: ThemeNamesEnum = useSelector((state: any) => state.themes.currentThemeName);
+  const currentTheme: ITheme = useSelector(
+    (state: any) => state.themes.currentTheme,
+  );
+  const currentThemeName: ThemeNamesEnum = useSelector(
+    (state: any) => state.themes.currentThemeName,
+  );
 
-  const isMenuBarOpen: boolean = useSelector((state: any) => state.menuBar.isOpen);
+  const isMenuBarOpen: boolean = useSelector(
+    (state: any) => state.menuBar.isOpen,
+  );
   /** End of Redux */
 
-  /** Beginning of Side Effects */
-  useEffect(() => {
-    dispatch(ThemeActions.addAllThemeDataAction(themeData.zornwebdev.allThemes));
-  }, []);
-  /** End of Side Effects */
-
   /** Beginning of Methods */
-
   const toggleTheme = (): void => {
     switch (currentThemeName) {
       case ThemeNamesEnum.darkMode:
-        dispatch(ThemeActions.updateCurrentThemeAction(ThemeNamesEnum.lightMode));
+        dispatch(
+          ThemeActions.updateCurrentThemeAction(ThemeNamesEnum.lightMode),
+        );
         break;
       case ThemeNamesEnum.lightMode:
-        dispatch(ThemeActions.updateCurrentThemeAction(ThemeNamesEnum.darkMode));
+        dispatch(
+          ThemeActions.updateCurrentThemeAction(ThemeNamesEnum.darkMode),
+        );
         break;
       default:
-        dispatch(ThemeActions.updateCurrentThemeAction(ThemeNamesEnum.darkMode));
+        dispatch(
+          ThemeActions.updateCurrentThemeAction(ThemeNamesEnum.darkMode),
+        );
         break;
     }
   };
@@ -137,17 +110,17 @@ const Header = (props: IHeaderProps) => {
             </li>
 
             <li>
-              <a href="https://github.com/ericzorn93" target="_blank">
+              <a href="https://github.com/ericzorn93">
                 <FaGithub />
               </a>
             </li>
             <li>
-              <a href="https://www.linkedin.com/in/ericzorn/" target="_blank">
+              <a href="https://www.linkedin.com/in/ericzorn/">
                 <FaLinkedin />
               </a>
             </li>
             <li>
-              <a href="https://twitter.com/zornwebdev" target="_blank">
+              <a href="https://twitter.com/zornwebdev">
                 <FaTwitterSquare />
               </a>
             </li>

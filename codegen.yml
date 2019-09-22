@@ -1,11 +1,13 @@
 overwrite: true
-schema: "https://ez-portfolio-backend-graphql.herokuapp.com/graphql"
-documents: "graphql/**/*.ts"
+schema: 'https://ez-portfolio-backend-graphql.herokuapp.com/graphql'
+documents: 'graphql/**/*.graphql'
 generates:
-  generated/apolloComponents.tsx:
-    config:
-      noNameSpaces: true
+  src/generated/graphql.tsx:
     plugins:
-      - "typescript-common"
-      - "typescript-client"
-      - "typescript-react-apollo"
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-react-apollo'
+    config:
+      withHOC: false
+      withComponent: false
+      withHooks: true

@@ -1,86 +1,80 @@
 {
-  "name": "ericzornportfolio",
+  "name": "new-frontend",
+  "version": "0.1.0",
   "private": true,
-  "description": "A personal portfolio built in React, Redux, GraphQL, Apollo, and Apollo Server",
-  "version": "1.2.6",
-  "author": "Eric Zorn <zornwebdev@gmail.com>",
   "dependencies": {
+    "@apollo/react-hooks": "^3.1.1",
     "@emotion/core": "^10.0.17",
     "@emotion/styled": "^10.0.17",
+    "@types/jest": "24.0.18",
+    "@types/node": "12.7.5",
+    "@types/react": "16.9.2",
+    "@types/react-dom": "16.9.0",
     "apollo-boost": "^0.4.4",
     "apollo-cache-inmemory": "^1.6.3",
+    "connected-react-router": "^6.5.2",
     "date-fns": "^2.0.1",
     "emotion-theming": "^10.0.14",
-    "fetch": "^1.1.0",
-    "gatsby": "^2.13.73",
-    "gatsby-image": "^2.2.10",
-    "gatsby-plugin-emotion": "^4.1.5",
-    "gatsby-plugin-google-analytics": "^2.1.16",
-    "gatsby-plugin-manifest": "^2.2.6",
-    "gatsby-plugin-offline": "^2.2.7",
-    "gatsby-plugin-react-helmet": "^3.1.4",
-    "gatsby-plugin-sharp": "^2.2.13",
-    "gatsby-plugin-typescript": "^2.1.5",
-    "gatsby-source-filesystem": "^2.1.11",
-    "gatsby-source-graphql": "^2.1.11",
-    "gatsby-transformer-sharp": "^2.2.7",
-    "graphql": "^14.5.4",
-    "graphql-tag": "^2.10.1",
-    "isomorphic-unfetch": "^3.0.0",
+    "graphql": "^14.5.7",
+    "history": "^4.10.1",
     "json-pretty-html": "^1.1.6",
-    "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-apollo": "^3.0.1",
     "react-dom": "^16.9.0",
-    "react-helmet": "^5.2.1",
-    "react-icons": "^3.7.0",
     "react-particles-js": "^2.7.0",
     "react-redux": "^7.1.1",
+    "react-router-dom": "^5.0.1",
+    "react-scripts": "3.1.2",
     "react-spring": "^8.0.27",
     "redux": "^4.0.4",
     "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.3.0",
+    "typescript": "3.6.3",
     "ua-parser-js": "^0.7.20"
   },
   "devDependencies": {
-    "@graphql-codegen/cli": "^1.6.1",
-    "@graphql-codegen/typescript": "^1.6.1",
+    "@graphql-codegen/cli": "^1.7.0",
+    "@graphql-codegen/typescript": "1.7.0",
     "@types/date-fns": "^2.6.0",
     "@types/express": "^4.17.1",
     "@types/graphql": "^14.5.0",
+    "@types/history": "^4.7.3",
     "@types/node": "^12.7.2",
     "@types/react-icons": "^3.0.0",
     "@types/react-redux": "^7.1.2",
+    "@types/react-router-dom": "^4.3.5",
     "@types/redux": "^3.6.0",
     "@types/redux-devtools-extension": "^2.13.2",
     "@types/redux-thunk": "^2.1.0",
     "@types/ua-parser-js": "^0.7.33",
-    "eslint-config-airbnb": "^18.0.1",
-    "eslint-plugin-ava": "^8.0.0",
     "graphql-code-generator": "^0.18.2",
     "graphql-codegen-typescript-client": "^0.18.2",
     "graphql-codegen-typescript-common": "^0.18.2",
     "graphql-codegen-typescript-react-apollo": "^0.18.2",
-    "prettier": "^1.18.2"
+    "prettier": "^1.18.2",
+    "@graphql-codegen/typescript-operations": "1.7.0",
+    "@graphql-codegen/typescript-react-apollo": "1.7.0"
   },
-  "keywords": [
-    "gatsby"
-  ],
-  "license": "MIT",
   "scripts": {
-    "build": "gatsby build",
-    "develop": "gatsby develop",
-    "format": "prettier --write \"**/*.{js,jsx,json,md,ts,tsx}\"",
-    "start": "npm run develop",
-    "serve": "gatsby serve",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing \"",
-    "generate": "gql-gen --config codegen.yml"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "generate": "graphql-codegen --config codegen.yml"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+  "eslintConfig": {
+    "extends": "react-app"
   },
-  "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
