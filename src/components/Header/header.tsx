@@ -20,14 +20,14 @@ const Header: React.FC = () => {
   /** Beginning of Redux */
   const dispatch = useDispatch();
   const currentTheme: ITheme = useSelector(
-    (state: any) => state.themes.currentTheme,
+    (state: any) => state.themes.currentTheme
   );
   const currentThemeName: ThemeNamesEnum = useSelector(
-    (state: any) => state.themes.currentThemeName,
+    (state: any) => state.themes.currentThemeName
   );
 
   const isMenuBarOpen: boolean = useSelector(
-    (state: any) => state.menuBar.isOpen,
+    (state: any) => state.menuBar.isOpen
   );
   /** End of Redux */
 
@@ -36,17 +36,17 @@ const Header: React.FC = () => {
     switch (currentThemeName) {
       case ThemeNamesEnum.darkMode:
         dispatch(
-          ThemeActions.updateCurrentThemeAction(ThemeNamesEnum.lightMode),
+          ThemeActions.updateCurrentThemeAction(ThemeNamesEnum.lightMode)
         );
         break;
       case ThemeNamesEnum.lightMode:
         dispatch(
-          ThemeActions.updateCurrentThemeAction(ThemeNamesEnum.darkMode),
+          ThemeActions.updateCurrentThemeAction(ThemeNamesEnum.darkMode)
         );
         break;
       default:
         dispatch(
-          ThemeActions.updateCurrentThemeAction(ThemeNamesEnum.darkMode),
+          ThemeActions.updateCurrentThemeAction(ThemeNamesEnum.darkMode)
         );
         break;
     }

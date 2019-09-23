@@ -10,9 +10,7 @@ import { ThemeActions } from './store/actions/theme_actions';
 import { UserAgentActions } from './store/actions/user_agent_actions';
 
 const App: React.FC = () => {
-  /** Beginning of State */
-
-  /** End of State */
+  const localStorageKey: string = 'currentTheme';
 
   /** Beginning of Redux */
   const allThemes = useSelector((state: any) => state.themes.allThemes);
@@ -23,6 +21,8 @@ const App: React.FC = () => {
   useEffect(() => {
     const parsedUserAgent = (uaParser as any)();
     dispatch(UserAgentActions.loadInitialUserAgentAction(parsedUserAgent));
+
+    return () => {};
   }, []);
   /** End of Side Effects */
 
@@ -47,6 +47,12 @@ const App: React.FC = () => {
     };
 
     dispatch(ThemeActions.addAllThemeDataAction(themes));
+
+    const currentLocalStorageTheme = localStorage.getItem(localStorageKey);
+
+    if (!currentLocalStorageTheme) {
+      localStorage.setItem(localStorageKey, JSON.stringify(themes.darkMode));
+    }
   }
 
   if (themeError || themeLoading) {
