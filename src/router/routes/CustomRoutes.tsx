@@ -4,16 +4,15 @@ import { Switch, Route } from 'react-router-dom';
 
 import { history } from '../history';
 import HomePage from '../../pages/HomePage';
+import NotFoundPage from '../../pages/404Page';
 
 export const CustomRoutes = () => {
   return (
     <ConnectedRouter history={history}>
-      {/* place ConnectedRouter under Provider */}
       <>
-        {/* your usual react-router v4/v5 routing */}
         <Switch>
           <Route exact path="/" component={HomePage} />
-          <Route render={() => <div>Miss</div>} />
+          <Route component={NotFoundPage} />
         </Switch>
       </>
     </ConnectedRouter>

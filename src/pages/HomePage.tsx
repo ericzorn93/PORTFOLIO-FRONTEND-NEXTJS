@@ -9,18 +9,19 @@ import Particles from '../components/Particles/Particles';
 import aboutJson from '../assets/json/about.json';
 import { ITheme } from '../utils/primary_interfaces/theme.interface';
 import { withRouter } from 'react-router-dom';
+import { RouterProps } from 'react-router';
 
 const prettyHtml = require('json-pretty-html').default;
 
-interface Props {}
+interface Props extends RouterProps {}
 
-const HomePage: React.FC<Props> = props => {
+const HomePage: React.FC<Props> = ({ history }) => {
   const currentTheme: ITheme = useSelector(
-    (state: any) => state.themes.currentTheme,
+    (state: any) => state.themes.currentTheme
   );
 
   const handleNavigateToContactPage = (): void => {
-    // history.push('/contact');
+    history.push('/contact');
   };
 
   return (

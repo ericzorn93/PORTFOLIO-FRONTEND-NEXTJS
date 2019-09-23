@@ -2,7 +2,7 @@ import React from 'react';
 
 import Layout from '../components/Layout/layout';
 
-const Contact: React.FC = () => {
+const ContactPage: React.FC = () => {
   return (
     <>
       <Layout>
@@ -12,4 +12,4 @@ const Contact: React.FC = () => {
   );
 };
 
-export default Contact;
+export default ContactPage;

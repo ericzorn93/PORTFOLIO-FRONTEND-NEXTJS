@@ -3,7 +3,7 @@ import { ThemeProvider } from 'emotion-theming';
 import { useSelector, useDispatch } from 'react-redux';
 
 import './App.css';
-import { CustomRoutes } from './router/routes';
+import { CustomRoutes } from './router/routes/CustomRoutes';
 import { useAllThemesQuery } from './generated/graphql';
 import { ThemeActions } from './store/actions/theme_actions';
 
