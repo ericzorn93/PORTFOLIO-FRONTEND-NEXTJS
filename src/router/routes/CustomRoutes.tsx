@@ -3,9 +3,9 @@ import { ConnectedRouter } from 'connected-react-router';
 import { Switch, Route } from 'react-router-dom';
 
 import { history } from '../history';
-import HomePage from '../../pages/HomePage';
-import NotFoundPage from '../../pages/404Page';
-import ContactPage from '../../pages/ContactPage';
+import HomePage from '../../pages/home/HomePage';
+import NotFoundPage from '../../pages/404/404Page';
+import ContactPage from '../../pages/contact/ContactPage';
 
 export const CustomRoutes = () => {
   return (

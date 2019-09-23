@@ -21,7 +21,7 @@ const Loading: React.FC<Props> = props => {
         setCurrentTheme(JSON.parse(currentThemeFromStorage));
       }
     }
-  }, []);
+  }, [loadingType]);
 
   return (
     <LoadingWrapper theme={currentTheme || undefined}>
