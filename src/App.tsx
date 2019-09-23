@@ -8,6 +8,7 @@ import { CustomRoutes } from './router/routes/CustomRoutes';
 import { useAllThemesQuery } from './generated/graphql';
 import { ThemeActions } from './store/actions/theme_actions';
 import { UserAgentActions } from './store/actions/user_agent_actions';
+import Loading from './components/Loading/loading';
 
 const App: React.FC = () => {
   const localStorageKey: string = 'currentTheme';
@@ -56,7 +57,7 @@ const App: React.FC = () => {
   }
 
   if (themeError || themeLoading) {
-    return <div>Loading...</div>;
+    return <Loading loadingType="theme" />;
   }
 
   return (
