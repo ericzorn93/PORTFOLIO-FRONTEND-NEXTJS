@@ -24,7 +24,7 @@ const App: React.FC = () => {
     dispatch(UserAgentActions.loadInitialUserAgentAction(parsedUserAgent));
 
     return () => {};
-  }, []);
+  }, [dispatch]);
   /** End of Side Effects */
 
   /** Beginning of GraphQL Queries */

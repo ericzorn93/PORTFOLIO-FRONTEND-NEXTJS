@@ -1,0 +1,21 @@
+query allCompanies {
+  allCompanies {
+    id
+    name
+    companyGenre {
+      id
+      genre
+    }
+  }
+}
+
+query allCompanyGenres {
+  allCompanyGenres {
+    id
+    genre
+    companies {
+      id
+      name
+    }
+  }
+}
