@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { ApolloProvider } from '@apollo/react-hooks';
 
 import * as serviceWorker from './serviceWorker';
-import './index.css';
+import './index.scss';
 import App from './App';
 
 import apolloClient from './apollo/apolloClient';
@@ -19,7 +19,7 @@ ReactDOM.render(
       <App />
     </Provider>
   </ApolloProvider>,
-  document.getElementById('root'),
+  document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change

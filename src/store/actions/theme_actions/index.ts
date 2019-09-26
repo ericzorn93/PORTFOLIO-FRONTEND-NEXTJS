@@ -40,7 +40,7 @@ export class ThemeActions {
   public static updateCurrentThemeAction(
     newThemeName: ThemeNamesEnum
   ): Function {
-    return (dispatch: Function) => {
+    return (dispatch: Function, getState) => {
       if (
         newThemeName !== ThemeNamesEnum.darkMode &&
         newThemeName !== ThemeNamesEnum.lightMode
@@ -52,6 +52,12 @@ export class ThemeActions {
         type: ThemeTypes.UPDATE_CURRENT_THEME,
         payload: newThemeName,
       });
+
+      const allThemes = getState().themes.allThemes;
+      localStorage.setItem(
+        'currentTheme',
+        JSON.stringify(allThemes[newThemeName])
+      );
     };
   }
 }
