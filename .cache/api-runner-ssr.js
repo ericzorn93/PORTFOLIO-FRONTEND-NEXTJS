@@ -7,6 +7,9 @@ var plugins = [{
     },{
       plugin: require('/Users/ericzorn/Desktop/EZ-PORTFOLIO-FRONTEND/node_modules/gatsby-plugin-offline/gatsby-ssr'),
       options: {"plugins":[]},
+    },{
+      plugin: require('/Users/ericzorn/Desktop/EZ-PORTFOLIO-FRONTEND/gatsby-ssr'),
+      options: {"plugins":[]},
     }]
 // During bootstrap, we write requires at top of this file which looks like:
 // var plugins = [
