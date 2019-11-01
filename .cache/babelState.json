@@ -4,13 +4,13 @@
       "plugins": [],
       "presets": [
         {
-          "name": "/Users/ericzorn/Desktop/EZ-PORTFOLIO-FRONTEND/node_modules/@babel/preset-typescript/lib/index.js",
+          "name": "/Users/ericzorn/Desktop/PORTFOLIO-FRONTEND-GATSBY/node_modules/@babel/preset-typescript/lib/index.js",
           "options": {
             "plugins": []
           }
         },
         {
-          "name": "/Users/ericzorn/Desktop/EZ-PORTFOLIO-FRONTEND/node_modules/@emotion/babel-preset-css-prop/dist/babel-preset-css-prop.cjs.js",
+          "name": "/Users/ericzorn/Desktop/PORTFOLIO-FRONTEND-GATSBY/node_modules/@emotion/babel-preset-css-prop/dist/babel-preset-css-prop.cjs.js",
           "options": {
             "sourceMap": true,
             "autoLabel": true,
@@ -27,13 +27,13 @@
       "plugins": [],
       "presets": [
         {
-          "name": "/Users/ericzorn/Desktop/EZ-PORTFOLIO-FRONTEND/node_modules/@babel/preset-typescript/lib/index.js",
+          "name": "/Users/ericzorn/Desktop/PORTFOLIO-FRONTEND-GATSBY/node_modules/@babel/preset-typescript/lib/index.js",
           "options": {
             "plugins": []
           }
         },
         {
-          "name": "/Users/ericzorn/Desktop/EZ-PORTFOLIO-FRONTEND/node_modules/@emotion/babel-preset-css-prop/dist/babel-preset-css-prop.cjs.js",
+          "name": "/Users/ericzorn/Desktop/PORTFOLIO-FRONTEND-GATSBY/node_modules/@emotion/babel-preset-css-prop/dist/babel-preset-css-prop.cjs.js",
           "options": {
             "sourceMap": true,
             "autoLabel": true,
@@ -50,13 +50,13 @@
       "plugins": [],
       "presets": [
         {
-          "name": "/Users/ericzorn/Desktop/EZ-PORTFOLIO-FRONTEND/node_modules/@babel/preset-typescript/lib/index.js",
+          "name": "/Users/ericzorn/Desktop/PORTFOLIO-FRONTEND-GATSBY/node_modules/@babel/preset-typescript/lib/index.js",
           "options": {
             "plugins": []
           }
         },
         {
-          "name": "/Users/ericzorn/Desktop/EZ-PORTFOLIO-FRONTEND/node_modules/@emotion/babel-preset-css-prop/dist/babel-preset-css-prop.cjs.js",
+          "name": "/Users/ericzorn/Desktop/PORTFOLIO-FRONTEND-GATSBY/node_modules/@emotion/babel-preset-css-prop/dist/babel-preset-css-prop.cjs.js",
           "options": {
             "sourceMap": true,
             "autoLabel": true,
@@ -73,13 +73,13 @@
       "plugins": [],
       "presets": [
         {
-          "name": "/Users/ericzorn/Desktop/EZ-PORTFOLIO-FRONTEND/node_modules/@babel/preset-typescript/lib/index.js",
+          "name": "/Users/ericzorn/Desktop/PORTFOLIO-FRONTEND-GATSBY/node_modules/@babel/preset-typescript/lib/index.js",
           "options": {
             "plugins": []
           }
         },
         {
-          "name": "/Users/ericzorn/Desktop/EZ-PORTFOLIO-FRONTEND/node_modules/@emotion/babel-preset-css-prop/dist/babel-preset-css-prop.cjs.js",
+          "name": "/Users/ericzorn/Desktop/PORTFOLIO-FRONTEND-GATSBY/node_modules/@emotion/babel-preset-css-prop/dist/babel-preset-css-prop.cjs.js",
           "options": {
             "sourceMap": true,
             "autoLabel": true,
