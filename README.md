@@ -1,3 +1,5 @@
+# **PLEASE DO NOT FORGET TO PULL BEFORE PUSHING AND SWITCHING BRANCHES**
+
 <!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
 <p align="center">
   <a href="https://www.gatsbyjs.org">
