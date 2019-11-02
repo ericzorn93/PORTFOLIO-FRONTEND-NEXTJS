@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { ITag } from '../utils/types/interfaces/components/tag.interfaces.';
-
 interface Props {
   path: string;
   pageContext: {
@@ -10,7 +8,6 @@ interface Props {
       id: string;
       name: string;
       description: string;
-      tags: ITag[];
     };
   };
 }
@@ -25,9 +22,6 @@ const Project: React.FC<Props> = ({ path, pageContext }) => {
         <em>Path: {path}</em>
       </h4>
       <p>{project.description}</p>
-      {project.tags.map(project => (
-        <code key={project.id}>{project.name}</code>
-      ))}
     </div>
   );
 };

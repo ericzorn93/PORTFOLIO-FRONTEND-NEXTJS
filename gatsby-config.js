@@ -1,3 +1,9 @@
+const dotenv = require('dotenv');
+const fetch = require(`isomorphic-unfetch`);
+const { createHttpLink } = require(`apollo-link-http`);
+
+dotenv.config();
+
 module.exports = {
   siteMetadata: {
     title: `Eric Zorn Portfolio`,
@@ -5,6 +11,23 @@ module.exports = {
     author: `@zornwebdev`,
   },
   plugins: [
+    // BEGINNING OF GRAPHQL PLUGINS
+    {
+      resolve: `gatsby-source-graphql`,
+      options: {
+        fieldName: `github`,
+        typeName: `GitHub`,
+        createLink: () =>
+          createHttpLink({
+            uri: `https://api.github.com/graphql`,
+            headers: {
+              Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+            },
+            fetch,
+          }),
+      },
+    },
+    // ENF OF GRAPHQL PLUGINS
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -28,17 +51,6 @@ module.exports = {
       },
     },
     `gatsby-plugin-sass`,
-    {
-      resolve: "gatsby-source-graphql",
-      options: {
-        // This type will contain remote schema Query type
-        typeName: "ZORNWEBDEV",
-        // This is the field under which it's accessible
-        fieldName: "zornwebdev",
-        // URL to query from
-        url: "https://ez-portfolio-backend-graphql.herokuapp.com/graphql",
-      },
-    },
     `gatsby-plugin-typescript`,
     `gatsby-plugin-emotion`,
 
@@ -46,4 +58,4 @@ module.exports = {
     // To learn more, visit: https://gatsby.dev/offline
     `gatsby-plugin-offline`,
   ],
-}
+};
