@@ -5,10 +5,10 @@ const preferDefault = m => m && m.default || m
 
 
 exports.components = {
-  "component---cache-dev-404-page-js": hot(preferDefault(require("/Users/ericzorn/Dropbox/Projects/UPDATED_PORTFOLIO/frontend/.cache/dev-404-page.js"))),
-  "component---src-pages-404-tsx": hot(preferDefault(require("/Users/ericzorn/Dropbox/Projects/UPDATED_PORTFOLIO/frontend/src/pages/404.tsx"))),
-  "component---src-pages-contact-tsx": hot(preferDefault(require("/Users/ericzorn/Dropbox/Projects/UPDATED_PORTFOLIO/frontend/src/pages/contact.tsx"))),
-  "component---src-pages-index-tsx": hot(preferDefault(require("/Users/ericzorn/Dropbox/Projects/UPDATED_PORTFOLIO/frontend/src/pages/index.tsx"))),
-  "component---src-pages-page-2-tsx": hot(preferDefault(require("/Users/ericzorn/Dropbox/Projects/UPDATED_PORTFOLIO/frontend/src/pages/page-2.tsx")))
+  "component---src-templates-project-template-tsx": hot(preferDefault(require("/Users/ericzorn/Desktop/PORTFOLIO-FRONTEND-GATSBY/src/templates/project-template.tsx"))),
+  "component---cache-dev-404-page-js": hot(preferDefault(require("/Users/ericzorn/Desktop/PORTFOLIO-FRONTEND-GATSBY/.cache/dev-404-page.js"))),
+  "component---src-pages-404-tsx": hot(preferDefault(require("/Users/ericzorn/Desktop/PORTFOLIO-FRONTEND-GATSBY/src/pages/404.tsx"))),
+  "component---src-pages-index-tsx": hot(preferDefault(require("/Users/ericzorn/Desktop/PORTFOLIO-FRONTEND-GATSBY/src/pages/index.tsx"))),
+  "component---src-pages-page-2-tsx": hot(preferDefault(require("/Users/ericzorn/Desktop/PORTFOLIO-FRONTEND-GATSBY/src/pages/page-2.tsx")))
 }
 
