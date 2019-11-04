@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[7],{"a+9R":function(t,n,e){"use strict";e.r(n);e("f3/d"),e("q1tI");var b=e("qKvR");n.default=function(t){var n=t.path,e=t.pageContext.project;return Object(b.b)("div",null,Object(b.b)("h1",null,e.name),Object(b.b)("h4",null,Object(b.b)("em",null,"Path: ",n)),Object(b.b)("p",null,e.description))}}}]);
+//# sourceMappingURL=component---src-templates-project-template-tsx-2019bab29280251cc1da.js.map
