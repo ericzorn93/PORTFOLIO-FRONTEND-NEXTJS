@@ -1,0 +1,10 @@
+query allThemes {
+  allThemes {
+    darkMode {
+      primary
+    }
+    lightMode {
+      primary
+    }
+  }
+}

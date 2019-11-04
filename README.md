@@ -1,6 +1,8 @@
 # **PLEASE DO NOT FORGET TO PULL BEFORE PUSHING AND SWITCHING BRANCHES**
 
-## **MUST ADD GITHUB_TOKEN to .ENV FILE**
+## **MUST ADD GITHUB_TOKEN, CONTENTFUL_SPACE_ID and CONTENTFUL_ACCESS_TOKEN to .ENV FILE**
+
+## **MUST ADD codegen.yml file for GraphQL code gen library**
 
 #### _Have another more specific idea? You may want to check out our vibrant collection of [official and community-created starters](https://www.gatsbyjs.org/docs/gatsby-starters/)._
 
