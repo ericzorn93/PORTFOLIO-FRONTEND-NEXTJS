@@ -98,6 +98,8 @@ typings/
 # dotenv environment variables file
 .env
 .env.test
+
+# GraphQL Codegen
 codegen.yml
 
 # parcel-bundler cache (https://parceljs.org/)
