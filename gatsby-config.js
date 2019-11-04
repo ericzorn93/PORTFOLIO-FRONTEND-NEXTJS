@@ -2,6 +2,7 @@ const dotenv = require('dotenv');
 const fetch = require(`isomorphic-unfetch`);
 const { createHttpLink } = require(`apollo-link-http`);
 
+// Allow use of environment variables
 dotenv.config();
 
 module.exports = {

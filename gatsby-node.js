@@ -1,16 +1,13 @@
 const path = require(`path`);
-const { createFilePath } = require(`gatsby-source-filesystem`);
+// const { createFilePath } = require(`gatsby-source-filesystem`);
 
 // Create Gatsby Pages
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
   const projectTemplate = path.resolve(`src/templates/project-template.tsx`);
-  // Query for markdown nodes to use in creating pages.
-  // You can query for whatever data you want to create pages for e.g.
-  // products, portfolio items, landing pages, etc.
-  // Variables can be added as the second function parameter
+
   return graphql(`
-    query github {
+    query githubAndContentful {
       github {
         viewer {
           name
@@ -23,20 +20,26 @@ exports.createPages = ({ graphql, actions }) => {
           }
         }
       }
+      allContentfulProject(limit: 100) {
+        nodes {
+          name
+        }
+      }
     }
   `).then(result => {
     if (result.errors) {
       throw result.errors;
     }
 
-    // Create blog post pages.
-    result.data.github.viewer.repositories.nodes.forEach(repo => {
-      const combinedName = repo.name
-        .split(' ')
-        .join('-')
-        .split('.')
-        .join('')
-        .toLowerCase();
+    // GitHub Data
+    const githubData = result.data.github;
+
+    // Contentful data
+    const contentfulData = result.data.allContentfulProject;
+
+    // Create blog post pages from github
+    githubData.viewer.repositories.nodes.forEach(repo => {
+      const combinedName = combineSplitName(repo.name);
 
       createPage({
         // Path for this page — required
@@ -47,5 +50,38 @@ exports.createPages = ({ graphql, actions }) => {
         },
       });
     });
+
+    // Create Contentful Pages
+    contentfulData.nodes.forEach(contentfulProject => {
+      const combinedName = combineSplitName(contentfulProject.name);
+
+      createPage({
+        // Path for this page — required
+        path: `${combinedName}`,
+        component: projectTemplate,
+        context: {
+          project: contentfulProject,
+        },
+      });
+    });
   });
 };
+
+/**
+ * @param {String} name
+ * @description Returns a split form of the combined page name
+ */
+function combineSplitName(name) {
+  if (!name) {
+    name = '';
+  }
+
+  const combinedName = name
+    .split(' ')
+    .join('-')
+    .split('.')
+    .join('')
+    .toLowerCase();
+
+  return combinedName;
+}
