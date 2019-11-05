@@ -4,7 +4,12 @@ const path = require(`path`);
 // Create Gatsby Pages
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
-  const projectTemplate = path.resolve(`src/templates/project-template.tsx`);
+  const githubProjectTemplate = path.resolve(
+    `src/templates/github-project-template.tsx`
+  );
+  const contentfulProjectTemplate = path.resolve(
+    `src/templates/contentful-project-template.tsx`
+  );
 
   return graphql(`
     query githubAndContentful {
@@ -23,6 +28,9 @@ exports.createPages = ({ graphql, actions }) => {
       allContentfulProject(limit: 100) {
         nodes {
           name
+          about {
+            json
+          }
         }
       }
     }
@@ -43,8 +51,8 @@ exports.createPages = ({ graphql, actions }) => {
 
       createPage({
         // Path for this page — required
-        path: `${combinedName}`,
-        component: projectTemplate,
+        path: `/github/${combinedName}`,
+        component: githubProjectTemplate,
         context: {
           project: repo,
         },
@@ -57,8 +65,8 @@ exports.createPages = ({ graphql, actions }) => {
 
       createPage({
         // Path for this page — required
-        path: `${combinedName}`,
-        component: projectTemplate,
+        path: `/contenful/${combinedName}`,
+        component: contentfulProjectTemplate,
         context: {
           project: contentfulProject,
         },
