@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from 'gatsby';
 
 interface Props {
   path: string;
@@ -27,6 +28,7 @@ const ContentfulProjectTemplate: React.FC<Props> = ({ path, pageContext }) => {
         <em>Path: {path}</em>
       </h4>
       {/* <p>{project.about.json.content.}</p> */}
+      <Link to="/">Go Home</Link>
     </div>
   );
 };
