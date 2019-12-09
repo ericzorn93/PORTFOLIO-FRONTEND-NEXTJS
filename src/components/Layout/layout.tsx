@@ -9,9 +9,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useStaticQuery, graphql } from 'gatsby';
 
-import Header from './Header/header';
-import Footer from './Footer/footer';
 import './layout.scss';
+import './darkmode.scss';
+import Header from '../Header/header';
+import Footer from '../Footer/footer';
+import { ThemeToggler } from 'gatsby-plugin-dark-mode';
 
 const Layout: React.FC = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -28,7 +30,16 @@ const Layout: React.FC = ({ children }) => {
     <>
       <Header siteTitle={data.site.siteMetadata.title} name="Portfolio Name" />
       <div>
-        <main>{children}</main>
+        <ThemeToggler>
+          {() => {
+            return (
+              <>
+                <main>{children}</main>
+                {/* <Footer name="Eric Zorn" /> */}
+              </>
+            );
+          }}
+        </ThemeToggler>
       </div>
     </>
   );

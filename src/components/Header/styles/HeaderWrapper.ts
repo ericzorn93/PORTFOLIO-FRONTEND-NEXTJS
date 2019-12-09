@@ -28,7 +28,7 @@ export const Navigation = styled.nav`
       margin-left: 25px;
       text-decoration: none;
       font-family: 'Ubuntu', sans-serif;
-      color: #333;
+      /* color: #333; */
     }
   }
 `;

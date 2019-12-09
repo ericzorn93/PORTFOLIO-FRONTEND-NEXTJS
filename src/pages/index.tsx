@@ -1,12 +1,18 @@
 import React from 'react';
-import { Link, useStaticQuery, graphql } from 'gatsby';
+import { useStaticQuery, graphql } from 'gatsby';
+import { useSelector } from 'react-redux';
+import { ThemeToggler } from 'gatsby-plugin-dark-mode';
 
-import Layout from '../components/layout';
-import Image from '../components/image';
-import SEO from '../components/seo';
+import Layout from '../components/Layout/layout';
+import SEO from '../components/SEO/seo';
 import { IAllSitePage } from '../utils/types/interfaces/pages/index.page.interfaces';
+import { HomePageWrapper } from '../components/HomePage/homepage.styles';
 
 const IndexPage = () => {
+  const isDarkModeEnabled: boolean = useSelector(
+    (state: any) => state.theme.isDarkModeEnabled
+  );
+
   const {
     allSitePage: { edges: pageEdges },
   } = useStaticQuery<IAllSitePage>(
@@ -32,9 +38,16 @@ const IndexPage = () => {
   }));
 
   return (
-    <Layout>
-      <SEO title="Home" />
-    </Layout>
+    <ThemeToggler>
+      {({ theme, toggleTheme }: any) => {
+        return (
+          <Layout>
+            <SEO title="Home" />
+            {/* <HomePageWrapper isDarkModeEnabled={isDarkModeEnabled}></HomePageWrapper> */}
+          </Layout>
+        );
+      }}
+    </ThemeToggler>
   );
 };
 
