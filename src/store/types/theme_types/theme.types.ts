@@ -1,0 +1,1 @@
+export const TOGGLE_DARKMODE = 'TOGGLE_DARKMODE';

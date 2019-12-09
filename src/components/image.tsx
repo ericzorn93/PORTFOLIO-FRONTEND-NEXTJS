@@ -1,5 +1,5 @@
 import React from 'react';
-import { useStaticQuery, graphql } from 'gatsby';
+import { graphql, StaticQuery } from 'gatsby';
 import Img from 'gatsby-image';
 
 /*
@@ -15,22 +15,41 @@ import Img from 'gatsby-image';
 
 interface IProps {
   imageName: string;
+  alt?: string;
 }
 
-const Image: React.FC<IProps> = ({ imageName }) => {
-  const data = useStaticQuery(graphql`
-    query {
-      placeholderImage: file(relativePath: { eq: "gatsby-astronaut.png" }) {
-        childImageSharp {
-          fluid(maxWidth: 300) {
-            ...GatsbyImageSharpFluid
+const CustomImage: React.FC<IProps> = props => (
+  <StaticQuery
+    query={graphql`
+      query {
+        images: allFile {
+          edges {
+            node {
+              relativePath
+              name
+              childImageSharp {
+                fluid(maxWidth: 600) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
           }
         }
       }
-    }
-  `);
+    `}
+    render={data => {
+      const image = data.images.edges.find((n: any) => {
+        return n.node.relativePath.includes(props.imageName);
+      });
 
-  return <Img fluid={data.placeholderImage.childImageSharp.fluid} />;
-};
+      if (!image) {
+        return null;
+      }
 
-export default Image;
+      //const imageSizes = image.node.childImageSharp.sizes; sizes={imageSizes}
+      return <Img alt={props.alt} fluid={image.node.childImageSharp.fluid} />;
+    }}
+  />
+);
+
+export default CustomImage;

@@ -1,40 +1,34 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
 // Wraps the entire header component
 export const HeaderWrapper = styled.header`
-  margin-top: 1em;
-  width: 100vw;
-  height: 100px;
-  background-color: #0000;
-
-  nav {
-    display: flex;
-
-    h1 {
-      font-size: 1em;
-    }
-  }
+  position: relative;
+  width: 100%;
 `;
 
-// Wraps the first section of the navigation bar, including the title
-export const FirstNavSection = styled.section`
-  flex: 4;
+// Navigation Component
+export const Navigation = styled.nav`
+  width: 100%;
+  height: 100%;
+  display: inline-grid;
+  grid-template-columns: repeat(12, 1fr);
+  align-items: center;
+  justify-items: center;
 
-  h1 {
-    margin-left: 1rem;
+  .logo {
+    grid-column: 1 / 3;
+    width: 80px;
   }
-`;
 
-// Wraps the second section of the navigation bar
-export const SecondNavSection = styled.section`
-  display: flex;
-  flex: 1;
+  .links {
+    grid-column: 6 /12;
+    justify-content: center;
 
-  h1 {
-    margin-left: 1rem;
     a {
+      margin-left: 25px;
       text-decoration: none;
-      color: black;
+      font-family: 'Ubuntu', sans-serif;
+      color: #333;
     }
   }
 `;

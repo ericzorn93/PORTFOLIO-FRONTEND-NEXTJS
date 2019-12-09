@@ -1,9 +1,9 @@
-import React from "react";
-import { Provider, ReactReduxContext } from "react-redux";
-import { ApolloProvider } from "@apollo/react-hooks";
+import React from 'react';
+import { Provider, ReactReduxContext } from 'react-redux';
+import { ApolloProvider } from '@apollo/react-hooks';
 
-import assembleStore from "../../store/assembleStore";
-import { client } from "../../apollo/apolloClient";
+import assembleStore from '../../store/assembleStore';
+import { client } from '../../apollo/apolloClient';
 
 const WrapRootElement: React.FC<any> = ({ element }) => {
   // Redux Store
