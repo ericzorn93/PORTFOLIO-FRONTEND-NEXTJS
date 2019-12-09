@@ -2,7 +2,7 @@
   "name": "portfolio",
   "private": true,
   "description": "A portfolio template for front-end, back-end, or full-stack developers.",
-  "version": "1.1.1",
+  "version": "2.0.0",
   "author": "Eric Zorn <zornwebdev@gmail.com>",
   "dependencies": {
     "@apollo/react-components": "^3.1.3",
