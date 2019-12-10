@@ -19,4 +19,21 @@ export const PositionCenter = styled.div`
     font-weight: 400;
     font-size: 24px;
   }
+
+  @media (max-width: 800px) {
+    .personName {
+      font-size: 30px;
+      font-weight: 300;
+    }
+
+    .jobTitle {
+      font-size: 32px;
+      font-weight: 800;
+    }
+
+    .description {
+      font-weight: 400;
+      font-size: 14px;
+    }
+  }
 `;
