@@ -7,6 +7,7 @@ import { Container } from '../components/styled/Container';
 import CustomImage from '../components/CustomImage/CustomImage';
 import { HeaderText } from '../components/styled/HeaderText';
 import { Paragraph } from '../components/styled/Paragraph';
+import AboutResume from './components/about_page/AboutResume';
 
 const AboutPage: React.FC = () => {
   return (
@@ -40,6 +41,9 @@ const AboutPage: React.FC = () => {
             </Paragraph>
           </div>
         </div>
+
+        <br />
+        <AboutResume />
       </Container>
     </Layout>
   );

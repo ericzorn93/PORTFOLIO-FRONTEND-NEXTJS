@@ -1,13 +1,18 @@
+// Variables
+$whiteColor: white;
+$greyColor: #333;
+$yellowColor: #f9d86b;
+
 // Dark Mode SCSS
 body {
   transition: all 0.1s ease-in; // Animate background color changing
 
-  --bg: white;
+  --bg: $whiteColor;
   --textNormal: #222;
   --textTitle: #222;
-  --textLink: #333333;
+  --textLink: $greyColor;
   --hr: hsla(0, 0%, 0%, 0.2);
-  --h1: #333333;
+  --h1: $greyColor;
 
   background-color: var(--bg);
   color: var(--h1);
@@ -22,13 +27,13 @@ body.dark {
   -webkit-font-smoothing: antialiased;
   --bg: #333;
   --textNormal: rgba(255, 255, 255, 0.88);
-  --textTitle: white;
-  --textLink: #f9d86b;
   --hr: hsla(0, 0%, 100%, 0.2);
-  --h1: white;
 
-  color: var(--h1);
+  color: $whiteColor;
   a {
-    color: var(--textLink);
+    color: $yellowColor;
+  }
+  hr {
+    border-top: 0.5px solid $whiteColor;
   }
 }
