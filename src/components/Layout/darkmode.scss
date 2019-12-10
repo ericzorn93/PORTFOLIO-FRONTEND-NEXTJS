@@ -1,5 +1,7 @@
 // Dark Mode SCSS
 body {
+  transition: all 0.1s ease-in; // Animate background color changing
+
   --bg: white;
   --textNormal: #222;
   --textTitle: #222;
@@ -15,6 +17,8 @@ body {
 }
 
 body.dark {
+  transition: all 0.2s ease-in; // Animate background color changing
+
   -webkit-font-smoothing: antialiased;
   --bg: #333;
   --textNormal: rgba(255, 255, 255, 0.88);
