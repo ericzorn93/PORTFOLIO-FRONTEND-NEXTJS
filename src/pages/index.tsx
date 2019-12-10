@@ -6,7 +6,8 @@ import { ThemeToggler } from 'gatsby-plugin-dark-mode';
 import Layout from '../components/Layout/layout';
 import SEO from '../components/SEO/seo';
 import { IAllSitePage } from '../utils/types/interfaces/pages/index.page.interfaces';
-import { HomePageWrapper } from '../components/HomePage/homepage.styles';
+// import { HomePageWrapper } from '../components/HomePage/homepage.styles';
+import { PositionCenter } from '../components/styled/PositionCenter';
 
 const IndexPage = () => {
   const isDarkModeEnabled: boolean = useSelector(
@@ -38,16 +39,18 @@ const IndexPage = () => {
   }));
 
   return (
-    <ThemeToggler>
-      {({ theme, toggleTheme }: any) => {
-        return (
-          <Layout>
-            <SEO title="Home" />
-            {/* <HomePageWrapper isDarkModeEnabled={isDarkModeEnabled}></HomePageWrapper> */}
-          </Layout>
-        );
-      }}
-    </ThemeToggler>
+    <Layout>
+      <SEO title="Home" />
+
+      <PositionCenter>
+        <h1 className="personName">Eric Zorn</h1>
+        <h2 className="jobTitle">Full-Stack Software Engineer</h2>
+        <h3 className="description">
+          JavaScript Enthusiast. Specializing in: React, Redux, Node JS, Express
+          JS, TypeScript and MongoDB
+        </h3>
+      </PositionCenter>
+    </Layout>
   );
 };
 
