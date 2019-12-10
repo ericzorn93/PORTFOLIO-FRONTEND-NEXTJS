@@ -5,6 +5,8 @@ import { jsx } from '@emotion/core';
 import Layout from '../components/Layout/layout';
 import { Container } from '../components/styled/Container';
 import CustomImage from '../components/CustomImage/CustomImage';
+import { HeaderText } from '../components/styled/HeaderText';
+import { Paragraph } from '../components/styled/Paragraph';
 
 const AboutPage: React.FC = () => {
   return (
@@ -22,20 +24,11 @@ const AboutPage: React.FC = () => {
                 borderRadius: '50%',
               }}
             />
-            <h1
-              css={{
-                fontSize: 22,
-                textAlign: 'center',
-                marginTop: 20,
-                fontWeight: 300,
-              }}
-            >
-              Eric Zorn
-            </h1>
+            <HeaderText>Eric Zorn</HeaderText>
           </div>
 
           <div style={{ padding: '0 40px 0 40px' }}>
-            <p css={{ fontFamily: 'Ubuntu, sans-serif' }}>
+            <Paragraph>
               I am a passionate developer, specializing in the MERN stack, with
               a solid knowledge of SQL-based ORM solutions as well. I deeply
               enjoy using React with Redux for global state management,
@@ -44,7 +37,7 @@ const AboutPage: React.FC = () => {
               React skillset. I enjoy building scalable web applications with a
               strong front-end and back-end architecture, utilizing all of the
               most recent development technologies.
-            </p>
+            </Paragraph>
           </div>
         </div>
       </Container>
