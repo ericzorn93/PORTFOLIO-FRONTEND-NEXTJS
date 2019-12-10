@@ -16,6 +16,7 @@ import Img from 'gatsby-image';
 interface IProps {
   imageName: string;
   alt?: string;
+  imageStyle?: React.CSSProperties | object;
 }
 
 const CustomImage: React.FC<IProps> = props => (
@@ -38,8 +39,8 @@ const CustomImage: React.FC<IProps> = props => (
       }
     `}
     render={data => {
-      const image = data.images.edges.find((n: any) => {
-        return n.node.relativePath.includes(props.imageName);
+      const image = data.images.edges.find((image: any) => {
+        return image.node.relativePath.includes(props.imageName);
       });
 
       if (!image) {
@@ -47,7 +48,13 @@ const CustomImage: React.FC<IProps> = props => (
       }
 
       //const imageSizes = image.node.childImageSharp.sizes; sizes={imageSizes}
-      return <Img alt={props.alt} fluid={image.node.childImageSharp.fluid} />;
+      return (
+        <Img
+          alt={props.alt}
+          fluid={image.node.childImageSharp.fluid}
+          style={props.imageStyle}
+        />
+      );
     }}
   />
 );
