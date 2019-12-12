@@ -1,5 +1,5 @@
 import { TOGGLE_DARKMODE } from '../../types/theme_types/theme.types';
-import { IAction } from '../../../utils/types/interfaces/redux/action.type';
+import { IAction } from '../../../shared/types/interfaces/redux/action.type';
 
 const initialState = {
   isDarkModeEnabled: false,

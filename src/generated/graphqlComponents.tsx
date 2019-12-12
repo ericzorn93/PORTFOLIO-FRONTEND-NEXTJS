@@ -149,6 +149,8 @@ export type Query = {
   /** Finds a single company, based on the company name as a string that is provided */
   findOneCompany: Company,
   allCompanyGenres: Array<CompanyGenre>,
+  /** Queries the file system to find and then download the proper resume. */
+  downloadResume: Scalars['Boolean'],
 };
 
 
@@ -159,6 +161,11 @@ export type QueryFindUserArgs = {
 
 export type QueryFindOneCompanyArgs = {
   companyName: Scalars['String']
+};
+
+
+export type QueryDownloadResumeArgs = {
+  resumeName: Scalars['String']
 };
 
 export type RegisterUserInput = {
@@ -219,6 +226,16 @@ export type User = {
   fullName: Scalars['String'],
 };
 
+export type DownloadResumeQueryVariables = {
+  resumeName: Scalars['String']
+};
+
+
+export type DownloadResumeQuery = (
+  { __typename?: 'Query' }
+  & Pick<Query, 'downloadResume'>
+);
+
 export type AllThemesQueryVariables = {};
 
 
@@ -237,6 +254,54 @@ export type AllThemesQuery = (
 );
 
 
+export const DownloadResumeDocument = gql`
+    query downloadResume($resumeName: String!) {
+  downloadResume(resumeName: $resumeName)
+}
+    `;
+export type DownloadResumeComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<DownloadResumeQuery, DownloadResumeQueryVariables>, 'query'> & ({ variables: DownloadResumeQueryVariables; skip?: boolean; } | { skip: boolean; });
+
+    export const DownloadResumeComponent = (props: DownloadResumeComponentProps) => (
+      <ApolloReactComponents.Query<DownloadResumeQuery, DownloadResumeQueryVariables> query={DownloadResumeDocument} {...props} />
+    );
+    
+export type DownloadResumeProps<TChildProps = {}> = ApolloReactHoc.DataProps<DownloadResumeQuery, DownloadResumeQueryVariables> & TChildProps;
+export function withDownloadResume<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  DownloadResumeQuery,
+  DownloadResumeQueryVariables,
+  DownloadResumeProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, DownloadResumeQuery, DownloadResumeQueryVariables, DownloadResumeProps<TChildProps>>(DownloadResumeDocument, {
+      alias: 'downloadResume',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useDownloadResumeQuery__
+ *
+ * To run a query within a React component, call `useDownloadResumeQuery` and pass it any options that fit your needs.
+ * When your component renders, `useDownloadResumeQuery` returns an object from Apollo Client that contains loading, error, and data properties 
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useDownloadResumeQuery({
+ *   variables: {
+ *      resumeName: // value for 'resumeName'
+ *   },
+ * });
+ */
+export function useDownloadResumeQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<DownloadResumeQuery, DownloadResumeQueryVariables>) {
+        return ApolloReactHooks.useQuery<DownloadResumeQuery, DownloadResumeQueryVariables>(DownloadResumeDocument, baseOptions);
+      }
+export function useDownloadResumeLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<DownloadResumeQuery, DownloadResumeQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<DownloadResumeQuery, DownloadResumeQueryVariables>(DownloadResumeDocument, baseOptions);
+        }
+export type DownloadResumeQueryHookResult = ReturnType<typeof useDownloadResumeQuery>;
+export type DownloadResumeLazyQueryHookResult = ReturnType<typeof useDownloadResumeLazyQuery>;
+export type DownloadResumeQueryResult = ApolloReactCommon.QueryResult<DownloadResumeQuery, DownloadResumeQueryVariables>;
 export const AllThemesDocument = gql`
     query allThemes {
   allThemes {

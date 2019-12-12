@@ -5,7 +5,7 @@ import { ThemeToggler } from 'gatsby-plugin-dark-mode';
 
 import Layout from '../components/Layout/layout';
 import SEO from '../components/SEO/seo';
-import { IAllSitePage } from '../utils/types/interfaces/pages/index.page.interfaces';
+import { IAllSitePage } from '../shared/types/interfaces/pages/index.page.interfaces';
 // import { HomePageWrapper } from '../components/HomePage/homepage.styles';
 import { PositionCenter } from '../components/styled/PositionCenter';
 

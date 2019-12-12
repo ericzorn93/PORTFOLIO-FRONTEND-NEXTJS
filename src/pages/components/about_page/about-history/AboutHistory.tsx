@@ -26,8 +26,8 @@ const AboutHistory: React.FC<AboutHistoryProps> = ({
         <p>{description}</p>
         {bulletPoints ? (
           <ul>
-            {bulletPoints.map(point => (
-              <li>{point}</li>
+            {bulletPoints.map((point, index) => (
+              <li key={index}>{point}</li>
             ))}
           </ul>
         ) : null}
