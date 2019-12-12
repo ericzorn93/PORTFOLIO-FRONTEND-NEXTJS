@@ -7,3 +7,5 @@ export const DownloadResumeLink = styled.a`
   text-decoration: none;
   font-family: Ubuntu, sans-serif;
 `;
+
+export default {};

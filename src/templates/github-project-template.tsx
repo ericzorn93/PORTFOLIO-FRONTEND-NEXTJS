@@ -1,4 +1,9 @@
 import React from 'react';
+/** @jsx jsx */
+import { jsx } from '@emotion/core';
+import { Link } from 'gatsby';
+
+import Layout from '../components/Layout/layout';
 
 interface Props {
   path: string;
@@ -16,13 +21,17 @@ const GithubProjectTemplate: React.FC<Props> = ({ path, pageContext }) => {
   const { project } = pageContext;
 
   return (
-    <div>
-      <h1 style={{ color: 'green' }}>{project.name}</h1>
-      <h4>
-        <em>Path: {path}</em>
-      </h4>
-      <p>{project.about}</p>
-    </div>
+    <Layout>
+      <div css={{ margin: 50 }}>
+        <h1>{project.name}</h1>
+        <h4>
+          <em>Path: {path}</em>
+        </h4>
+        <p>{project.about}</p>
+
+        <Link to="/">Go Home</Link>
+      </div>
+    </Layout>
   );
 };
 

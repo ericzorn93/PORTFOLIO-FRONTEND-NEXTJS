@@ -1,5 +1,9 @@
 import React, { useEffect } from 'react';
+/** @jsx jsx */
+import { jsx } from '@emotion/core';
 import { Link } from 'gatsby';
+
+import Layout from '../components/Layout/layout';
 
 interface Props {
   path: string;
@@ -17,19 +21,17 @@ interface Props {
 const ContentfulProjectTemplate: React.FC<Props> = ({ path, pageContext }) => {
   const { project } = pageContext;
 
-  useEffect(() => {
-    console.log(project);
-  }, []);
-
   return (
-    <div>
-      <h1 style={{ color: 'red' }}>{project.name}</h1>
-      <h4>
-        <em>Path: {path}</em>
-      </h4>
-      {/* <p>{project.about.json.content.}</p> */}
-      <Link to="/">Go Home</Link>
-    </div>
+    <Layout>
+      <div css={{ margin: 50 }}>
+        <h1>{project.name}</h1>
+        <h4>
+          <em>Path: {path}</em>
+        </h4>
+        {/* <p>{project.about.json.content.}</p> */}
+        <Link to="/">Go Home</Link>
+      </div>
+    </Layout>
   );
 };
 

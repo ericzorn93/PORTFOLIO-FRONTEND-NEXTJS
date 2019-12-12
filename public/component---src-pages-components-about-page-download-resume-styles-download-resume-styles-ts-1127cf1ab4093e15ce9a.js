@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[10],{cZOi:function(n,e,t){"use strict";t.r(e),t.d(e,"DownloadResumeLink",(function(){return s}));var a=t("wTIg"),s=Object(a.a)("a",{target:"emon1x40"})({name:"4l4uww",styles:"display:flex;justify-content:flex-start;align-items:center;text-decoration:none;font-family:Ubuntu,sans-serif;"});e.default={}}}]);
+//# sourceMappingURL=component---src-pages-components-about-page-download-resume-styles-download-resume-styles-ts-1127cf1ab4093e15ce9a.js.map
