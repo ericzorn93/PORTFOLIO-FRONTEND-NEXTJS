@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { ResumeHeaderText } from '../../../../components/styled/ResumeHeaderText';
-import { ResumeInfo } from '../../../../components/styled/ResumeInfo';
+import { ResumeHeaderText } from '../../../styled/ResumeHeaderText';
+import { ResumeInfo } from '../../../styled/ResumeInfo';
 import AboutHistory from '../about-history/AboutHistory';
 
 interface AboutResumeProps {}

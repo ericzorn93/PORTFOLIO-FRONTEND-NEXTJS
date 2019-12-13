@@ -7,8 +7,8 @@ import { Container } from '../components/styled/Container';
 import CustomImage from '../components/CustomImage/CustomImage';
 import { HeaderText } from '../components/styled/HeaderText';
 import { Paragraph } from '../components/styled/Paragraph';
-import AboutResume from './components/about_page/about-resume/AboutResume';
-import DownloadResume from './components/about_page/download-resume/DownloadResume';
+import AboutResume from '../components/page_components/about_page/about-resume/AboutResume';
+import DownloadResume from '../components/page_components/about_page/download-resume/DownloadResume';
 
 const AboutPage: React.FC = () => {
   return (
