@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useStaticQuery, graphql, Link } from 'gatsby';
 
 import Layout from '../components/Layout/layout';
@@ -23,19 +23,41 @@ const ProjectsPage: React.FC = () => {
     `
   );
 
-  const pageData = pageEdges.map(edge => ({
-    id: edge.node.id,
-    path: edge.node.path,
-    pageName: edge.node.internalComponentName,
-    type: edge.node.path.includes('github') ? 'github' : 'contentful',
-  }));
+  const pageData = useMemo(() => {
+    return pageEdges
+      .filter(edge => {
+        const pageName = edge.node.internalComponentName;
+
+        if (!pageName.includes('Github') && !pageName.includes('Contentful')) {
+          return false;
+        }
+
+        return true;
+      })
+      .map(edge => {
+        let updatedPageName = edge.node.internalComponentName;
+
+        if (updatedPageName.includes('Github')) {
+          updatedPageName = updatedPageName.split('Github')[1];
+        } else if (updatedPageName.includes('Contentful')) {
+          updatedPageName = updatedPageName.split('Contentful')[1];
+        }
+
+        return {
+          id: edge.node.id,
+          path: edge.node.path,
+          pageName: updatedPageName,
+          type: edge.node.path.includes('github') ? 'github' : 'contentful',
+        };
+      });
+  }, [pageEdges]);
 
   return (
     <Layout>
-      <h1>Projects Page</h1>
+      <h1>Projects</h1>
       {pageData.map(page => (
         <>
-          <Link to={page.path} key={page.id} state={{ type: page.type }}>
+          <Link key={page.id} to={page.path} state={{ type: page.type }}>
             {page.pageName}
           </Link>
           <br />

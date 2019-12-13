@@ -65,7 +65,7 @@ exports.createPages = ({ graphql, actions }) => {
 
       createPage({
         // Path for this page — required
-        path: `/contenful/${combinedName}`,
+        path: `/contentful/${combinedName}`,
         component: contentfulProjectTemplate,
         context: {
           project: contentfulProject,
