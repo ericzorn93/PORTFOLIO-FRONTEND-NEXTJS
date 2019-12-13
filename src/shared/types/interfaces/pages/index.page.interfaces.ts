@@ -9,5 +9,10 @@ export interface IEdge {
     id: string;
     path: string;
     internalComponentName: string;
+    context: {
+      project: {
+        regularName: string;
+      };
+    };
   };
 }

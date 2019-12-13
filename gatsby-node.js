@@ -48,13 +48,17 @@ exports.createPages = ({ graphql, actions }) => {
     // Create blog post pages from github
     githubData.viewer.repositories.nodes.forEach(repo => {
       const combinedName = combineSplitName(repo.name);
+      const regularName = generateRegularName(repo.name);
 
       createPage({
         // Path for this page — required
         path: `/github/${combinedName}`,
         component: githubProjectTemplate,
         context: {
-          project: repo,
+          project: {
+            ...repo,
+            regularName,
+          },
         },
       });
     });
@@ -92,4 +96,26 @@ function combineSplitName(name) {
     .toLowerCase();
 
   return combinedName;
+}
+
+/**
+ * @param {String} name
+ * @description
+ * Splits the name on a hyphen and then generates a string with spaces.
+ * Also splits on the capital letter.
+ */
+function generateRegularName(name) {
+  if (!name) {
+    name = '';
+  }
+
+  let spacedName = name.split('-').join(' ');
+  spacedName = spacedName
+    .replace(/([A-Z]+)/g, ',$1')
+    .replace(/^,/, ' ')
+    .replace(/,/g, ' ')
+    .replace(/\s{2,}/g, ' ')
+    .trim();
+
+  return spacedName;
 }

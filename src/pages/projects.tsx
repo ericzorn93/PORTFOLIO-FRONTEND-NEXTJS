@@ -16,6 +16,11 @@ const ProjectsPage: React.FC = () => {
               id
               path
               internalComponentName
+              context {
+                project {
+                  regularName
+                }
+              }
             }
           }
         }
@@ -51,6 +56,9 @@ const ProjectsPage: React.FC = () => {
           id: edge.node.id,
           path: edge.node.path,
           pageName: updatedPageName,
+          regularName: edge.node.context.project
+            ? edge.node.context.project.regularName
+            : '',
           type: edge.node.path.includes('github') ? 'github' : 'contentful',
         };
       });
@@ -62,7 +70,7 @@ const ProjectsPage: React.FC = () => {
       {pageData.map(page => (
         <>
           <Link key={page.id} to={page.path} state={{ type: page.type }}>
-            {page.pageName}
+            {page.regularName}
           </Link>
           <br />
         </>
