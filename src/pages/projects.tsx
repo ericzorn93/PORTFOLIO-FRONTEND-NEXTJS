@@ -28,6 +28,10 @@ const ProjectsPage: React.FC = () => {
       .filter(edge => {
         const pageName = edge.node.internalComponentName;
 
+        if (!pageName) {
+          return false;
+        }
+
         if (!pageName.includes('Github') && !pageName.includes('Contentful')) {
           return false;
         }
