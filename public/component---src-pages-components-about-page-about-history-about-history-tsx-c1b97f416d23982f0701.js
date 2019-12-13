@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[7],{"9GdM":function(t,e,n){"use strict";n.r(e);var b=n("q1tI"),l=n.n(b),c=n("qKvR");e.default=function(t){var e=t.date,n=t.title,b=t.location,a=t.description;t.bulletPoints;return Object(c.b)(l.a.Fragment,null,Object(c.b)("h4",{className:"date"},e),Object(c.b)("div",{className:"info"},Object(c.b)("h3",null,n),Object(c.b)("p",null,Object(c.b)("em",null,b)),Object(c.b)("p",null,a)))}}}]);
+//# sourceMappingURL=component---src-pages-components-about-page-about-history-about-history-tsx-c1b97f416d23982f0701.js.map
