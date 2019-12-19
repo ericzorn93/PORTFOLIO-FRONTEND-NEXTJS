@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[7],{"a+9R":function(t,e,n){"use strict";n.r(e);n("f3/d");var a=n("qKvR");n("q1tI");e.default=function(t){var e=t.path,n=t.pageContext.project;return Object(a.a)("div",null,Object(a.a)("h1",null,n.name),Object(a.a)("h4",null,Object(a.a)("em",null,"Path: ",e)),Object(a.a)("p",null,n.description),n.tags.map((function(t){return Object(a.a)("code",{key:t.id},t.name)})))}}}]);
-//# sourceMappingURL=component---src-templates-project-template-tsx-1d8c8f93277a14ec415c.js.map

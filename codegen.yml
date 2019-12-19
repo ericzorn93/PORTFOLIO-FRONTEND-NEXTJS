@@ -1,0 +1,30 @@
+overwrite: true
+generates:
+  lib/generated/PortfolioGraphqlComponents.tsx:
+    documents: "graphql/portfolio/**/*.graphql"
+    schema:
+      - "https://ez-portfolio-backend-graphql.herokuapp.com/graphql"
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-apollo"
+    config:
+      withHOC: true
+      withComponent: true
+      withHooks: true
+
+  lib/generated/GithubGraphqlComponents.tsx:
+    documents: "graphql/github/**/*.graphql"
+    schema:
+      - https://api.github.com/graphql:
+          headers:
+            Authorization: "Bearer 995c53e7b870814c82b52c3be9db5bddd633ed8a"
+            Accept: "application/json"
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-apollo"
+    config:
+      withHOC: true
+      withComponent: true
+      withHooks: true

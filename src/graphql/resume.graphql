@@ -1,3 +1,0 @@
-query downloadResume($resumeName: String!) {
-  downloadResume(resumeName: $resumeName)
-}

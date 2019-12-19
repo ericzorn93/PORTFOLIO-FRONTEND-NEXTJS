@@ -1,0 +1,10 @@
+query allProjects {
+  allProjects {
+    id
+    name
+    tags {
+      id
+      name
+    }
+  }
+}

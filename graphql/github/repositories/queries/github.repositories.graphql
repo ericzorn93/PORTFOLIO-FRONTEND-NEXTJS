@@ -1,0 +1,35 @@
+# Finds all GitHub Repos
+query githubRepositories($last: Int) {
+  viewer {
+    repositories(last: $last) {
+      nodes {
+        id
+        name
+        nameWithOwner
+        description
+        url
+        licenseInfo {
+          name
+        }
+        createdAt
+        updatedAt
+      }
+    }
+  }
+}
+
+# Finds a single GitHub Repo by Name
+query findGitHubRepo($name: String!) {
+  viewer {
+    repository(name: $name) {
+      id
+      name
+      description
+      primaryLanguage {
+        name
+      }
+      createdAt
+      updatedAt
+    }
+  }
+}

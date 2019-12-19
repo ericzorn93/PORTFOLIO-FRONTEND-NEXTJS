@@ -1,0 +1,20 @@
+fragment ThemeParts on Theme {
+  primary
+  secondary
+  alternate
+  lightAlternate
+  light
+  black
+  white
+}
+
+query allThemes {
+  allThemes {
+    darkMode {
+      ...ThemeParts
+    }
+    lightMode {
+      ...ThemeParts
+    }
+  }
+}

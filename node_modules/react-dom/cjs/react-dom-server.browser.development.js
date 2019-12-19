@@ -1,4 +1,4 @@
-/** @license React v16.11.0
+/** @license React v16.12.0
  * react-dom-server.browser.development.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -25,7 +25,7 @@ var checkPropTypes = require('prop-types/checkPropTypes');
 
 // TODO: this is special because it gets imported during build.
 
-var ReactVersion = '16.11.0';
+var ReactVersion = '16.12.0';
 
 /**
  * Use invariant() to assert state which your program assumes to be true.
@@ -356,12 +356,8 @@ var describeComponentFrame = function (name, source, ownerName) {
   return '\n    in ' + (name || 'Unknown') + sourceInfo;
 };
 
-// Helps identify side effects in begin-phase lifecycle hooks and setState reducers:
-
- // In some cases, StrictMode should also double-render lifecycles.
-// This can be confusing for tests though,
-// And it can be bad for performance in production.
-// This feature flag can be used to control the behavior:
+// Helps identify side effects in render-phase lifecycle hooks and setState
+// reducers by double invoking them in Strict Mode.
 
  // To preserve the "Pause on caught exceptions" behavior of the debugger, we
 // replay the begin phase of a failed component inside invokeGuardedCallback.
@@ -397,7 +393,7 @@ var enableFundamentalAPI = false; // Experimental Scope support.
 var enableScopeAPI = false; // New API for JSX transforms to target - https://github.com/reactjs/rfcs/pull/107
 
  // We will enforce mocking scheduler with scheduler/unstable_mock at some point. (v17?)
-// Till then, we warn about the missing mock, but still fallback to a sync mode compatible version
+// Till then, we warn about the missing mock, but still fallback to a legacy mode compatible version
 
  // For tests, we flush suspense fallbacks in an act scope;
 // *except* in some of our own tests, where we test incremental loading states.
@@ -415,6 +411,8 @@ var enableScopeAPI = false; // New API for JSX transforms to target - https://gi
 
 
 var disableLegacyContext = false;
+
+ // Flag to turn event.target and event.currentTarget in ReactNative from a reactTag to a component instance
 
 var ReactDebugCurrentFrame$1;
 var didWarnAboutInvalidateContextType;

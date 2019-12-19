@@ -1,4 +1,4 @@
-/** @license React v16.11.0
+/** @license React v16.12.0
  * react-dom-unstable-native-dependencies.development.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.

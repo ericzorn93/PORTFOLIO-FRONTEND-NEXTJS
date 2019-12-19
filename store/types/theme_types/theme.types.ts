@@ -1,0 +1,3 @@
+export const ADD_ALL_THEME_DATA = "ADD_ALL_THEME_DATA";
+
+export const TOGGLE_DARKMODE = "TOGGLE_DARKMODE";

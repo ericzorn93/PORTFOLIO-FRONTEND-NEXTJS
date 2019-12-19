@@ -1,0 +1,12 @@
+fragment UserParts on User {
+  id
+  firstName
+  lastName
+  emailAddress
+}
+
+query allUsers {
+  allUsers {
+    ...UserParts
+  }
+}

@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[7],{"9GdM":function(t,n,e){"use strict";e.r(n);e("q1tI");var i=e("qKvR");n.default=function(t){t.date,t.title,t.location,t.description,t.bulletPoints;return Object(i.b)("h1",null,"test")}}}]);
-//# sourceMappingURL=component---src-pages-components-about-page-about-history-about-history-tsx-902ffd0c17071b9bb0f9.js.map

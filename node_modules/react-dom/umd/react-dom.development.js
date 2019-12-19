@@ -1,4 +1,4 @@
-/** @license React v16.11.0
+/** @license React v16.12.0
  * react-dom.development.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -1289,12 +1289,8 @@ function restoreStateIfNeeded() {
   }
 }
 
-var enableUserTimingAPI = true; // Helps identify side effects in begin-phase lifecycle hooks and setState reducers:
-
-var debugRenderPhaseSideEffects = false; // In some cases, StrictMode should also double-render lifecycles.
-// This can be confusing for tests though,
-// And it can be bad for performance in production.
-// This feature flag can be used to control the behavior:
+var enableUserTimingAPI = true; // Helps identify side effects in render-phase lifecycle hooks and setState
+// reducers by double invoking them in Strict Mode.
 
 var debugRenderPhaseSideEffectsForStrictMode = true; // To preserve the "Pause on caught exceptions" behavior of the debugger, we
 // replay the begin phase of a failed component inside invokeGuardedCallback.
@@ -1330,7 +1326,7 @@ var enableFundamentalAPI = false; // Experimental Scope support.
 var enableScopeAPI = false; // New API for JSX transforms to target - https://github.com/reactjs/rfcs/pull/107
 
  // We will enforce mocking scheduler with scheduler/unstable_mock at some point. (v17?)
-// Till then, we warn about the missing mock, but still fallback to a sync mode compatible version
+// Till then, we warn about the missing mock, but still fallback to a legacy mode compatible version
 
 var warnAboutUnmockedScheduler = false; // For tests, we flush suspense fallbacks in an act scope;
 // *except* in some of our own tests, where we test incremental loading states.
@@ -1349,7 +1345,7 @@ var warnAboutDefaultPropsOnFunctionComponents = false;
 var warnAboutStringRefs = false;
 var disableLegacyContext = false;
 var disableSchedulerTimeoutBasedOnReactExpirationTime = false;
-var enableTrustedTypesIntegration = false;
+var enableTrustedTypesIntegration = false; // Flag to turn event.target and event.currentTarget in ReactNative from a reactTag to a component instance
 
 // the renderer. Such as when we're dispatching events or if third party
 // libraries need to call batchedUpdates. Eventually, this API will go away when
@@ -3900,7 +3896,7 @@ var ShouldCapture =
 /*         */
 4096;
 
-var ReactCurrentOwner$1 = ReactSharedInternals.ReactCurrentOwner;
+var ReactCurrentOwner = ReactSharedInternals.ReactCurrentOwner;
 function getNearestMountedFiber(fiber) {
   var node = fiber;
   var nearestMounted = fiber;
@@ -3965,7 +3961,7 @@ function isFiberMounted(fiber) {
 }
 function isMounted(component) {
   {
-    var owner = ReactCurrentOwner$1.current;
+    var owner = ReactCurrentOwner.current;
 
     if (owner !== null && owner.tag === ClassComponent) {
       var ownerFiber = owner;
@@ -9719,14 +9715,31 @@ function insertInContainerBefore(container, child, beforeChild) {
   } else {
     container.insertBefore(child, beforeChild);
   }
+} // This is a specific event for the React Flare
+// event system, so event responders can act
+// accordingly to a DOM node being unmounted that
+// previously had active document focus.
+
+function dispatchDetachedVisibleNodeEvent(child) {
+  if (enableFlareAPI && selectionInformation && child === selectionInformation.focusedElem) {
+    var targetFiber = getClosestInstanceFromNode(child); // Simlulate a blur event to the React Flare responder system.
+
+    dispatchEventForResponderEventSystem('detachedvisiblenode', targetFiber, {
+      target: child,
+      timeStamp: Date.now()
+    }, child, RESPONDER_EVENT_SYSTEM | IS_PASSIVE);
+  }
 }
+
 function removeChild(parentInstance, child) {
+  dispatchDetachedVisibleNodeEvent(child);
   parentInstance.removeChild(child);
 }
 function removeChildFromContainer(container, child) {
   if (container.nodeType === COMMENT_NODE) {
     container.parentNode.removeChild(child);
   } else {
+    dispatchDetachedVisibleNodeEvent(child);
     container.removeChild(child);
   }
 }
@@ -10118,11 +10131,17 @@ function precacheFiberNode(hostInst, node) {
 }
 function markContainerAsRoot(hostRoot, node) {
   node[internalContainerInstanceKey] = hostRoot;
+}
+function unmarkContainerAsRoot(node) {
+  node[internalContainerInstanceKey] = null;
+}
+function isContainerMarkedAsRoot(node) {
+  return !!node[internalContainerInstanceKey];
 } // Given a DOM node, return the closest HostComponent or HostText fiber ancestor.
 // If the target node is part of a hydrated or not yet rendered subtree, then
 // this may also return a SuspenseComponent or HostRoot to indicate that.
 // Conceptually the HostRoot fiber is a child of the Container node. So if you
-// pass the Container node as the targetNode, you wiill not actually get the
+// pass the Container node as the targetNode, you will not actually get the
 // HostRoot back. To get to the HostRoot, you need to pass a child of it.
 // The same thing applies to Suspense boundaries.
 
@@ -12148,7 +12167,7 @@ function findCurrentUnmaskedContext(fiber) {
 }
 
 var LegacyRoot = 0;
-var BatchedRoot = 1;
+var BlockingRoot = 1;
 var ConcurrentRoot = 2;
 
 var ReactInternals$2 = React.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
@@ -12344,10 +12363,10 @@ function flushSyncCallbackQueueImpl() {
 }
 
 var NoMode = 0;
-var StrictMode = 1; // TODO: Remove BatchedMode and ConcurrentMode by reading from the root
+var StrictMode = 1; // TODO: Remove BlockingMode and ConcurrentMode by reading from the root
 // tag instead
 
-var BatchedMode = 2;
+var BlockingMode = 2;
 var ConcurrentMode = 4;
 var ProfileMode = 8;
 
@@ -13729,7 +13748,7 @@ function getStateFromUpdate(workInProgress, queue, update, prevState, nextProps,
           {
             enterDisallowedContextReadInDEV();
 
-            if (debugRenderPhaseSideEffects || debugRenderPhaseSideEffectsForStrictMode && workInProgress.mode & StrictMode) {
+            if (debugRenderPhaseSideEffectsForStrictMode && workInProgress.mode & StrictMode) {
               payload.call(instance, prevState, nextProps);
             }
           }
@@ -13763,7 +13782,7 @@ function getStateFromUpdate(workInProgress, queue, update, prevState, nextProps,
           {
             enterDisallowedContextReadInDEV();
 
-            if (debugRenderPhaseSideEffects || debugRenderPhaseSideEffectsForStrictMode && workInProgress.mode & StrictMode) {
+            if (debugRenderPhaseSideEffectsForStrictMode && workInProgress.mode & StrictMode) {
               _payload.call(instance, prevState, nextProps);
             }
           }
@@ -14076,7 +14095,7 @@ function applyDerivedStateFromProps(workInProgress, ctor, getDerivedStateFromPro
   var prevState = workInProgress.memoizedState;
 
   {
-    if (debugRenderPhaseSideEffects || debugRenderPhaseSideEffectsForStrictMode && workInProgress.mode & StrictMode) {
+    if (debugRenderPhaseSideEffectsForStrictMode && workInProgress.mode & StrictMode) {
       // Invoke the function an extra time to help detect side-effects.
       getDerivedStateFromProps(nextProps, prevState);
     }
@@ -14323,7 +14342,7 @@ function constructClassInstance(workInProgress, ctor, props, renderExpirationTim
 
 
   {
-    if (debugRenderPhaseSideEffects || debugRenderPhaseSideEffectsForStrictMode && workInProgress.mode & StrictMode) {
+    if (debugRenderPhaseSideEffectsForStrictMode && workInProgress.mode & StrictMode) {
       new ctor(props, context); // eslint-disable-line no-new
     }
   }
@@ -18269,7 +18288,7 @@ function updateForwardRef(current$$1, workInProgress, Component, nextProps, rend
     setCurrentPhase('render');
     nextChildren = renderWithHooks(current$$1, workInProgress, render, nextProps, ref, renderExpirationTime);
 
-    if (debugRenderPhaseSideEffects || debugRenderPhaseSideEffectsForStrictMode && workInProgress.mode & StrictMode) {
+    if (debugRenderPhaseSideEffectsForStrictMode && workInProgress.mode & StrictMode) {
       // Only double-render components with Hooks
       if (workInProgress.memoizedState !== null) {
         nextChildren = renderWithHooks(current$$1, workInProgress, render, nextProps, ref, renderExpirationTime);
@@ -18473,7 +18492,7 @@ function updateFunctionComponent(current$$1, workInProgress, Component, nextProp
     setCurrentPhase('render');
     nextChildren = renderWithHooks(current$$1, workInProgress, Component, nextProps, context, renderExpirationTime);
 
-    if (debugRenderPhaseSideEffects || debugRenderPhaseSideEffectsForStrictMode && workInProgress.mode & StrictMode) {
+    if (debugRenderPhaseSideEffectsForStrictMode && workInProgress.mode & StrictMode) {
       // Only double-render components with Hooks
       if (workInProgress.memoizedState !== null) {
         nextChildren = renderWithHooks(current$$1, workInProgress, Component, nextProps, context, renderExpirationTime);
@@ -18596,7 +18615,7 @@ function finishClassComponent(current$$1, workInProgress, Component, shouldUpdat
       setCurrentPhase('render');
       nextChildren = instance.render();
 
-      if (debugRenderPhaseSideEffects || debugRenderPhaseSideEffectsForStrictMode && workInProgress.mode & StrictMode) {
+      if (debugRenderPhaseSideEffectsForStrictMode && workInProgress.mode & StrictMode) {
         instance.render();
       }
 
@@ -18969,7 +18988,7 @@ function mountIndeterminateComponent(_current, workInProgress, Component, render
         warningWithoutStack$1(false, '%s uses the legacy contextTypes API which is no longer supported. ' + 'Use React.createContext() with React.useContext() instead.', getComponentName(Component) || 'Unknown');
       }
 
-      if (debugRenderPhaseSideEffects || debugRenderPhaseSideEffectsForStrictMode && workInProgress.mode & StrictMode) {
+      if (debugRenderPhaseSideEffectsForStrictMode && workInProgress.mode & StrictMode) {
         // Only double-render components with Hooks
         if (workInProgress.memoizedState !== null) {
           value = renderWithHooks(null, workInProgress, Component, props, context, renderExpirationTime);
@@ -19145,8 +19164,8 @@ function updateSuspenseComponent(current$$1, workInProgress, renderExpirationTim
       var primaryChildFragment = createFiberFromFragment(null, mode, NoWork, null);
       primaryChildFragment.return = workInProgress;
 
-      if ((workInProgress.mode & BatchedMode) === NoMode) {
-        // Outside of batched mode, we commit the effects from the
+      if ((workInProgress.mode & BlockingMode) === NoMode) {
+        // Outside of blocking mode, we commit the effects from the
         // partially completed, timed-out tree, too.
         var progressedState = workInProgress.memoizedState;
         var progressedPrimaryChild = progressedState !== null ? workInProgress.child.child : workInProgress.child;
@@ -19209,8 +19228,8 @@ function updateSuspenseComponent(current$$1, workInProgress, renderExpirationTim
 
             _primaryChildFragment.child = null;
 
-            if ((workInProgress.mode & BatchedMode) === NoMode) {
-              // Outside of batched mode, we commit the effects from the
+            if ((workInProgress.mode & BlockingMode) === NoMode) {
+              // Outside of blocking mode, we commit the effects from the
               // partially completed, timed-out tree, too.
               var _progressedChild = _primaryChildFragment.child = workInProgress.child;
 
@@ -19269,8 +19288,8 @@ function updateSuspenseComponent(current$$1, workInProgress, renderExpirationTim
 
         _primaryChildFragment2.return = workInProgress;
 
-        if ((workInProgress.mode & BatchedMode) === NoMode) {
-          // Outside of batched mode, we commit the effects from the
+        if ((workInProgress.mode & BlockingMode) === NoMode) {
+          // Outside of blocking mode, we commit the effects from the
           // partially completed, timed-out tree, too.
           var _progressedState = workInProgress.memoizedState;
 
@@ -19354,8 +19373,8 @@ function updateSuspenseComponent(current$$1, workInProgress, renderExpirationTim
         // primaryChildFragment.effectTag |= Placement;
 
 
-        if ((workInProgress.mode & BatchedMode) === NoMode) {
-          // Outside of batched mode, we commit the effects from the
+        if ((workInProgress.mode & BlockingMode) === NoMode) {
+          // Outside of blocking mode, we commit the effects from the
           // partially completed, timed-out tree, too.
           var _progressedState2 = workInProgress.memoizedState;
 
@@ -19424,9 +19443,9 @@ function retrySuspenseComponentWithoutHydrating(current$$1, workInProgress, rend
 function mountDehydratedSuspenseComponent(workInProgress, suspenseInstance, renderExpirationTime) {
   // During the first pass, we'll bail out and not drill into the children.
   // Instead, we'll leave the content in place and try to hydrate it later.
-  if ((workInProgress.mode & BatchedMode) === NoMode) {
+  if ((workInProgress.mode & BlockingMode) === NoMode) {
     {
-      warning$1(false, 'Cannot hydrate Suspense in legacy mode. Switch from ' + 'ReactDOM.hydrate(element, container) to ' + 'ReactDOM.createSyncRoot(container, { hydrate: true })' + '.render(element) or remove the Suspense components from ' + 'the server rendered components.');
+      warning$1(false, 'Cannot hydrate Suspense in legacy mode. Switch from ' + 'ReactDOM.hydrate(element, container) to ' + 'ReactDOM.createBlockingRoot(container, { hydrate: true })' + '.render(element) or remove the Suspense components from ' + 'the server rendered components.');
     }
 
     workInProgress.expirationTime = Sync;
@@ -19468,7 +19487,7 @@ function updateDehydratedSuspenseComponent(current$$1, workInProgress, suspenseI
   // but after we've already committed once.
   warnIfHydrating();
 
-  if ((workInProgress.mode & BatchedMode) === NoMode) {
+  if ((workInProgress.mode & BlockingMode) === NoMode) {
     return retrySuspenseComponentWithoutHydrating(current$$1, workInProgress, renderExpirationTime);
   }
 
@@ -19790,8 +19809,8 @@ function updateSuspenseListComponent(current$$1, workInProgress, renderExpiratio
 
   pushSuspenseContext(workInProgress, suspenseContext);
 
-  if ((workInProgress.mode & BatchedMode) === NoMode) {
-    // Outside of batched mode, SuspenseList doesn't work so we just
+  if ((workInProgress.mode & BlockingMode) === NoMode) {
+    // Outside of blocking mode, SuspenseList doesn't work so we just
     // use make it a noop by treating it as the default revealOrder.
     workInProgress.memoizedState = null;
   } else {
@@ -20163,7 +20182,12 @@ function beginWork$1(current$$1, workInProgress, renderExpirationTime) {
 
         case Profiler:
           if (enableProfilerTimer) {
-            workInProgress.effectTag |= Update;
+            // Profiler should only call onRender when one of its descendants actually rendered.
+            var hasChildWork = workInProgress.childExpirationTime >= renderExpirationTime;
+
+            if (hasChildWork) {
+              workInProgress.effectTag |= Update;
+            }
           }
 
           break;
@@ -20219,10 +20243,11 @@ function beginWork$1(current$$1, workInProgress, renderExpirationTime) {
         case SuspenseListComponent:
           {
             var didSuspendBefore = (current$$1.effectTag & DidCapture) !== NoEffect;
-            var hasChildWork = workInProgress.childExpirationTime >= renderExpirationTime;
+
+            var _hasChildWork = workInProgress.childExpirationTime >= renderExpirationTime;
 
             if (didSuspendBefore) {
-              if (hasChildWork) {
+              if (_hasChildWork) {
                 // If something was in fallback state last time, and we have all the
                 // same children then we're still in progressive loading state.
                 // Something might get unblocked by state updates or retries in the
@@ -20251,7 +20276,7 @@ function beginWork$1(current$$1, workInProgress, renderExpirationTime) {
 
             pushSuspenseContext(workInProgress, suspenseStackCursor.current);
 
-            if (hasChildWork) {
+            if (_hasChildWork) {
               break;
             } else {
               // If none of the children had any work, that means that none of
@@ -20434,14 +20459,19 @@ function getSuspenseFallbackChild(fiber) {
   return fiber.child.sibling.child;
 }
 
+var emptyObject$1 = {};
+
 function collectScopedNodes(node, fn, scopedNodes) {
   if (enableScopeAPI) {
     if (node.tag === HostComponent) {
       var _type = node.type,
-          memoizedProps = node.memoizedProps;
+          memoizedProps = node.memoizedProps,
+          stateNode = node.stateNode;
 
-      if (fn(_type, memoizedProps) === true) {
-        scopedNodes.push(getPublicInstance(node.stateNode));
+      var _instance = getPublicInstance(stateNode);
+
+      if (_instance !== null && fn(_type, memoizedProps || emptyObject$1, _instance) === true) {
+        scopedNodes.push(_instance);
       }
     }
 
@@ -20461,10 +20491,13 @@ function collectFirstScopedNode(node, fn) {
   if (enableScopeAPI) {
     if (node.tag === HostComponent) {
       var _type2 = node.type,
-          memoizedProps = node.memoizedProps;
+          memoizedProps = node.memoizedProps,
+          stateNode = node.stateNode;
 
-      if (fn(_type2, memoizedProps) === true) {
-        return getPublicInstance(node.stateNode);
+      var _instance2 = getPublicInstance(stateNode);
+
+      if (_instance2 !== null && fn(_type2, memoizedProps, _instance2) === true) {
+        return _instance2;
       }
     }
 
@@ -21348,12 +21381,12 @@ function completeWork(current, workInProgress, renderExpirationTime) {
         }
 
         if (nextDidTimeout && !prevDidTimeout) {
-          // If this subtreee is running in batched mode we can suspend,
+          // If this subtreee is running in blocking mode we can suspend,
           // otherwise we won't suspend.
           // TODO: This will still suspend a synchronous tree if anything
           // in the concurrent tree already suspended during this render.
           // This is a known bug.
-          if ((workInProgress.mode & BatchedMode) !== NoMode) {
+          if ((workInProgress.mode & BlockingMode) !== NoMode) {
             // TODO: Move this back to throwException because this is too late
             // if this is a large tree which is common for initial loads. We
             // don't know if we should restart a render or not until we get
@@ -21542,9 +21575,9 @@ function completeWork(current, workInProgress, renderExpirationTime) {
 
               cutOffTailIfNeeded(renderState, true); // This might have been modified.
 
-              if (renderState.tail === null && renderState.tailMode === 'hidden') {
+              if (renderState.tail === null && renderState.tailMode === 'hidden' && !renderedTail.alternate) {
                 // We need to delete the row we just rendered.
-                // Reset the effect list to what it w as before we rendered this
+                // Reset the effect list to what it was before we rendered this
                 // child. The nested children have already appended themselves.
                 var lastEffect = workInProgress.lastEffect = renderState.lastEffect; // Remove any effects that were appended after this point.
 
@@ -23460,17 +23493,17 @@ function throwException(root, returnFiber, sourceFiber, value, renderExpirationT
           _workInProgress.updateQueue = updateQueue;
         } else {
           thenables.add(thenable);
-        } // If the boundary is outside of batched mode, we should *not*
+        } // If the boundary is outside of blocking mode, we should *not*
         // suspend the commit. Pretend as if the suspended component rendered
         // null and keep rendering. In the commit phase, we'll schedule a
         // subsequent synchronous update to re-render the Suspense.
         //
         // Note: It doesn't matter whether the component that suspended was
-        // inside a batched mode tree. If the Suspense is outside of it, we
+        // inside a blocking mode tree. If the Suspense is outside of it, we
         // should *not* suspend the commit.
 
 
-        if ((_workInProgress.mode & BatchedMode) === NoMode) {
+        if ((_workInProgress.mode & BlockingMode) === NoMode) {
           _workInProgress.effectTag |= DidCapture; // We're going to commit this fiber even though it didn't complete.
           // But we shouldn't call any lifecycle methods or callbacks. Remove
           // all lifecycle effect tags.
@@ -23717,7 +23750,7 @@ function getCurrentTime() {
 function computeExpirationForFiber(currentTime, fiber, suspenseConfig) {
   var mode = fiber.mode;
 
-  if ((mode & BatchedMode) === NoMode) {
+  if ((mode & BlockingMode) === NoMode) {
     return Sync;
   }
 
@@ -23818,7 +23851,7 @@ function scheduleUpdateOnFiber(fiber, expirationTime) {
         // a batch. This is intentionally inside scheduleUpdateOnFiber instead of
         // scheduleCallbackForFiber to preserve the ability to schedule a callback
         // without immediately flushing it. We only do this for user-initiated
-        // updates, to preserve historical behavior of sync mode.
+        // updates, to preserve historical behavior of legacy mode.
         flushSyncCallbackQueue();
       }
     }
@@ -25037,7 +25070,16 @@ function commitRoot(root) {
 }
 
 function commitRootImpl(root, renderPriorityLevel) {
-  flushPassiveEffects();
+  do {
+    // `flushPassiveEffects` will call `flushSyncUpdateQueue` at the end, which
+    // means `flushPassiveEffects` will sometimes result in additional
+    // passive effects. So we need to keep flushing in a loop until there are
+    // no more pending effects.
+    // TODO: Might be better if `flushPassiveEffects` did not automatically
+    // flush synchronous work at the end, to avoid factoring hazards like this.
+    flushPassiveEffects();
+  } while (rootWithPendingPassiveEffects !== null);
+
   flushRenderPhaseStrictModeWarningsInDEV();
 
   if (!((executionContext & (RenderContext | CommitContext)) === NoContext)) {
@@ -25964,7 +26006,7 @@ var didWarnAboutUnmockedScheduler = false; // TODO Before we release concurrent 
 function warnIfUnmockedScheduler(fiber) {
   {
     if (didWarnAboutUnmockedScheduler === false && unstable_flushAllWithoutAsserting === undefined) {
-      if (fiber.mode & BatchedMode || fiber.mode & ConcurrentMode) {
+      if (fiber.mode & BlockingMode || fiber.mode & ConcurrentMode) {
         didWarnAboutUnmockedScheduler = true;
         warningWithoutStack$1(false, 'In Concurrent or Sync modes, the "scheduler" module needs to be mocked ' + 'to guarantee consistent behaviour across tests and browsers. ' + 'For example, with jest: \n' + "jest.mock('scheduler', () => require('scheduler/unstable_mock'));\n\n" + 'For more info, visit https://fb.me/react-mock-scheduler');
       } else if (warnAboutUnmockedScheduler === true) {
@@ -26607,9 +26649,9 @@ function createHostRootFiber(tag) {
   var mode;
 
   if (tag === ConcurrentRoot) {
-    mode = ConcurrentMode | BatchedMode | StrictMode;
-  } else if (tag === BatchedRoot) {
-    mode = BatchedMode | StrictMode;
+    mode = ConcurrentMode | BlockingMode | StrictMode;
+  } else if (tag === BlockingRoot) {
+    mode = BlockingMode | StrictMode;
   } else {
     mode = NoMode;
   }
@@ -26651,7 +26693,7 @@ key, pendingProps, owner, mode, expirationTime) {
 
       case REACT_CONCURRENT_MODE_TYPE:
         fiberTag = Mode;
-        mode |= ConcurrentMode | BatchedMode | StrictMode;
+        mode |= ConcurrentMode | BlockingMode | StrictMode;
         break;
 
       case REACT_STRICT_MODE_TYPE:
@@ -27434,63 +27476,44 @@ function injectIntoDevTools(devToolsConfig) {
 // This file intentionally does *not* have the Flow annotation.
 // Don't add it. See `./inline-typed.js` for an explanation.
 
-function createPortal$1(children, containerInfo, // TODO: figure out the API for cross-renderer implementation.
-implementation) {
-  var key = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
-  return {
-    // This tag allow us to uniquely identify this as a React Portal
-    $$typeof: REACT_PORTAL_TYPE,
-    key: key == null ? null : '' + key,
-    children: children,
-    containerInfo: containerInfo,
-    implementation: implementation
-  };
-}
-
-// TODO: this is special because it gets imported during build.
-
-var ReactVersion = '16.11.0';
-
 // TODO: This type is shared between the reconciler and ReactDOM, but will
 // eventually be lifted out to the renderer.
-setAttemptSynchronousHydration(attemptSynchronousHydration$1);
-setAttemptUserBlockingHydration(attemptUserBlockingHydration$1);
-setAttemptContinuousHydration(attemptContinuousHydration$1);
-setAttemptHydrationAtCurrentPriority(attemptHydrationAtCurrentPriority$1);
-var ReactCurrentOwner = ReactSharedInternals.ReactCurrentOwner;
-var topLevelUpdateWarnings;
-var warnOnInvalidCallback;
-var didWarnAboutUnstableCreatePortal = false;
-
-{
-  if (typeof Map !== 'function' || // $FlowIssue Flow incorrectly thinks Map has no prototype
-  Map.prototype == null || typeof Map.prototype.forEach !== 'function' || typeof Set !== 'function' || // $FlowIssue Flow incorrectly thinks Set has no prototype
-  Set.prototype == null || typeof Set.prototype.clear !== 'function' || typeof Set.prototype.forEach !== 'function') {
-    warningWithoutStack$1(false, 'React depends on Map and Set built-in types. Make sure that you load a ' + 'polyfill in older browsers. https://fb.me/react-polyfills');
-  }
-
-  topLevelUpdateWarnings = function (container) {
-    if (container._reactRootContainer && container.nodeType !== COMMENT_NODE) {
-      var hostInstance = findHostInstanceWithNoPortals(container._reactRootContainer._internalRoot.current);
-
-      if (hostInstance) {
-        !(hostInstance.parentNode === container) ? warningWithoutStack$1(false, 'render(...): It looks like the React-rendered content of this ' + 'container was removed without using React. This is not ' + 'supported and will cause errors. Instead, call ' + 'ReactDOM.unmountComponentAtNode to empty a container.') : void 0;
-      }
-    }
-
-    var isRootRenderedBySomeReact = !!container._reactRootContainer;
-    var rootEl = getReactRootElementInContainer(container);
-    var hasNonRootReactChild = !!(rootEl && getInstanceFromNode$1(rootEl));
-    !(!hasNonRootReactChild || isRootRenderedBySomeReact) ? warningWithoutStack$1(false, 'render(...): Replacing React-rendered children with a new root ' + 'component. If you intended to update the children of this node, ' + 'you should instead have the existing children update their state ' + 'and render the new components instead of calling ReactDOM.render.') : void 0;
-    !(container.nodeType !== ELEMENT_NODE || !container.tagName || container.tagName.toUpperCase() !== 'BODY') ? warningWithoutStack$1(false, 'render(): Rendering components directly into document.body is ' + 'discouraged, since its children are often manipulated by third-party ' + 'scripts and browser extensions. This may lead to subtle ' + 'reconciliation issues. Try rendering into a container element created ' + 'for your app.') : void 0;
-  };
-
-  warnOnInvalidCallback = function (callback, callerName) {
-    !(callback === null || typeof callback === 'function') ? warningWithoutStack$1(false, '%s(...): Expected the last optional `callback` argument to be a ' + 'function. Instead received: %s.', callerName, callback) : void 0;
-  };
+function ReactDOMRoot(container, options) {
+  this._internalRoot = createRootImpl(container, ConcurrentRoot, options);
 }
 
-setRestoreImplementation(restoreControlledState$$1);
+function ReactDOMBlockingRoot(container, tag, options) {
+  this._internalRoot = createRootImpl(container, tag, options);
+}
+
+ReactDOMRoot.prototype.render = ReactDOMBlockingRoot.prototype.render = function (children, callback) {
+  var root = this._internalRoot;
+  var cb = callback === undefined ? null : callback;
+
+  {
+    warnOnInvalidCallback(cb, 'render');
+  }
+
+  updateContainer(children, root, null, cb);
+};
+
+ReactDOMRoot.prototype.unmount = ReactDOMBlockingRoot.prototype.unmount = function (callback) {
+  var root = this._internalRoot;
+  var cb = callback === undefined ? null : callback;
+
+  {
+    warnOnInvalidCallback(cb, 'render');
+  }
+
+  var container = root.containerInfo;
+  updateContainer(null, root, null, function () {
+    unmarkContainerAsRoot(container);
+
+    if (cb !== null) {
+      cb();
+    }
+  });
+};
 
 function createRootImpl(container, tag, options) {
   // Tag is either LegacyRoot or Concurrent Root
@@ -27507,46 +27530,70 @@ function createRootImpl(container, tag, options) {
   return root;
 }
 
-function ReactSyncRoot(container, tag, options) {
-  this._internalRoot = createRootImpl(container, tag, options);
-}
-
-function ReactRoot(container, options) {
-  this._internalRoot = createRootImpl(container, ConcurrentRoot, options);
-}
-
-ReactRoot.prototype.render = ReactSyncRoot.prototype.render = function (children, callback) {
-  var root = this._internalRoot;
-  callback = callback === undefined ? null : callback;
-
-  {
-    warnOnInvalidCallback(callback, 'render');
+function createRoot(container, options) {
+  if (!isValidContainer(container)) {
+    {
+      throw Error("createRoot(...): Target container is not a DOM element.");
+    }
   }
 
-  updateContainer(children, root, null, callback);
-};
-
-ReactRoot.prototype.unmount = ReactSyncRoot.prototype.unmount = function (callback) {
-  var root = this._internalRoot;
-  callback = callback === undefined ? null : callback;
-
-  {
-    warnOnInvalidCallback(callback, 'render');
+  warnIfReactDOMContainerInDEV(container);
+  return new ReactDOMRoot(container, options);
+}
+function createBlockingRoot(container, options) {
+  if (!isValidContainer(container)) {
+    {
+      throw Error("createRoot(...): Target container is not a DOM element.");
+    }
   }
 
-  updateContainer(null, root, null, callback);
-};
-/**
- * True if the supplied DOM node is a valid node element.
- *
- * @param {?DOMElement} node The candidate DOM node.
- * @return {boolean} True if the DOM is a valid DOM node.
- * @internal
- */
-
-
+  warnIfReactDOMContainerInDEV(container);
+  return new ReactDOMBlockingRoot(container, BlockingRoot, options);
+}
+function createLegacyRoot(container, options) {
+  return new ReactDOMBlockingRoot(container, LegacyRoot, options);
+}
 function isValidContainer(node) {
   return !!(node && (node.nodeType === ELEMENT_NODE || node.nodeType === DOCUMENT_NODE || node.nodeType === DOCUMENT_FRAGMENT_NODE || node.nodeType === COMMENT_NODE && node.nodeValue === ' react-mount-point-unstable '));
+}
+function warnOnInvalidCallback(callback, callerName) {
+  {
+    !(callback === null || typeof callback === 'function') ? warningWithoutStack$1(false, '%s(...): Expected the last optional `callback` argument to be a ' + 'function. Instead received: %s.', callerName, callback) : void 0;
+  }
+}
+
+function warnIfReactDOMContainerInDEV(container) {
+  {
+    if (isContainerMarkedAsRoot(container)) {
+      if (container._reactRootContainer) {
+        warningWithoutStack$1(false, 'You are calling ReactDOM.createRoot() on a container that was previously ' + 'passed to ReactDOM.render(). This is not supported.');
+      } else {
+        warningWithoutStack$1(false, 'You are calling ReactDOM.createRoot() on a container that ' + 'has already been passed to createRoot() before. Instead, call ' + 'root.render() on the existing root instead if you want to update it.');
+      }
+    }
+  }
+}
+
+var ReactCurrentOwner$1 = ReactSharedInternals.ReactCurrentOwner;
+var topLevelUpdateWarnings;
+var warnedAboutHydrateAPI = false;
+
+{
+  topLevelUpdateWarnings = function (container) {
+    if (container._reactRootContainer && container.nodeType !== COMMENT_NODE) {
+      var hostInstance = findHostInstanceWithNoPortals(container._reactRootContainer._internalRoot.current);
+
+      if (hostInstance) {
+        !(hostInstance.parentNode === container) ? warningWithoutStack$1(false, 'render(...): It looks like the React-rendered content of this ' + 'container was removed without using React. This is not ' + 'supported and will cause errors. Instead, call ' + 'ReactDOM.unmountComponentAtNode to empty a container.') : void 0;
+      }
+    }
+
+    var isRootRenderedBySomeReact = !!container._reactRootContainer;
+    var rootEl = getReactRootElementInContainer(container);
+    var hasNonRootReactChild = !!(rootEl && getInstanceFromNode$1(rootEl));
+    !(!hasNonRootReactChild || isRootRenderedBySomeReact) ? warningWithoutStack$1(false, 'render(...): Replacing React-rendered children with a new root ' + 'component. If you intended to update the children of this node, ' + 'you should instead have the existing children update their state ' + 'and render the new components instead of calling ReactDOM.render.') : void 0;
+    !(container.nodeType !== ELEMENT_NODE || !container.tagName || container.tagName.toUpperCase() !== 'BODY') ? warningWithoutStack$1(false, 'render(): Rendering components directly into document.body is ' + 'discouraged, since its children are often manipulated by third-party ' + 'scripts and browser extensions. This may lead to subtle ' + 'reconciliation issues. Try rendering into a container element created ' + 'for your app.') : void 0;
+  };
 }
 
 function getReactRootElementInContainer(container) {
@@ -27565,9 +27612,6 @@ function shouldHydrateDueToLegacyHeuristic(container) {
   var rootElement = getReactRootElementInContainer(container);
   return !!(rootElement && rootElement.nodeType === ELEMENT_NODE && rootElement.hasAttribute(ROOT_ATTRIBUTE_NAME));
 }
-
-setBatchingImplementation(batchedUpdates$1, discreteUpdates$1, flushDiscreteUpdates, batchedEventUpdates$1);
-var warnedAboutHydrateAPI = false;
 
 function legacyCreateRootFromDOMContainer(container, forceHydrate) {
   var shouldHydrate = forceHydrate || shouldHydrateDueToLegacyHeuristic(container); // First clear any existing content.
@@ -27593,10 +27637,9 @@ function legacyCreateRootFromDOMContainer(container, forceHydrate) {
       warnedAboutHydrateAPI = true;
       lowPriorityWarningWithoutStack$1(false, 'render(): Calling ReactDOM.render() to hydrate server-rendered markup ' + 'will stop working in React v17. Replace the ReactDOM.render() call ' + 'with ReactDOM.hydrate() if you want React to attach to the server HTML.');
     }
-  } // Legacy roots are not batched.
+  }
 
-
-  return new ReactSyncRoot(container, LegacyRoot, shouldHydrate ? {
+  return createLegacyRoot(container, shouldHydrate ? {
     hydrate: true
   } : undefined);
 }
@@ -27650,6 +27693,161 @@ function legacyRenderSubtreeIntoContainer(parentComponent, children, container, 
   return getPublicRootInstance(fiberRoot);
 }
 
+function findDOMNode(componentOrElement) {
+  {
+    var owner = ReactCurrentOwner$1.current;
+
+    if (owner !== null && owner.stateNode !== null) {
+      var warnedAboutRefsInRender = owner.stateNode._warnedAboutRefsInRender;
+      !warnedAboutRefsInRender ? warningWithoutStack$1(false, '%s is accessing findDOMNode inside its render(). ' + 'render() should be a pure function of props and state. It should ' + 'never access something that requires stale data from the previous ' + 'render, such as refs. Move this logic to componentDidMount and ' + 'componentDidUpdate instead.', getComponentName(owner.type) || 'A component') : void 0;
+      owner.stateNode._warnedAboutRefsInRender = true;
+    }
+  }
+
+  if (componentOrElement == null) {
+    return null;
+  }
+
+  if (componentOrElement.nodeType === ELEMENT_NODE) {
+    return componentOrElement;
+  }
+
+  {
+    return findHostInstanceWithWarning(componentOrElement, 'findDOMNode');
+  }
+
+  return findHostInstance(componentOrElement);
+}
+function hydrate(element, container, callback) {
+  if (!isValidContainer(container)) {
+    {
+      throw Error("Target container is not a DOM element.");
+    }
+  }
+
+  {
+    var isModernRoot = isContainerMarkedAsRoot(container) && container._reactRootContainer === undefined;
+
+    if (isModernRoot) {
+      warningWithoutStack$1(false, 'You are calling ReactDOM.hydrate() on a container that was previously ' + 'passed to ReactDOM.createRoot(). This is not supported. ' + 'Did you mean to call createRoot(container, {hydrate: true}).render(element)?');
+    }
+  } // TODO: throw or warn if we couldn't hydrate?
+
+
+  return legacyRenderSubtreeIntoContainer(null, element, container, true, callback);
+}
+function render(element, container, callback) {
+  if (!isValidContainer(container)) {
+    {
+      throw Error("Target container is not a DOM element.");
+    }
+  }
+
+  {
+    var isModernRoot = isContainerMarkedAsRoot(container) && container._reactRootContainer === undefined;
+
+    if (isModernRoot) {
+      warningWithoutStack$1(false, 'You are calling ReactDOM.render() on a container that was previously ' + 'passed to ReactDOM.createRoot(). This is not supported. ' + 'Did you mean to call root.render(element)?');
+    }
+  }
+
+  return legacyRenderSubtreeIntoContainer(null, element, container, false, callback);
+}
+function unstable_renderSubtreeIntoContainer(parentComponent, element, containerNode, callback) {
+  if (!isValidContainer(containerNode)) {
+    {
+      throw Error("Target container is not a DOM element.");
+    }
+  }
+
+  if (!(parentComponent != null && has$1(parentComponent))) {
+    {
+      throw Error("parentComponent must be a valid React Component");
+    }
+  }
+
+  return legacyRenderSubtreeIntoContainer(parentComponent, element, containerNode, false, callback);
+}
+function unmountComponentAtNode(container) {
+  if (!isValidContainer(container)) {
+    {
+      throw Error("unmountComponentAtNode(...): Target container is not a DOM element.");
+    }
+  }
+
+  {
+    var isModernRoot = isContainerMarkedAsRoot(container) && container._reactRootContainer === undefined;
+
+    if (isModernRoot) {
+      warningWithoutStack$1(false, 'You are calling ReactDOM.unmountComponentAtNode() on a container that was previously ' + 'passed to ReactDOM.createRoot(). This is not supported. Did you mean to call root.unmount()?');
+    }
+  }
+
+  if (container._reactRootContainer) {
+    {
+      var rootEl = getReactRootElementInContainer(container);
+      var renderedByDifferentReact = rootEl && !getInstanceFromNode$1(rootEl);
+      !!renderedByDifferentReact ? warningWithoutStack$1(false, "unmountComponentAtNode(): The node you're attempting to unmount " + 'was rendered by another copy of React.') : void 0;
+    } // Unmount should not be batched.
+
+
+    unbatchedUpdates(function () {
+      legacyRenderSubtreeIntoContainer(null, null, container, false, function () {
+        container._reactRootContainer = null;
+        unmarkContainerAsRoot(container);
+      });
+    }); // If you call unmountComponentAtNode twice in quick succession, you'll
+    // get `true` twice. That's probably fine?
+
+    return true;
+  } else {
+    {
+      var _rootEl = getReactRootElementInContainer(container);
+
+      var hasNonRootReactChild = !!(_rootEl && getInstanceFromNode$1(_rootEl)); // Check if the container itself is a React root node.
+
+      var isContainerReactRoot = container.nodeType === ELEMENT_NODE && isValidContainer(container.parentNode) && !!container.parentNode._reactRootContainer;
+      !!hasNonRootReactChild ? warningWithoutStack$1(false, "unmountComponentAtNode(): The node you're attempting to unmount " + 'was rendered by React and is not a top-level container. %s', isContainerReactRoot ? 'You may have accidentally passed in a React root node instead ' + 'of its container.' : 'Instead, have the parent component update its state and ' + 'rerender in order to remove this component.') : void 0;
+    }
+
+    return false;
+  }
+}
+
+function createPortal$1(children, containerInfo, // TODO: figure out the API for cross-renderer implementation.
+implementation) {
+  var key = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
+  return {
+    // This tag allow us to uniquely identify this as a React Portal
+    $$typeof: REACT_PORTAL_TYPE,
+    key: key == null ? null : '' + key,
+    children: children,
+    containerInfo: containerInfo,
+    implementation: implementation
+  };
+}
+
+// TODO: this is special because it gets imported during build.
+
+var ReactVersion = '16.12.0';
+
+setAttemptSynchronousHydration(attemptSynchronousHydration$1);
+setAttemptUserBlockingHydration(attemptUserBlockingHydration$1);
+setAttemptContinuousHydration(attemptContinuousHydration$1);
+setAttemptHydrationAtCurrentPriority(attemptHydrationAtCurrentPriority$1);
+var didWarnAboutUnstableCreatePortal = false;
+
+{
+  if (typeof Map !== 'function' || // $FlowIssue Flow incorrectly thinks Map has no prototype
+  Map.prototype == null || typeof Map.prototype.forEach !== 'function' || typeof Set !== 'function' || // $FlowIssue Flow incorrectly thinks Set has no prototype
+  Set.prototype == null || typeof Set.prototype.clear !== 'function' || typeof Set.prototype.forEach !== 'function') {
+    warningWithoutStack$1(false, 'React depends on Map and Set built-in types. Make sure that you load a ' + 'polyfill in older browsers. https://fb.me/react-polyfills');
+  }
+}
+
+setRestoreImplementation(restoreControlledState$$1);
+setBatchingImplementation(batchedUpdates$1, discreteUpdates$1, flushDiscreteUpdates, batchedEventUpdates$1);
+
 function createPortal$$1(children, container) {
   var key = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
 
@@ -27665,113 +27863,12 @@ function createPortal$$1(children, container) {
 
 var ReactDOM = {
   createPortal: createPortal$$1,
-  findDOMNode: function (componentOrElement) {
-    {
-      var owner = ReactCurrentOwner.current;
-
-      if (owner !== null && owner.stateNode !== null) {
-        var warnedAboutRefsInRender = owner.stateNode._warnedAboutRefsInRender;
-        !warnedAboutRefsInRender ? warningWithoutStack$1(false, '%s is accessing findDOMNode inside its render(). ' + 'render() should be a pure function of props and state. It should ' + 'never access something that requires stale data from the previous ' + 'render, such as refs. Move this logic to componentDidMount and ' + 'componentDidUpdate instead.', getComponentName(owner.type) || 'A component') : void 0;
-        owner.stateNode._warnedAboutRefsInRender = true;
-      }
-    }
-
-    if (componentOrElement == null) {
-      return null;
-    }
-
-    if (componentOrElement.nodeType === ELEMENT_NODE) {
-      return componentOrElement;
-    }
-
-    {
-      return findHostInstanceWithWarning(componentOrElement, 'findDOMNode');
-    }
-
-    return findHostInstance(componentOrElement);
-  },
-  hydrate: function (element, container, callback) {
-    if (!isValidContainer(container)) {
-      {
-        throw Error("Target container is not a DOM element.");
-      }
-    }
-
-    {
-      !!container._reactHasBeenPassedToCreateRootDEV ? warningWithoutStack$1(false, 'You are calling ReactDOM.hydrate() on a container that was previously ' + 'passed to ReactDOM.createRoot(). This is not supported. ' + 'Did you mean to call createRoot(container, {hydrate: true}).render(element)?') : void 0;
-    } // TODO: throw or warn if we couldn't hydrate?
-
-
-    return legacyRenderSubtreeIntoContainer(null, element, container, true, callback);
-  },
-  render: function (element, container, callback) {
-    if (!isValidContainer(container)) {
-      {
-        throw Error("Target container is not a DOM element.");
-      }
-    }
-
-    {
-      !!container._reactHasBeenPassedToCreateRootDEV ? warningWithoutStack$1(false, 'You are calling ReactDOM.render() on a container that was previously ' + 'passed to ReactDOM.createRoot(). This is not supported. ' + 'Did you mean to call root.render(element)?') : void 0;
-    }
-
-    return legacyRenderSubtreeIntoContainer(null, element, container, false, callback);
-  },
-  unstable_renderSubtreeIntoContainer: function (parentComponent, element, containerNode, callback) {
-    if (!isValidContainer(containerNode)) {
-      {
-        throw Error("Target container is not a DOM element.");
-      }
-    }
-
-    if (!(parentComponent != null && has$1(parentComponent))) {
-      {
-        throw Error("parentComponent must be a valid React Component");
-      }
-    }
-
-    return legacyRenderSubtreeIntoContainer(parentComponent, element, containerNode, false, callback);
-  },
-  unmountComponentAtNode: function (container) {
-    if (!isValidContainer(container)) {
-      {
-        throw Error("unmountComponentAtNode(...): Target container is not a DOM element.");
-      }
-    }
-
-    {
-      !!container._reactHasBeenPassedToCreateRootDEV ? warningWithoutStack$1(false, 'You are calling ReactDOM.unmountComponentAtNode() on a container that was previously ' + 'passed to ReactDOM.createRoot(). This is not supported. Did you mean to call root.unmount()?') : void 0;
-    }
-
-    if (container._reactRootContainer) {
-      {
-        var rootEl = getReactRootElementInContainer(container);
-        var renderedByDifferentReact = rootEl && !getInstanceFromNode$1(rootEl);
-        !!renderedByDifferentReact ? warningWithoutStack$1(false, "unmountComponentAtNode(): The node you're attempting to unmount " + 'was rendered by another copy of React.') : void 0;
-      } // Unmount should not be batched.
-
-
-      unbatchedUpdates(function () {
-        legacyRenderSubtreeIntoContainer(null, null, container, false, function () {
-          container._reactRootContainer = null;
-        });
-      }); // If you call unmountComponentAtNode twice in quick succession, you'll
-      // get `true` twice. That's probably fine?
-
-      return true;
-    } else {
-      {
-        var _rootEl = getReactRootElementInContainer(container);
-
-        var hasNonRootReactChild = !!(_rootEl && getInstanceFromNode$1(_rootEl)); // Check if the container itself is a React root node.
-
-        var isContainerReactRoot = container.nodeType === ELEMENT_NODE && isValidContainer(container.parentNode) && !!container.parentNode._reactRootContainer;
-        !!hasNonRootReactChild ? warningWithoutStack$1(false, "unmountComponentAtNode(): The node you're attempting to unmount " + 'was rendered by React and is not a top-level container. %s', isContainerReactRoot ? 'You may have accidentally passed in a React root node instead ' + 'of its container.' : 'Instead, have the parent component update its state and ' + 'rerender in order to remove this component.') : void 0;
-      }
-
-      return false;
-    }
-  },
+  // Legacy
+  findDOMNode: findDOMNode,
+  hydrate: hydrate,
+  render: render,
+  unstable_renderSubtreeIntoContainer: unstable_renderSubtreeIntoContainer,
+  unmountComponentAtNode: unmountComponentAtNode,
   // Temporary alias since we already shipped React 16 RC with it.
   // TODO: remove in React 17.
   unstable_createPortal: function () {
@@ -27791,38 +27888,9 @@ var ReactDOM = {
   }
 };
 
-function createRoot(container, options) {
-  if (!isValidContainer(container)) {
-    {
-      throw Error("createRoot(...): Target container is not a DOM element.");
-    }
-  }
-
-  warnIfReactDOMContainerInDEV(container);
-  return new ReactRoot(container, options);
-}
-
-function createSyncRoot(container, options) {
-  if (!isValidContainer(container)) {
-    {
-      throw Error("createRoot(...): Target container is not a DOM element.");
-    }
-  }
-
-  warnIfReactDOMContainerInDEV(container);
-  return new ReactSyncRoot(container, BatchedRoot, options);
-}
-
-function warnIfReactDOMContainerInDEV(container) {
-  {
-    !!container._reactRootContainer ? warningWithoutStack$1(false, 'You are calling ReactDOM.createRoot() on a container that was previously ' + 'passed to ReactDOM.render(). This is not supported.') : void 0;
-    container._reactHasBeenPassedToCreateRootDEV = true;
-  }
-}
-
 if (exposeConcurrentModeAPIs) {
   ReactDOM.createRoot = createRoot;
-  ReactDOM.createSyncRoot = createSyncRoot;
+  ReactDOM.createBlockingRoot = createBlockingRoot;
   ReactDOM.unstable_discreteUpdates = discreteUpdates$1;
   ReactDOM.unstable_flushDiscreteUpdates = flushDiscreteUpdates;
   ReactDOM.unstable_flushControlled = flushControlled;

@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[7],{I8Os:function(e,t,n){"use strict";n.r(t);n("f3/d");var c=n("q1tI"),o=n("qKvR");t.default=function(e){var t=e.path,n=e.pageContext.project;return Object(c.useEffect)((function(){console.log(n)}),[]),Object(o.b)("div",null,Object(o.b)("h1",{style:{color:"red"}},n.name),Object(o.b)("h4",null,Object(o.b)("em",null,"Path: ",t)))}}}]);
-//# sourceMappingURL=component---src-templates-contentful-project-template-tsx-af28fbb450591380c150.js.map
