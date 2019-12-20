@@ -13,6 +13,8 @@ export type Scalars = {
   Boolean: boolean,
   Int: number,
   Float: number,
+  /** The javascript `Date` as string. Type represents date and time as the ISO Date string. */
+  DateTime: any,
 };
 
 export type CombinedTheme = {
@@ -47,9 +49,22 @@ export type CreateProjectInput = {
   tagIds?: Maybe<Array<Maybe<Scalars['String']>>>,
 };
 
+
+export type Email = {
+   __typename?: 'Email',
+  id: Scalars['ID'],
+  overallCount: Scalars['Int'],
+  createdAt: Scalars['DateTime'],
+  updatedAt: Scalars['DateTime'],
+};
+
 export type FindUserInput = {
   id?: Maybe<Scalars['String']>,
   emailAddress?: Maybe<Scalars['String']>,
+};
+
+export type InitializeEmailInput = {
+  initializeCount: Scalars['Int'],
 };
 
 export type LoggedInUser = {
@@ -62,7 +77,9 @@ export type Mutation = {
    __typename?: 'Mutation',
   deleteUser: User,
   updateUserRole: User,
+  /** Creates a proejct with the associated values. */
   createProject?: Maybe<Project>,
+  /** Deletes a single project from the project ID passed in */
   deleteProject: Project,
   createTag: Tag,
   updateTagWithProjects: Tag,
@@ -71,6 +88,10 @@ export type Mutation = {
   deleteCompany: Company,
   registerUser: User,
   login: LoggedInUser,
+  /** Sends a person an email to their email address, via Sendgrid or Node Mailer. */
+  sendUserEmail: Scalars['Boolean'],
+  /** Initializes the email count in the emails table. */
+  initializeEmail: Scalars['Int'],
 };
 
 
@@ -123,6 +144,16 @@ export type MutationLoginArgs = {
   emailAddress: Scalars['String']
 };
 
+
+export type MutationSendUserEmailArgs = {
+  emailAddress: Scalars['String']
+};
+
+
+export type MutationInitializeEmailArgs = {
+  initializeEmailInput: InitializeEmailInput
+};
+
 export type Project = {
    __typename?: 'Project',
   id: Scalars['ID'],
@@ -138,7 +169,10 @@ export type Query = {
    __typename?: 'Query',
   allUsers: Array<User>,
   findUser: User,
+  /** Finds an array of all projects with their associated relations. */
   allProjects: Array<Project>,
+  /** Finds an individual project by the project ID passed. */
+  findOneProjectById: Project,
   allTags: Array<Tag>,
   allThemes: CombinedTheme,
   /** 
@@ -156,6 +190,11 @@ export type Query = {
 
 export type QueryFindUserArgs = {
   findUserInput: FindUserInput
+};
+
+
+export type QueryFindOneProjectByIdArgs = {
+  projectId: Scalars['String']
 };
 
 
@@ -226,6 +265,15 @@ export type User = {
   fullName: Scalars['String'],
 };
 
+export type ProjectPartsFragment = (
+  { __typename?: 'Project' }
+  & Pick<Project, 'id' | 'name' | 'description' | 'createdAt' | 'updatedAt'>
+  & { tags: Maybe<Array<(
+    { __typename?: 'Tag' }
+    & Pick<Tag, 'id' | 'name'>
+  )>> }
+);
+
 export type AllProjectsQueryVariables = {};
 
 
@@ -233,12 +281,21 @@ export type AllProjectsQuery = (
   { __typename?: 'Query' }
   & { allProjects: Array<(
     { __typename?: 'Project' }
-    & Pick<Project, 'id' | 'name'>
-    & { tags: Maybe<Array<(
-      { __typename?: 'Tag' }
-      & Pick<Tag, 'id' | 'name'>
-    )>> }
+    & ProjectPartsFragment
   )> }
+);
+
+export type FindOneProjectByIdQueryVariables = {
+  projectId: Scalars['String']
+};
+
+
+export type FindOneProjectByIdQuery = (
+  { __typename?: 'Query' }
+  & { findOneProjectById: (
+    { __typename?: 'Project' }
+    & ProjectPartsFragment
+  ) }
 );
 
 export type AllTagsQueryVariables = {};
@@ -290,6 +347,19 @@ export type AllUsersQuery = (
   )> }
 );
 
+export const ProjectPartsFragmentDoc = gql`
+    fragment ProjectParts on Project {
+  id
+  name
+  description
+  tags {
+    id
+    name
+  }
+  createdAt
+  updatedAt
+}
+    `;
 export const ThemePartsFragmentDoc = gql`
     fragment ThemeParts on Theme {
   primary
@@ -312,15 +382,10 @@ export const UserPartsFragmentDoc = gql`
 export const AllProjectsDocument = gql`
     query allProjects {
   allProjects {
-    id
-    name
-    tags {
-      id
-      name
-    }
+    ...ProjectParts
   }
 }
-    `;
+    ${ProjectPartsFragmentDoc}`;
 export type AllProjectsComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<AllProjectsQuery, AllProjectsQueryVariables>, 'query'>;
 
     export const AllProjectsComponent = (props: AllProjectsComponentProps) => (
@@ -363,6 +428,56 @@ export function useAllProjectsLazyQuery(baseOptions?: ApolloReactHooks.LazyQuery
 export type AllProjectsQueryHookResult = ReturnType<typeof useAllProjectsQuery>;
 export type AllProjectsLazyQueryHookResult = ReturnType<typeof useAllProjectsLazyQuery>;
 export type AllProjectsQueryResult = ApolloReactCommon.QueryResult<AllProjectsQuery, AllProjectsQueryVariables>;
+export const FindOneProjectByIdDocument = gql`
+    query findOneProjectById($projectId: String!) {
+  findOneProjectById(projectId: $projectId) {
+    ...ProjectParts
+  }
+}
+    ${ProjectPartsFragmentDoc}`;
+export type FindOneProjectByIdComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<FindOneProjectByIdQuery, FindOneProjectByIdQueryVariables>, 'query'> & ({ variables: FindOneProjectByIdQueryVariables; skip?: boolean; } | { skip: boolean; });
+
+    export const FindOneProjectByIdComponent = (props: FindOneProjectByIdComponentProps) => (
+      <ApolloReactComponents.Query<FindOneProjectByIdQuery, FindOneProjectByIdQueryVariables> query={FindOneProjectByIdDocument} {...props} />
+    );
+    
+export type FindOneProjectByIdProps<TChildProps = {}> = ApolloReactHoc.DataProps<FindOneProjectByIdQuery, FindOneProjectByIdQueryVariables> | TChildProps;
+export function withFindOneProjectById<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  FindOneProjectByIdQuery,
+  FindOneProjectByIdQueryVariables,
+  FindOneProjectByIdProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, FindOneProjectByIdQuery, FindOneProjectByIdQueryVariables, FindOneProjectByIdProps<TChildProps>>(FindOneProjectByIdDocument, {
+      alias: 'findOneProjectById',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useFindOneProjectByIdQuery__
+ *
+ * To run a query within a React component, call `useFindOneProjectByIdQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFindOneProjectByIdQuery` returns an object from Apollo Client that contains loading, error, and data properties 
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useFindOneProjectByIdQuery({
+ *   variables: {
+ *      projectId: // value for 'projectId'
+ *   },
+ * });
+ */
+export function useFindOneProjectByIdQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<FindOneProjectByIdQuery, FindOneProjectByIdQueryVariables>) {
+        return ApolloReactHooks.useQuery<FindOneProjectByIdQuery, FindOneProjectByIdQueryVariables>(FindOneProjectByIdDocument, baseOptions);
+      }
+export function useFindOneProjectByIdLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<FindOneProjectByIdQuery, FindOneProjectByIdQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<FindOneProjectByIdQuery, FindOneProjectByIdQueryVariables>(FindOneProjectByIdDocument, baseOptions);
+        }
+export type FindOneProjectByIdQueryHookResult = ReturnType<typeof useFindOneProjectByIdQuery>;
+export type FindOneProjectByIdLazyQueryHookResult = ReturnType<typeof useFindOneProjectByIdLazyQuery>;
+export type FindOneProjectByIdQueryResult = ApolloReactCommon.QueryResult<FindOneProjectByIdQuery, FindOneProjectByIdQueryVariables>;
 export const AllTagsDocument = gql`
     query allTags {
   allTags {

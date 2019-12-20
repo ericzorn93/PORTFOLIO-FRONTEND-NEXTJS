@@ -1,10 +1,23 @@
-query allProjects {
-  allProjects {
+fragment ProjectParts on Project {
+  id
+  name
+  description
+  tags {
     id
     name
-    tags {
-      id
-      name
-    }
+  }
+  createdAt
+  updatedAt
+}
+
+query allProjects {
+  allProjects {
+    ...ProjectParts
+  }
+}
+
+query findOneProjectById($projectId: String!) {
+  findOneProjectById(projectId: $projectId) {
+    ...ProjectParts
   }
 }

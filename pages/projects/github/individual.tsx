@@ -2,8 +2,8 @@ import React from "react";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 
-import { useFindGitHubRepoQuery } from "../../lib/generated/GithubGraphqlComponents";
-import { PageContainer } from "../../components/page_styles/overall";
+import { useFindGitHubRepoQuery } from "../../../lib/generated/GithubGraphqlComponents";
+import { PageContainer } from "../../../components/page_styles/overall";
 
 const ProjectID: NextPage = () => {
   const router = useRouter();
@@ -11,7 +11,7 @@ const ProjectID: NextPage = () => {
   const { data, loading, error } = useFindGitHubRepoQuery({
     context: { clientName: "githubLink" },
     variables: {
-      name: `${router.query.name}`
+      name: router.query.name.toString()
     }
   });
 
