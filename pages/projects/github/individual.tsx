@@ -1,9 +1,11 @@
 import React from "react";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 import { useFindGitHubRepoQuery } from "../../../lib/generated/GithubGraphqlComponents";
 import { PageContainer } from "../../../components/page_styles/overall/overall";
+import CustomHead from "../../../components/primary/custom_head/custom_head";
 
 const ProjectID: NextPage = () => {
   const router = useRouter();
@@ -29,10 +31,13 @@ const ProjectID: NextPage = () => {
   }
 
   return (
-    <PageContainer>
-      <h1>Project Id: {repository.id}</h1>
-      <p>Project Name: {repository.name}</p>
-    </PageContainer>
+    <>
+      <CustomHead pageTitle={repository.name} />
+      <PageContainer>
+        <h1>Project Id: {repository.id}</h1>
+        <p>Project Name: {repository.name}</p>
+      </PageContainer>
+    </>
   );
 };
 

@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 
 import { PageContainer } from "../../../components/page_styles/overall/overall";
 import { useFindOneProjectByIdQuery } from "../../../lib/generated/PortfolioGraphqlComponents";
+import CustomHead from "../../../components/primary/custom_head/custom_head";
 
 const ProjectID: NextPage = () => {
   const router = useRouter();
@@ -20,11 +21,14 @@ const ProjectID: NextPage = () => {
 
   const { findOneProjectById: project } = data;
   return (
-    <PageContainer>
-      <h1>Project Id: {project.id}</h1>
-      <p>{project.name}</p>
-      {project.description && <p>{project.description}</p>}
-    </PageContainer>
+    <>
+      <CustomHead pageTitle={project.name} />
+      <PageContainer>
+        <h1>Project Id: {project.id}</h1>
+        <p>{project.name}</p>
+        {project.description && <p>{project.description}</p>}
+      </PageContainer>
+    </>
   );
 };
 
