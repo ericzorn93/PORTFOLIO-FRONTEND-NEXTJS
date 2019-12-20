@@ -1,9 +1,9 @@
 import { IAction } from "../../../shared/types/interfaces/redux/action.type";
-import { Project as GithubProject } from "../../../lib/generated/GithubGraphqlComponents";
 import { Project as PersonalProject } from "../../../lib/generated/PortfolioGraphqlComponents";
+import { ADD_GITHUB_PROJECTS } from "../../types/project_types/project.types";
 
 interface ProjectState {
-  githubProjects: GithubProject[];
+  githubProjects: any[];
   personalProjects: PersonalProject[];
 }
 
@@ -15,6 +15,12 @@ const initialState: ProjectState = {
 
 export const projectReducer = (state = initialState, action: IAction) => {
   switch (action.type) {
+    case ADD_GITHUB_PROJECTS:
+      return {
+        ...state,
+        githubProjects: action.payload
+      };
+
     default:
       return state;
   }

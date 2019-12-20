@@ -1,16 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { NextComponentType } from "next";
 import Link from "next/link";
 
 import { useGithubRepositoriesQuery } from "../../../lib/generated/GithubGraphqlComponents";
+import { addGithubProjectsAction } from "../../../store/actions/project_actions/project.actions";
 
 const GithubRepositories: NextComponentType = () => {
+  const dispatch = useDispatch();
   const { data, loading, error } = useGithubRepositoriesQuery({
     context: { clientName: "githubLink" },
     variables: {
       last: 100
     }
   });
+
+  useEffect(() => {
+    if (data && !loading && !error) {
+      dispatch(addGithubProjectsAction(data));
+    }
+  }, [data, loading, error]);
 
   if (!data || loading || error) {
     return <h1>Loading Github</h1>;
