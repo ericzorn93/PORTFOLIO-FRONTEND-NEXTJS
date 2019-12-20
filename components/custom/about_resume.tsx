@@ -11,6 +11,7 @@ const AboutResume: React.FC<AboutResumeProps> = () => {
     <div css={{ marginTop: 50 }}>
       <hr />
       <ResumeHeaderText>Work History</ResumeHeaderText>
+
       <ResumeInfo>
         <AboutHistory
           date="2018-10 - 2019-11"
