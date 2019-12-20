@@ -2,7 +2,7 @@ import React from "react";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 
-import { PageContainer } from "../../../components/page_styles/overall";
+import { PageContainer } from "../../../components/page_styles/overall/overall";
 import { useFindOneProjectByIdQuery } from "../../../lib/generated/PortfolioGraphqlComponents";
 
 const ProjectID: NextPage = () => {
