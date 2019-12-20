@@ -3,7 +3,7 @@ import React from "react";
 import { jsx } from "@emotion/core";
 import { NextComponentType } from "next";
 
-import { PageContainer } from "../components/page_styles/overall";
+import { PageContainer } from "../components/page_styles/overall/overall";
 
 const AboutPage: NextComponentType = ({ themeData }: any) => {
   return (

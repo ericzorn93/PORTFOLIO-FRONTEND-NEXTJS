@@ -3,7 +3,7 @@ import { NextPage } from "next";
 import { useRouter } from "next/router";
 
 import { useFindGitHubRepoQuery } from "../../../lib/generated/GithubGraphqlComponents";
-import { PageContainer } from "../../../components/page_styles/overall";
+import { PageContainer } from "../../../components/page_styles/overall/overall";
 
 const ProjectID: NextPage = () => {
   const router = useRouter();
