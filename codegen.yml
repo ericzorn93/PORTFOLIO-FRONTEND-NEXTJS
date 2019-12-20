@@ -18,7 +18,7 @@ generates:
     schema:
       - https://api.github.com/graphql:
           headers:
-            Authorization: "Bearer 6792c14de6f48f0c3113fbbb51c250b0ed793919"
+            Authorization: "Bearer 38c7b0605c439f5accdd12387a9bc92b8b61120b"
             Accept: "application/json"
     plugins:
       - "typescript"
