@@ -1,40 +1,33 @@
 import React from "react";
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import { NextComponentType } from "next";
-
 import { PageContainer } from "../styles/page_styles/overall/overall";
-import { Paragraph } from "../components/primary/elements/paragraph";
 import { ProfilePicture } from "../styles/styled_components/profile_picture";
-import { PageTitle } from "../styles/styled_components/page_title";
+import { ResumeHeaderText } from "../styles/styled_components/resume_header_text";
+import { Paragraph } from "../components/primary/elements/paragraph";
 import DownLoadResume from "../components/custom/download_resume";
+import AboutResume from "../components/custom/about_resume";
 
-const AboutPage: NextComponentType = ({ themeData }: any) => {
+const AboutPage: React.FC = () => {
   return (
     <PageContainer>
-      <PageTitle>About Me</PageTitle>
+      <h1 css={{ fontSize: "3rem", textAlign: "center" }}>About Me.</h1>
       <div css={{ display: "flex" }}>
-        <div
-          css={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            flexDirection: "column"
-          }}
-        >
+        <div css={{ height: 150, width: 150 }}>
           <ProfilePicture
-            src="/images/ProfilePicture.jpg"
+            src={"images/ProfilePicture.jpg"}
             alt="Profile Picture"
+            css={{
+              height: 150,
+              width: 150,
+              borderRadius: "50%"
+            }}
           />
-          <Paragraph css={{ marginTop: 10, textAlign: "center" }}>
-            <b>Eric Zorn</b>
-            <br />
-            <DownLoadResume />
-          </Paragraph>
+          <ResumeHeaderText>Eric Zorn</ResumeHeaderText>
         </div>
 
-        <div>
-          <Paragraph css={{ margin: 40, width: "80%" }}>
+        <div style={{ padding: "0 40px 0 40px" }}>
+          <Paragraph>
             I am a passionate developer, specializing in the MERN stack, with a
             solid knowledge of SQL-based ORM solutions as well. I deeply enjoy
             using React with Redux for global state management, TypeScript,
@@ -44,8 +37,11 @@ const AboutPage: NextComponentType = ({ themeData }: any) => {
             back-end architecture, utilizing all of the most recent development
             technologies.
           </Paragraph>
+          <DownLoadResume />
         </div>
       </div>
+      <br />
+      <AboutResume />
     </PageContainer>
   );
 };
