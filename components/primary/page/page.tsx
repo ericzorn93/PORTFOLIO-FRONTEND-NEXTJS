@@ -1,7 +1,7 @@
 import React from "react";
 import { NextComponentType } from "next";
 
-import Nav from "./nav/nav";
+import Nav from "../nav/nav";
 
 const Page: NextComponentType = ({ children }) => {
   return (

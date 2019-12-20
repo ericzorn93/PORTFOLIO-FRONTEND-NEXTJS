@@ -4,7 +4,7 @@ import { NextPage } from "next";
 import { useAllProjectsQuery } from "../../lib/generated/PortfolioGraphqlComponents";
 import SingleProject from "../../components/page_styles/projects_page/single_project";
 import GithubRepositories from "../../components/page_styles/projects_page/github_repositories";
-import { PageContainer } from "../../components/page_styles/overall";
+import { PageContainer } from "../../components/page_styles/overall/overall";
 
 const ProjectsPage: NextPage = () => {
   const { data, loading, error } = useAllProjectsQuery();

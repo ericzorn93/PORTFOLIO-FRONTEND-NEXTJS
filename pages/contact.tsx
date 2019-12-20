@@ -1,7 +1,7 @@
 import React from "react";
 import { NextComponentType } from "next";
 
-import { PageContainer } from "../components/page_styles/overall";
+import { PageContainer } from "../components/page_styles/overall/overall";
 
 const ContactPage: NextComponentType = () => {
   return (

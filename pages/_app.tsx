@@ -6,7 +6,7 @@ import { Store } from "redux";
 import withRedux from "next-redux-wrapper";
 
 import withData from "../lib/withData";
-import Page from "../components/primary/page";
+import Page from "../components/primary/page/page";
 import { Provider } from "react-redux";
 import assembleStore from "../store/assembleStore";
 import { AllThemesComponent } from "../lib/generated/PortfolioGraphqlComponents";
