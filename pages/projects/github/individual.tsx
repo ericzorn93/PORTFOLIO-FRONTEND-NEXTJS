@@ -19,10 +19,13 @@ const ProjectID: NextPage = () => {
     return <h1>Loading...</h1>;
   }
 
+  const {
+    viewer: { repository }
+  } = data;
   return (
     <PageContainer>
-      <h1>Project Id: {data.viewer.repository.name}</h1>
-      <p>{data.viewer.repository.primaryLanguage.name}</p>
+      <h1>Project Id: {repository.name}</h1>
+      <p>{repository.name}</p>
     </PageContainer>
   );
 };

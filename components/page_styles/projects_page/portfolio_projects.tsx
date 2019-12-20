@@ -16,7 +16,13 @@ const PortfolioProjects: NextComponentType = () => {
     <>
       {allProjects.map(project => (
         <Link
-          href={`/projects/personal/individual?id=${project.id}`}
+          // href={`/projects/personal/individual?id=${project.id}`}
+          href={{
+            pathname: "/projects/personal/individual",
+            query: {
+              id: project.id
+            }
+          }}
           key={project.id}
         >
           <a>{project.name}</a>

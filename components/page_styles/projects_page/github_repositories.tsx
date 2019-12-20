@@ -24,7 +24,7 @@ const GithubRepositories: NextComponentType = () => {
           <p key={node.id}>
             <Link
               href={{
-                pathname: `/projects/individual`,
+                pathname: `/projects/github/individual`,
                 query: {
                   name: node.name
                 }
