@@ -1,9 +1,9 @@
 import React from "react";
 import { NextPage } from "next";
 
-import GithubRepositories from "../../components/page_styles/projects_page/github_repositories";
-import { PageContainer } from "../../components/page_styles/overall/overall";
-import PortfolioProjects from "../../components/page_styles/projects_page/portfolio_projects";
+import GithubRepositories from "../../styles/page_styles/projects_page/github_repositories";
+import { PageContainer } from "../../styles/page_styles/overall/overall";
+import PortfolioProjects from "../../styles/page_styles/projects_page/portfolio_projects";
 
 const ProjectsPage: NextPage = () => {
   return (

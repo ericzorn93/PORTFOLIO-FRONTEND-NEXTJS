@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 
 import { useFindGitHubRepoQuery } from "../../../lib/generated/GithubGraphqlComponents";
-import { PageContainer } from "../../../components/page_styles/overall/overall";
+import { PageContainer } from "../../../styles/page_styles/overall/overall";
 import CustomHead from "../../../components/primary/custom_head/custom_head";
 
 const ProjectID: NextPage = () => {

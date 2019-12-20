@@ -2,7 +2,7 @@ import React from "react";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 
-import { PageContainer } from "../../../components/page_styles/overall/overall";
+import { PageContainer } from "../../../styles/page_styles/overall/overall";
 import { useFindOneProjectByIdQuery } from "../../../lib/generated/PortfolioGraphqlComponents";
 import CustomHead from "../../../components/primary/custom_head/custom_head";
 

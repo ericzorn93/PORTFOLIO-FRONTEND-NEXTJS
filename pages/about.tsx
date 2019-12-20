@@ -3,10 +3,11 @@ import React from "react";
 import { jsx } from "@emotion/core";
 import { NextComponentType } from "next";
 
-import { PageContainer } from "../components/page_styles/overall/overall";
+import { PageContainer } from "../styles/page_styles/overall/overall";
 import { Paragraph } from "../components/primary/elements/paragraph";
 import { ProfilePicture } from "../styles/styled_components/profile_picture";
 import { PageTitle } from "../styles/styled_components/page_title";
+import DownLoadResume from "../components/custom/download_resume";
 
 const AboutPage: NextComponentType = ({ themeData }: any) => {
   return (
@@ -25,8 +26,10 @@ const AboutPage: NextComponentType = ({ themeData }: any) => {
             src="/images/ProfilePicture.jpg"
             alt="Profile Picture"
           />
-          <Paragraph css={{ marginTop: 10 }}>
+          <Paragraph css={{ marginTop: 10, textAlign: "center" }}>
             <b>Eric Zorn</b>
+            <br />
+            <DownLoadResume />
           </Paragraph>
         </div>
 

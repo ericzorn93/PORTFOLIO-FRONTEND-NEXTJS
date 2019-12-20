@@ -9,7 +9,7 @@ import { PrimaryUtils } from "../shared/utils/primary.utils";
 import {
   HomePageWrapper,
   HomePageSocialMediaIcons
-} from "../components/page_styles/home_page/home_page.styles";
+} from "../styles/page_styles/home_page/home_page.styles";
 
 interface HomePageProps {
   author: string;

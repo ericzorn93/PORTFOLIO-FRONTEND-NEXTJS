@@ -1,7 +1,7 @@
 import React from "react";
 import { NextComponentType } from "next";
 
-import { PageContainer } from "../components/page_styles/overall/overall";
+import { PageContainer } from "../styles/page_styles/overall/overall";
 
 const BlogPage: NextComponentType = () => {
   return (
