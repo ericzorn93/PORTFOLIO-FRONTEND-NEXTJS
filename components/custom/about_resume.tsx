@@ -2,7 +2,7 @@ import React from "react";
 
 import { ResumeHeaderText } from "../../styles/styled_components/resume_header_text";
 import AboutHistory from "./about_history";
-import { ResumeInfo } from "../../styles/page_styles/about_page/resume_info";
+import { ResumeInfo } from "../../styles/styled_components/resume_info";
 
 interface AboutResumeProps {}
 
