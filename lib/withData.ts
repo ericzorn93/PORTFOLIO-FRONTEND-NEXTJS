@@ -5,7 +5,7 @@ import { PrimaryUtils } from "../shared/utils/primary.utils";
 
 function createClient(serverData: any): ApolloClient<any> {
   // Token for GitHub URL
-  const GITHUB_TOKEN = "5f7904f6c432f6c85c6a0b3ec4f9413e255ae9be";
+  const GITHUB_TOKEN = "fd90c9f0264b1d64196b0dd67e69fc29cc044d8f";
 
   const portfolioLink = new HttpLink({
     uri: PrimaryUtils.graphQlUrl,

@@ -22,10 +22,16 @@ const ProjectID: NextPage = () => {
   const {
     viewer: { repository }
   } = data;
+
+  if (!repository) {
+    router.push("/projects");
+    return null;
+  }
+
   return (
     <PageContainer>
-      <h1>Project Id: {repository.name}</h1>
-      <p>{repository.name}</p>
+      <h1>Project Id: {repository.id}</h1>
+      <p>Project Name: {repository.name}</p>
     </PageContainer>
   );
 };
