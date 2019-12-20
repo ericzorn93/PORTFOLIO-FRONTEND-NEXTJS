@@ -11,12 +11,11 @@ function createClient(serverData: any): ApolloClient<any> {
     headers: {}
   });
 
-  const githubToken = process.env.GITHUB_TOKEN.replace(/("|'|;)/g, "");
-  console.log(githubToken);
+  const parsedGithubToken = process.env.GITHUB_TOKEN.replace(/("|'|;)/g, "");
   const githubLink = new HttpLink({
     uri: "https://api.github.com/graphql",
     headers: {
-      Authorization: `Bearer ${githubToken}`
+      Authorization: `Bearer ${parsedGithubToken}`
     }
   });
 
