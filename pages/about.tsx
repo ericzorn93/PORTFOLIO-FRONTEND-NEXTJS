@@ -1,6 +1,7 @@
 import React from "react";
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
+
 import { PageContainer } from "../styles/page_styles/overall/overall";
 import { ProfilePicture } from "../styles/styled_components/profile_picture";
 import { ResumeHeaderText } from "../styles/styled_components/resume_header_text";
@@ -27,7 +28,7 @@ const AboutPage: React.FC = () => {
         </div>
 
         <div style={{ padding: "0 40px 0 40px" }}>
-          <Paragraph>
+          <Paragraph css={{ lineHeight: 2 }}>
             I am a passionate developer, specializing in the MERN stack, with a
             solid knowledge of SQL-based ORM solutions as well. I deeply enjoy
             using React with Redux for global state management, TypeScript,
@@ -37,6 +38,7 @@ const AboutPage: React.FC = () => {
             back-end architecture, utilizing all of the most recent development
             technologies.
           </Paragraph>
+          <br />
           <DownLoadResume />
         </div>
       </div>
