@@ -36,6 +36,7 @@ const ProjectID: NextPage = () => {
       <PageContainer>
         <h1>Project Id: {repository.id}</h1>
         <p>Project Name: {repository.name}</p>
+        {repository.description && <p>{repository.description}</p>}
       </PageContainer>
     </>
   );
