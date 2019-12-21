@@ -12,7 +12,7 @@ const AboutPage: React.FC = () => {
   return (
     <PageContainer>
       <h1 css={{ fontSize: "3rem", textAlign: "center" }}>About Me.</h1>
-      <div css={{ display: "flex" }}>
+      <div css={{ display: "flex", margin: 50 }}>
         <div css={{ height: 150, width: 150 }}>
           <ProfilePicture
             src={"images/ProfilePicture.jpg"}

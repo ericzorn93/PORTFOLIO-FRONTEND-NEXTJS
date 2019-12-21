@@ -1,4 +1,6 @@
 import React from "react";
+/** @jsx jsx */
+import { jsx } from "@emotion/core";
 
 import { ResumeHeaderText } from "../../styles/styled_components/resume_header_text";
 import AboutHistory from "./about_history";
@@ -8,7 +10,7 @@ interface AboutResumeProps {}
 
 const AboutResume: React.FC<AboutResumeProps> = () => {
   return (
-    <div css={{ marginTop: 50 }}>
+    <div css={{ margin: 50 }}>
       <hr />
       <ResumeHeaderText>Work History</ResumeHeaderText>
 
