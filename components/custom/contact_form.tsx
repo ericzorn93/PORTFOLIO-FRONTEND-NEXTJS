@@ -1,7 +1,31 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { NextComponentType } from "next";
+import { useFormik } from "formik";
 
 const ContactForm: NextComponentType = () => {
+  const contactForm = useFormik({
+    initialValues: {
+      firstName: "",
+      lastName: "",
+      emailAddress: "",
+      phoneNumber: 0,
+      company: "",
+      message: ""
+    },
+    onSubmit: ({}) => {
+      console.log("submitting");
+    }
+  });
+
+  const localHandleSubmit = useCallback(
+    e => {
+      e.preventDefault();
+
+      contactForm.handleSubmit();
+    },
+    [contactForm.handleSubmit]
+  );
+
   return (
     <>
       <form>
@@ -12,6 +36,8 @@ const ContactForm: NextComponentType = () => {
             id="firstName"
             className="form-control"
             placeholder="Please Enter Your First Name"
+            onChange={contactForm.handleChange}
+            value={contactForm.values.firstName}
           />
           <input
             type="text"
@@ -19,6 +45,8 @@ const ContactForm: NextComponentType = () => {
             id="lastName"
             className="form-control"
             placeholder="Please Enter Your Last Name"
+            onChange={contactForm.handleChange}
+            value={contactForm.values.lastName}
           />
         </div>
         <div className="form-group">
@@ -28,6 +56,8 @@ const ContactForm: NextComponentType = () => {
             id="emailAddress"
             className="form-control"
             placeholder="Please Enter Your Email Address"
+            onChange={contactForm.handleChange}
+            value={contactForm.values.emailAddress}
           />
           <input
             type="number"
@@ -35,6 +65,8 @@ const ContactForm: NextComponentType = () => {
             id="phoneNumber"
             className="form-control"
             placeholder="Please Enter Your Phone Number"
+            onChange={contactForm.handleChange}
+            value={contactForm.values.phoneNumber}
           />
         </div>
 
@@ -45,6 +77,8 @@ const ContactForm: NextComponentType = () => {
             id="company"
             className="form-control"
             placeholder="Please Enter Your Company's Name"
+            onChange={contactForm.handleChange}
+            value={contactForm.values.company}
           />
         </div>
 
@@ -56,11 +90,15 @@ const ContactForm: NextComponentType = () => {
             rows={10}
             className="form-control"
             placeholder="Please Enter Your Message Here"
+            onChange={contactForm.handleChange}
+            value={contactForm.values.message}
           ></textarea>
         </div>
 
         <div className="form-group">
-          <button type="submit">Submit Contact</button>
+          <button type="button" onClick={localHandleSubmit}>
+            Submit Contact
+          </button>
         </div>
       </form>
     </>
