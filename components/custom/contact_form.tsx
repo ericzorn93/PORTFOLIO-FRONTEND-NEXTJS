@@ -12,15 +12,14 @@ const ContactForm: NextComponentType = () => {
       company: "",
       message: ""
     },
-    onSubmit: ({}) => {
-      console.log("submitting");
+    onSubmit: values => {
+      console.log("Submitting: ", values);
     }
   });
 
   const localHandleSubmit = useCallback(
     e => {
       e.preventDefault();
-
       contactForm.handleSubmit();
     },
     [contactForm.handleSubmit]
@@ -28,7 +27,7 @@ const ContactForm: NextComponentType = () => {
 
   return (
     <>
-      <form>
+      <form onSubmit={localHandleSubmit}>
         <div className="form-group">
           <input
             type="text"
@@ -96,9 +95,7 @@ const ContactForm: NextComponentType = () => {
         </div>
 
         <div className="form-group">
-          <button type="button" onClick={localHandleSubmit}>
-            Submit Contact
-          </button>
+          <button type="submit">Submit Contact</button>
         </div>
       </form>
     </>
