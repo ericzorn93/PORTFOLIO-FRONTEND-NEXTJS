@@ -28,18 +28,30 @@ export type Company = {
   id: Scalars['ID'],
   name: Scalars['String'],
   description: Scalars['String'],
-  companyGenre: CompanyGenre,
-  createdAt: Scalars['String'],
-  updatedAt: Scalars['String'],
+  companyGenre?: Maybe<CompanyGenre>,
+  users?: Maybe<Array<User>>,
+  createdAt: Scalars['DateTime'],
+  updatedAt: Scalars['DateTime'],
 };
 
 export type CompanyGenre = {
    __typename?: 'CompanyGenre',
   id: Scalars['ID'],
-  genre: Scalars['String'],
-  companies: Array<Company>,
-  createdAt: Scalars['String'],
-  updatedAt: Scalars['String'],
+  name: Scalars['String'],
+  companies?: Maybe<Array<Company>>,
+  createdAt: Scalars['DateTime'],
+  updatedAt: Scalars['DateTime'],
+};
+
+export type CreateCompanyGenreInput = {
+  genreName: Scalars['String'],
+  companyNames: Array<Scalars['String']>,
+};
+
+export type CreateCompanyInput = {
+  name: Scalars['String'],
+  description: Scalars['String'],
+  companyGenre: Scalars['String'],
 };
 
 export type CreateProjectInput = {
@@ -75,7 +87,11 @@ export type LoggedInUser = {
 
 export type Mutation = {
    __typename?: 'Mutation',
-  deleteUser: User,
+  /** Finds and returns a deleted user by their email address. */
+  deleteUserByEmailAddress: User,
+  /** Deletes all users by from DB. Eventually will be deprecated. */
+  deleteAllUsers: Array<User>,
+  /** Updates the user role in the database, based on the provided enum. */
   updateUserRole: User,
   /** Creates a proejct with the associated values. */
   createProject?: Maybe<Project>,
@@ -84,9 +100,20 @@ export type Mutation = {
   createTag: Tag,
   updateTagWithProjects: Tag,
   deleteTag: Tag,
+  /** Finds and returns a company after the company has been created */
+  createCompany: Company,
   /** Finds and deletes a single company, based on the provided User ID */
   deleteCompany: Company,
+  /** Creates an individual company genre and associates that genre with any possible companies. */
+  createCompanyGenre: CompanyGenre,
+  /** Deletes a single company genre by the associated genre ID. */
+  deleteCompanyGenre: CompanyGenre,
+  /** 
+ * Registers a user with the provided register user data. This includes all
+   * contact information, company information, and the user's role.
+ */
   registerUser: User,
+  /** Logs user into the server, depending on their user role permissions. */
   login: LoggedInUser,
   /** Sends a person an email to their email address, via Sendgrid or Node Mailer. */
   sendUserEmail: Scalars['Boolean'],
@@ -95,7 +122,7 @@ export type Mutation = {
 };
 
 
-export type MutationDeleteUserArgs = {
+export type MutationDeleteUserByEmailAddressArgs = {
   emailAddress: Scalars['String']
 };
 
@@ -130,8 +157,23 @@ export type MutationDeleteTagArgs = {
 };
 
 
+export type MutationCreateCompanyArgs = {
+  companyData: CreateCompanyInput
+};
+
+
 export type MutationDeleteCompanyArgs = {
   companyId: Scalars['String']
+};
+
+
+export type MutationCreateCompanyGenreArgs = {
+  companyGenreData: CreateCompanyGenreInput
+};
+
+
+export type MutationDeleteCompanyGenreArgs = {
+  companyGenreId: Scalars['String']
 };
 
 
@@ -167,7 +209,9 @@ export type Project = {
 
 export type Query = {
    __typename?: 'Query',
+  /** Finds and returns all users in the DB. */
   allUsers: Array<User>,
+  /** Finds a single user in the database by their id and email address. */
   findUser: User,
   /** Finds an array of all projects with their associated relations. */
   allProjects: Array<Project>,
@@ -181,8 +225,11 @@ export type Query = {
  */
   allCompanies: Array<Company>,
   /** Finds a single company, based on the company name as a string that is provided */
-  findOneCompany: Company,
+  findOneCompanyByName: Company,
+  /** Finds and returns the array of all existing company genres. */
   allCompanyGenres: Array<CompanyGenre>,
+  /** Finds an individual company genre by the associated company genre name. */
+  findOneCompanyGenreByName: CompanyGenre,
   /** Queries the file system to find and then download the proper resume. */
   downloadResume: Scalars['Boolean'],
 };
@@ -198,8 +245,13 @@ export type QueryFindOneProjectByIdArgs = {
 };
 
 
-export type QueryFindOneCompanyArgs = {
+export type QueryFindOneCompanyByNameArgs = {
   companyName: Scalars['String']
+};
+
+
+export type QueryFindOneCompanyGenreByNameArgs = {
+  genreName: Scalars['String']
 };
 
 
@@ -211,8 +263,10 @@ export type RegisterUserInput = {
   firstName: Scalars['String'],
   lastName: Scalars['String'],
   emailAddress: Scalars['String'],
-  phoneNumber: Scalars['String'],
-  role?: Maybe<Scalars['String']>,
+  phoneNumber: Scalars['Int'],
+  role?: Maybe<UserRoleEnum>,
+  companyName?: Maybe<Scalars['String']>,
+  companyGenreName?: Maybe<Scalars['String']>,
 };
 
 export type Tag = {
@@ -247,7 +301,7 @@ export type UpdateTagProjectsInput = {
 
 export type UpdateUserRoleInput = {
   emailAddress: Scalars['String'],
-  role: Scalars['String'],
+  role: UserRoleEnum,
 };
 
 export type User = {
@@ -256,14 +310,21 @@ export type User = {
   firstName: Scalars['String'],
   lastName: Scalars['String'],
   emailAddress: Scalars['String'],
-  phoneNumber: Scalars['String'],
-  role: Scalars['String'],
+  phoneNumber: Scalars['Int'],
+  role: UserRoleEnum,
   projects: Array<Project>,
+  company?: Maybe<Company>,
   createdAt: Scalars['String'],
   updatedAt: Scalars['String'],
   /** Concatonates the user's first and last name. */
   fullName: Scalars['String'],
 };
+
+/** Different options of user permissions */
+export enum UserRoleEnum {
+  Admin = 'ADMIN',
+  General = 'GENERAL'
+}
 
 export type ProjectPartsFragment = (
   { __typename?: 'Project' }
@@ -328,6 +389,28 @@ export type AllThemesQuery = (
       { __typename?: 'Theme' }
       & ThemePartsFragment
     ) }
+  ) }
+);
+
+export type RegisterUserMutationVariables = {
+  firstName: Scalars['String'],
+  lastName: Scalars['String'],
+  emailAddress: Scalars['String'],
+  phoneNumber: Scalars['Int'],
+  companyName?: Maybe<Scalars['String']>,
+  companyGenreName?: Maybe<Scalars['String']>
+};
+
+
+export type RegisterUserMutation = (
+  { __typename?: 'Mutation' }
+  & { registerUser: (
+    { __typename?: 'User' }
+    & Pick<User, 'fullName'>
+    & { company: Maybe<(
+      { __typename?: 'Company' }
+      & Pick<Company, 'name'>
+    )> }
   ) }
 );
 
@@ -582,6 +665,63 @@ export function useAllThemesLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHo
 export type AllThemesQueryHookResult = ReturnType<typeof useAllThemesQuery>;
 export type AllThemesLazyQueryHookResult = ReturnType<typeof useAllThemesLazyQuery>;
 export type AllThemesQueryResult = ApolloReactCommon.QueryResult<AllThemesQuery, AllThemesQueryVariables>;
+export const RegisterUserDocument = gql`
+    mutation registerUser($firstName: String!, $lastName: String!, $emailAddress: String!, $phoneNumber: Int!, $companyName: String, $companyGenreName: String) {
+  registerUser(registerData: {firstName: $firstName, lastName: $lastName, emailAddress: $emailAddress, phoneNumber: $phoneNumber, companyName: $companyName, companyGenreName: $companyGenreName}) {
+    fullName
+    company {
+      name
+    }
+  }
+}
+    `;
+export type RegisterUserMutationFn = ApolloReactCommon.MutationFunction<RegisterUserMutation, RegisterUserMutationVariables>;
+export type RegisterUserComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<RegisterUserMutation, RegisterUserMutationVariables>, 'mutation'>;
+
+    export const RegisterUserComponent = (props: RegisterUserComponentProps) => (
+      <ApolloReactComponents.Mutation<RegisterUserMutation, RegisterUserMutationVariables> mutation={RegisterUserDocument} {...props} />
+    );
+    
+export type RegisterUserProps<TChildProps = {}> = ApolloReactHoc.MutateProps<RegisterUserMutation, RegisterUserMutationVariables> | TChildProps;
+export function withRegisterUser<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  RegisterUserMutation,
+  RegisterUserMutationVariables,
+  RegisterUserProps<TChildProps>>) {
+    return ApolloReactHoc.withMutation<TProps, RegisterUserMutation, RegisterUserMutationVariables, RegisterUserProps<TChildProps>>(RegisterUserDocument, {
+      alias: 'registerUser',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useRegisterUserMutation__
+ *
+ * To run a mutation, you first call `useRegisterUserMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useRegisterUserMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [registerUserMutation, { data, loading, error }] = useRegisterUserMutation({
+ *   variables: {
+ *      firstName: // value for 'firstName'
+ *      lastName: // value for 'lastName'
+ *      emailAddress: // value for 'emailAddress'
+ *      phoneNumber: // value for 'phoneNumber'
+ *      companyName: // value for 'companyName'
+ *      companyGenreName: // value for 'companyGenreName'
+ *   },
+ * });
+ */
+export function useRegisterUserMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<RegisterUserMutation, RegisterUserMutationVariables>) {
+        return ApolloReactHooks.useMutation<RegisterUserMutation, RegisterUserMutationVariables>(RegisterUserDocument, baseOptions);
+      }
+export type RegisterUserMutationHookResult = ReturnType<typeof useRegisterUserMutation>;
+export type RegisterUserMutationResult = ApolloReactCommon.MutationResult<RegisterUserMutation>;
+export type RegisterUserMutationOptions = ApolloReactCommon.BaseMutationOptions<RegisterUserMutation, RegisterUserMutationVariables>;
 export const AllUsersDocument = gql`
     query allUsers {
   allUsers {

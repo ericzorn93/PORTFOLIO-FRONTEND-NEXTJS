@@ -1,0 +1,24 @@
+mutation registerUser(
+  $firstName: String!
+  $lastName: String!
+  $emailAddress: String!
+  $phoneNumber: Int!
+  $companyName: String
+  $companyGenreName: String
+) {
+  registerUser(
+    registerData: {
+      firstName: $firstName
+      lastName: $lastName
+      emailAddress: $emailAddress
+      phoneNumber: $phoneNumber
+      companyName: $companyName
+      companyGenreName: $companyGenreName
+    }
+  ) {
+    fullName
+    company {
+      name
+    }
+  }
+}
