@@ -1,3 +1,10 @@
+fragment MutationUserParts on User {
+  id
+  firstName
+  lastName
+  emailAddress
+}
+
 mutation registerUser(
   $firstName: String!
   $lastName: String!
@@ -16,7 +23,7 @@ mutation registerUser(
       companyGenreName: $companyGenreName
     }
   ) {
-    fullName
+    ...MutationUserParts
     company {
       name
     }

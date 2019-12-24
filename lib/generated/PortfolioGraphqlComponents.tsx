@@ -392,6 +392,11 @@ export type AllThemesQuery = (
   ) }
 );
 
+export type MutationUserPartsFragment = (
+  { __typename?: 'User' }
+  & Pick<User, 'id' | 'firstName' | 'lastName' | 'emailAddress'>
+);
+
 export type RegisterUserMutationVariables = {
   firstName: Scalars['String'],
   lastName: Scalars['String'],
@@ -406,15 +411,15 @@ export type RegisterUserMutation = (
   { __typename?: 'Mutation' }
   & { registerUser: (
     { __typename?: 'User' }
-    & Pick<User, 'fullName'>
     & { company: Maybe<(
       { __typename?: 'Company' }
       & Pick<Company, 'name'>
     )> }
+    & MutationUserPartsFragment
   ) }
 );
 
-export type UserPartsFragment = (
+export type QueryUserPartsFragment = (
   { __typename?: 'User' }
   & Pick<User, 'id' | 'firstName' | 'lastName' | 'emailAddress'>
 );
@@ -426,7 +431,7 @@ export type AllUsersQuery = (
   { __typename?: 'Query' }
   & { allUsers: Array<(
     { __typename?: 'User' }
-    & UserPartsFragment
+    & QueryUserPartsFragment
   )> }
 );
 
@@ -454,8 +459,16 @@ export const ThemePartsFragmentDoc = gql`
   white
 }
     `;
-export const UserPartsFragmentDoc = gql`
-    fragment UserParts on User {
+export const MutationUserPartsFragmentDoc = gql`
+    fragment MutationUserParts on User {
+  id
+  firstName
+  lastName
+  emailAddress
+}
+    `;
+export const QueryUserPartsFragmentDoc = gql`
+    fragment QueryUserParts on User {
   id
   firstName
   lastName
@@ -668,13 +681,13 @@ export type AllThemesQueryResult = ApolloReactCommon.QueryResult<AllThemesQuery,
 export const RegisterUserDocument = gql`
     mutation registerUser($firstName: String!, $lastName: String!, $emailAddress: String!, $phoneNumber: Int!, $companyName: String, $companyGenreName: String) {
   registerUser(registerData: {firstName: $firstName, lastName: $lastName, emailAddress: $emailAddress, phoneNumber: $phoneNumber, companyName: $companyName, companyGenreName: $companyGenreName}) {
-    fullName
+    ...MutationUserParts
     company {
       name
     }
   }
 }
-    `;
+    ${MutationUserPartsFragmentDoc}`;
 export type RegisterUserMutationFn = ApolloReactCommon.MutationFunction<RegisterUserMutation, RegisterUserMutationVariables>;
 export type RegisterUserComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<RegisterUserMutation, RegisterUserMutationVariables>, 'mutation'>;
 
@@ -725,10 +738,10 @@ export type RegisterUserMutationOptions = ApolloReactCommon.BaseMutationOptions<
 export const AllUsersDocument = gql`
     query allUsers {
   allUsers {
-    ...UserParts
+    ...QueryUserParts
   }
 }
-    ${UserPartsFragmentDoc}`;
+    ${QueryUserPartsFragmentDoc}`;
 export type AllUsersComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<AllUsersQuery, AllUsersQueryVariables>, 'query'>;
 
     export const AllUsersComponent = (props: AllUsersComponentProps) => (

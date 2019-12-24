@@ -1,4 +1,4 @@
-fragment UserParts on User {
+fragment QueryUserParts on User {
   id
   firstName
   lastName
@@ -7,6 +7,6 @@ fragment UserParts on User {
 
 query allUsers {
   allUsers {
-    ...UserParts
+    ...QueryUserParts
   }
 }

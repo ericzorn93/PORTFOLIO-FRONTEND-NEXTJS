@@ -1,8 +1,11 @@
 import React, { useCallback } from "react";
 import { NextComponentType } from "next";
 import { useFormik } from "formik";
+import { useRegisterUserMutation } from "../../lib/generated/PortfolioGraphqlComponents";
 
 const ContactForm: NextComponentType = () => {
+  const [registerUser, { loading, data, error }] = useRegisterUserMutation();
+
   const contactForm = useFormik({
     initialValues: {
       firstName: "",
