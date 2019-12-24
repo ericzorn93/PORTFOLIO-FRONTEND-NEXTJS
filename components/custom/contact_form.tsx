@@ -10,6 +10,7 @@ const ContactForm: NextComponentType = () => {
       emailAddress: "",
       phoneNumber: 0,
       company: "",
+      companyGenre: "",
       message: ""
     },
     onSubmit: values => {
@@ -37,6 +38,7 @@ const ContactForm: NextComponentType = () => {
             placeholder="Please Enter Your First Name"
             onChange={contactForm.handleChange}
             value={contactForm.values.firstName}
+            required
           />
           <input
             type="text"
@@ -46,6 +48,7 @@ const ContactForm: NextComponentType = () => {
             placeholder="Please Enter Your Last Name"
             onChange={contactForm.handleChange}
             value={contactForm.values.lastName}
+            required
           />
         </div>
         <div className="form-group">
@@ -57,6 +60,7 @@ const ContactForm: NextComponentType = () => {
             placeholder="Please Enter Your Email Address"
             onChange={contactForm.handleChange}
             value={contactForm.values.emailAddress}
+            required
           />
           <input
             type="number"
@@ -66,6 +70,7 @@ const ContactForm: NextComponentType = () => {
             placeholder="Please Enter Your Phone Number"
             onChange={contactForm.handleChange}
             value={contactForm.values.phoneNumber}
+            required
           />
         </div>
 
@@ -79,6 +84,15 @@ const ContactForm: NextComponentType = () => {
             onChange={contactForm.handleChange}
             value={contactForm.values.company}
           />
+          <input
+            type="text"
+            name="companyGenre"
+            id="companyGenre"
+            className="form-control"
+            placeholder="Please Enter Your Industry"
+            onChange={contactForm.handleChange}
+            value={contactForm.values.companyGenre}
+          />
         </div>
 
         <div className="form-group">
@@ -91,6 +105,7 @@ const ContactForm: NextComponentType = () => {
             placeholder="Please Enter Your Message Here"
             onChange={contactForm.handleChange}
             value={contactForm.values.message}
+            required
           ></textarea>
         </div>
 
