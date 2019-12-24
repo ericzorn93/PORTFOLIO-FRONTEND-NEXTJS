@@ -18,6 +18,16 @@ const ContactForm: NextComponentType = () => {
     },
     onSubmit: values => {
       console.log("Submitting: ", values);
+      registerUser({
+        variables: {
+          firstName: values.firstName,
+          lastName: values.lastName,
+          emailAddress: values.emailAddress,
+          phoneNumber: values.phoneNumber,
+          companyName: values.company,
+          companyGenreName: values.companyGenre
+        }
+      });
     }
   });
 
