@@ -17,6 +17,12 @@ export type Scalars = {
   DateTime: any,
 };
 
+export type AuthResponse = {
+   __typename?: 'AuthResponse',
+  user: User,
+  authToken: Scalars['String'],
+};
+
 export type CombinedTheme = {
    __typename?: 'CombinedTheme',
   darkMode: Theme,
@@ -85,6 +91,15 @@ export type LoggedInUser = {
   jwt?: Maybe<Scalars['String']>,
 };
 
+export type Message = {
+   __typename?: 'Message',
+  id: Scalars['ID'],
+  message: Scalars['String'],
+  user: User,
+  createdAt: Scalars['DateTime'],
+  updatedAt: Scalars['DateTime'],
+};
+
 export type Mutation = {
    __typename?: 'Mutation',
   /** Finds and returns a deleted user by their email address. */
@@ -112,7 +127,7 @@ export type Mutation = {
  * Registers a user with the provided register user data. This includes all
    * contact information, company information, and the user's role.
  */
-  registerUser: User,
+  registerUser: AuthResponse,
   /** Logs user into the server, depending on their user role permissions. */
   login: LoggedInUser,
   /** Sends a person an email to their email address, via Sendgrid or Node Mailer. */
@@ -265,8 +280,9 @@ export type RegisterUserInput = {
   emailAddress: Scalars['String'],
   phoneNumber: Scalars['Int'],
   role?: Maybe<UserRoleEnum>,
-  companyName?: Maybe<Scalars['String']>,
-  companyGenreName?: Maybe<Scalars['String']>,
+  companyName: Scalars['String'],
+  companyGenreName: Scalars['String'],
+  message: Scalars['String'],
 };
 
 export type Tag = {
@@ -313,7 +329,8 @@ export type User = {
   phoneNumber: Scalars['Int'],
   role: UserRoleEnum,
   projects: Array<Project>,
-  company?: Maybe<Company>,
+  company: Company,
+  messages: Array<Message>,
   createdAt: Scalars['String'],
   updatedAt: Scalars['String'],
   /** Concatonates the user's first and last name. */
@@ -394,7 +411,18 @@ export type AllThemesQuery = (
 
 export type MutationUserPartsFragment = (
   { __typename?: 'User' }
-  & Pick<User, 'id' | 'firstName' | 'lastName' | 'emailAddress'>
+  & Pick<User, 'id' | 'firstName' | 'lastName' | 'fullName' | 'phoneNumber' | 'emailAddress' | 'createdAt' | 'updatedAt'>
+  & { messages: Array<(
+    { __typename?: 'Message' }
+    & Pick<Message, 'id' | 'message'>
+  )>, company: (
+    { __typename?: 'Company' }
+    & Pick<Company, 'id' | 'name'>
+    & { companyGenre: Maybe<(
+      { __typename?: 'CompanyGenre' }
+      & Pick<CompanyGenre, 'id' | 'name'>
+    )> }
+  ) }
 );
 
 export type RegisterUserMutationVariables = {
@@ -402,20 +430,21 @@ export type RegisterUserMutationVariables = {
   lastName: Scalars['String'],
   emailAddress: Scalars['String'],
   phoneNumber: Scalars['Int'],
-  companyName?: Maybe<Scalars['String']>,
-  companyGenreName?: Maybe<Scalars['String']>
+  companyName: Scalars['String'],
+  companyGenreName: Scalars['String'],
+  message: Scalars['String']
 };
 
 
 export type RegisterUserMutation = (
   { __typename?: 'Mutation' }
   & { registerUser: (
-    { __typename?: 'User' }
-    & { company: Maybe<(
-      { __typename?: 'Company' }
-      & Pick<Company, 'name'>
-    )> }
-    & MutationUserPartsFragment
+    { __typename?: 'AuthResponse' }
+    & Pick<AuthResponse, 'authToken'>
+    & { user: (
+      { __typename?: 'User' }
+      & MutationUserPartsFragment
+    ) }
   ) }
 );
 
@@ -464,7 +493,23 @@ export const MutationUserPartsFragmentDoc = gql`
   id
   firstName
   lastName
+  fullName
+  phoneNumber
   emailAddress
+  messages {
+    id
+    message
+  }
+  company {
+    id
+    name
+    companyGenre {
+      id
+      name
+    }
+  }
+  createdAt
+  updatedAt
 }
     `;
 export const QueryUserPartsFragmentDoc = gql`
@@ -679,12 +724,12 @@ export type AllThemesQueryHookResult = ReturnType<typeof useAllThemesQuery>;
 export type AllThemesLazyQueryHookResult = ReturnType<typeof useAllThemesLazyQuery>;
 export type AllThemesQueryResult = ApolloReactCommon.QueryResult<AllThemesQuery, AllThemesQueryVariables>;
 export const RegisterUserDocument = gql`
-    mutation registerUser($firstName: String!, $lastName: String!, $emailAddress: String!, $phoneNumber: Int!, $companyName: String, $companyGenreName: String) {
-  registerUser(registerData: {firstName: $firstName, lastName: $lastName, emailAddress: $emailAddress, phoneNumber: $phoneNumber, companyName: $companyName, companyGenreName: $companyGenreName}) {
-    ...MutationUserParts
-    company {
-      name
+    mutation registerUser($firstName: String!, $lastName: String!, $emailAddress: String!, $phoneNumber: Int!, $companyName: String!, $companyGenreName: String!, $message: String!) {
+  registerUser(registerData: {firstName: $firstName, lastName: $lastName, emailAddress: $emailAddress, phoneNumber: $phoneNumber, companyName: $companyName, companyGenreName: $companyGenreName, message: $message}) {
+    user {
+      ...MutationUserParts
     }
+    authToken
   }
 }
     ${MutationUserPartsFragmentDoc}`;
@@ -726,6 +771,7 @@ export function withRegisterUser<TProps, TChildProps = {}>(operationOptions?: Ap
  *      phoneNumber: // value for 'phoneNumber'
  *      companyName: // value for 'companyName'
  *      companyGenreName: // value for 'companyGenreName'
+ *      message: // value for 'message'
  *   },
  * });
  */

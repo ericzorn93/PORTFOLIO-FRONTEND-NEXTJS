@@ -2,7 +2,23 @@ fragment MutationUserParts on User {
   id
   firstName
   lastName
+  fullName
+  phoneNumber
   emailAddress
+  messages {
+    id
+    message
+  }
+  company {
+    id
+    name
+    companyGenre {
+      id
+      name
+    }
+  }
+  createdAt
+  updatedAt
 }
 
 mutation registerUser(
@@ -10,8 +26,9 @@ mutation registerUser(
   $lastName: String!
   $emailAddress: String!
   $phoneNumber: Int!
-  $companyName: String
-  $companyGenreName: String
+  $companyName: String!
+  $companyGenreName: String!
+  $message: String!
 ) {
   registerUser(
     registerData: {
@@ -21,11 +38,12 @@ mutation registerUser(
       phoneNumber: $phoneNumber
       companyName: $companyName
       companyGenreName: $companyGenreName
+      message: $message
     }
   ) {
-    ...MutationUserParts
-    company {
-      name
+    user {
+      ...MutationUserParts
     }
+    authToken
   }
 }

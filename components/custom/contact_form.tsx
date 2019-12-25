@@ -16,18 +16,23 @@ const ContactForm: NextComponentType = () => {
       companyGenre: "",
       message: ""
     },
-    onSubmit: values => {
+    onSubmit: async (values, actions) => {
       console.log("Submitting: ", values);
-      registerUser({
+
+      actions.setSubmitting(true);
+      await registerUser({
         variables: {
           firstName: values.firstName,
           lastName: values.lastName,
           emailAddress: values.emailAddress,
           phoneNumber: values.phoneNumber,
           companyName: values.company,
-          companyGenreName: values.companyGenre
+          companyGenreName: values.companyGenre,
+          message: values.message
         }
       });
+      actions.setSubmitting(false);
+      actions.resetForm();
     }
   });
 
@@ -38,6 +43,10 @@ const ContactForm: NextComponentType = () => {
     },
     [contactForm.handleSubmit]
   );
+
+  if (contactForm.isSubmitting) {
+    return <h1>Submitting....</h1>;
+  }
 
   return (
     <>
@@ -96,6 +105,7 @@ const ContactForm: NextComponentType = () => {
             placeholder="Please Enter Your Company's Name"
             onChange={contactForm.handleChange}
             value={contactForm.values.company}
+            required
           />
           <input
             type="text"
@@ -105,6 +115,7 @@ const ContactForm: NextComponentType = () => {
             placeholder="Please Enter Your Industry"
             onChange={contactForm.handleChange}
             value={contactForm.values.companyGenre}
+            required
           />
         </div>
 
