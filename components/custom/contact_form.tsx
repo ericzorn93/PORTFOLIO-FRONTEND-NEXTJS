@@ -1,12 +1,42 @@
 import React, { useCallback } from "react";
 import { NextComponentType } from "next";
 import { useFormik } from "formik";
+import * as Yup from "yup";
+
 import { useRegisterUserMutation } from "../../lib/generated/PortfolioGraphqlComponents";
+
+const registerUserSchema = Yup.object().shape({
+  firstName: Yup.string()
+    .min(2, "Too Short!")
+    .max(50, "Too Long!")
+    .required("Required"),
+  lastName: Yup.string()
+    .min(2, "Too Short!")
+    .max(50, "Too Long!")
+    .required("Required"),
+  emailAddress: Yup.string()
+    .email("Invalid email")
+    .required("Required"),
+  phoneNumber: Yup.number().required("You Must Enter a Phone Number"),
+  company: Yup.string()
+    .required("A Company Name Must Be Present")
+    .min(2, "Too Short")
+    .max(250, "Too Long"),
+  companyGenre: Yup.string()
+    .required("A Company Genre Must Be Present")
+    .min(2, "Too Short")
+    .max(250, "Too Long"),
+  message: Yup.string()
+    .required("You Must Provide a Message")
+    .min(2, "Too Short")
+    .max(250, "Your Message is Too Long")
+});
 
 const ContactForm: NextComponentType = () => {
   const [registerUser, { loading, data, error }] = useRegisterUserMutation();
 
   const contactForm = useFormik({
+    validationSchema: registerUserSchema,
     initialValues: {
       firstName: "",
       lastName: "",
@@ -17,9 +47,11 @@ const ContactForm: NextComponentType = () => {
       message: ""
     },
     onSubmit: async (values, actions) => {
+      const { setSubmitting, resetForm } = actions;
+
       console.log("Submitting: ", values);
 
-      actions.setSubmitting(true);
+      setSubmitting(true);
       await registerUser({
         variables: {
           firstName: values.firstName,
@@ -31,8 +63,8 @@ const ContactForm: NextComponentType = () => {
           message: values.message
         }
       });
-      actions.setSubmitting(false);
-      actions.resetForm();
+      setSubmitting(false);
+      resetForm();
     }
   });
 
@@ -44,7 +76,7 @@ const ContactForm: NextComponentType = () => {
     [contactForm.handleSubmit]
   );
 
-  if (contactForm.isSubmitting) {
+  if ((contactForm.isSubmitting || loading) && !error) {
     return <h1>Submitting....</h1>;
   }
 
