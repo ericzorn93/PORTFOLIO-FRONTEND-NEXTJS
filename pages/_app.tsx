@@ -4,13 +4,15 @@ import { ApolloProvider } from "@apollo/react-hooks";
 import { ApolloClient } from "apollo-boost";
 import { Store } from "redux";
 import withRedux from "next-redux-wrapper";
+import { Provider } from "react-redux";
 
 import withData from "../lib/withData";
 import Page from "../components/primary/page/page";
-import { Provider } from "react-redux";
 import assembleStore from "../store/assembleStore";
 import { AllThemesComponent } from "../lib/generated/PortfolioGraphqlComponents";
 import { ADD_ALL_THEME_DATA } from "../store/types/theme_types/theme.types";
+
+import "../styles/scss/main.scss";
 
 interface MyAppProps {
   Component: React.ComponentClass | React.FunctionComponent;

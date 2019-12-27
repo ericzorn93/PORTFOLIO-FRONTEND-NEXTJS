@@ -2,7 +2,7 @@ import React from "react";
 import { NextComponentType } from "next";
 import Link from "next/link";
 
-import { useAllProjectsQuery } from "../../../lib/generated/PortfolioGraphqlComponents";
+import { useAllProjectsQuery } from "../../lib/generated/PortfolioGraphqlComponents";
 
 const PortfolioProjects: NextComponentType = () => {
   const { data, loading, error } = useAllProjectsQuery();

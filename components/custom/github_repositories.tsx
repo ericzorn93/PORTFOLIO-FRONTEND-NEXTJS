@@ -3,8 +3,8 @@ import { useDispatch } from "react-redux";
 import { NextComponentType } from "next";
 import Link from "next/link";
 
-import { useGithubRepositoriesQuery } from "../../../lib/generated/GithubGraphqlComponents";
-import { addGithubProjectsAction } from "../../../store/actions/project_actions/project.actions";
+import { useGithubRepositoriesQuery } from "../../lib/generated/GithubGraphqlComponents";
+import { addGithubProjectsAction } from "../../store/actions/project_actions/project.actions";
 
 const GithubRepositories: NextComponentType = () => {
   const dispatch = useDispatch();

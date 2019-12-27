@@ -1,6 +1,6 @@
 import React from "react";
 import { NextComponentType } from "next";
-import { Project } from "../../../lib/generated/PortfolioGraphqlComponents";
+import { Project } from "../../lib/generated/PortfolioGraphqlComponents";
 
 interface ProjectProps {
   project: Partial<Project>;

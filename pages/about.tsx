@@ -3,8 +3,8 @@ import React from "react";
 import { jsx } from "@emotion/core";
 
 import { PageContainer } from "../styles/page_styles/overall/overall";
-import { ProfilePicture } from "../styles/styled_components/profile_picture";
-import { ResumeHeaderText } from "../styles/styled_components/resume_header_text";
+import { ProfilePicture } from "../styles/page_styles/about_page/profile_picture";
+import { ResumeHeaderText } from "../styles/page_styles/about_page/resume_header_text";
 import { Paragraph } from "../components/primary/elements/paragraph";
 import DownLoadResume from "../components/custom/download_resume";
 import AboutResume from "../components/custom/about_resume";

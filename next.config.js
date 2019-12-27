@@ -1,8 +1,10 @@
 const webpack = require("webpack");
+const withSass = require("@zeit/next-sass");
+
 // Initialize doteenv library
 require("dotenv").config();
 
-module.exports = {
+module.exports = withSass({
   webpack: config => {
     // Fixes npm packages that depend on `fs` module
     config.node = {
@@ -22,4 +24,4 @@ module.exports = {
     config.plugins.push(new webpack.DefinePlugin(env));
     return config;
   }
-};
+});
