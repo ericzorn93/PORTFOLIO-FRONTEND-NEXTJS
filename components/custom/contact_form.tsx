@@ -4,31 +4,32 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 
 import { useRegisterUserMutation } from "../../lib/generated/PortfolioGraphqlComponents";
+import FormErrorMessage from "./form_error_message";
 
 const registerUserSchema = Yup.object().shape({
   firstName: Yup.string()
-    .min(2, "Too Short!")
-    .max(50, "Too Long!")
-    .required("Required"),
+    .min(2, "First Name is Too Short!")
+    .max(50, "First Name is Too Long!")
+    .required("First Name is Required"),
   lastName: Yup.string()
-    .min(2, "Too Short!")
-    .max(50, "Too Long!")
-    .required("Required"),
+    .min(2, "Last Name is Too Short!")
+    .max(50, "Last Name is Too Long!")
+    .required("Last Name is Required"),
   emailAddress: Yup.string()
     .email("Invalid email")
-    .required("Required"),
+    .required("Email is Required"),
   phoneNumber: Yup.number().required("You Must Enter a Phone Number"),
   company: Yup.string()
     .required("A Company Name Must Be Present")
-    .min(2, "Too Short")
-    .max(250, "Too Long"),
+    .min(2, "Company Name is Too Short")
+    .max(250, "Company Name is Too Long"),
   companyGenre: Yup.string()
     .required("A Company Genre Must Be Present")
-    .min(2, "Too Short")
-    .max(250, "Too Long"),
+    .min(2, "Company Genre is Too Short")
+    .max(250, "Company Genre is Too Long"),
   message: Yup.string()
     .required("You Must Provide a Message")
-    .min(2, "Too Short")
+    .min(2, "Your Message is Too Short")
     .max(250, "Your Message is Too Long")
 });
 
@@ -48,8 +49,6 @@ const ContactForm: NextComponentType = () => {
     },
     onSubmit: async (values, actions) => {
       const { setSubmitting, resetForm } = actions;
-
-      console.log("Submitting: ", values);
 
       setSubmitting(true);
       await registerUser({
@@ -80,8 +79,13 @@ const ContactForm: NextComponentType = () => {
     return <h1>Submitting....</h1>;
   }
 
+  // Form Error Values to Display
+  const errorValues = Object.values(contactForm.errors);
+
   return (
     <>
+      {errorValues.length &&
+        errorValues.map(error => <FormErrorMessage message={error} />)}
       <form onSubmit={localHandleSubmit}>
         <div className="form-group">
           <input
