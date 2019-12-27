@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { NextComponentType } from "next";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { generate as generateId } from "shortid";
 
 import { useRegisterUserMutation } from "../../lib/generated/PortfolioGraphqlComponents";
 import FormErrorMessage from "./form_error_message";
@@ -93,13 +94,16 @@ const ContactForm: NextComponentType = () => {
   return (
     <>
       {errorValues &&
-        errorValues.map(error => <FormErrorMessage message={error} />)}
+        errorValues.map(error => (
+          <FormErrorMessage key={generateId()} message={error} />
+        ))}
       <form onSubmit={localHandleSubmit}>
-        <div className="form-group">
+        <div className="flex mb-4">
           <FormInput
             type="text"
             name="firstName"
             id="firstName"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             placeholder="Please Enter Your First Name"
             onChange={contactForm.handleChange}
             value={contactForm.values.firstName}
@@ -116,7 +120,7 @@ const ContactForm: NextComponentType = () => {
             required
           />
         </div>
-        <div className="form-group">
+        <div className="flex mb-4">
           <FormInput
             type="email"
             name="emailAddress"
@@ -139,7 +143,7 @@ const ContactForm: NextComponentType = () => {
           />
         </div>
 
-        <div className="form-group">
+        <div className="flex mb-4">
           <FormInput
             type="text"
             name="company"
@@ -162,13 +166,13 @@ const ContactForm: NextComponentType = () => {
           />
         </div>
 
-        <div className="form-group">
+        <div className="flex mb-4">
           <textarea
             name="message"
             id=""
             cols={30}
             rows={10}
-            className="form-control"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-12"
             placeholder="Please Enter Your Message Here"
             onChange={contactForm.handleChange}
             value={contactForm.values.message}
@@ -176,8 +180,10 @@ const ContactForm: NextComponentType = () => {
           ></textarea>
         </div>
 
-        <div className="form-group">
-          <button type="submit">Submit Contact</button>
+        <div className="flex mb-4">
+          <button className="bg-blue-500" type="submit">
+            Submit Contact
+          </button>
         </div>
       </form>
     </>
