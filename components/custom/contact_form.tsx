@@ -91,7 +91,7 @@ const ContactForm: NextComponentType = () => {
 
   return (
     <>
-      {errorValues.length &&
+      {errorValues &&
         errorValues.map(error => <FormErrorMessage message={error} />)}
       <form onSubmit={localHandleSubmit}>
         <div className="form-group">
