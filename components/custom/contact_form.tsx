@@ -7,6 +7,7 @@ import * as Yup from "yup";
 import { useRegisterUserMutation } from "../../lib/generated/PortfolioGraphqlComponents";
 import FormErrorMessage from "./form_error_message";
 import { contactUserAction } from "../../store/actions/user_actions/user.actions";
+import FormInput from "./form_input";
 
 const registerUserSchema = Yup.object().shape({
   firstName: Yup.string()
@@ -95,17 +96,16 @@ const ContactForm: NextComponentType = () => {
         errorValues.map(error => <FormErrorMessage message={error} />)}
       <form onSubmit={localHandleSubmit}>
         <div className="form-group">
-          <input
+          <FormInput
             type="text"
             name="firstName"
             id="firstName"
-            className="form-control"
             placeholder="Please Enter Your First Name"
             onChange={contactForm.handleChange}
             value={contactForm.values.firstName}
             required
           />
-          <input
+          <FormInput
             type="text"
             name="lastName"
             id="lastName"
@@ -117,7 +117,7 @@ const ContactForm: NextComponentType = () => {
           />
         </div>
         <div className="form-group">
-          <input
+          <FormInput
             type="email"
             name="emailAddress"
             id="emailAddress"
@@ -127,7 +127,7 @@ const ContactForm: NextComponentType = () => {
             value={contactForm.values.emailAddress}
             required
           />
-          <input
+          <FormInput
             type="number"
             name="phoneNumber"
             id="phoneNumber"
@@ -140,7 +140,7 @@ const ContactForm: NextComponentType = () => {
         </div>
 
         <div className="form-group">
-          <input
+          <FormInput
             type="text"
             name="company"
             id="company"
@@ -150,7 +150,7 @@ const ContactForm: NextComponentType = () => {
             value={contactForm.values.company}
             required
           />
-          <input
+          <FormInput
             type="text"
             name="companyGenre"
             id="companyGenre"
