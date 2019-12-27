@@ -103,11 +103,11 @@ const ContactForm: NextComponentType = () => {
             type="text"
             name="firstName"
             id="firstName"
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             placeholder="Please Enter Your First Name"
             onChange={contactForm.handleChange}
             value={contactForm.values.firstName}
             required
+            classes={[]}
           />
           <FormInput
             type="text"
@@ -118,6 +118,7 @@ const ContactForm: NextComponentType = () => {
             onChange={contactForm.handleChange}
             value={contactForm.values.lastName}
             required
+            classes={[]}
           />
         </div>
         <div className="flex mb-4">
@@ -130,6 +131,7 @@ const ContactForm: NextComponentType = () => {
             onChange={contactForm.handleChange}
             value={contactForm.values.emailAddress}
             required
+            classes={[]}
           />
           <FormInput
             type="number"
@@ -140,6 +142,7 @@ const ContactForm: NextComponentType = () => {
             onChange={contactForm.handleChange}
             value={contactForm.values.phoneNumber}
             required
+            classes={[]}
           />
         </div>
 
@@ -153,6 +156,7 @@ const ContactForm: NextComponentType = () => {
             onChange={contactForm.handleChange}
             value={contactForm.values.company}
             required
+            classes={[]}
           />
           <FormInput
             type="text"
@@ -163,6 +167,7 @@ const ContactForm: NextComponentType = () => {
             onChange={contactForm.handleChange}
             value={contactForm.values.companyGenre}
             required
+            classes={[]}
           />
         </div>
 
@@ -172,7 +177,7 @@ const ContactForm: NextComponentType = () => {
             id=""
             cols={30}
             rows={10}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-12"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-12 w-1/2"
             placeholder="Please Enter Your Message Here"
             onChange={contactForm.handleChange}
             value={contactForm.values.message}
@@ -181,7 +186,7 @@ const ContactForm: NextComponentType = () => {
         </div>
 
         <div className="flex mb-4">
-          <button className="bg-blue-500" type="submit">
+          <button className="btn btn-black" type="submit">
             Submit Contact
           </button>
         </div>
