@@ -1,10 +1,12 @@
 import React, { useCallback } from "react";
+import { useDispatch } from "react-redux";
 import { NextComponentType } from "next";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
 import { useRegisterUserMutation } from "../../lib/generated/PortfolioGraphqlComponents";
 import FormErrorMessage from "./form_error_message";
+import { contactUserAction } from "../../store/actions/user_actions/user.actions";
 
 const registerUserSchema = Yup.object().shape({
   firstName: Yup.string()
@@ -18,7 +20,10 @@ const registerUserSchema = Yup.object().shape({
   emailAddress: Yup.string()
     .email("Invalid email")
     .required("Email is Required"),
-  phoneNumber: Yup.number().required("You Must Enter a Phone Number"),
+  phoneNumber: Yup.string()
+    .required("You Must Enter a Phone Number")
+    .min(10)
+    .max(10),
   company: Yup.string()
     .required("A Company Name Must Be Present")
     .min(2, "Company Name is Too Short")
@@ -34,6 +39,7 @@ const registerUserSchema = Yup.object().shape({
 });
 
 const ContactForm: NextComponentType = () => {
+  const dispatch = useDispatch();
   const [registerUser, { loading, data, error }] = useRegisterUserMutation();
 
   const contactForm = useFormik({
@@ -42,7 +48,7 @@ const ContactForm: NextComponentType = () => {
       firstName: "",
       lastName: "",
       emailAddress: "",
-      phoneNumber: 0,
+      phoneNumber: "",
       company: "",
       companyGenre: "",
       message: ""
@@ -56,12 +62,13 @@ const ContactForm: NextComponentType = () => {
           firstName: values.firstName,
           lastName: values.lastName,
           emailAddress: values.emailAddress,
-          phoneNumber: values.phoneNumber,
+          phoneNumber: parseInt(values.phoneNumber, 10),
           companyName: values.company,
           companyGenreName: values.companyGenre,
           message: values.message
         }
       });
+      dispatch(contactUserAction(true));
       setSubmitting(false);
       resetForm();
     }
