@@ -10,6 +10,17 @@ import FormErrorMessage from "./form_error_message";
 import { contactUserAction } from "../../store/actions/user_actions/user.actions";
 import FormInput from "./form_input";
 
+// Form Inputs
+const formInputs: { name: string; placeholder: string }[] = [
+  { name: "firstName", placeholder: "Please Enter Your First Name" },
+  { name: "lastName", placeholder: "Please Enter Your Last Name" },
+  { name: "emailAddress", placeholder: "Please Enter Your Email Address" },
+  { name: "phoneNumber", placeholder: "Please Enter Your Phone Number" },
+  { name: "company", placeholder: "Please Enter Your Company's Name" },
+  { name: "companyGenre", placeholder: "Please Enter Your Company's Industry" },
+  { name: "message", placeholder: "Enter Message Here" }
+];
+
 const registerUserSchema = Yup.object().shape({
   firstName: Yup.string()
     .min(2, "First Name is Too Short!")
