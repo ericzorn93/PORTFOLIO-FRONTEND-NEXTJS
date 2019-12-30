@@ -56,6 +56,7 @@ const ContactForm: NextComponentType = () => {
       const { setSubmitting, resetForm } = actions;
 
       setSubmitting(true);
+      resetForm();
       await registerUser({
         variables: {
           firstName: values.firstName,
@@ -69,7 +70,6 @@ const ContactForm: NextComponentType = () => {
       });
       dispatch(contactUserAction(true));
       setSubmitting(false);
-      resetForm();
     }
   });
 
@@ -81,12 +81,8 @@ const ContactForm: NextComponentType = () => {
     [contactForm.handleSubmit]
   );
 
-  if ((contactForm.isSubmitting || loading) && !error) {
-    return <h1>Submitting....</h1>;
-  }
-
   // Form Error Values to Display
-  const { errors } = contactForm;
+  const { errors, isSubmitting } = contactForm;
   const errorValues = Object.values(contactForm.errors);
 
   return (
@@ -109,6 +105,7 @@ const ContactForm: NextComponentType = () => {
               name="firstName"
               value={contactForm.values.firstName}
               onChange={contactForm.handleChange}
+              disabled={loading || isSubmitting}
             />
             <p
               className={`${errors.firstName && "text-red-500"} text-xs italic`}
@@ -132,6 +129,7 @@ const ContactForm: NextComponentType = () => {
               name="lastName"
               value={contactForm.values.lastName}
               onChange={contactForm.handleChange}
+              disabled={loading || isSubmitting}
             />
             <p
               className={`text-xs italic ${errors.lastName && "text-red-500"}`}
@@ -157,6 +155,7 @@ const ContactForm: NextComponentType = () => {
               name="emailAddress"
               value={contactForm.values.emailAddress}
               onChange={contactForm.handleChange}
+              disabled={loading || isSubmitting}
             />
             <p
               className={`text-gray-600 text-xs italic ${errors.emailAddress &&
@@ -181,6 +180,7 @@ const ContactForm: NextComponentType = () => {
               name="phoneNumber"
               value={contactForm.values.phoneNumber}
               onChange={contactForm.handleChange}
+              disabled={loading || isSubmitting}
             />
             <p
               className={`text-gray-600 text-xs italic ${errors.phoneNumber &&
@@ -208,6 +208,7 @@ const ContactForm: NextComponentType = () => {
               name="company"
               value={contactForm.values.company}
               onChange={contactForm.handleChange}
+              disabled={loading || isSubmitting}
             />
             <p
               className={`text-gray-600 text-xs italic ${errors.company &&
@@ -232,6 +233,7 @@ const ContactForm: NextComponentType = () => {
               name="companyGenre"
               value={contactForm.values.companyGenre}
               onChange={contactForm.handleChange}
+              disabled={loading || isSubmitting}
             />
             <p
               className={`text-gray-600 text-xs italic ${errors.companyGenre &&
@@ -258,6 +260,7 @@ const ContactForm: NextComponentType = () => {
             name="message"
             value={contactForm.values.message}
             onChange={contactForm.handleChange}
+            disabled={loading || isSubmitting}
           />
           <p
             className={`text-gray-600 text-xs italic ${errors.message &&
@@ -272,6 +275,7 @@ const ContactForm: NextComponentType = () => {
             <button
               type="submit"
               className="border shadow bg-black text-white hover:bg-gray-900 hover:cursor-pointer w-full h-10 flex justify-center items-center mt-5"
+              disabled={loading || isSubmitting}
             >
               Submit
             </button>

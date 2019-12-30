@@ -16,8 +16,8 @@ const links: ILink[] = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/projects", label: "Projects" },
-  { href: "/contact", label: "Contact" },
-  { href: "/blog", label: "Blog" }
+  { href: "/contact", label: "Contact" }
+  // { href: "/blog", label: "Blog" }
 ];
 
 const Nav = () => {
@@ -25,24 +25,22 @@ const Nav = () => {
 
   return (
     <>
-      <HeaderWrapper>
-        <Navigation>
-          <div className="logo">
-            <h1 css={{ cursor: "pointer" }} onClick={() => push("/")}>
-              EZ
-            </h1>
-            {/* <img style={{ width: 80 }} src="images/EZLogo.png" alt="Logo" /> */}
-          </div>
+      <div className="flex flex-wrap justify-around font-bold text-lg">
+        <div className="logo flex-1 px-5 py-5">
+          <h1 className="cursor-pointer text-lg" onClick={() => push("/")}>
+            EZ
+          </h1>
+          {/* <img style={{ width: 80 }} src="images/EZLogo.png" alt="Logo" /> */}
+        </div>
 
-          <div className="links">
-            {links.map(link => (
-              <Link key={v4()} href={link.href}>
-                <a style={{ color: "black" }}>{link.label}</a>
-              </Link>
-            ))}
-          </div>
-        </Navigation>
-      </HeaderWrapper>
+        <div className="links flex-1 flex justify-around px-5 py-5">
+          {links.map(link => (
+            <Link key={v4()} href={link.href}>
+              <a style={{ color: "black" }}>{link.label}</a>
+            </Link>
+          ))}
+        </div>
+      </div>
     </>
   );
 };
