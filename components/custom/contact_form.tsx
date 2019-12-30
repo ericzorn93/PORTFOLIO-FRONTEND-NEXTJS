@@ -6,27 +6,6 @@ import * as Yup from "yup";
 
 import { useRegisterUserMutation } from "../../lib/generated/PortfolioGraphqlComponents";
 import { contactUserAction } from "../../store/actions/user_actions/user.actions";
-// import FormErrorMessage from "./form_error_message";
-
-// Form Inputs
-const formInputs = [
-  [
-    { name: "firstName", placeholder: "Please Enter Your First Name" },
-    { name: "lastName", placeholder: "Please Enter Your Last Name" }
-  ],
-  [
-    { name: "emailAddress", placeholder: "Please Enter Your Email Address" },
-    { name: "phoneNumber", placeholder: "Please Enter Your Phone Number" }
-  ],
-  [
-    { name: "company", placeholder: "Please Enter Your Company's Name" },
-    {
-      name: "companyGenre",
-      placeholder: "Please Enter Your Company's Industry"
-    }
-  ],
-  [{ name: "message", placeholder: "Enter Message Here" }]
-];
 
 const registerUserSchema = Yup.object().shape({
   firstName: Yup.string()
@@ -112,9 +91,6 @@ const ContactForm: NextComponentType = () => {
 
   return (
     <>
-      {/* {errorValues &&
-        errorValues.map(error => <FormErrorMessage message={error} />)} */}
-
       <form className="w-full max-w-lg" onSubmit={localHandleSubmit}>
         <div className="flex flex-wrap -mx-3 mb-6">
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
