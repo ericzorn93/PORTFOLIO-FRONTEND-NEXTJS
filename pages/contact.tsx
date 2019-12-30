@@ -7,8 +7,12 @@ import ContactForm from "../components/custom/contact_form";
 const ContactPage: NextComponentType = () => {
   return (
     <PageContainer>
-      <h1>Contact Page</h1>
+      <div className="flex flex-col justify-center items-center h-screen">
+        <h1 className="text-center font-black mb-4 text-3xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-5xl">
+          Feel Free to Reach Out
+        </h1>
         <ContactForm />
+      </div>
     </PageContainer>
   );
 };

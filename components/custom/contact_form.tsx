@@ -5,9 +5,8 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 
 import { useRegisterUserMutation } from "../../lib/generated/PortfolioGraphqlComponents";
-import FormErrorMessage from "./form_error_message";
 import { contactUserAction } from "../../store/actions/user_actions/user.actions";
-import FormInput from "./form_input";
+// import FormErrorMessage from "./form_error_message";
 
 // Form Inputs
 const formInputs = [
@@ -113,200 +112,196 @@ const ContactForm: NextComponentType = () => {
 
   return (
     <>
-      {errorValues &&
-        errorValues.map(error => <p style={{ color: "red" }}>{error}</p>)}
+      {/* {errorValues &&
+        errorValues.map(error => <FormErrorMessage message={error} />)} */}
 
-      <div className="w-full flex justify-center items-center h-screen">
-        <form className="w-full max-w-lg" onSubmit={localHandleSubmit}>
-          <div className="flex flex-wrap -mx-3 mb-6">
-            <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-              <label
-                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                htmlFor="grid-first-name"
-              >
-                First Name
-              </label>
-              <input
-                className={`appearance-none block w-full bg-gray-200 text-gray-700 border ${errors.firstName &&
-                  "border-red-500"} rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white`}
-                id="grid-first-name"
-                type="text"
-                placeholder="Jane"
-                name="firstName"
-                value={contactForm.values.firstName}
-                onChange={contactForm.handleChange}
-              />
-              <p
-                className={`${errors.firstName &&
-                  "text-red-500"} text-xs italic`}
-              >
-                Please fill out this field.
-              </p>
-            </div>
-            <div className="w-full md:w-1/2 px-3">
-              <label
-                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                htmlFor="grid-last-name"
-              >
-                Last Name
-              </label>
-              <input
-                className={`appearance-none block w-full bg-gray-200 text-gray-700 border ${errors.lastName &&
-                  "border-red-500"} border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
-                id="grid-last-name"
-                type="text"
-                placeholder="Doe"
-                name="lastName"
-                value={contactForm.values.lastName}
-                onChange={contactForm.handleChange}
-              />
-              <p
-                className={`text-xs italic ${errors.lastName &&
-                  "text-red-500"}`}
-              >
-                Please fill out this field.
-              </p>
-            </div>
-          </div>
-          <div className="flex flex-wrap -mx-3 mb-6">
-            <div className="w-full sm:w-full md:w-1/2 lg:w-1/2 xl:w-1/2 px-3">
-              <label
-                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                htmlFor="grid-email"
-              >
-                Email Address
-              </label>
-              <input
-                className={`appearance-none block w-full bg-gray-200 text-gray-700 border ${errors.emailAddress &&
-                  "border-red-500"} border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
-                id="grid-email"
-                type="email"
-                placeholder="Enter Your Email Address"
-                name="emailAddress"
-                value={contactForm.values.emailAddress}
-                onChange={contactForm.handleChange}
-              />
-              <p
-                className={`text-gray-600 text-xs italic ${errors.emailAddress &&
-                  "text-red-500"}`}
-              >
-                Please Enter Your Email Address
-              </p>
-            </div>
-            <div className="w-full sm:w-full md:w-1/2 lg:w-1/2 xl:w-1/2 px-3">
-              <label
-                htmlFor="grid-phone"
-                className="block upeprcase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              >
-                Phone Number
-              </label>
-              <input
-                className={`appearance-none block w-full bg-gray-200 text-gray-700 border ${errors.phoneNumber &&
-                  "border-red-500"} border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
-                id="grid-phone"
-                type="number"
-                placeholder="Enter Your Phone Number"
-                name="phoneNumber"
-                value={contactForm.values.phoneNumber}
-                onChange={contactForm.handleChange}
-              />
-              <p
-                className={`text-gray-600 text-xs italic ${errors.phoneNumber &&
-                  "text-red-500"}`}
-              >
-                Please Enter Your Phone Number
-              </p>
-            </div>
-          </div>
-
-          <div className="flex flex-wrap -mx-3 mb-6">
-            <div className="w-full sm:w-full md:w-1/2 lg:w-1/2 xl:w-1/2 px-3">
-              <label
-                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                htmlFor="grid-company"
-              >
-                Company
-              </label>
-              <input
-                className={`appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 ${errors.company &&
-                  "border-red-500"}`}
-                id="grid-company"
-                type="text"
-                placeholder="Enter Your Company Name"
-                name="company"
-                value={contactForm.values.company}
-                onChange={contactForm.handleChange}
-              />
-              <p
-                className={`text-gray-600 text-xs italic ${errors.company &&
-                  "text-red-500"}`}
-              >
-                Please Enter Your Company's Name
-              </p>
-            </div>
-            <div className="w-full sm:w-full md:w-1/2 lg:w-1/2 xl:w-1/2 px-3">
-              <label
-                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                htmlFor="grid-company-genre"
-              >
-                Industry
-              </label>
-              <input
-                className={`appearance-none block w-full bg-gray-200 text-gray-700 border ${errors.companyGenre &&
-                  "border-red-500"} border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
-                id="grid-company-genre"
-                type="text"
-                placeholder="Enter Your Company's Industry"
-                name="companyGenre"
-                value={contactForm.values.companyGenre}
-                onChange={contactForm.handleChange}
-              />
-              <p
-                className={`text-gray-600 text-xs italic ${errors.companyGenre &&
-                  "text-red-500"}`}
-              >
-                Please Enter Your Company's Industry
-              </p>
-            </div>
-          </div>
-
-          <div className="w-full">
+      <form className="w-full max-w-lg" onSubmit={localHandleSubmit}>
+        <div className="flex flex-wrap -mx-3 mb-6">
+          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              htmlFor="grid-company-message"
+              htmlFor="grid-first-name"
             >
-              Message
+              First Name
             </label>
-
-            <textarea
-              className={`appearance-none block w-full bg-gray-200 text-gray-700 border ${errors.message &&
-                "border-red-500"} border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
-              id="grid-message"
-              placeholder="Enter Your Message"
-              name="message"
-              value={contactForm.values.message}
+            <input
+              className={`appearance-none block w-full bg-gray-200 text-gray-700 border ${errors.firstName &&
+                "border-red-500"} rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white`}
+              id="grid-first-name"
+              type="text"
+              placeholder="John"
+              name="firstName"
+              value={contactForm.values.firstName}
               onChange={contactForm.handleChange}
             />
             <p
-              className={`text-gray-600 text-xs italic ${errors.message &&
-                "text-red-500"}`}
+              className={`${errors.firstName && "text-red-500"} text-xs italic`}
             >
-              Please Enter Your Message
+              Please fill out this field.
             </p>
           </div>
-
-          <div className="flex flex-wrap -mx-3 mb-6">
-            <div className="w-full px-3 text-center">
-              <button
-                type="submit"
-                className="border shadow bg-black text-white hover:bg-gray-900 hover:cursor-pointer w-full h-10 flex justify-center items-center"
-              >
-                Submit
-              </button>
-            </div>
+          <div className="w-full md:w-1/2 px-3">
+            <label
+              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+              htmlFor="grid-last-name"
+            >
+              Last Name
+            </label>
+            <input
+              className={`appearance-none block w-full bg-gray-200 text-gray-700 border ${errors.lastName &&
+                "border-red-500"} border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
+              id="grid-last-name"
+              type="text"
+              placeholder="Doe"
+              name="lastName"
+              value={contactForm.values.lastName}
+              onChange={contactForm.handleChange}
+            />
+            <p
+              className={`text-xs italic ${errors.lastName && "text-red-500"}`}
+            >
+              Please fill out this field.
+            </p>
           </div>
-        </form>
-      </div>
+        </div>
+        <div className="flex flex-wrap -mx-3 mb-6">
+          <div className="w-full sm:w-full md:w-1/2 lg:w-1/2 xl:w-1/2 px-3">
+            <label
+              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+              htmlFor="grid-email"
+            >
+              Email Address
+            </label>
+            <input
+              className={`appearance-none block w-full bg-gray-200 text-gray-700 border ${errors.emailAddress &&
+                "border-red-500"} border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
+              id="grid-email"
+              type="email"
+              placeholder="Enter Your Email Address"
+              name="emailAddress"
+              value={contactForm.values.emailAddress}
+              onChange={contactForm.handleChange}
+            />
+            <p
+              className={`text-gray-600 text-xs italic ${errors.emailAddress &&
+                "text-red-500"}`}
+            >
+              Please Enter Your Email Address
+            </p>
+          </div>
+          <div className="w-full sm:w-full md:w-1/2 lg:w-1/2 xl:w-1/2 px-3">
+            <label
+              htmlFor="grid-phone"
+              className="block upeprcase tracking-wide text-gray-700 text-xs font-bold mb-2"
+            >
+              Phone Number
+            </label>
+            <input
+              className={`appearance-none block w-full bg-gray-200 text-gray-700 border ${errors.phoneNumber &&
+                "border-red-500"} border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
+              id="grid-phone"
+              type="number"
+              placeholder="Enter Your Phone Number"
+              name="phoneNumber"
+              value={contactForm.values.phoneNumber}
+              onChange={contactForm.handleChange}
+            />
+            <p
+              className={`text-gray-600 text-xs italic ${errors.phoneNumber &&
+                "text-red-500"}`}
+            >
+              Please Enter Your Phone Number
+            </p>
+          </div>
+        </div>
+
+        <div className="flex flex-wrap -mx-3 mb-6">
+          <div className="w-full sm:w-full md:w-1/2 lg:w-1/2 xl:w-1/2 px-3">
+            <label
+              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+              htmlFor="grid-company"
+            >
+              Company
+            </label>
+            <input
+              className={`appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 ${errors.company &&
+                "border-red-500"}`}
+              id="grid-company"
+              type="text"
+              placeholder="Enter Your Company Name"
+              name="company"
+              value={contactForm.values.company}
+              onChange={contactForm.handleChange}
+            />
+            <p
+              className={`text-gray-600 text-xs italic ${errors.company &&
+                "text-red-500"}`}
+            >
+              Please Enter Your Company's Name
+            </p>
+          </div>
+          <div className="w-full sm:w-full md:w-1/2 lg:w-1/2 xl:w-1/2 px-3">
+            <label
+              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+              htmlFor="grid-company-genre"
+            >
+              Industry
+            </label>
+            <input
+              className={`appearance-none block w-full bg-gray-200 text-gray-700 border ${errors.companyGenre &&
+                "border-red-500"} border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
+              id="grid-company-genre"
+              type="text"
+              placeholder="Enter Your Company's Industry"
+              name="companyGenre"
+              value={contactForm.values.companyGenre}
+              onChange={contactForm.handleChange}
+            />
+            <p
+              className={`text-gray-600 text-xs italic ${errors.companyGenre &&
+                "text-red-500"}`}
+            >
+              Please Enter Your Company's Industry
+            </p>
+          </div>
+        </div>
+
+        <div className="w-full">
+          <label
+            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+            htmlFor="grid-company-message"
+          >
+            Message
+          </label>
+
+          <textarea
+            className={`appearance-none block w-full bg-gray-200 text-gray-700 border ${errors.message &&
+              "border-red-500"} border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
+            id="grid-message"
+            placeholder="Enter Your Message"
+            name="message"
+            value={contactForm.values.message}
+            onChange={contactForm.handleChange}
+          />
+          <p
+            className={`text-gray-600 text-xs italic ${errors.message &&
+              "text-red-500"}`}
+          >
+            Please Enter Your Message
+          </p>
+        </div>
+
+        <div className="flex flex-wrap -mx-3 mb-6">
+          <div className="w-full px-3 text-center">
+            <button
+              type="submit"
+              className="border shadow bg-black text-white hover:bg-gray-900 hover:cursor-pointer w-full h-10 flex justify-center items-center mt-5"
+            >
+              Submit
+            </button>
+          </div>
+        </div>
+      </form>
     </>
   );
 };
