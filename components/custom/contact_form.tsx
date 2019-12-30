@@ -95,97 +95,99 @@ const ContactForm: NextComponentType = () => {
       {errorValues &&
         errorValues.map(error => <FormErrorMessage message={error} />)}
       <form onSubmit={localHandleSubmit}>
-        <div className="form-group">
-          <FormInput
-            type="text"
-            name="firstName"
-            id="firstName"
-            placeholder="Please Enter Your First Name"
-            onChange={contactForm.handleChange}
-            value={contactForm.values.firstName}
-            required
-            classes={[]}
-          />
-          <FormInput
-            type="text"
-            name="lastName"
-            id="lastName"
-            className="form-control"
-            placeholder="Please Enter Your Last Name"
-            onChange={contactForm.handleChange}
-            value={contactForm.values.lastName}
-            required
-            classes={[]}
-          />
-        </div>
-        <div className="form-group">
-          <FormInput
-            type="email"
-            name="emailAddress"
-            id="emailAddress"
-            className="form-control"
-            placeholder="Please Enter Your Email Address"
-            onChange={contactForm.handleChange}
-            value={contactForm.values.emailAddress}
-            required
-            classes={[]}
-          />
-          <FormInput
-            type="number"
-            name="phoneNumber"
-            id="phoneNumber"
-            className="form-control"
-            placeholder="Please Enter Your Phone Number"
-            onChange={contactForm.handleChange}
-            value={contactForm.values.phoneNumber}
-            required
-            classes={[]}
-          />
-        </div>
+        <div className="flex flex-col">
+          <div className="form-group">
+            <FormInput
+              type="text"
+              name="firstName"
+              id="firstName"
+              placeholder="Please Enter Your First Name"
+              onChange={contactForm.handleChange}
+              value={contactForm.values.firstName}
+              required
+              classes={[]}
+            />
+            <FormInput
+              type="text"
+              name="lastName"
+              id="lastName"
+              className="form-control"
+              placeholder="Please Enter Your Last Name"
+              onChange={contactForm.handleChange}
+              value={contactForm.values.lastName}
+              required
+              classes={[]}
+            />
+          </div>
+          <div className="form-group">
+            <FormInput
+              type="email"
+              name="emailAddress"
+              id="emailAddress"
+              className="form-control"
+              placeholder="Please Enter Your Email Address"
+              onChange={contactForm.handleChange}
+              value={contactForm.values.emailAddress}
+              required
+              classes={[]}
+            />
+            <FormInput
+              type="number"
+              name="phoneNumber"
+              id="phoneNumber"
+              className="form-control"
+              placeholder="Please Enter Your Phone Number"
+              onChange={contactForm.handleChange}
+              value={contactForm.values.phoneNumber}
+              required
+              classes={[]}
+            />
+          </div>
 
-        <div className="form-group">
-          <FormInput
-            type="text"
-            name="company"
-            id="company"
-            className="form-control"
-            placeholder="Please Enter Your Company's Name"
-            onChange={contactForm.handleChange}
-            value={contactForm.values.company}
-            required
-            classes={[]}
-          />
-          <FormInput
-            type="text"
-            name="companyGenre"
-            id="companyGenre"
-            className="form-control"
-            placeholder="Please Enter Your Industry"
-            onChange={contactForm.handleChange}
-            value={contactForm.values.companyGenre}
-            required
-            classes={[]}
-          />
-        </div>
+          <div className="form-group">
+            <FormInput
+              type="text"
+              name="company"
+              id="company"
+              className="form-control"
+              placeholder="Please Enter Your Company's Name"
+              onChange={contactForm.handleChange}
+              value={contactForm.values.company}
+              required
+              classes={[]}
+            />
+            <FormInput
+              type="text"
+              name="companyGenre"
+              id="companyGenre"
+              className="form-control"
+              placeholder="Please Enter Your Industry"
+              onChange={contactForm.handleChange}
+              value={contactForm.values.companyGenre}
+              required
+              classes={[]}
+            />
+          </div>
 
-        <div className="form-group">
-          <textarea
-            name="message"
-            id=""
-            cols={30}
-            rows={10}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-12 w-1/2"
-            placeholder="Please Enter Your Message Here"
-            onChange={contactForm.handleChange}
-            value={contactForm.values.message}
-            required
-          ></textarea>
-        </div>
+          <div className="form-group">
+            <textarea
+              name="message"
+              id=""
+              cols={30}
+              rows={10}
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-12 w-1/2"
+              placeholder="Please Enter Your Message Here"
+              onChange={contactForm.handleChange}
+              value={contactForm.values.message}
+              required
+            ></textarea>
+          </div>
 
-        <div className="flex mb-4">
-          <button className="btn btn-black" type="submit">
-            Submit Contact
-          </button>
+          <div className="flex mb-4">
+            <button className="btn btn-black" type="submit">
+              Submit Contact
+            </button>
+          </div>
         </div>
       </form>
     </>
