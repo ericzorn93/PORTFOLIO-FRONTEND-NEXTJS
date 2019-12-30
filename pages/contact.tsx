@@ -8,9 +8,7 @@ const ContactPage: NextComponentType = () => {
   return (
     <PageContainer>
       <h1>Contact Page</h1>
-      <div className="relative flex w-full justify-center items-center h-full">
         <ContactForm />
-      </div>
     </PageContainer>
   );
 };
