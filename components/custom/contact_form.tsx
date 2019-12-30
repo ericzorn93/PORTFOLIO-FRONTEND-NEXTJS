@@ -111,106 +111,79 @@ const ContactForm: NextComponentType = () => {
   const errorValues = Object.values(contactForm.errors);
 
   return (
-    <>
-      {errorValues &&
-        errorValues.map(error => <FormErrorMessage message={error} />)}
-      <form onSubmit={localHandleSubmit} style={{ position: "relative" }}>
-        <div className="px-10">
-          <div className="flex w-full my-2">
-            <FormInput
-              type="text"
-              name="firstName"
-              id="firstName"
-              placeholder="Please Enter Your First Name"
-              onChange={contactForm.handleChange}
-              value={contactForm.values.firstName}
-              required
-              classes={[]}
-            />
-            <FormInput
-              type="text"
-              name="lastName"
-              id="lastName"
-              className="form-control"
-              placeholder="Please Enter Your Last Name"
-              onChange={contactForm.handleChange}
-              value={contactForm.values.lastName}
-              required
-              classes={[]}
-            />
-          </div>
-          <div className="flex w-full my-2">
-            <FormInput
-              type="email"
-              name="emailAddress"
-              id="emailAddress"
-              className="form-control"
-              placeholder="Please Enter Your Email Address"
-              onChange={contactForm.handleChange}
-              value={contactForm.values.emailAddress}
-              required
-              classes={[]}
-            />
-            <FormInput
-              type="number"
-              name="phoneNumber"
-              id="phoneNumber"
-              className="form-control"
-              placeholder="Please Enter Your Phone Number"
-              onChange={contactForm.handleChange}
-              value={contactForm.values.phoneNumber}
-              required
-              classes={[]}
-            />
-          </div>
-
-          <div className="flex w-full my-2">
-            <FormInput
-              type="text"
-              name="company"
-              id="company"
-              className="form-control"
-              placeholder="Please Enter Your Company's Name"
-              onChange={contactForm.handleChange}
-              value={contactForm.values.company}
-              required
-              classes={[]}
-            />
-            <FormInput
-              type="text"
-              name="companyGenre"
-              id="companyGenre"
-              className="form-control"
-              placeholder="Please Enter Your Industry"
-              onChange={contactForm.handleChange}
-              value={contactForm.values.companyGenre}
-              required
-              classes={[]}
-            />
-          </div>
-
-          <div className="flex w-full my-2">
-            <textarea
-              name="message"
-              id=""
-              cols={30}
-              rows={10}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-12 ml-2"
-              placeholder="Please Enter Your Message Here"
-              onChange={contactForm.handleChange}
-              value={contactForm.values.message}
-              required
-            ></textarea>
-          </div>
-
-          <div className="flex mb-4">
-            <button className="w-full btn btn-black" type="submit">
-              Submit Contact
-            </button>
-          </div>
+    <form className="w-full max-w-lg">
+      <div className="flex flex-wrap -mx-3 mb-6">
+        <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+          <label
+            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+            htmlFor="grid-first-name"
+          >
+            First Name
+          </label>
+          <input
+            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+            id="grid-first-name"
+            type="text"
+            placeholder="Jane"
+          />
+          <p className="text-red-500 text-xs italic">
+            Please fill out this field.
+          </p>
         </div>
-      </form>
-    </>
+        <div className="w-full md:w-1/2 px-3">
+          <label
+            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+            htmlFor="grid-last-name"
+          >
+            Last Name
+          </label>
+          <input
+            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            id="grid-last-name"
+            type="text"
+            placeholder="Doe"
+          />
+        </div>
+      </div>
+      <div className="flex flex-wrap -mx-3 mb-6">
+        <div className="w-1/2 px-3">
+          <label
+            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+            htmlFor="grid-email"
+          >
+            Email Address
+          </label>
+          <input
+            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            id="grid-email"
+            type="email"
+            placeholder="Enter Your Email Address"
+          />
+          <p className="text-gray-600 text-xs italic">
+            Please Enter Your Email Address
+          </p>
+        </div>
+        <div className="w-1/2">
+          <label
+            htmlFor="grid-phone"
+            className="block upeprcase tracking-wide text-gray-700 text-xs font-bold mb-2"
+          >
+            Phone Number
+          </label>
+          <input
+            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            id="grid-phone"
+            type="number"
+            placeholder="Enter Your Phone Number"
+          />
+          <p className="text-gray-600 text-xs italic">
+            Please Enter Your Phone Number
+          </p>
+        </div>
+      </div>
+
+      <div></div>
+    </form>
   );
 };
 
