@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import { NextComponentType } from "next";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { generate as generateId } from "shortid";
 
 import { useRegisterUserMutation } from "../../lib/generated/PortfolioGraphqlComponents";
 import FormErrorMessage from "./form_error_message";
@@ -94,11 +93,9 @@ const ContactForm: NextComponentType = () => {
   return (
     <>
       {errorValues &&
-        errorValues.map(error => (
-          <FormErrorMessage key={generateId()} message={error} />
-        ))}
+        errorValues.map(error => <FormErrorMessage message={error} />)}
       <form onSubmit={localHandleSubmit}>
-        <div className="flex mb-4">
+        <div className="form-group">
           <FormInput
             type="text"
             name="firstName"
@@ -121,7 +118,7 @@ const ContactForm: NextComponentType = () => {
             classes={[]}
           />
         </div>
-        <div className="flex mb-4">
+        <div className="form-group">
           <FormInput
             type="email"
             name="emailAddress"
@@ -146,7 +143,7 @@ const ContactForm: NextComponentType = () => {
           />
         </div>
 
-        <div className="flex mb-4">
+        <div className="form-group">
           <FormInput
             type="text"
             name="company"
@@ -171,7 +168,7 @@ const ContactForm: NextComponentType = () => {
           />
         </div>
 
-        <div className="flex mb-4">
+        <div className="form-group">
           <textarea
             name="message"
             id=""
