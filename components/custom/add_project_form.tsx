@@ -53,7 +53,8 @@ const AddProjectForm: React.FC = () => {
               variables: {
                 name: values.newTag,
                 projectIds: [""]
-              }
+              },
+              refetchQueries: ["allProjects", "allTags"]
             });
 
             if (data?.createTag) {
@@ -67,7 +68,8 @@ const AddProjectForm: React.FC = () => {
               name: values.name,
               description: values.description,
               tagIds: [...values.tagIds, tagId ? tagId : ""]
-            }
+            },
+            refetchQueries: ["allProjects", "allTags"]
           });
           setSubmitting(false);
           resetForm();

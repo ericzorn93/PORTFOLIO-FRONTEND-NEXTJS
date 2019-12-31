@@ -9,12 +9,14 @@ const PortfolioProjects: NextComponentType = () => {
   const { data, loading, error } = useAllProjectsQuery();
 
   if (!data || loading || error) {
-    return <LoadingSpinner isLoading={true} color={null} />;
+    // return <LoadingSpinner isLoading={true} color={null} />;
+    return null;
   }
 
   const { allProjects } = data;
   return (
     <>
+      <h1 className="font-bold">Personal Projects</h1>
       {allProjects.map(project => (
         <Link
           href={{

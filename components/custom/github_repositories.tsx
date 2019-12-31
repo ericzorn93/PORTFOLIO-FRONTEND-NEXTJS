@@ -28,7 +28,7 @@ const GithubRepositories: NextComponentType = () => {
 
   return (
     <div>
-      <h1>Github Repos</h1>
+      <h1 className="font-bold">Github Repos</h1>
       {data.viewer.repositories.nodes.map(node => {
         return (
           <p key={node.id}>

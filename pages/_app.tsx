@@ -11,6 +11,7 @@ import Page from "../components/primary/page/page";
 import assembleStore from "../store/assembleStore";
 import { AllThemesComponent } from "../lib/generated/PortfolioGraphqlComponents";
 import { ADD_ALL_THEME_DATA } from "../store/types/theme_types/theme.types";
+import LoadingSpinner from "../components/custom/loading_spinner";
 
 import "../styles/scss/main.scss";
 
@@ -41,7 +42,11 @@ class MyApp extends App<MyAppProps> {
           <AllThemesComponent>
             {({ data, loading, error }) => {
               if (loading || error || !data) {
-                return <h1>Loading...</h1>;
+                return (
+                  <div className="flex justify-center items-center h-screen w-full">
+                    <LoadingSpinner isLoading={true} />
+                  </div>
+                );
               }
 
               // Theme Data Add To Redux Store
