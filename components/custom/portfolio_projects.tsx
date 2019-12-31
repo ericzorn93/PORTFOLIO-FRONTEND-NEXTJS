@@ -3,12 +3,13 @@ import { NextComponentType } from "next";
 import Link from "next/link";
 
 import { useAllProjectsQuery } from "../../lib/generated/PortfolioGraphqlComponents";
+import LoadingSpinner from "./loading_spinner";
 
 const PortfolioProjects: NextComponentType = () => {
   const { data, loading, error } = useAllProjectsQuery();
 
   if (!data || loading || error) {
-    return <h1>Loading...</h1>;
+    return <LoadingSpinner isLoading={true} color={null} />;
   }
 
   const { allProjects } = data;
@@ -16,7 +17,6 @@ const PortfolioProjects: NextComponentType = () => {
     <>
       {allProjects.map(project => (
         <Link
-          // href={`/projects/personal/individual?id=${project.id}`}
           href={{
             pathname: "/projects/personal/individual",
             query: {

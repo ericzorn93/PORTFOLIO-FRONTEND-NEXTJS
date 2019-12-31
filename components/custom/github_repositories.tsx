@@ -5,6 +5,7 @@ import Link from "next/link";
 
 import { useGithubRepositoriesQuery } from "../../lib/generated/GithubGraphqlComponents";
 import { addGithubProjectsAction } from "../../store/actions/project_actions/project.actions";
+import LoadingSpinner from "./loading_spinner";
 
 const GithubRepositories: NextComponentType = () => {
   const dispatch = useDispatch();
@@ -22,7 +23,7 @@ const GithubRepositories: NextComponentType = () => {
   }, [data, loading, error]);
 
   if (!data || loading || error) {
-    return <h1>Loading Github</h1>;
+    return <LoadingSpinner isLoading={true} />;
   }
 
   return (
