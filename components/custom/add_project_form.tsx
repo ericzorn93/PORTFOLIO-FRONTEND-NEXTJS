@@ -42,7 +42,7 @@ const AddProjectForm: React.FC = () => {
   const { isSubmitting, errors } = addProjectForm;
 
   return (
-    <form className="w-full" onSubmit={handleLocalSubmit}>
+    <form className="w-full px-5" onSubmit={handleLocalSubmit}>
       <div className="flex flex-wrap w-full">
         <div className="w-full">
           <label
@@ -63,11 +63,11 @@ const AddProjectForm: React.FC = () => {
             disabled={isSubmitting}
           />
           <p className={`${errors.name && "text-red-500"} text-xs italic`}>
-            Please fill out this field.
+            You Must Provide a Project Name for the Project
           </p>
         </div>
 
-        <div className="w-full">
+        <div className="w-full mt-8">
           <label
             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
             htmlFor="project-description"
@@ -88,15 +88,15 @@ const AddProjectForm: React.FC = () => {
           <p
             className={`${errors.description && "text-red-500"} text-xs italic`}
           >
-            Please fill out this field.
+            You Must Add a Message When Creating a Project
           </p>
         </div>
       </div>
 
-      <div className="w-full">
+      <div className="w-full px-5 mt-8">
         <button
           type="submit"
-          className="w-full text-center bg-black text-white font-bold rounded-lg border py-2 hover:bg-gray-700"
+          className="hover:cursor-pointer w-full text-center bg-black text-white font-bold rounded-lg border py-2 hover:bg-gray-900"
         >
           Submit
         </button>
