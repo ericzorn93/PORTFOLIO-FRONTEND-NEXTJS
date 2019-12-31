@@ -1,11 +1,12 @@
-import React, { useCallback } from "react";
+import React from "react";
 import { FieldArray, Form, Formik } from "formik";
 import * as Yup from "yup";
 
 import {
   useCreateProjectMutation,
   useFindMeQuery,
-  useAllTagsQuery
+  useAllTagsQuery,
+  useCreateTagMutation
 } from "../../lib/generated/PortfolioGraphqlComponents";
 import FormErrorMessage from "./form_error_message";
 
@@ -29,34 +30,63 @@ const AddProjectForm: React.FC = () => {
     { loading: addProjectLoading, error: addProjectError }
   ] = useCreateProjectMutation();
   const { loading: tagsLoading, data: allTags } = useAllTagsQuery();
+  const [
+    createTag
+    // { loading: createTagLoading, data: createTagData, error: createTagError }
+  ] = useCreateTagMutation();
 
   return (
     <Formik
+      initialValues={{ name: "", description: "", tagIds: [], newTag: "" }}
       onSubmit={async (values, actions) => {
-        const { setSubmitting, resetForm } = actions;
+        const { setSubmitting, setErrors, resetForm } = actions;
 
         if (!meData || meLoading || meError) {
           return;
         }
 
         setSubmitting(true);
-        await addProject({
-          variables: {
-            userId: meData.findMe.id,
-            name: values.name,
-            description: values.description,
-            tagIds: [...values.tagIds]
+
+        try {
+          let tagId: string;
+          if (values.newTag) {
+            const { data } = await createTag({
+              variables: {
+                name: values.newTag,
+                projectIds: [""]
+              }
+            });
+
+            if (data?.createTag) {
+              tagId = data.createTag.id;
+            }
           }
-        });
-        setSubmitting(false);
-        resetForm();
+
+          await addProject({
+            variables: {
+              userId: meData.findMe.id,
+              name: values.name,
+              description: values.description,
+              tagIds: [...values.tagIds, tagId ? tagId : ""]
+            }
+          });
+          setSubmitting(false);
+          resetForm();
+        } catch (error) {
+          setSubmitting(false);
+
+          const errorMessage: string =
+            "Could not submit the form at this time, please try again later";
+          setErrors({
+            name: errorMessage,
+            description: errorMessage,
+            newTag: errorMessage
+          });
+        }
       }}
-      initialValues={{ name: "", description: "", tagIds: [] }}
       validationSchema={addProjectSchema}
     >
       {({ values, isSubmitting, errors, handleChange }) => {
-        console.log(errors.tagIds);
-
         return (
           <>
             {addProjectError && (
@@ -64,6 +94,7 @@ const AddProjectForm: React.FC = () => {
                 <FormErrorMessage message={addProjectError.message} />
               </div>
             )}
+
             <Form className="w-full px-5">
               <div className="flex flex-wrap w-full">
                 <div className="w-full">
@@ -174,6 +205,34 @@ const AddProjectForm: React.FC = () => {
                     )}
                   />
                 )}
+              </div>
+
+              <div className="w-full mt-8">
+                <div className="w-full">
+                  <label
+                    className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                    htmlFor="new-tag"
+                  >
+                    Tag Name
+                  </label>
+                  <input
+                    className={`appearance-none block w-full bg-gray-200 text-gray-700 border ${errors.newTag &&
+                      "border-red-500"} rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white`}
+                    id="new-tag"
+                    type="text"
+                    placeholder="Enter Tag Name"
+                    name="newTag"
+                    value={values.newTag}
+                    onChange={handleChange}
+                    disabled={addProjectLoading || isSubmitting}
+                  />
+                  <p
+                    className={`${errors.newTag &&
+                      "text-red-500"} text-xs italic`}
+                  >
+                    You Must Provide a New Tag Name
+                  </p>
+                </div>
               </div>
 
               <div className="w-full px-5 mt-8">

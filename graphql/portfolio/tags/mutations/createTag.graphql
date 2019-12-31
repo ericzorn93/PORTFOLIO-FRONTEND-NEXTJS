@@ -1,5 +1,5 @@
 mutation createTag($name: String!, $projectIds: [String!]!) {
-  createTag(tagInput: { name: "Another testing", projectIds: $projectIds }) {
+  createTag(tagInput: { name: $name, projectIds: $projectIds }) {
     id
     name
     createdAt

@@ -738,7 +738,7 @@ export type FindOneProjectByIdLazyQueryHookResult = ReturnType<typeof useFindOne
 export type FindOneProjectByIdQueryResult = ApolloReactCommon.QueryResult<FindOneProjectByIdQuery, FindOneProjectByIdQueryVariables>;
 export const CreateTagDocument = gql`
     mutation createTag($name: String!, $projectIds: [String!]!) {
-  createTag(tagInput: {name: "Another testing", projectIds: $projectIds}) {
+  createTag(tagInput: {name: $name, projectIds: $projectIds}) {
     id
     name
     createdAt
