@@ -33,7 +33,7 @@ const AddProjectForm: React.FC = () => {
   const [
     createTag
     // { loading: createTagLoading, data: createTagData, error: createTagError }
-  ] = useCreateTagMutation();
+  ] = useCreateTagMutation({ refetchQueries: ["allTags"] });
 
   return (
     <Formik
@@ -156,7 +156,7 @@ const AddProjectForm: React.FC = () => {
                   htmlFor="projectSelection"
                   className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 >
-                  Find All Projects
+                  All Available Project Tags
                 </label>
 
                 {allTags && !tagsLoading && allTags.allTags && (
