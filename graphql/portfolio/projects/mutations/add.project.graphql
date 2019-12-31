@@ -1,0 +1,24 @@
+mutation createProject(
+  $name: String!
+  $description: String!
+  $tagIds: [String]
+) {
+  createProject(
+    createProjectInput: {
+      name: $name
+      description: $description
+      userId: "3"
+      tagIds: $tagIds
+    }
+  ) {
+    id
+    name
+    description
+    tags {
+      id
+      name
+    }
+    createdAt
+    updatedAt
+  }
+}
