@@ -30,10 +30,9 @@ const AddProjectForm: React.FC = () => {
     { loading: addProjectLoading, error: addProjectError }
   ] = useCreateProjectMutation();
   const { loading: tagsLoading, data: allTags } = useAllTagsQuery();
-  const [
-    createTag
-    // { loading: createTagLoading, data: createTagData, error: createTagError }
-  ] = useCreateTagMutation({ refetchQueries: ["allTags"] });
+  const [createTag] = useCreateTagMutation({
+    refetchQueries: ["allTags", "allProjects"]
+  });
 
   return (
     <Formik
