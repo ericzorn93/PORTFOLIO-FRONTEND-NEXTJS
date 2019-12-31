@@ -20,7 +20,10 @@ const addProjectSchema = Yup.object().shape({
 
 const AddProjectForm: React.FC = () => {
   const { loading: meLoading, data: meData, error: meError } = useFindMeQuery();
-  const [addProject, { loading, data, error }] = useCreateProjectMutation();
+  const [
+    addProject,
+    { loading: addProjectLoading }
+  ] = useCreateProjectMutation();
 
   const addProjectForm = useFormik({
     validationSchema: addProjectSchema,
@@ -79,7 +82,7 @@ const AddProjectForm: React.FC = () => {
             name="name"
             value={addProjectForm.values.name}
             onChange={addProjectForm.handleChange}
-            disabled={loading || isSubmitting}
+            disabled={addProjectLoading || isSubmitting}
           />
           <p className={`${errors.name && "text-red-500"} text-xs italic`}>
             You Must Provide a Project Name for the Project
@@ -103,7 +106,7 @@ const AddProjectForm: React.FC = () => {
             onChange={addProjectForm.handleChange}
             value={addProjectForm.values.description}
             placeholder="Enter Project Description"
-            disabled={loading || isSubmitting}
+            disabled={addProjectLoading || isSubmitting}
           ></textarea>
           <p
             className={`${errors.description && "text-red-500"} text-xs italic`}
@@ -117,7 +120,7 @@ const AddProjectForm: React.FC = () => {
         <button
           type="submit"
           className="hover:cursor-pointer w-full text-center bg-black text-white font-bold rounded-lg border py-2 hover:bg-gray-900"
-          disabled={loading || isSubmitting}
+          disabled={addProjectLoading || isSubmitting}
         >
           Submit
         </button>
