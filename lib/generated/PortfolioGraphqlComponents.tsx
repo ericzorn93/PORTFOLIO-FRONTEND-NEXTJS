@@ -226,6 +226,8 @@ export type Query = {
    __typename?: 'Query',
   /** Finds and returns all users in the DB. */
   allUsers: Array<User>,
+  /** Finds my personal user without providing the password in the query. */
+  findMe: User,
   /** Finds a single user in the database by their id and email address. */
   findUser: User,
   /** Finds an array of all projects with their associated relations. */
@@ -343,9 +345,19 @@ export enum UserRoleEnum {
   General = 'GENERAL'
 }
 
+export type ProjectMutationPropsFragment = (
+  { __typename?: 'Project' }
+  & Pick<Project, 'id' | 'name' | 'description' | 'createdAt' | 'updatedAt'>
+  & { tags: Maybe<Array<(
+    { __typename?: 'Tag' }
+    & Pick<Tag, 'id' | 'name'>
+  )>> }
+);
+
 export type CreateProjectMutationVariables = {
   name: Scalars['String'],
   description: Scalars['String'],
+  userId: Scalars['String'],
   tagIds?: Maybe<Array<Maybe<Scalars['String']>>>
 };
 
@@ -354,11 +366,7 @@ export type CreateProjectMutation = (
   { __typename?: 'Mutation' }
   & { createProject: Maybe<(
     { __typename?: 'Project' }
-    & Pick<Project, 'id' | 'name' | 'description' | 'createdAt' | 'updatedAt'>
-    & { tags: Maybe<Array<(
-      { __typename?: 'Tag' }
-      & Pick<Tag, 'id' | 'name'>
-    )>> }
+    & ProjectMutationPropsFragment
   )> }
 );
 
@@ -483,6 +491,30 @@ export type AllUsersQuery = (
   )> }
 );
 
+export type FindMeQueryVariables = {};
+
+
+export type FindMeQuery = (
+  { __typename?: 'Query' }
+  & { findMe: (
+    { __typename?: 'User' }
+    & QueryUserPartsFragment
+  ) }
+);
+
+export const ProjectMutationPropsFragmentDoc = gql`
+    fragment ProjectMutationProps on Project {
+  id
+  name
+  description
+  tags {
+    id
+    name
+  }
+  createdAt
+  updatedAt
+}
+    `;
 export const ProjectPartsFragmentDoc = gql`
     fragment ProjectParts on Project {
   id
@@ -540,20 +572,12 @@ export const QueryUserPartsFragmentDoc = gql`
 }
     `;
 export const CreateProjectDocument = gql`
-    mutation createProject($name: String!, $description: String!, $tagIds: [String]) {
-  createProject(createProjectInput: {name: $name, description: $description, userId: "3", tagIds: $tagIds}) {
-    id
-    name
-    description
-    tags {
-      id
-      name
-    }
-    createdAt
-    updatedAt
+    mutation createProject($name: String!, $description: String!, $userId: String!, $tagIds: [String]) {
+  createProject(createProjectInput: {name: $name, description: $description, userId: $userId, tagIds: $tagIds}) {
+    ...ProjectMutationProps
   }
 }
-    `;
+    ${ProjectMutationPropsFragmentDoc}`;
 export type CreateProjectMutationFn = ApolloReactCommon.MutationFunction<CreateProjectMutation, CreateProjectMutationVariables>;
 export type CreateProjectComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<CreateProjectMutation, CreateProjectMutationVariables>, 'mutation'>;
 
@@ -588,6 +612,7 @@ export function withCreateProject<TProps, TChildProps = {}>(operationOptions?: A
  *   variables: {
  *      name: // value for 'name'
  *      description: // value for 'description'
+ *      userId: // value for 'userId'
  *      tagIds: // value for 'tagIds'
  *   },
  * });
@@ -908,3 +933,52 @@ export function useAllUsersLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHoo
 export type AllUsersQueryHookResult = ReturnType<typeof useAllUsersQuery>;
 export type AllUsersLazyQueryHookResult = ReturnType<typeof useAllUsersLazyQuery>;
 export type AllUsersQueryResult = ApolloReactCommon.QueryResult<AllUsersQuery, AllUsersQueryVariables>;
+export const FindMeDocument = gql`
+    query findMe {
+  findMe {
+    ...QueryUserParts
+  }
+}
+    ${QueryUserPartsFragmentDoc}`;
+export type FindMeComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<FindMeQuery, FindMeQueryVariables>, 'query'>;
+
+    export const FindMeComponent = (props: FindMeComponentProps) => (
+      <ApolloReactComponents.Query<FindMeQuery, FindMeQueryVariables> query={FindMeDocument} {...props} />
+    );
+    
+export type FindMeProps<TChildProps = {}> = ApolloReactHoc.DataProps<FindMeQuery, FindMeQueryVariables> | TChildProps;
+export function withFindMe<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  FindMeQuery,
+  FindMeQueryVariables,
+  FindMeProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, FindMeQuery, FindMeQueryVariables, FindMeProps<TChildProps>>(FindMeDocument, {
+      alias: 'findMe',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useFindMeQuery__
+ *
+ * To run a query within a React component, call `useFindMeQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFindMeQuery` returns an object from Apollo Client that contains loading, error, and data properties 
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useFindMeQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useFindMeQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<FindMeQuery, FindMeQueryVariables>) {
+        return ApolloReactHooks.useQuery<FindMeQuery, FindMeQueryVariables>(FindMeDocument, baseOptions);
+      }
+export function useFindMeLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<FindMeQuery, FindMeQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<FindMeQuery, FindMeQueryVariables>(FindMeDocument, baseOptions);
+        }
+export type FindMeQueryHookResult = ReturnType<typeof useFindMeQuery>;
+export type FindMeLazyQueryHookResult = ReturnType<typeof useFindMeLazyQuery>;
+export type FindMeQueryResult = ApolloReactCommon.QueryResult<FindMeQuery, FindMeQueryVariables>;

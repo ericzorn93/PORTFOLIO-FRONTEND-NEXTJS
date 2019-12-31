@@ -2,6 +2,11 @@ import React, { useCallback } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
+import {
+  useCreateProjectMutation,
+  useFindMeQuery
+} from "../../lib/generated/PortfolioGraphqlComponents";
+
 const addProjectSchema = Yup.object().shape({
   name: Yup.string()
     .required("You must provide a length for the project name")
@@ -14,6 +19,9 @@ const addProjectSchema = Yup.object().shape({
 });
 
 const AddProjectForm: React.FC = () => {
+  const { loading: meLoading, data: meData, error: meError } = useFindMeQuery();
+  const [addProject, { loading, data, error }] = useCreateProjectMutation();
+
   const addProjectForm = useFormik({
     validationSchema: addProjectSchema,
     initialValues: {
@@ -23,8 +31,19 @@ const AddProjectForm: React.FC = () => {
     onSubmit: async (values, actions) => {
       const { setSubmitting } = actions;
 
+      if (!meData || meLoading || meError) {
+        return;
+      }
+
       setSubmitting(true);
-      console.log(values);
+      await addProject({
+        variables: {
+          userId: meData.findMe.id,
+          name: values.name,
+          description: values.description,
+          tagIds: []
+        }
+      });
       setSubmitting(false);
     }
   });
@@ -60,7 +79,7 @@ const AddProjectForm: React.FC = () => {
             name="name"
             value={addProjectForm.values.name}
             onChange={addProjectForm.handleChange}
-            disabled={isSubmitting}
+            disabled={loading || isSubmitting}
           />
           <p className={`${errors.name && "text-red-500"} text-xs italic`}>
             You Must Provide a Project Name for the Project
@@ -84,6 +103,7 @@ const AddProjectForm: React.FC = () => {
             onChange={addProjectForm.handleChange}
             value={addProjectForm.values.description}
             placeholder="Enter Project Description"
+            disabled={loading || isSubmitting}
           ></textarea>
           <p
             className={`${errors.description && "text-red-500"} text-xs italic`}
@@ -97,6 +117,7 @@ const AddProjectForm: React.FC = () => {
         <button
           type="submit"
           className="hover:cursor-pointer w-full text-center bg-black text-white font-bold rounded-lg border py-2 hover:bg-gray-900"
+          disabled={loading || isSubmitting}
         >
           Submit
         </button>

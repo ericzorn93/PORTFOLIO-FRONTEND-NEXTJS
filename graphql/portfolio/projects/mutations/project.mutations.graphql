@@ -1,24 +1,29 @@
+fragment ProjectMutationProps on Project {
+  id
+  name
+  description
+  tags {
+    id
+    name
+  }
+  createdAt
+  updatedAt
+}
+
 mutation createProject(
   $name: String!
   $description: String!
+  $userId: String!
   $tagIds: [String]
 ) {
   createProject(
     createProjectInput: {
       name: $name
       description: $description
-      userId: "3"
+      userId: $userId
       tagIds: $tagIds
     }
   ) {
-    id
-    name
-    description
-    tags {
-      id
-      name
-    }
-    createdAt
-    updatedAt
+    ...ProjectMutationProps
   }
 }

@@ -10,3 +10,9 @@ query allUsers {
     ...QueryUserParts
   }
 }
+
+query findMe {
+  findMe {
+    ...QueryUserParts
+  }
+}
