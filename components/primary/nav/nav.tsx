@@ -5,8 +5,6 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { v4 } from "uuid";
 
-import { HeaderWrapper, Navigation } from "./styles/HeaderWrapper";
-
 interface ILink {
   href: string;
   label: string;

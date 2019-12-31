@@ -12,7 +12,7 @@ import AboutResume from "../components/custom/about_resume";
 const AboutPage: React.FC = () => {
   return (
     <PageContainer>
-      <h1 css={{ fontSize: "3rem", textAlign: "center" }}>About Me.</h1>
+      <h1 className="text-center font-bold text-4xl mt-5">About Me</h1>
       <div css={{ display: "flex", margin: 50 }}>
         <div css={{ height: 150, width: 150 }}>
           <ProfilePicture
