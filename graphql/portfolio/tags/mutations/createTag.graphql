@@ -1,0 +1,8 @@
+mutation createTag($name: String!, $projectIds: [String!]!) {
+  createTag(tagInput: { name: "Another testing", projectIds: $projectIds }) {
+    id
+    name
+    createdAt
+    updatedAt
+  }
+}

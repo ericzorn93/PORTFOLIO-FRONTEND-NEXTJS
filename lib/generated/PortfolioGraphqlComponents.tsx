@@ -403,6 +403,20 @@ export type FindOneProjectByIdQuery = (
   ) }
 );
 
+export type CreateTagMutationVariables = {
+  name: Scalars['String'],
+  projectIds: Array<Scalars['String']>
+};
+
+
+export type CreateTagMutation = (
+  { __typename?: 'Mutation' }
+  & { createTag: (
+    { __typename?: 'Tag' }
+    & Pick<Tag, 'id' | 'name' | 'createdAt' | 'updatedAt'>
+  ) }
+);
+
 export type AllTagsQueryVariables = {};
 
 
@@ -722,6 +736,59 @@ export function useFindOneProjectByIdLazyQuery(baseOptions?: ApolloReactHooks.La
 export type FindOneProjectByIdQueryHookResult = ReturnType<typeof useFindOneProjectByIdQuery>;
 export type FindOneProjectByIdLazyQueryHookResult = ReturnType<typeof useFindOneProjectByIdLazyQuery>;
 export type FindOneProjectByIdQueryResult = ApolloReactCommon.QueryResult<FindOneProjectByIdQuery, FindOneProjectByIdQueryVariables>;
+export const CreateTagDocument = gql`
+    mutation createTag($name: String!, $projectIds: [String!]!) {
+  createTag(tagInput: {name: "Another testing", projectIds: $projectIds}) {
+    id
+    name
+    createdAt
+    updatedAt
+  }
+}
+    `;
+export type CreateTagMutationFn = ApolloReactCommon.MutationFunction<CreateTagMutation, CreateTagMutationVariables>;
+export type CreateTagComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<CreateTagMutation, CreateTagMutationVariables>, 'mutation'>;
+
+    export const CreateTagComponent = (props: CreateTagComponentProps) => (
+      <ApolloReactComponents.Mutation<CreateTagMutation, CreateTagMutationVariables> mutation={CreateTagDocument} {...props} />
+    );
+    
+export type CreateTagProps<TChildProps = {}> = ApolloReactHoc.MutateProps<CreateTagMutation, CreateTagMutationVariables> | TChildProps;
+export function withCreateTag<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  CreateTagMutation,
+  CreateTagMutationVariables,
+  CreateTagProps<TChildProps>>) {
+    return ApolloReactHoc.withMutation<TProps, CreateTagMutation, CreateTagMutationVariables, CreateTagProps<TChildProps>>(CreateTagDocument, {
+      alias: 'createTag',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useCreateTagMutation__
+ *
+ * To run a mutation, you first call `useCreateTagMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateTagMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createTagMutation, { data, loading, error }] = useCreateTagMutation({
+ *   variables: {
+ *      name: // value for 'name'
+ *      projectIds: // value for 'projectIds'
+ *   },
+ * });
+ */
+export function useCreateTagMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<CreateTagMutation, CreateTagMutationVariables>) {
+        return ApolloReactHooks.useMutation<CreateTagMutation, CreateTagMutationVariables>(CreateTagDocument, baseOptions);
+      }
+export type CreateTagMutationHookResult = ReturnType<typeof useCreateTagMutation>;
+export type CreateTagMutationResult = ApolloReactCommon.MutationResult<CreateTagMutation>;
+export type CreateTagMutationOptions = ApolloReactCommon.BaseMutationOptions<CreateTagMutation, CreateTagMutationVariables>;
 export const AllTagsDocument = gql`
     query allTags {
   allTags {

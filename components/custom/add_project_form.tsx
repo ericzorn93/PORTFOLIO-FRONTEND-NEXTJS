@@ -18,7 +18,8 @@ const addProjectSchema = Yup.object().shape({
     .required("A description of the project needs to be provided.")
     .min(2)
     .max(1000),
-  tagIds: Yup.array().notRequired()
+  tagIds: Yup.array().notRequired(),
+  newTag: Yup.string().notRequired()
 });
 
 const AddProjectForm: React.FC = () => {
