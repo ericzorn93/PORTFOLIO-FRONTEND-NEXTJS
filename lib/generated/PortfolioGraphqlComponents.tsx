@@ -410,7 +410,7 @@ export type AllTagsQuery = (
   { __typename?: 'Query' }
   & { allTags: Array<(
     { __typename?: 'Tag' }
-    & Pick<Tag, 'id' | 'name'>
+    & Pick<Tag, 'id' | 'name' | 'createdAt' | 'updatedAt'>
   )> }
 );
 
@@ -727,6 +727,8 @@ export const AllTagsDocument = gql`
   allTags {
     id
     name
+    createdAt
+    updatedAt
   }
 }
     `;

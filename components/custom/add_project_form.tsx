@@ -4,7 +4,9 @@ import * as Yup from "yup";
 
 import {
   useCreateProjectMutation,
-  useFindMeQuery
+  useFindMeQuery,
+  useAllProjectsQuery,
+  useAllTagsQuery
 } from "../../lib/generated/PortfolioGraphqlComponents";
 
 const addProjectSchema = Yup.object().shape({
@@ -24,6 +26,7 @@ const AddProjectForm: React.FC = () => {
     addProject,
     { loading: addProjectLoading }
   ] = useCreateProjectMutation();
+  const { loading: tagsLoading, data: allTags } = useAllTagsQuery();
 
   const addProjectForm = useFormik({
     validationSchema: addProjectSchema,
@@ -114,6 +117,33 @@ const AddProjectForm: React.FC = () => {
             You Must Add a Message When Creating a Project
           </p>
         </div>
+      </div>
+
+      <div className="w-full mt-8">
+        <label
+          htmlFor="projectSelection"
+          className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+        >
+          Find All Projects
+        </label>
+        {allTags && allTags.allTags && (
+          <select
+            name="projects"
+            id="projectSelection"
+            className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outlone-none focus:bg-white"
+            disabled={!allTags.allTags.length}
+          >
+            {allTags.allTags.map(tag => (
+              <option
+                key={tag.id}
+                value={tag.id}
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outlone-none focus:bg-white"
+              >
+                {tag.name}
+              </option>
+            ))}
+          </select>
+        )}
       </div>
 
       <div className="w-full px-5 mt-8">
