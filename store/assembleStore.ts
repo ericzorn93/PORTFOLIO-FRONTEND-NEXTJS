@@ -6,6 +6,7 @@ import rootReducer from "./reducers/rootReducer";
 import { PrimaryUtils } from "../shared/utils/primary.utils";
 
 function assembleStore() {
+  // All middleware
   const reduxMiddleware = [thunk];
 
   let composed;
